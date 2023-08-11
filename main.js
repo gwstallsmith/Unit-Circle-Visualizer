@@ -25,7 +25,7 @@ function draw() {
     drawArc();
     drawGrid();
     drawPoints();
-    //drawUnitCirc();
+    drawUnitCirc();
     drawTriangle();
     drawMousePoint();
     drawPosInfo();
@@ -142,14 +142,14 @@ function drawMousePoint() {
 }
 
 function drawPosInfo() {
-    let ang = parseFloat(quadArcTan(relMouseX(), relMouseY()) / PI).toFixed(2);
+    let ang = quadArcTan(relMouseX(), relMouseY()) / PI;
     if(ang < 0) {
-        console.log('bruh');
-        ang + 100;
+        ang = quadArcTan(relMouseX(), relMouseY()) / PI;
+        ang += 2;
     }
     fill('black');
     text('Mouse Posistion (x, y) = (' + parseFloat(relMouseX()).toFixed(2) + ', ' + parseFloat(relMouseY()).toFixed(2) + ')', 50, 50);
-    text('Angle = ' + ang + '𝜋', 50, 100);
+    text('Angle = ' + parseFloat(ang).toFixed(2) + '𝜋 / ' + parseInt(ang * 180) + '°', 50, 100);
 
 
 }

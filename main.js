@@ -6,7 +6,7 @@ const PI = 3.14;
 // P5 function.
 function setup() {
     createCanvas(CANVAS_SIZE, CANVAS_SIZE);
-    textSize(16);
+    textSize(24);
     fill(255, 255, 255);
 
 }
@@ -20,19 +20,22 @@ function draw() {
     background('#545454');
     angleMode(RADIANS);
 
+
     drawCircle();
     drawArc();
     drawGrid();
     drawPoints();
-    drawUnitCirc();
-    //drawTriangle();
+    //drawUnitCirc();
+    drawTriangle();
+    drawMousePoint();
+    drawPosInfo();
 
 }
 
 // UTIL FUNCTIONS
 
-function relMouseX() { return ((mouseX - UNIT) / CANVAS_SIZE); }
-function relMouseY() { return (-1 * (mouseY - UNIT) / CANVAS_SIZE); }
+function relMouseX() { return ((mouseX - UNIT) / CANVAS_SIZE) * 4; }
+function relMouseY() { return (-1 * (mouseY - UNIT) / CANVAS_SIZE) * 4; }
 
 
 function strokeWeightColor(weight, color) {
@@ -85,10 +88,6 @@ function drawPoints() {
 
 }
 
-function drawTriangle() {
-
-}
-
 function drawArc() {
     strokeWeightColor(4, 'black');
     fill('pink');
@@ -96,15 +95,7 @@ function drawArc() {
     arc(UNIT, UNIT, UNIT, UNIT, -1 * quadArcTan(relMouseX(), relMouseY()), 0, PIE);
     fill('white');
     arc(UNIT, UNIT, UNIT/3, UNIT/3, -1 * quadArcTan(relMouseX(), relMouseY()), 0, PIE);
-
-    drawingContext.setLineDash([5, 15]);
-    line(UNIT, UNIT, mouseX, mouseY);
-    strokeWeightColor(16, 'black');
-    point(mouseX, mouseY);
-    drawingContext.setLineDash([0, 0]);
-
 }
-
 
 function drawUnitCirc() {
     strokeWeightColor(2, 'black');
@@ -131,5 +122,34 @@ function drawUnitCirc() {
     line(UNIT, UNIT, UNIT + UNIT * Math.cos(11 * PI / 6), UNIT - UNIT * Math.sin(11 * PI / 6));
 
     drawingContext.setLineDash([0, 0]);
+
+}
+
+function drawTriangle() {
+    strokeWeightColor(2, 'black');
+    drawingContext.setLineDash([5, 15]);
+    fill('rgba(0,0,255, 0.25)');
+
+    triangle(UNIT, UNIT, mouseX, UNIT, mouseX, mouseY);
+    drawingContext.setLineDash([0, 0]);
+
+}
+
+function drawMousePoint() {
+    strokeWeightColor(16, 'red');
+    point(mouseX, mouseY);
+    strokeWeightColor(2, 'black');
+}
+
+function drawPosInfo() {
+    let ang = parseFloat(quadArcTan(relMouseX(), relMouseY()) / PI).toFixed(2);
+    if(ang < 0) {
+        console.log('bruh');
+        ang + 100;
+    }
+    fill('black');
+    text('Mouse Posistion (x, y) = (' + parseFloat(relMouseX()).toFixed(2) + ', ' + parseFloat(relMouseY()).toFixed(2) + ')', 50, 50);
+    text('Angle = ' + ang + '𝜋', 50, 100);
+
 
 }

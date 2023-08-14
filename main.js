@@ -1,7 +1,8 @@
 const CANVAS_SIZE = 1000; // In pixels
+const CANVAS_HALF = CANVAS_SIZE / 2;
 const UNIT = CANVAS_SIZE / 4;
-const X_ORIGIN = CANVAS_SIZE / 2;
-const Y_ORIGIN = CANVAS_SIZE / 2;
+const X_ORIGIN = CANVAS_HALF;
+const Y_ORIGIN = CANVAS_HALF;
 const PI = 3.14;
 
 class CosmeticManager {
@@ -53,19 +54,31 @@ function draw() {
     angleMode(RADIANS);
 
 
+    push();
+    rotate(3 * PI / 2);
+    translate(-CANVAS_SIZE, 0);
     drawCircle();
-    //drawArc();
     drawGrid();
     drawAxis();
     drawPoints();
     drawUnitCirc();
     //drawTriangle();
+    pop();
+    drawPosInfo();
+    drawArc();
     drawMousePoint();
-    //drawPosInfo();
+
 
 }
 
 // UTIL FUNCTIONS
+function relX(x) {
+    return (x * UNIT) + X_ORIGIN;
+}
+
+function relY(y) {
+    return (y * UNIT) + Y_ORIGIN;
+}
 
 function relMouseX() {
     return ((mouseX - X_ORIGIN) / CANVAS_SIZE) * 4;
@@ -74,17 +87,6 @@ function relMouseY() {
     return (-1 * (mouseY - Y_ORIGIN) / CANVAS_SIZE) * 4;
 }
 
-function relCos(ang) {
-    return (Math.cos(ang) * UNIT);
-}
-
-function relSin(ang) {
-    return (Math.sin(ang) * UNIT);
-}
-
-function relTheta(ang) {
-    return ang - (PI/2);
-}
 
 function quadArcTan(x, y) {
     if(x > 0) {
@@ -100,6 +102,7 @@ function quadArcTan(x, y) {
     } else if (x == 0 && y == 0) {
         return NaN;
     }
+    return NaN;
 }
 
 // DRAW FUNCTIONS
@@ -117,8 +120,8 @@ function drawAxis() {
     CosMan.strokeWeight(2);
     CosMan.strokeDashed(true);
 
-    line(CANVAS_SIZE/4, CANVAS_SIZE/2, CANVAS_SIZE * 3/4, CANVAS_SIZE/2);
-    line(CANVAS_SIZE/2, CANVAS_SIZE/4, CANVAS_SIZE/2, CANVAS_SIZE * 3/4);
+    line(CANVAS_SIZE/4, CANVAS_HALF, CANVAS_SIZE * 3/4, CANVAS_HALF);
+    line(CANVAS_HALF, CANVAS_SIZE/4, CANVAS_HALF, CANVAS_SIZE * 3/4);
 
     CosMan.strokeDashed(false);
 }
@@ -153,10 +156,10 @@ function drawPoints() {
 function drawArc() {
     CosMan.strokeColor('black');
     CosMan.strokeWeight(4);
-    fill('lime');
+    fill('rgba(0, 255, 0, .5)');
 
     arc(X_ORIGIN, Y_ORIGIN, UNIT * 2, UNIT * 2, -1 * quadArcTan(relMouseX(), relMouseY()), 0, PIE);
-    fill('blue');
+    fill('rgba(0, 0, 255, .5)');
     
     arc(X_ORIGIN, Y_ORIGIN, UNIT, UNIT, -1 * quadArcTan(relMouseX(), relMouseY()), 0, PIE);
 }
@@ -169,49 +172,57 @@ function drawUnitCirc() {
 
 
     // QUAD I
-    arc(X_ORIGIN, Y_ORIGIN, 2 * UNIT, 2 * UNIT, relTheta(PI / 6), 0, PIE);
-    arc(X_ORIGIN, Y_ORIGIN, 2 * UNIT, 2 * UNIT, relTheta(PI / 4), 0, PIE);
-    arc(X_ORIGIN, Y_ORIGIN, 2 * UNIT, 2 * UNIT, relTheta(PI / 3), 0, PIE);
+    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(PI/6)), relY(Math.sin(PI/6)));
+    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(PI/4)), relY(Math.sin(PI/4)));
+    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(PI/3)), relY(Math.sin(PI/3)));
 
     // QUAD II
-    arc(X_ORIGIN, Y_ORIGIN, 2 * UNIT, 2 * UNIT, relTheta(2 * PI / 3), 0, PIE);
-    arc(X_ORIGIN, Y_ORIGIN, 2 * UNIT, 2 * UNIT, relTheta(3 * PI / 4), 0, PIE);
-    arc(X_ORIGIN, Y_ORIGIN, 2 * UNIT, 2 * UNIT, relTheta(5 * PI / 6), 0, PIE);
+    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(2*PI/3)), relY(Math.sin(2*PI/3)));
+    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(3*PI/4)), relY(Math.sin(3*PI/4)));
+    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(5*PI/6)), relY(Math.sin(5*PI/6)));
+
 
     // QUAD III
-    arc(X_ORIGIN, Y_ORIGIN, 2 * UNIT, 2 * UNIT, relTheta(7 * PI / 6), 0, PIE);
-    arc(X_ORIGIN, Y_ORIGIN, 2 * UNIT, 2 * UNIT, relTheta(5 * PI / 4), 0, PIE);
-    arc(X_ORIGIN, Y_ORIGIN, 2 * UNIT, 2 * UNIT, relTheta(4 * PI / 3), 0, PIE);
+    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(7*PI/6)), relY(Math.sin(7*PI/6)));
+    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(5*PI/4)), relY(Math.sin(5*PI/4)));
+    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(4*PI/3)), relY(Math.sin(4*PI/3)));
+
+
 
     // QUAD IV
-    arc(X_ORIGIN, Y_ORIGIN, 2 * UNIT, 2 * UNIT, relTheta(5 * PI / 3), 0, PIE);
-    arc(X_ORIGIN, Y_ORIGIN, 2 * UNIT, 2 * UNIT, relTheta(7 * PI / 4), 0, PIE);
-    arc(X_ORIGIN, Y_ORIGIN, 2 * UNIT, 2 * UNIT, relTheta(11 * PI / 6), 0, PIE);
+
+    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(5*PI/3)), relY(Math.sin(5*PI/3)));
+    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(7*PI/4)), relY(Math.sin(7*PI/4)));
+    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(11*PI/6)), relY(Math.sin(11*PI/6)));
+
 
 
     CosMan.strokeColor('black');
     CosMan.strokeWeight(16);
 
     // QUAD I
-    point(X_ORIGIN + relCos(PI/6), Y_ORIGIN + relSin(PI/6));
-    point(X_ORIGIN + relCos(PI/4), Y_ORIGIN + relSin(PI/4));
-    point(X_ORIGIN + relCos(PI/3), Y_ORIGIN + relSin(PI/3));
+    point(relX(Math.cos(PI/6)), relY(Math.sin(PI/6)));
+    point(relX(Math.cos(PI/4)), relY(Math.sin(PI/4)));
+    point(relX(Math.cos(PI/3)), relY(Math.sin(PI/3)));
 
     // QUAD II
-    point(X_ORIGIN + relCos(2 * PI / 3), Y_ORIGIN + relSin(2 * PI / 3));
-    point(X_ORIGIN + relCos(3 * PI / 4), Y_ORIGIN + relSin(3 * PI / 4));
-    point(X_ORIGIN + relCos(5 * PI / 6), Y_ORIGIN + relSin(5 * PI / 6));
+    point(relX(Math.cos(2*PI/3)), relY(Math.sin(2*PI/3)));
+    point(relX(Math.cos(3*PI/4)), relY(Math.sin(3*PI/4)));
+    point(relX(Math.cos(5*PI/6)), relY(Math.sin(5*PI/6)));
+
 
     // QUAD III
-    point(X_ORIGIN + relCos(7 * PI / 6), Y_ORIGIN + relSin(7 * PI / 6));
-    point(X_ORIGIN + relCos(5 * PI / 4), Y_ORIGIN + relSin(5 * PI / 4));
-    point(X_ORIGIN + relCos(4 * PI / 3), Y_ORIGIN + relSin(4 * PI / 3));
+    point(relX(Math.cos(7*PI/6)), relY(Math.sin(7*PI/6)));
+    point(relX(Math.cos(5*PI/4)), relY(Math.sin(5*PI/4)));
+    point(relX(Math.cos(4*PI/3)), relY(Math.sin(4*PI/3)));
+
+
 
     // QUAD IV
-    point(X_ORIGIN + relCos(5 * PI / 3), Y_ORIGIN + relSin(5 * PI / 3));
-    point(X_ORIGIN + relCos(7 * PI / 4), Y_ORIGIN + relSin(7 * PI / 4));
-    point(X_ORIGIN + relCos(11 * PI / 6), Y_ORIGIN + relSin(11 * PI / 6));
 
+    point(relX(Math.cos(5*PI/3)), relY(Math.sin(5*PI/3)));
+    point(relX(Math.cos(7*PI/4)), relY(Math.sin(7*PI/4)));
+    point(relX(Math.cos(11*PI/6)), relY(Math.sin(11*PI/6)));
 
     CosMan.strokeDashed(false);
 
@@ -237,6 +248,7 @@ function drawMousePoint() {
 }
 
 function drawPosInfo() {
+    CosMan.strokeWeight(1);
     let ang = quadArcTan(relMouseX(), relMouseY()) / PI;
     if(ang < 0) {
         ang = quadArcTan(relMouseX(), relMouseY()) / PI;

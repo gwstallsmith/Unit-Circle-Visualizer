@@ -139,6 +139,15 @@ function quadArcTan(x, y) {
     return NaN;
 }
 
+function triArea(x, y) {
+    let area = 0;
+
+    area = ((relX(x) - X_ORIGIN) * (relY(y) - Y_ORIGIN)) / 2;
+    return area / CANVAS_SIZE / 100;
+}
+//    triangle(X_ORIGIN, Y_ORIGIN, mouseX, Y_ORIGIN, mouseX, mouseY);
+
+
 // DRAW FUNCTIONS
 
 function drawCircle() {
@@ -289,13 +298,13 @@ function drawPosInfo() {
         ang += 2;
     }
     fill('white');
-    rect(30, 20, 400, 250)
+    rect(30, 20, 400, 300)
     fill('black');
     text('Mouse Posistion (x, y) = (' + parseFloat(relMouseX()).toFixed(3) + ', ' + parseFloat(relMouseY()).toFixed(3) + ')', 50, 50);
     text('Angle (θ) = ' + parseFloat(ang).toFixed(3) + '𝜋 / ' + parseInt(ang * 180) + '°', 50, 100);
     text('sin(θ) = ' + parseFloat(relMouseY()).toFixed(3), 50, 150);
-    text('cos(θ) = ' + (abs(parseFloat(relMouseX()).toFixed(3)) == 0 ? "0.000" : parseFloat(relMouseX()).toFixed(3)), 50, 200); // Negative 0 is more of a misnomer. This is a corner case catcher.
-    text('tan(θ) = ' + (abs(parseFloat(relMouseY() / relMouseX()).toFixed(3)) > 1000 ? "Undefined" : parseFloat(relMouseY() / relMouseX()).toFixed(3)), 50, 250); // Tangent goes to infinity corner case. Set it to undefined instead of a huge number.
+    text('cos(θ) = ' + (Math.abs(parseFloat(relMouseX()).toFixed(3)) == 0 ? "0.000" : parseFloat(relMouseX()).toFixed(3)), 50, 200); // Negative 0 is more of a misnomer. This is a corner case catcher.
+    text('tan(θ) = ' + (Math.abs(parseFloat(relMouseY() / relMouseX()).toFixed(3)) > 1000 ? "Undefined" : parseFloat(relMouseY() / relMouseX()).toFixed(3)), 50, 250); // Tangent goes to infinity corner case. Set it to undefined instead of a huge number.
 
-
+    text('Triangle area = ' + (Math.abs(parseFloat(triArea(relMouseX(), relMouseY())).toFixed(3)) < 0.00001 ? 0 : Math.abs(parseFloat(triArea(relMouseX(), relMouseY())).toFixed(3))), 50, 300);
 }

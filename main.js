@@ -1,13 +1,19 @@
-const CANVAS_SIZE = 1200; // In pixels
+const CANVAS_SIZE = 1000; // In pixels
 const UNIT = CANVAS_SIZE / 2;
 const PI = 3.14;
 
+let CosMan;
+
+function main() {
+    CosMan = new CosmeticManager();
+}
 
 // P5 function.
 function setup() {
     createCanvas(CANVAS_SIZE, CANVAS_SIZE);
     textSize(24);
     fill(255, 255, 255);
+
 
 }
 
@@ -34,14 +40,40 @@ function draw() {
 
 // UTIL FUNCTIONS
 
+class CosmeticManager {
+    constructor() {
+        this.strokeWeight_ = 2;
+        this.strokeColor_ = 'black';
+        this.strokeDashed_ = false;
+
+    }
+
+    strokeWeight(weight) {
+        if(weight) strokeWeight(weight);
+    }
+
+    strokeColor(color) {
+        if(color) stroke(color);
+    }
+
+    strokeDashed(dashed) {
+        if(dashed)
+            drawingContext.setLineDash([5, 15]);
+        else
+            drawingContext.setLineDash([0, 0]);
+
+    }
+
+}
+
+
+
+
+
 function relMouseX() { return ((mouseX - UNIT) / CANVAS_SIZE) * 4; }
 function relMouseY() { return (-1 * (mouseY - UNIT) / CANVAS_SIZE) * 4; }
 
 
-function strokeWeightColor(weight, color) {
-    if(weight) strokeWeight(weight);
-    if(color) stroke(color);
-}
 
 function quadArcTan(x, y) {
     if(x > 0) {
@@ -62,14 +94,16 @@ function quadArcTan(x, y) {
 // DRAW FUNCTIONS
 
 function drawCircle() {
-    strokeWeightColor(4, 'black');
+    CosMan.strokeColor('black');
+    CosMan.strokeWeight(4);
     fill('#d3d3d3');
 
     circle(CANVAS_SIZE/2, CANVAS_SIZE / 2, UNIT);
 }
 
 function drawGrid() {
-    strokeWeightColor(2, 'black');
+    CosMan.strokeColor('black');
+    CosMan.strokeWeight(2);
     drawingContext.setLineDash([5, 15]);
     line(CANVAS_SIZE/4, CANVAS_SIZE/2, CANVAS_SIZE * 3/4, CANVAS_SIZE/2);
     line(CANVAS_SIZE/2, CANVAS_SIZE/4, CANVAS_SIZE/2, CANVAS_SIZE * 3/4);
@@ -77,8 +111,8 @@ function drawGrid() {
 }
 
 function drawPoints() {
-    strokeWeightColor(16, 'black');
-
+    CosMan.strokeColor('black');
+    CosMan.strokeWeight(16);
     point(UNIT, UNIT);
 
     point(CANVAS_SIZE/4, CANVAS_SIZE/2);
@@ -89,18 +123,20 @@ function drawPoints() {
 }
 
 function drawArc() {
-    strokeWeightColor(4, 'black');
+    CosMan.strokeColor('black');
+    CosMan.strokeWeight(4);
     fill('pink');
 
     arc(UNIT, UNIT, UNIT, UNIT, -1 * quadArcTan(relMouseX(), relMouseY()), 0, PIE);
     fill('white');
+    
     arc(UNIT, UNIT, UNIT/3, UNIT/3, -1 * quadArcTan(relMouseX(), relMouseY()), 0, PIE);
 }
 
 function drawUnitCirc() {
-    strokeWeightColor(2, 'black');
-    drawingContext.setLineDash([5, 15]);
-
+    CosMan.strokeColor('black');
+    CosMan.strokeWeight(2);
+    CosMan.strokeDashed(true);
     // QUAD I
     line(UNIT, UNIT, UNIT + UNIT * Math.cos(PI / 6), UNIT - UNIT * Math.sin(PI / 6));
     line(UNIT, UNIT, UNIT + UNIT * Math.cos(PI / 4), UNIT - UNIT * Math.sin(PI / 4));
@@ -121,24 +157,27 @@ function drawUnitCirc() {
     line(UNIT, UNIT, UNIT + UNIT * Math.cos(7 * PI / 4), UNIT - UNIT * Math.sin(7 * PI / 4));
     line(UNIT, UNIT, UNIT + UNIT * Math.cos(11 * PI / 6), UNIT - UNIT * Math.sin(11 * PI / 6));
 
-    drawingContext.setLineDash([0, 0]);
+    CosMan.strokeDashed(false);
 
 }
 
 function drawTriangle() {
-    strokeWeightColor(2, 'black');
-    drawingContext.setLineDash([5, 15]);
+    CosMan.strokeColor('black');
+    CosMan.strokeWeight(2);
+    CosMan.strokeDashed(true);
     fill('rgba(0,0,255, 0.25)');
 
     triangle(UNIT, UNIT, mouseX, UNIT, mouseX, mouseY);
-    drawingContext.setLineDash([0, 0]);
+    CosMan.strokeDashed(false);
 
 }
 
 function drawMousePoint() {
-    strokeWeightColor(16, 'red');
+    CosMan.strokeColor('red');
+    CosMan.strokeWeight(16);
     point(mouseX, mouseY);
-    strokeWeightColor(2, 'black');
+    CosMan.strokeColor('black');
+    CosMan.strokeWeight(2);
 }
 
 function drawPosInfo() {

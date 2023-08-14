@@ -1,9 +1,14 @@
-const CANVAS_SIZE = 1000; // In pixels
+const CANVAS_SIZE = 1600; // In pixels
 const CANVAS_HALF = CANVAS_SIZE / 2;
 const UNIT = CANVAS_SIZE / 4;
 const X_ORIGIN = CANVAS_HALF;
 const Y_ORIGIN = CANVAS_HALF;
-const PI = 3.14;
+const PI = Math.PI;
+
+const UNIT_CIRCLE_ANGLES = [0*PI, PI/6, PI/4, PI/3, PI/2, 2*PI/3, 3*PI/4, 5*PI/6, 7*PI/6, 5*PI/4, 4*PI/3, 3*PI/2, 5*PI/3, 7*PI/4, 11*PI/6].reverse();
+let unitCircleInc = 0;
+
+
 
 class CosmeticManager {
     constructor() {
@@ -38,7 +43,7 @@ function main() {
 // P5 function.
 function setup() {
     createCanvas(CANVAS_SIZE, CANVAS_SIZE);
-    textSize(24);
+    textSize(20);
     fill(255, 255, 255);
 
 
@@ -55,23 +60,54 @@ function draw() {
 
 
     push();
-    rotate(3 * PI / 2);
+    rotate(3 * Math.PI / 2);
     translate(-CANVAS_SIZE, 0);
     drawCircle();
     drawGrid();
     drawAxis();
     drawPoints();
     drawUnitCirc();
-    //drawTriangle();
     pop();
-    drawPosInfo();
-    drawArc();
-    drawMousePoint();
 
+    drawArc();
+    drawTriangle();
+
+    drawPosInfo();
+    drawMousePoint();
 
 }
 
 // UTIL FUNCTIONS
+
+function snapUnitCircle(ang) {
+    mouseX = relX(Math.cos(ang));
+    mouseY = relY(Math.sin(ang));
+}
+
+// P5 function.
+function keyPressed() {
+
+
+
+    if(keyCode === RIGHT_ARROW) {
+        unitCircleInc--;
+        if(unitCircleInc < 0) {
+            unitCircleInc = UNIT_CIRCLE_ANGLES.length - 1;
+        }
+    
+        snapUnitCircle(UNIT_CIRCLE_ANGLES[unitCircleInc]);
+    }
+    if(keyCode === LEFT_ARROW) {
+        unitCircleInc++;
+        if (unitCircleInc > UNIT_CIRCLE_ANGLES.length - 1) {
+            unitCircleInc = 0;
+        }    
+        snapUnitCircle(UNIT_CIRCLE_ANGLES[unitCircleInc]);
+    }
+    console.log(unitCircleInc);
+
+}
+
 function relX(x) {
     return (x * UNIT) + X_ORIGIN;
 }
@@ -232,7 +268,7 @@ function drawTriangle() {
     CosMan.strokeColor('black');
     CosMan.strokeWeight(2);
     CosMan.strokeDashed(true);
-    fill('rgba(255,0,0, 0.33)');
+    fill('rgba(255,0,0, 0.5)');
 
     triangle(X_ORIGIN, Y_ORIGIN, mouseX, Y_ORIGIN, mouseX, mouseY);
     CosMan.strokeDashed(false);
@@ -254,6 +290,8 @@ function drawPosInfo() {
         ang = quadArcTan(relMouseX(), relMouseY()) / PI;
         ang += 2;
     }
+    fill('white');
+    rect(30, 20, 400, 250)
     fill('black');
     text('Mouse Posistion (x, y) = (' + parseFloat(relMouseX()).toFixed(3) + ', ' + parseFloat(relMouseY()).toFixed(3) + ')', 50, 50);
     text('Angle (θ) = ' + parseFloat(ang).toFixed(3) + '𝜋 / ' + parseInt(ang * 180) + '°', 50, 100);

@@ -1,0 +1,8 @@
+body.p5 {
+    justify-content: center;
+    display:flex;
+    align-items: center;
+    background-color: black;
+    cursor:none;
+}
+

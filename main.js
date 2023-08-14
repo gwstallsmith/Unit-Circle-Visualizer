@@ -5,7 +5,7 @@ const X_ORIGIN = CANVAS_HALF;
 const Y_ORIGIN = CANVAS_HALF;
 const PI = Math.PI;
 
-const UNIT_CIRCLE_ANGLES = [0*PI, PI/6, PI/4, PI/3, PI/2, 2*PI/3, 3*PI/4, 5*PI/6, 7*PI/6, 5*PI/4, 4*PI/3, 3*PI/2, 5*PI/3, 7*PI/4, 11*PI/6].reverse();
+const UNIT_CIRCLE_ANGLES = [0*PI, PI/6, PI/4, PI/3, PI/2, 2*PI/3, 3*PI/4, 5*PI/6, PI, 7*PI/6, 5*PI/4, 4*PI/3, 3*PI/2, 5*PI/3, 7*PI/4, 11*PI/6].reverse();
 let unitCircleInc = 0;
 
 
@@ -53,6 +53,27 @@ function setup() {
 function preload() {
 }
 
+// P5 function.
+function keyPressed() {
+    if(keyCode === RIGHT_ARROW) {
+        unitCircleInc--;
+        if(unitCircleInc < 0) {
+            unitCircleInc = UNIT_CIRCLE_ANGLES.length - 1;
+        }
+    
+        snapUnitCircle(UNIT_CIRCLE_ANGLES[unitCircleInc]);
+    }
+    if(keyCode === LEFT_ARROW) {
+        unitCircleInc++;
+        if (unitCircleInc > UNIT_CIRCLE_ANGLES.length - 1) {
+            unitCircleInc = 0;
+        }    
+        snapUnitCircle(UNIT_CIRCLE_ANGLES[unitCircleInc]);
+    }
+
+}
+
+
 // P5 function that drives the entire animation.
 function draw() {
     background('#545454');
@@ -84,29 +105,6 @@ function snapUnitCircle(ang) {
     mouseY = relY(Math.sin(ang));
 }
 
-// P5 function.
-function keyPressed() {
-
-
-
-    if(keyCode === RIGHT_ARROW) {
-        unitCircleInc--;
-        if(unitCircleInc < 0) {
-            unitCircleInc = UNIT_CIRCLE_ANGLES.length - 1;
-        }
-    
-        snapUnitCircle(UNIT_CIRCLE_ANGLES[unitCircleInc]);
-    }
-    if(keyCode === LEFT_ARROW) {
-        unitCircleInc++;
-        if (unitCircleInc > UNIT_CIRCLE_ANGLES.length - 1) {
-            unitCircleInc = 0;
-        }    
-        snapUnitCircle(UNIT_CIRCLE_ANGLES[unitCircleInc]);
-    }
-    console.log(unitCircleInc);
-
-}
 
 function relX(x) {
     return (x * UNIT) + X_ORIGIN;
@@ -296,8 +294,8 @@ function drawPosInfo() {
     text('Mouse Posistion (x, y) = (' + parseFloat(relMouseX()).toFixed(3) + ', ' + parseFloat(relMouseY()).toFixed(3) + ')', 50, 50);
     text('Angle (θ) = ' + parseFloat(ang).toFixed(3) + '𝜋 / ' + parseInt(ang * 180) + '°', 50, 100);
     text('sin(θ) = ' + parseFloat(relMouseY()).toFixed(3), 50, 150);
-    text('cos(θ) = ' + parseFloat(relMouseX()).toFixed(3), 50, 200);
-    text('tan(θ) = ' + parseFloat(relMouseY() / relMouseX()).toFixed(3), 50, 250);
+    text('cos(θ) = ' + (abs(parseFloat(relMouseX()).toFixed(3)) == 0 ? "0.000" : parseFloat(relMouseX()).toFixed(3)), 50, 200); // Negative 0 is more of a misnomer. This is a corner case catcher.
+    text('tan(θ) = ' + (abs(parseFloat(relMouseY() / relMouseX()).toFixed(3)) > 1000 ? "Undefined" : parseFloat(relMouseY() / relMouseX()).toFixed(3)), 50, 250); // Tangent goes to infinity corner case. Set it to undefined instead of a huge number.
 
 
 }

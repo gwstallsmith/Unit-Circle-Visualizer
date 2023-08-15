@@ -90,8 +90,8 @@ function draw() {
     drawArc(false);
     drawTriangle();
     drawUnitTriangle();
-    //drawSin();
-    //drawCos();
+    drawSin();
+    drawCos();
     //drawTan();
 
     //drawSin();
@@ -107,7 +107,6 @@ function draw() {
 // UTIL FUNCTIONS
 
 function snapUnitCircle(ang) {
-    console.log(ang);
     mouseX = relX(Math.cos(ang));
     mouseY = relY(Math.sin(ang));
 }
@@ -325,14 +324,18 @@ function drawUnitTriangle() {
         triangle(X_ORIGIN, Y_ORIGIN, mouseX, Y_ORIGIN, mouseX, mouseY);
 
     } else {
-        CosMan.strokeColor('red');
-        CosMan.strokeDashed(false);
 
         triangle(X_ORIGIN, Y_ORIGIN,
             relX(Math.cos(ang)), Y_ORIGIN,
             relX(Math.cos(ang)), relY(-Math.sin(ang)));
 
-        console.log(parseFloat(ang).toFixed(3) + 'pi\n' + relX(Math.cos(ang)) + ', ' + relY(Math.sin(ang)) + '\n' + mouseX + ', ' + mouseY);
+            CosMan.strokeColor('red');
+            CosMan.strokeWeight(16);
+
+            point(relX(Math.cos(ang)), Y_ORIGIN);   
+            point(relX(Math.cos(ang)), relY(-Math.sin(ang)));   
+
+
     }
     CosMan.strokeDashed(false);
     CosMan.strokeColor('red');
@@ -362,7 +365,7 @@ function drawPosInfo() {
         ang += 2;
     }
     fill('white');
-    rect(30, 20, 400, 300)
+    rect(30, 20, 400, 400)
     fill('black');
     text('Mouse Posistion (x, y) = (' + parseFloat(relMouseX()).toFixed(3) + ', ' + parseFloat(relMouseY()).toFixed(3) + ')', 50, 50);
     text('Angle (θ) = ' + parseFloat(ang).toFixed(3) + '𝜋\t/\t' + parseInt(ang * 180) + '°', 50, 100);
@@ -375,6 +378,8 @@ function drawPosInfo() {
     text('csc(θ) = ' + (Math.abs(parseFloat(1/relMouseY()).toFixed(3)) > 1000 ? "Undefined" : parseFloat(1/relMouseY()).toFixed(3)), 250, 150);
     text('sec(θ) = ' + (Math.abs(parseFloat(1/relMouseX()).toFixed(3)) > 1000 ? "Undefined" : parseFloat(1/relMouseX()).toFixed(3)), 250, 200); // Negative 0 is more of a misnomer. This is a corner case catcher.
     text('cot(θ) = ' + (Math.abs(parseFloat(relMouseX() / relMouseY()).toFixed(3)) > 1000 ? "Undefined" : parseFloat(relMouseX() / relMouseY()).toFixed(3)), 250, 250); // Tangent goes to infinity corner case. Set it to undefined instead of a huge number.
+
+    text('Amplitude = ' + parseFloat(originDist()/UNIT).toFixed(3), 50, 350);
 }
 
 function drawSin() {

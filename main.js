@@ -89,7 +89,7 @@ function draw() {
 
     drawArc();
     drawTriangle();
-    drawUnitTriangle();
+    //drawUnitTriangle();
     //drawSin();
     //drawCos();
     //drawTan();
@@ -310,15 +310,30 @@ function drawUnitTriangle() {
     CosMan.strokeColor('black');
     CosMan.strokeWeight(2);
     CosMan.strokeDashed(true);
-    fill('rgba(255,150,150, 0.5)');
+    fill('rgba(255,100,100, 0.5)');
+    let ang = abs(quadArcTan(relMouseX(), relMouseY()));
+
 
     if(mouseInCirc()) {
         triangle(X_ORIGIN, Y_ORIGIN, mouseX, Y_ORIGIN, mouseX, mouseY);
 
     } else {
-        triangle(X_ORIGIN, Y_ORIGIN, X_ORIGIN + Math.cos(relMouseX()) * UNIT, Y_ORIGIN, X_ORIGIN + Math.cos(relMouseX()) * UNIT, X_ORIGIN + Math.cos(relMouseY()) * UNIT, Y_ORIGIN + Math.sin(relMouseY()) * UNIT);
 
+        triangle(X_ORIGIN, Y_ORIGIN,
+            Math.acos(ang) * UNIT, Y_ORIGIN,
+            Math.acos(ang) * UNIT, -Math.asin(ang) * UNIT / 2);
+
+        //console.log((relMouseX() * UNIT) + X_ORIGIN + ', ' + Y_ORIGIN + '\n' + ((relMouseX() * UNIT) + X_ORIGIN) + ', ' + (-(relMouseY() * UNIT) + Y_ORIGIN))
+
+        //console.log(Math.acos(ang));
+        console.log(ang + '\n' + Math.acos(ang) * UNIT + ', ' + -Math.asin(ang) * UNIT / 2);
+        //relX(Math.cos(Math.acos(relMouseX())))
+        //relY(Math.sin(Math.asin(relMouseY())))
     }
+    // take distance between mouse point and origin
+    // this is radius == amplitude
+    // divide by amplitude to get single unit triangle
+
 
     //triangle(X_ORIGIN, Y_ORIGIN, X_ORIGIN + Math.cos(relMouseX()) * UNIT, Y_ORIGIN, X_ORIGIN + Math.cos(relMouseX()) * UNIT, X_ORIGIN, Y_ORIGIN + Math.sin(relMouseY()) * UNIT);
     CosMan.strokeDashed(false);

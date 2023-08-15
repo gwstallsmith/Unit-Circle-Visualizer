@@ -196,8 +196,18 @@ function drawGrid(gridDensity = 1) {
     CosMan.strokeDashed(true);
     for(let i = 0; i <= CANVAS_SIZE; i += (UNIT/gridDensity)) {
         for(let j = 0; j <= CANVAS_SIZE; j += (UNIT/gridDensity)) {
+            if(j == X_ORIGIN)
+                CosMan.strokeDashed(false);
+            else
+                CosMan.strokeDashed(true);
+            
             line(0, j, CANVAS_SIZE, j);
         }
+
+        if(i == Y_ORIGIN)
+            CosMan.strokeDashed(false);
+        else
+            CosMan.strokeDashed(true);
         line(i, 0, i, CANVAS_SIZE);
 
     }
@@ -338,10 +348,6 @@ function drawUnitTriangle() {
 
     }
     CosMan.strokeDashed(false);
-    CosMan.strokeColor('red');
-    CosMan.strokeWeight(16);
-
-    point(mouseX, Y_ORIGIN);   
 
 }
 

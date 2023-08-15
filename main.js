@@ -87,9 +87,9 @@ function draw() {
     drawUnitCirc();
     pop();
 
-    drawArc();
+    drawArc(false);
     drawTriangle();
-    //drawUnitTriangle();
+    drawUnitTriangle();
     //drawSin();
     //drawCos();
     //drawTan();
@@ -107,6 +107,7 @@ function draw() {
 // UTIL FUNCTIONS
 
 function snapUnitCircle(ang) {
+    console.log(ang);
     mouseX = relX(Math.cos(ang));
     mouseY = relY(Math.sin(ang));
 }
@@ -132,20 +133,22 @@ function originDist() {
 }
 
 function quadArcTan(x, y) {
+    let ang;
     if(x > 0) {
-        return Math.atan(y/x);
+        ang = Math.atan(y/x);
     } else if (x < 0 && y >= 0) {
-        return Math.atan(y/x) + PI;
+        ang = Math.atan(y/x) + PI;
     } else if(x < 0 && y < 0) {
-        return Math.atan(y/x) - PI;
+        ang = Math.atan(y/x) - PI;
     } else if (x == 0 && y > 0) {
-        return PI/2;
+        ang = PI/2;
     } else if (x == 0 && y < 0) {
-        return -1 * PI/2;
+        ang = -1 * PI/2;
     } else if (x == 0 && y == 0) {
-        return NaN;
+        ang = NaN;
     }
-    return NaN;
+
+    return ang;
 }
 
 function triArea(x, y) {
@@ -311,31 +314,26 @@ function drawUnitTriangle() {
     CosMan.strokeWeight(2);
     CosMan.strokeDashed(true);
     fill('rgba(255,100,100, 0.5)');
-    let ang = abs(quadArcTan(relMouseX(), relMouseY()));
-
+    let ang = quadArcTan(relMouseX(), relMouseY()) / PI;
+    if(ang < 0) {
+        ang = quadArcTan(relMouseX(), relMouseY()) / PI;
+        ang += 2;
+    }
+    ang *= PI;
 
     if(mouseInCirc()) {
         triangle(X_ORIGIN, Y_ORIGIN, mouseX, Y_ORIGIN, mouseX, mouseY);
 
     } else {
+        CosMan.strokeColor('red');
+        CosMan.strokeDashed(false);
 
         triangle(X_ORIGIN, Y_ORIGIN,
-            Math.acos(ang) * UNIT, Y_ORIGIN,
-            Math.acos(ang) * UNIT, -Math.asin(ang) * UNIT / 2);
+            relX(Math.cos(ang)), Y_ORIGIN,
+            relX(Math.cos(ang)), relY(-Math.sin(ang)));
 
-        //console.log((relMouseX() * UNIT) + X_ORIGIN + ', ' + Y_ORIGIN + '\n' + ((relMouseX() * UNIT) + X_ORIGIN) + ', ' + (-(relMouseY() * UNIT) + Y_ORIGIN))
-
-        //console.log(Math.acos(ang));
-        console.log(ang + '\n' + Math.acos(ang) * UNIT + ', ' + -Math.asin(ang) * UNIT / 2);
-        //relX(Math.cos(Math.acos(relMouseX())))
-        //relY(Math.sin(Math.asin(relMouseY())))
+        console.log(parseFloat(ang).toFixed(3) + 'pi\n' + relX(Math.cos(ang)) + ', ' + relY(Math.sin(ang)) + '\n' + mouseX + ', ' + mouseY);
     }
-    // take distance between mouse point and origin
-    // this is radius == amplitude
-    // divide by amplitude to get single unit triangle
-
-
-    //triangle(X_ORIGIN, Y_ORIGIN, X_ORIGIN + Math.cos(relMouseX()) * UNIT, Y_ORIGIN, X_ORIGIN + Math.cos(relMouseX()) * UNIT, X_ORIGIN, Y_ORIGIN + Math.sin(relMouseY()) * UNIT);
     CosMan.strokeDashed(false);
     CosMan.strokeColor('red');
     CosMan.strokeWeight(16);
@@ -353,6 +351,7 @@ function drawMousePoint() {
     CosMan.strokeColor('black');
     CosMan.strokeWeight(2);
 }
+
 
 function drawPosInfo() {
     CosMan.strokeWeight(1);

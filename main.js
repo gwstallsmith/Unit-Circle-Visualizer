@@ -1,4 +1,4 @@
-let CANVAS_SIZE = 1000; // In pixels
+let CANVAS_SIZE = 1000; // In pixels (default)
 let CANVAS_HALF = CANVAS_SIZE / 2;
 let UNIT = CANVAS_SIZE / 4;
 let X_ORIGIN = CANVAS_HALF;
@@ -201,7 +201,7 @@ function newSetMan(set) {
 // P5 function.
 let canvas;
 function setup() {
-    canvas = createCanvas(CANVAS_SIZE * 5/3, CANVAS_SIZE);
+    canvas = createCanvas(CANVAS_SIZE + CANVAS_HALF, CANVAS_SIZE);
     canvas.parent('p5');
 
     textSize(20);
@@ -576,7 +576,7 @@ function drawPosInfo() {
         ang += 2;
     }
     fill('white');
-    rect(CANVAS_SIZE + 20, 20, CANVAS_HALF, CANVAS_SIZE - 40);
+    rect(CANVAS_SIZE + 20, 20, CANVAS_HALF - 40, CANVAS_SIZE - 40);
     fill('black');
     text('Mouse Posistion (x, y) = (' + parseFloat(relMouseX()).toFixed(3) + ', ' + parseFloat(relMouseY()).toFixed(3) + ')', CANVAS_SIZE + 50, 50);
     text('Angle (θ) = ' + parseFloat(ang).toFixed(3) + '𝜋\t/\t' + parseInt(ang * 180) + '°', CANVAS_SIZE + 50, 100);

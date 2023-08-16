@@ -615,9 +615,9 @@ function drawPosInfo() {
         ang = quadArcTan(relMouseX(), relMouseY()) / PI;
         ang += 2;
     }
+    fill('#545454');
+    rect(CANVAS_SIZE + 20, 10, CANVAS_HALF - 40, CANVAS_SIZE - 20);
     fill('white');
-    rect(CANVAS_SIZE + 20, 20, CANVAS_HALF - 40, CANVAS_SIZE - 40);
-    fill('black');
     text('Mouse Posistion (x, y) = (' + parseFloat(relMouseX()).toFixed(3) + ', ' + parseFloat(relMouseY()).toFixed(3) + ')', CANVAS_SIZE + 50, 50);
     text('Angle (θ) = ' + parseFloat(ang).toFixed(3) + '𝜋\t/\t' + parseInt(ang * 180) + '°', CANVAS_SIZE + 50, 100);
     text('sin(θ) = ' + parseFloat(relMouseY()).toFixed(3), CANVAS_SIZE + 50, 150);

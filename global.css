@@ -1,8 +1,51 @@
+:root {
+    --canvas-size: 800px;
+    --inner-panel-size: 200px;
+
+}
+
+
 body.p5 {
     justify-content: center;
     display:flex;
     align-items: center;
     background-color: black;
     cursor:none;
+    padding:20px;
+}
+
+div.panel {
+    width: 400px;
+    height:var(--canvas-size);
+    background-color: #d3d3d3;
+
+    border-right: 50px;
+    cursor:default;
+    margin-right: 50px;
+}
+
+div.innerPanel {
+    margin:20px;
+    padding:15px;
+    background-color: #545454;
+    height:var(--inner-panel-size);
+
+
+    justify-content: flex-end;
+
+
+}
+
+button {
+    color:white;
+    float:right;
+
+    background-color: #545454;
+
+}
+
+label {
+    color:white;
+    float:left;
 }
 

@@ -1,9 +1,16 @@
-const CANVAS_SIZE = 1600; // In pixels
+const CANVAS_SIZE = 900; // In pixels
 const CANVAS_HALF = CANVAS_SIZE / 2;
 const UNIT = CANVAS_SIZE / 4;
 const X_ORIGIN = CANVAS_HALF;
 const Y_ORIGIN = CANVAS_HALF;
 const PI = Math.PI;
+
+
+let root = document.querySelector(':root');
+let rootStyles = getComputedStyle(root);
+let cssCanvasSize = rootStyles.getPropertyValue('--canvas-size');
+root.style.setProperty('--canvas-size', CANVAS_SIZE + 'px');
+root.style.setProperty('--inner-panel-size', (CANVAS_SIZE - 60) + 'px');
 
 const UNIT_CIRCLE_ANGLES = [0*PI, PI/6, PI/4, PI/3, PI/2, 2*PI/3, 3*PI/4, 5*PI/6, PI, 7*PI/6, 5*PI/4, 4*PI/3, 3*PI/2, 5*PI/3, 7*PI/4, 11*PI/6].reverse();
 
@@ -28,20 +35,96 @@ class CosmeticManager {
         else
             drawingContext.setLineDash([0, 0]);
     }
-}
+};
+
+class SettingsManager {
+    constructor() {
+        this.sin_ = false;
+        this.cos_ = false;
+        this.tan_ = false;
+
+        this.csc_ = false;
+        this.sec_ = false;
+        this.cot_ = false;
+
+        this.unitTriangle_ = true;
+        this.triangle_ = true;
+        
+        this.arc_ = true;
+        this.innerArc_ = true;
+        this.outterArc_ = true;
+        this.mouseArc_ = false;
+
+        this.cardPoints_ = true;
+        this.xAxis_ = true;
+        this.yAxis_ = true;
+        this.grid_ = true;
+        this.gridDensity_ = 1;
+
+        this.circle_ = true;
+        this.unitCirc_ = true;
+        this.quadi_ = true;
+        this.quadii_ = true;
+        this.quadiii_ = true;
+        this.quadiv_ = true;
+
+    }
+
+    getSin() { return this.sin_; }
+    getCos() { return this.cos_; }
+    getTan() { return this.tan_; }
+    getCsc() { return this.csc_; }
+    getSec() { return this.sec_; }
+    getCot() { return this.cot_; }
+
+    getCircle() { return this.circle_ }
+    getUnitCirc() { return this.unitCirc_; }
+    getCardPoints() { return this.cardPoints_; }
+
+    getArc() { return this.arc_; }
+
+    getTriangle() { return this.triangle_; }
+    getUnitTriangle() { return this.unitTriangle_; }
+    
+
+
+    butSin() { this.sin_ = !(this.sin_); }
+    butCos() { this.cos_ = !this.cos_; }
+    butTan() { this.tan_ = !this.tan_; }
+    butCsc() { this.csc_ = !this.csc_; }
+    butSec() { this.sec_ = !this.sec_; }
+    butCot() { this.cot_ = !this.cot_; }
+
+    butCircle() { this.circle_ = !this.circle_; }
+    butUnitCirc() { this.unitCirc_ = !this.unitCirc_; }
+    butCardPoints() { this.cardPoints_ = !this.cardPoints_; }
+
+    butArc() { this.arc_ = !this.arc_; }
+
+    butTriangle() { this.triangle_ = !this.triangle_; }
+    butUnitTriangle() { this.unitTriangle_ = !this.unitTriangle_; }
+
+
+
+};
 
 let CosMan;
+let SetMan;
+
 
 function main() {
     CosMan = new CosmeticManager();
+    SetMan = new SettingsManager();
 }
 
 // P5 function.
+
 function setup() {
-    createCanvas(CANVAS_SIZE, CANVAS_SIZE);
+    const canvas = createCanvas(CANVAS_SIZE * 5/3, CANVAS_SIZE);
+    canvas.parent('p5');
+
     textSize(20);
     fill(255, 255, 255);
-
 
 }
 
@@ -80,23 +163,29 @@ function draw() {
     push();
     rotate(3 * Math.PI / 2);
     translate(-CANVAS_SIZE, 0);
-    drawCircle();
+    if(SetMan.getCircle())drawCircle();
     drawGrid();
     drawAxis();
-    drawCardinal();
-    drawUnitCirc();
+    if(SetMan.getCardPoints()) drawCardinal();
+    if(SetMan.getUnitCirc()) drawUnitCirc();
     pop();
 
-    drawArc(false);
-    drawTriangle();
-    drawUnitTriangle();
-    drawSin();
-    drawCos();
+
+    //if(mouseX < CANVAS_SIZE) {
+
+
+    if(SetMan.getArc()) drawArc(false);
+    if(SetMan.getTriangle()) drawTriangle();
+    if(SetMan.getUnitTriangle()) drawUnitTriangle();
+    if(SetMan.getSin()) drawSin(); 
+    if(SetMan.getCos()) drawCos(); 
     //drawTan();
 
     //drawSin();
     //drawSec();
     //drawCot();
+    //}
+    drawSettingsRect();
 
     drawPosInfo();
     drawMousePoint();
@@ -164,6 +253,7 @@ function mouseInCirc() {
 
 // DRAW FUNCTIONS
 
+
 function drawOrigin() {
     CosMan.strokeColor('red');
     CosMan.strokeWeight(16);
@@ -196,11 +286,15 @@ function drawGrid(gridDensity = 1) {
     CosMan.strokeDashed(true);
     for(let i = 0; i <= CANVAS_SIZE; i += (UNIT/gridDensity)) {
         for(let j = 0; j <= CANVAS_SIZE; j += (UNIT/gridDensity)) {
-            if(j == X_ORIGIN)
+            if(j == X_ORIGIN){
+                CosMan.strokeWeight(2);
                 CosMan.strokeDashed(false);
-            else
+            } else{
+                CosMan.strokeWeight(2);
                 CosMan.strokeDashed(true);
-            
+            }
+
+
             line(0, j, CANVAS_SIZE, j);
         }
 
@@ -208,6 +302,9 @@ function drawGrid(gridDensity = 1) {
             CosMan.strokeDashed(false);
         else
             CosMan.strokeDashed(true);
+
+        
+
         line(i, 0, i, CANVAS_SIZE);
 
     }
@@ -371,21 +468,21 @@ function drawPosInfo() {
         ang += 2;
     }
     fill('white');
-    rect(30, 20, 400, 400)
+    rect(CANVAS_SIZE + 20, 20, CANVAS_HALF, CANVAS_SIZE - 40);
     fill('black');
-    text('Mouse Posistion (x, y) = (' + parseFloat(relMouseX()).toFixed(3) + ', ' + parseFloat(relMouseY()).toFixed(3) + ')', 50, 50);
-    text('Angle (θ) = ' + parseFloat(ang).toFixed(3) + '𝜋\t/\t' + parseInt(ang * 180) + '°', 50, 100);
-    text('sin(θ) = ' + parseFloat(relMouseY()).toFixed(3), 50, 150);
-    text('cos(θ) = ' + (Math.abs(parseFloat(relMouseX()).toFixed(3)) == 0 ? "0.000" : parseFloat(relMouseX()).toFixed(3)), 50, 200); // Negative 0 is more of a misnomer. This is a corner case catcher.
-    text('tan(θ) = ' + (Math.abs(parseFloat(relMouseY() / relMouseX()).toFixed(3)) > 1000 ? "Undefined" : parseFloat(relMouseY() / relMouseX()).toFixed(3)), 50, 250); // Tangent goes to infinity corner case. Set it to undefined instead of a huge number.
+    text('Mouse Posistion (x, y) = (' + parseFloat(relMouseX()).toFixed(3) + ', ' + parseFloat(relMouseY()).toFixed(3) + ')', CANVAS_SIZE + 50, 50);
+    text('Angle (θ) = ' + parseFloat(ang).toFixed(3) + '𝜋\t/\t' + parseInt(ang * 180) + '°', CANVAS_SIZE + 50, 100);
+    text('sin(θ) = ' + parseFloat(relMouseY()).toFixed(3), CANVAS_SIZE + 50, 150);
+    text('cos(θ) = ' + (Math.abs(parseFloat(relMouseX()).toFixed(3)) == 0 ? "0.000" : parseFloat(relMouseX()).toFixed(3)), CANVAS_SIZE + 50, 200); // Negative 0 is more of a misnomer. This is a corner case catcher.
+    text('tan(θ) = ' + (Math.abs(parseFloat(relMouseY() / relMouseX()).toFixed(3)) > 1000 ? "Undefined" : parseFloat(relMouseY() / relMouseX()).toFixed(3)), CANVAS_SIZE + 50, 250); // Tangent goes to infinity corner case. Set it to undefined instead of a huge number.
 
-    text('Triangle area = ' + (Math.abs(parseFloat(triArea(relMouseX(), relMouseY())).toFixed(3)) < 0.00001 ? 0 : Math.abs(parseFloat(triArea(relMouseX(), relMouseY())).toFixed(3))), 50, 300);
+    text('Triangle area = ' + (Math.abs(parseFloat(triArea(relMouseX(), relMouseY())).toFixed(3)) < 0.00001 ? 0 : Math.abs(parseFloat(triArea(relMouseX(), relMouseY())).toFixed(3))), CANVAS_SIZE + 50, 300);
 
-    text('csc(θ) = ' + (Math.abs(parseFloat(1/relMouseY()).toFixed(3)) > 1000 ? "Undefined" : parseFloat(1/relMouseY()).toFixed(3)), 250, 150);
-    text('sec(θ) = ' + (Math.abs(parseFloat(1/relMouseX()).toFixed(3)) > 1000 ? "Undefined" : parseFloat(1/relMouseX()).toFixed(3)), 250, 200); // Negative 0 is more of a misnomer. This is a corner case catcher.
-    text('cot(θ) = ' + (Math.abs(parseFloat(relMouseX() / relMouseY()).toFixed(3)) > 1000 ? "Undefined" : parseFloat(relMouseX() / relMouseY()).toFixed(3)), 250, 250); // Tangent goes to infinity corner case. Set it to undefined instead of a huge number.
+    text('csc(θ) = ' + (Math.abs(parseFloat(1/relMouseY()).toFixed(3)) > 1000 ? "Undefined" : parseFloat(1/relMouseY()).toFixed(3)), CANVAS_SIZE + 250, 150);
+    text('sec(θ) = ' + (Math.abs(parseFloat(1/relMouseX()).toFixed(3)) > 1000 ? "Undefined" : parseFloat(1/relMouseX()).toFixed(3)), CANVAS_SIZE + 250, 200); // Negative 0 is more of a misnomer. This is a corner case catcher.
+    text('cot(θ) = ' + (Math.abs(parseFloat(relMouseX() / relMouseY()).toFixed(3)) > 1000 ? "Undefined" : parseFloat(relMouseX() / relMouseY()).toFixed(3)), CANVAS_SIZE + 250, 250); // Tangent goes to infinity corner case. Set it to undefined instead of a huge number.
 
-    text('Amplitude = ' + parseFloat(originDist()/UNIT).toFixed(3), 50, 350);
+    text('Amplitude = ' + parseFloat(originDist()/UNIT).toFixed(3), CANVAS_SIZE + 50, 350);
 }
 
 function drawSin() {
@@ -423,3 +520,11 @@ function drawSec() {
     line(X_ORIGIN, Y_ORIGIN, mouseX, mouseY);
 
 }
+
+function drawSettingsRect() {
+    fill('#d3d3d3')
+    CosMan.strokeWeight(4);
+    CosMan.strokeColor('black');
+    rect(CANVAS_SIZE, 0, CANVAS_SIZE, CANVAS_SIZE)
+}
+

@@ -1,3 +1,7 @@
+* {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
 :root {
     --canvas-size: 800px;
     --inner-panel-size: 200px;
@@ -21,7 +25,7 @@ div.panel {
 
     border-right: 50px;
     cursor:default;
-    margin-right: 50px;
+    margin-right: 5px;
     min-height: 870px;
 
 }

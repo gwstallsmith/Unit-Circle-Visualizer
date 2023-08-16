@@ -232,6 +232,8 @@ function setup() {
     textSize(20);
     fill(255, 255, 255);
 
+    document.getElementById("canvasSize").innerHTML = 'Current Size: ' + CANVAS_SIZE + 'px';
+
 }
 
 // P5 function.

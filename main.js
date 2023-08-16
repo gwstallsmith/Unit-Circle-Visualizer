@@ -1,4 +1,4 @@
-let CANVAS_SIZE = 1000; // In pixels (default)
+let CANVAS_SIZE = 900; // In pixels (default)
 let CANVAS_HALF = CANVAS_SIZE / 2;
 let UNIT = CANVAS_SIZE / 4;
 let X_ORIGIN = CANVAS_HALF;
@@ -143,6 +143,7 @@ class SettingsManager {
     getCardPoints() { return this.cardPoints_; }
 
     getGrid() { return this.grid_; }
+    getGridDensity() { return this.gridDensity_; }
     getOrigin() { return this.origin_; }
     getXAxis() { return this.xAxis_}
     getYAxis() { return this.yAxis_}
@@ -172,6 +173,18 @@ class SettingsManager {
 
     butOrigin() { this.origin_ = !this.origin_}
     butGrid() { this.grid_ = !this.grid_ }
+
+    butGridDensity(inc) {
+        if(inc) {
+            ++this.gridDensity_;
+        } else {
+            --this.gridDensity_;
+        }
+
+        if(this.gridDensity_ < 1 || this.gridDensity_ > 4) {
+            this.gridDensity_ = 1;
+        }
+    }
     butXAxis() { this.xAxis_ = !this.xAxis_; }
     butYAxis() { this.yAxis_ = !this.yAxis_; }
 
@@ -196,6 +209,18 @@ function main() {
 
 function newSetMan(set) {
     SetMan = new SettingsManager(set);
+
+    if(set == 'default') {
+        CANVAS_SIZE = 900;
+        CANVAS_HALF = CANVAS_SIZE / 2;
+        UNIT = CANVAS_SIZE / 4;
+        X_ORIGIN = CANVAS_HALF;
+        Y_ORIGIN = CANVAS_HALF;
+
+        setup();
+        root.style.setProperty('--canvas-size', CANVAS_SIZE + 'px');
+        root.style.setProperty('--inner-panel-size', (CANVAS_SIZE - 60) + 'px');
+    }
 }
 
 // P5 function.
@@ -245,7 +270,7 @@ function draw() {
     rotate(3 * Math.PI / 2);
     translate(-CANVAS_SIZE, 0);
     if(SetMan.getCircle()) drawCircle();
-    if(SetMan.getGrid()) drawGrid();
+    if(SetMan.getGrid()) drawGrid(SetMan.getGridDensity());
     drawAxis(SetMan.getXAxis(), SetMan.getYAxis());
     if(SetMan.getCardPoints()) drawCardinal();
     if(SetMan.getUnitCirc()) drawUnitCirc();
@@ -349,9 +374,9 @@ function mouseInCirc() {
 }
 
 function increaseCanvasSize() {
-    CANVAS_SIZE += 200;
+    CANVAS_SIZE += 100;
 
-    if(CANVAS_SIZE < 800 || CANVAS_SIZE > 1600) {
+    if(CANVAS_SIZE < 900 || CANVAS_SIZE > 1600) {
         CANVAS_SIZE = 1600
     }
 
@@ -366,10 +391,10 @@ function increaseCanvasSize() {
 }
 
 function decreaseCanvasSize() {
-    CANVAS_SIZE -= 200;
+    CANVAS_SIZE -= 100;
 
-    if(CANVAS_SIZE < 800 || CANVAS_SIZE > 1600) {
-        CANVAS_SIZE = 800
+    if(CANVAS_SIZE < 900 || CANVAS_SIZE > 1600) {
+        CANVAS_SIZE = 900
     }
 
     CANVAS_HALF = CANVAS_SIZE / 2;

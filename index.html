@@ -25,13 +25,13 @@
 <div class="panel">
   <div class="innerPanel">
     <label>Draw Circle: </label><button type="button" onclick="SetMan.butCircle()">On/Off</button><br><br>
+    <label>Draw Cardinal Points: </label><button type="button" onclick="SetMan.butCardPoints()">On/Off</button><br><br>
+    <label>Draw Origin: </label><button type="button" onclick="SetMan.butOrigin()">On/Off</button><br><br>
     <label>Draw Unit Circle: </label><button type="button" onclick="SetMan.butUnitCirc()">On/Off</button><br><br>
     <label>Snap To Unit Angles (Left / Right Arrow): </label><button type="button" onclick="forwardUnitCircle()">&nbsp-&nbsp</button><button type="button" onclick="backwardUnitCircle()">+</button><br><br>
-
-    <label>Draw Cardinal Points: </label><button type="button" onclick="SetMan.butCardPoints()">On/Off</button><br><br>
     <br>
     <label>Draw Grid: </label><button type="button" onclick="SetMan.butGrid()">On/Off</button><br><br>
-    <label>Draw Origin: </label><button type="button" onclick="SetMan.butOrigin()">On/Off</button><br><br>
+    <label>&nbsp&nbsp&nbspGrid Density (Max 4): </label><button type="button" onclick="SetMan.butGridDensity(false)">&nbsp-&nbsp</button><button type="button" onclick="SetMan.butGridDensity(true)">+</button><br><br>
     <label>Draw X-Axis: </label><button type="button" onclick="SetMan.butXAxis()">On/Off</button><br><br>
     <label>Draw Y-Axis: </label><button type="button" onclick="SetMan.butYAxis()">On/Off</button><br><br>
     <br>
@@ -45,11 +45,12 @@
     
     
     <br>
+    <label>Canvas Size:</label><button type="button" onclick="decreaseCanvasSize()">&nbsp-100px</button><button type="button" onclick="increaseCanvasSize()">+100px</button><br><br>
+    <label>* May need to zoom out at larger canvas sizes.</label><br><br>
+    <br>
+    <label>Default Settings: </label><button type="button" onclick="newSetMan('default')">Default</button><br><br>
     <label>All On: </label><button type="button" onclick="newSetMan('on')">On</button><br><br>
     <label>All Off: </label><button type="button" onclick="newSetMan('off')">Off</button><br><br>
-    <br>
-    <label>Increase Canvas Size (Max 1600px): </label><button type="button" onclick="increaseCanvasSize()">+200px</button><br><br>
-    <label>Decrease Canvas Size (Min 800px): </label><button type="button" onclick="decreaseCanvasSize()">&nbsp-200px</button><br><br>
 
 
   </div>

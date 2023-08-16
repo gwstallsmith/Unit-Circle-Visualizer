@@ -32,7 +32,7 @@ div.innerPanel {
     background-color: #545454;
     height:var(--inner-panel-size);
 
-    min-height: 800px;
+    min-height: 780px;
 
 
     justify-content: flex-end;
@@ -41,6 +41,7 @@ div.innerPanel {
 }
 
 button {
+    font-size: 12px;
     color:white;
     float:right;
 
@@ -49,6 +50,8 @@ button {
 }
 
 label {
+    font-size: 16px;
+
     color:white;
     float:left;
 }

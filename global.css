@@ -19,7 +19,7 @@ body.p5 {
 }
 
 div.panel {
-    width: 400px;
+    width: 300px;
     height:var(--canvas-size);
     background-color: #d3d3d3;
 
@@ -35,7 +35,7 @@ div.innerPanel {
     padding:15px;
     background-color: #545454;
     height:var(--inner-panel-size);
-
+    
     min-height: 780px;
 
 

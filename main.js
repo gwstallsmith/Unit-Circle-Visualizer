@@ -276,10 +276,6 @@ function draw() {
     if(SetMan.getUnitCirc()) drawUnitCirc();
     pop();
 
-
-    //if(mouseX < CANVAS_SIZE) {
-
-
     drawArc(SetMan.getArc(), SetMan.getMouseArc());
     if(SetMan.getTriangle()) drawTriangle();
     if(SetMan.getUnitTriangle()) drawUnitTriangle();
@@ -291,7 +287,7 @@ function draw() {
     //drawSec();
     //drawCot();
     //}
-    drawSettingsRect();
+    drawInfoBackground();
 
     drawPosInfo();
     drawMousePoint();
@@ -670,10 +666,9 @@ function drawSec() {
 
 }
 
-function drawSettingsRect() {
+function drawInfoBackground() {
     fill('#d3d3d3')
     CosMan.strokeWeight(4);
     CosMan.strokeColor('black');
     rect(CANVAS_SIZE, 0, CANVAS_SIZE, CANVAS_SIZE)
 }
-

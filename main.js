@@ -276,6 +276,23 @@ function draw() {
 
 // UTIL FUNCTIONS
 
+function forwardUnitCircle() {
+    unitCircleInc--;
+    if(unitCircleInc < 0) {
+        unitCircleInc = UNIT_CIRCLE_ANGLES.length - 1;
+    }
+
+    snapUnitCircle(UNIT_CIRCLE_ANGLES[unitCircleInc]);
+}
+function backwardUnitCircle() {
+    unitCircleInc++;
+    if (unitCircleInc > UNIT_CIRCLE_ANGLES.length - 1) {
+        unitCircleInc = 0;
+    }    
+    snapUnitCircle(UNIT_CIRCLE_ANGLES[unitCircleInc]);
+
+}
+
 function snapUnitCircle(ang) {
     mouseX = relX(Math.cos(ang));
     mouseY = relY(Math.sin(ang));

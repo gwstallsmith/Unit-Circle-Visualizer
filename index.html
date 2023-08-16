@@ -26,6 +26,8 @@
   <div class="innerPanel">
     <label>Draw Circle: </label><button type="button" onclick="SetMan.butCircle()">On/Off</button><br><br>
     <label>Draw Unit Circle: </label><button type="button" onclick="SetMan.butUnitCirc()">On/Off</button><br><br>
+    <label>Snap To Unit Angles (Left / Right Arrow): </label><button type="button" onclick="forwardUnitCircle()">&nbsp-&nbsp</button><button type="button" onclick="backwardUnitCircle()">+</button><br><br>
+
     <label>Draw Cardinal Points: </label><button type="button" onclick="SetMan.butCardPoints()">On/Off</button><br><br>
     <br>
     <label>Draw Grid: </label><button type="button" onclick="SetMan.butGrid()">On/Off</button><br><br>
@@ -47,7 +49,7 @@
     <label>All Off: </label><button type="button" onclick="newSetMan('off')">Off</button><br><br>
     <br>
     <label>Increase Canvas Size (Max 1600px): </label><button type="button" onclick="increaseCanvasSize()">+200px</button><br><br>
-    <label>Decrease Canvas Size (Min 800px): </label><button type="button" onclick="decreaseCanvasSize()">-200px</button><br><br>
+    <label>Decrease Canvas Size (Min 800px): </label><button type="button" onclick="decreaseCanvasSize()">&nbsp-200px</button><br><br>
 
 
   </div>

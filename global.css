@@ -22,6 +22,8 @@ div.panel {
     border-right: 50px;
     cursor:default;
     margin-right: 50px;
+    min-height: 870px;
+
 }
 
 div.innerPanel {
@@ -29,6 +31,8 @@ div.innerPanel {
     padding:15px;
     background-color: #545454;
     height:var(--inner-panel-size);
+
+    min-height: 800px;
 
 
     justify-content: flex-end;

@@ -24,18 +24,32 @@
 
 <div class="panel">
   <div class="innerPanel">
-    <label>Draw Circle: </label><button id="on" type="button" onclick="SetMan.butCircle()">On/Off</button><br><br>
+    <label>Draw Circle: </label><button type="button" onclick="SetMan.butCircle()">On/Off</button><br><br>
     <label>Draw Unit Circle: </label><button type="button" onclick="SetMan.butUnitCirc()">On/Off</button><br><br>
     <label>Draw Cardinal Points: </label><button type="button" onclick="SetMan.butCardPoints()">On/Off</button><br><br>
-
-
-    <label>Draw Arc: </label><button type="button" onclick="SetMan.butArc()">On/Off</button><br><br>
-    <label>Draw Mouse Triangle: </label><button type="button" onclick="SetMan.butTriangle()">On/Off</button><br><br>
+    <br>
+    <label>Draw Grid: </label><button type="button" onclick="SetMan.butGrid()">On/Off</button><br><br>
+    <label>Draw Origin: </label><button type="button" onclick="SetMan.butOrigin()">On/Off</button><br><br>
+    <label>Draw X-Axis: </label><button type="button" onclick="SetMan.butXAxis()">On/Off</button><br><br>
+    <label>Draw Y-Axis: </label><button type="button" onclick="SetMan.butYAxis()">On/Off</button><br><br>
+    <br>
+    <label>Draw Unit Arc: </label><button type="button" onclick="SetMan.butArc()">On/Off</button><br><br>
+    <label>&nbsp&nbsp&nbspDraw Mouse Arc: </label><button type="button" onclick="SetMan.butMouseArc()">On/Off</button><br><br>
     <label>Draw Unit Triangle: </label><button type="button" onclick="SetMan.butUnitTriangle()">On/Off</button><br><br>
-
-
-    <label>Draw Sin: </label><button id="on" type="button" onclick="SetMan.butSin()">On/Off</button><br><br>
+    <label>&nbsp&nbsp&nbspDraw Mouse Triangle: </label><button type="button" onclick="SetMan.butTriangle()">On/Off</button><br><br>
+    <br>
+    <label>Draw Sin: </label><button type="button" onclick="SetMan.butSin()">On/Off</button><br><br>
     <label>Draw Cos: </label><button type="button" onclick="SetMan.butCos()">On/Off</button><br><br>
+    
+    
+    <br>
+    <label>All On: </label><button type="button" onclick="newSetMan('on')">On</button><br><br>
+    <label>All Off: </label><button type="button" onclick="newSetMan('off')">Off</button><br><br>
+    <br>
+    <label>Increase Canvas Size (Max 1600px): </label><button type="button" onclick="increaseCanvasSize()">+200px</button><br><br>
+    <label>Decrease Canvas Size (Min 800px): </label><button type="button" onclick="decreaseCanvasSize()">-200px</button><br><br>
+
+
   </div>
 </div>
 

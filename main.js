@@ -1,8 +1,9 @@
-const CANVAS_SIZE = 900; // In pixels
-const CANVAS_HALF = CANVAS_SIZE / 2;
-const UNIT = CANVAS_SIZE / 4;
-const X_ORIGIN = CANVAS_HALF;
-const Y_ORIGIN = CANVAS_HALF;
+let CANVAS_SIZE = 1000; // In pixels
+let CANVAS_HALF = CANVAS_SIZE / 2;
+let UNIT = CANVAS_SIZE / 4;
+let X_ORIGIN = CANVAS_HALF;
+let Y_ORIGIN = CANVAS_HALF;
+
 const PI = Math.PI;
 
 
@@ -38,36 +39,96 @@ class CosmeticManager {
 };
 
 class SettingsManager {
-    constructor() {
-        this.sin_ = false;
-        this.cos_ = false;
-        this.tan_ = false;
+    constructor(mode = 'default') {
+        if(mode == 'off') {
+            this.sin_ = false;
+            this.cos_ = false;
+            this.tan_ = false;
 
-        this.csc_ = false;
-        this.sec_ = false;
-        this.cot_ = false;
+            this.csc_ = false;
+            this.sec_ = false;
+            this.cot_ = false;
 
-        this.unitTriangle_ = true;
-        this.triangle_ = true;
-        
-        this.arc_ = true;
-        this.innerArc_ = true;
-        this.outterArc_ = true;
-        this.mouseArc_ = false;
+            this.unitTriangle_ = false;
+            this.triangle_ = false;
+            
+            this.arc_ = false;
+            this.innerArc_ = false;
+            this.outterArc_ = false;
+            this.mouseArc_ = false;
 
-        this.cardPoints_ = true;
-        this.xAxis_ = true;
-        this.yAxis_ = true;
-        this.grid_ = true;
-        this.gridDensity_ = 1;
+            this.cardPoints_ = false;
+            this.xAxis_ = false;
+            this.yAxis_ = false;
+            this.grid_ = false;
+            this.gridDensity_ = 1;
+            this.origin_ = false;
 
-        this.circle_ = true;
-        this.unitCirc_ = true;
-        this.quadi_ = true;
-        this.quadii_ = true;
-        this.quadiii_ = true;
-        this.quadiv_ = true;
+            this.circle_ = false;
+            this.unitCirc_ = false;
+            this.quadi_ = false;
+            this.quadii_ = false;
+            this.quadiii_ = false;
+            this.quadiv_ = false;
 
+        } else if(mode == 'default') {
+            this.sin_ = false;
+            this.cos_ = false;
+            this.tan_ = false;
+
+            this.csc_ = false;
+            this.sec_ = false;
+            this.cot_ = false;
+
+            this.unitTriangle_ = true;
+            this.triangle_ = false;
+            
+            this.arc_ = true;
+            this.mouseArc_ = false;
+
+            this.cardPoints_ = true;
+            this.xAxis_ = true;
+            this.yAxis_ = true;
+            this.grid_ = false;
+            this.gridDensity_ = 1;
+            this.origin_ = true;
+
+            this.circle_ = true;
+            this.unitCirc_ = false;
+            this.quadi_ = true;
+            this.quadii_ = true;
+            this.quadiii_ = true;
+            this.quadiv_ = true;
+        } else if(mode == 'on') {
+            this.sin_ = true;
+            this.cos_ = true;
+            this.tan_ = true;
+
+            this.csc_ = true;
+            this.sec_ = true;
+            this.cot_ = true;
+
+            this.unitTriangle_ = true;
+            this.triangle_ = true;
+            
+            this.arc_ = true;
+            this.mouseArc_ = true;
+
+            this.cardPoints_ = true;
+            this.xAxis_ = true;
+            this.yAxis_ = true;
+            this.grid_ = true;
+            this.gridDensity_ = 1;
+            this.origin_ = true;
+
+            this.circle_ = true;
+            this.unitCirc_ = true;
+            this.quadi_ = true;
+            this.quadii_ = true;
+            this.quadiii_ = true;
+            this.quadiv_ = true;
+
+        }
     }
 
     getSin() { return this.sin_; }
@@ -81,7 +142,14 @@ class SettingsManager {
     getUnitCirc() { return this.unitCirc_; }
     getCardPoints() { return this.cardPoints_; }
 
+    getGrid() { return this.grid_; }
+    getOrigin() { return this.origin_; }
+    getXAxis() { return this.xAxis_}
+    getYAxis() { return this.yAxis_}
+
+
     getArc() { return this.arc_; }
+    getMouseArc() { return this.mouseArc_; }
 
     getTriangle() { return this.triangle_; }
     getUnitTriangle() { return this.unitTriangle_; }
@@ -96,10 +164,19 @@ class SettingsManager {
     butCot() { this.cot_ = !this.cot_; }
 
     butCircle() { this.circle_ = !this.circle_; }
-    butUnitCirc() { this.unitCirc_ = !this.unitCirc_; }
+    butUnitCirc() {
+        this.unitCirc_ = !this.unitCirc_;
+        this.cardPoints_ = this.unitCirc_;
+    }
     butCardPoints() { this.cardPoints_ = !this.cardPoints_; }
 
+    butOrigin() { this.origin_ = !this.origin_}
+    butGrid() { this.grid_ = !this.grid_ }
+    butXAxis() { this.xAxis_ = !this.xAxis_; }
+    butYAxis() { this.yAxis_ = !this.yAxis_; }
+
     butArc() { this.arc_ = !this.arc_; }
+    butMouseArc() { this.mouseArc_ = !this.mouseArc_; }
 
     butTriangle() { this.triangle_ = !this.triangle_; }
     butUnitTriangle() { this.unitTriangle_ = !this.unitTriangle_; }
@@ -117,10 +194,14 @@ function main() {
     SetMan = new SettingsManager();
 }
 
-// P5 function.
+function newSetMan(set) {
+    SetMan = new SettingsManager(set);
+}
 
+// P5 function.
+let canvas;
 function setup() {
-    const canvas = createCanvas(CANVAS_SIZE * 5/3, CANVAS_SIZE);
+    canvas = createCanvas(CANVAS_SIZE * 5/3, CANVAS_SIZE);
     canvas.parent('p5');
 
     textSize(20);
@@ -163,9 +244,9 @@ function draw() {
     push();
     rotate(3 * Math.PI / 2);
     translate(-CANVAS_SIZE, 0);
-    if(SetMan.getCircle())drawCircle();
-    drawGrid();
-    drawAxis();
+    if(SetMan.getCircle()) drawCircle();
+    if(SetMan.getGrid()) drawGrid();
+    drawAxis(SetMan.getXAxis(), SetMan.getYAxis());
     if(SetMan.getCardPoints()) drawCardinal();
     if(SetMan.getUnitCirc()) drawUnitCirc();
     pop();
@@ -174,7 +255,7 @@ function draw() {
     //if(mouseX < CANVAS_SIZE) {
 
 
-    if(SetMan.getArc()) drawArc(false);
+    drawArc(SetMan.getArc(), SetMan.getMouseArc());
     if(SetMan.getTriangle()) drawTriangle();
     if(SetMan.getUnitTriangle()) drawUnitTriangle();
     if(SetMan.getSin()) drawSin(); 
@@ -189,7 +270,7 @@ function draw() {
 
     drawPosInfo();
     drawMousePoint();
-    drawOrigin()
+    if(SetMan.getOrigin()) drawOrigin();
 
 }
 
@@ -250,6 +331,40 @@ function mouseInCirc() {
     return originDist() <= UNIT;
 }
 
+function increaseCanvasSize() {
+    CANVAS_SIZE += 200;
+
+    if(CANVAS_SIZE < 800 || CANVAS_SIZE > 1600) {
+        CANVAS_SIZE = 1600
+    }
+
+    CANVAS_HALF = CANVAS_SIZE / 2;
+    UNIT = CANVAS_SIZE / 4;
+    X_ORIGIN = CANVAS_HALF;
+    Y_ORIGIN = CANVAS_HALF;
+
+    setup();
+    root.style.setProperty('--canvas-size', CANVAS_SIZE + 'px');
+    root.style.setProperty('--inner-panel-size', (CANVAS_SIZE - 60) + 'px');
+}
+
+function decreaseCanvasSize() {
+    CANVAS_SIZE -= 200;
+
+    if(CANVAS_SIZE < 800 || CANVAS_SIZE > 1600) {
+        CANVAS_SIZE = 800
+    }
+
+    CANVAS_HALF = CANVAS_SIZE / 2;
+    UNIT = CANVAS_SIZE / 4;
+    X_ORIGIN = CANVAS_HALF;
+    Y_ORIGIN = CANVAS_HALF;
+
+    setup();
+    root.style.setProperty('--canvas-size', CANVAS_SIZE + 'px');
+    root.style.setProperty('--inner-panel-size', (CANVAS_SIZE - 60) + 'px');
+}
+
 
 // DRAW FUNCTIONS
 
@@ -269,15 +384,14 @@ function drawCircle() {
     circle(X_ORIGIN, Y_ORIGIN, 2 * UNIT);
 }
 
-function drawAxis() {
+function drawAxis(xAxis, yAxis) {
     CosMan.strokeColor('black');
     CosMan.strokeWeight(2);
-    CosMan.strokeDashed(true);
-
-    line(CANVAS_SIZE/4, CANVAS_HALF, CANVAS_SIZE * 3/4, CANVAS_HALF);
-    line(CANVAS_HALF, CANVAS_SIZE/4, CANVAS_HALF, CANVAS_SIZE * 3/4);
-
     CosMan.strokeDashed(false);
+
+    if(xAxis) line(CANVAS_HALF, 0, CANVAS_HALF, CANVAS_SIZE);
+    if(yAxis) line(0, CANVAS_HALF, CANVAS_SIZE, CANVAS_HALF);
+
 }
 
 function drawGrid(gridDensity = 1) {
@@ -286,7 +400,7 @@ function drawGrid(gridDensity = 1) {
     CosMan.strokeDashed(true);
     for(let i = 0; i <= CANVAS_SIZE; i += (UNIT/gridDensity)) {
         for(let j = 0; j <= CANVAS_SIZE; j += (UNIT/gridDensity)) {
-            if(j == X_ORIGIN){
+            if(j == X_ORIGIN && SetMan.getYAxis()){
                 CosMan.strokeWeight(2);
                 CosMan.strokeDashed(false);
             } else{
@@ -298,7 +412,7 @@ function drawGrid(gridDensity = 1) {
             line(0, j, CANVAS_SIZE, j);
         }
 
-        if(i == Y_ORIGIN)
+        if(i == Y_ORIGIN && SetMan.getXAxis())
             CosMan.strokeDashed(false);
         else
             CosMan.strokeDashed(true);
@@ -321,20 +435,17 @@ function drawCardinal() {
     point(X_ORIGIN, Y_ORIGIN + UNIT);
 }
 
-function drawArc(arcFollow = false) {
+function drawArc(unitArc = true, arcFollow = false) {
     CosMan.strokeColor('black');
     CosMan.strokeWeight(4);
-    fill('rgba(0, 255, 0, .5)');
 
-    arc(X_ORIGIN, Y_ORIGIN, UNIT * 2, UNIT * 2, -1 * quadArcTan(relMouseX(), relMouseY()), 0, PIE);
-
-    if(mouseInCirc() && arcFollow) {
+    if(unitArc) {
+        fill('rgba(0, 255, 0, .5)');
+        arc(X_ORIGIN, Y_ORIGIN, UNIT * 2, UNIT * 2, -1 * quadArcTan(relMouseX(), relMouseY()), 0, PIE);
+    }
+    if(arcFollow) {
         fill('rgba(0, 0, 255, .5)');
         arc(X_ORIGIN, Y_ORIGIN, originDist() * 2, originDist() * 2, -1 * quadArcTan(relMouseX(), relMouseY()), 0, PIE);
-    }
-    else {
-        fill('rgba(0, 0, 255, .5)');
-        arc(X_ORIGIN, Y_ORIGIN, UNIT, UNIT, -1 * quadArcTan(relMouseX(), relMouseY()), 0, PIE);
     }
 }
 
@@ -448,8 +559,6 @@ function drawUnitTriangle() {
 
 }
 
-
-
 function drawMousePoint() {
     CosMan.strokeColor('red');
     CosMan.strokeWeight(16);
@@ -457,7 +566,6 @@ function drawMousePoint() {
     CosMan.strokeColor('black');
     CosMan.strokeWeight(2);
 }
-
 
 function drawPosInfo() {
     CosMan.strokeWeight(1);
@@ -500,7 +608,6 @@ function drawCos() {
 
     CosMan.strokeColor('red');
     CosMan.strokeWeight(16);
-    point(mouseX, Y_ORIGIN);   
 
 }
 

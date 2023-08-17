@@ -257,9 +257,9 @@ class SettingsManager {
     
     getHidePanels() {
         if(this.hidePanels_) {
-            document.getElementById('hidePanels').innerHTML = 'On';
+            document.getElementById('hidePanels').innerHTML = 'Show';
         } else {
-            document.getElementById('hidePanels').innerHTML = 'Off'; 
+            document.getElementById('hidePanels').innerHTML = 'Hide'; 
         }
 
         return this.hidePanels_;
@@ -379,54 +379,63 @@ class SettingsManager {
 
 
     butNextPanel(reverse) {
-        if(reverse) {
-            --this.openPanel_;
-            if(this.openPanel_ < 0) { this.openPanel_ = 4; }
-
-        } else {
-            ++this.openPanel_;
-            if(this.openPanel_ > 4) { this.openPanel_ = 0; }
-
+        if(this.hidePanels_ == true) {
+            this.hidePanels_ = false;
+            document.getElementById('panel0').style.display="none";
+            document.getElementById('panel1').style.display="none";
+            document.getElementById('panel2').style.display="none";
+            document.getElementById('panel3').style.display="none";
+            document.getElementById('panel4').style.display="none";
+            this.getHidePanels();
         }
+            if(reverse) {
+                --this.openPanel_;
+                if(this.openPanel_ < 0) { this.openPanel_ = 4; }
 
-        if(this.openPanel_ == 0) {
-            document.getElementById('panel0').style.display="block";
-            document.getElementById('panel1').style.display="none";
-            document.getElementById('panel2').style.display="none";
-            document.getElementById('panel3').style.display="none";
-            document.getElementById('panel4').style.display="none";
+            } else {
+                ++this.openPanel_;
+                if(this.openPanel_ > 4) { this.openPanel_ = 0; }
 
-        } else if(this.openPanel_ == 1) {
-            document.getElementById('panel0').style.display="none";
-            document.getElementById('panel1').style.display="block";
-            document.getElementById('panel2').style.display="none";
-            document.getElementById('panel3').style.display="none";
-            document.getElementById('panel4').style.display="none";
+            }
+
+            if(this.openPanel_ == 0) {
+                document.getElementById('panel0').style.display="block";
+                document.getElementById('panel1').style.display="none";
+                document.getElementById('panel2').style.display="none";
+                document.getElementById('panel3').style.display="none";
+                document.getElementById('panel4').style.display="none";
+
+            } else if(this.openPanel_ == 1) {
+                document.getElementById('panel0').style.display="none";
+                document.getElementById('panel1').style.display="block";
+                document.getElementById('panel2').style.display="none";
+                document.getElementById('panel3').style.display="none";
+                document.getElementById('panel4').style.display="none";
 
 
-        } else if (this.openPanel_ == 2) {
-            document.getElementById('panel0').style.display="none";
-            document.getElementById('panel1').style.display="none";
-            document.getElementById('panel2').style.display="block";
-            document.getElementById('panel3').style.display="none";
-            document.getElementById('panel4').style.display="none";
+            } else if (this.openPanel_ == 2) {
+                document.getElementById('panel0').style.display="none";
+                document.getElementById('panel1').style.display="none";
+                document.getElementById('panel2').style.display="block";
+                document.getElementById('panel3').style.display="none";
+                document.getElementById('panel4').style.display="none";
 
-        } else if (this.openPanel_ == 3) {
-            document.getElementById('panel0').style.display="none";
-            document.getElementById('panel1').style.display="none";
-            document.getElementById('panel2').style.display="none";
-            document.getElementById('panel3').style.display="block";
-            document.getElementById('panel4').style.display="none";
+            } else if (this.openPanel_ == 3) {
+                document.getElementById('panel0').style.display="none";
+                document.getElementById('panel1').style.display="none";
+                document.getElementById('panel2').style.display="none";
+                document.getElementById('panel3').style.display="block";
+                document.getElementById('panel4').style.display="none";
 
-        } else if (this.openPanel_ == 4) {
-            document.getElementById('panel0').style.display="none";
-            document.getElementById('panel1').style.display="none";
-            document.getElementById('panel2').style.display="none";
-            document.getElementById('panel3').style.display="none";
-            document.getElementById('panel4').style.display="block";
+            } else if (this.openPanel_ == 4) {
+                document.getElementById('panel0').style.display="none";
+                document.getElementById('panel1').style.display="none";
+                document.getElementById('panel2').style.display="none";
+                document.getElementById('panel3').style.display="none";
+                document.getElementById('panel4').style.display="block";
 
-        }
-
+            }
+        
     }
 
     butHidePanels() {
@@ -466,6 +475,11 @@ function hidePanels() {
 function newSetMan(set) {
     SetMan = new SettingsManager(set);
 
+    if(set == 'off') {
+        hidePanels();
+        SetMan.getHidePanels();
+    }
+
     if(set == 'default') {
         CANVAS_SIZE = 900;
         CANVAS_HALF = CANVAS_SIZE / 2;
@@ -477,6 +491,7 @@ function newSetMan(set) {
         root.style.setProperty('--canvas-size', CANVAS_SIZE + 'px');
         root.style.setProperty('--inner-panel-size', (CANVAS_SIZE - 60) + 'px');
     }
+
 }
 
 // P5 function.

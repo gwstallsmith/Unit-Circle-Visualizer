@@ -130,7 +130,7 @@ class SettingsManager {
 
         }
 
-        this.openPanel_ = 0;
+        this.openPanel_ = -1;
         this.hidePanels_ = true;
 
     }
@@ -379,7 +379,7 @@ class SettingsManager {
     butUnitTriangle() { this.unitTriangle_ = !this.unitTriangle_; }
 
 
-    butNextPanel(reverse) {
+    butNextPanel(reverse, panelNo) {
         if(this.hidePanels_ == true) {
             this.hidePanels_ = false;
             document.getElementById('panel0').style.display="none";
@@ -398,6 +398,8 @@ class SettingsManager {
                 if(this.openPanel_ > 4) { this.openPanel_ = 0; }
 
             }
+
+        if(panelNo >= 0) this.openPanel_ = panelNo;
 
             if(this.openPanel_ == 0) {
                 document.getElementById('panel0').style.display="block";
@@ -449,7 +451,6 @@ class SettingsManager {
             document.getElementById('panel0').style.display="block";
         }
         this.hidePanels_ = !this.hidePanels_;
-
     }
 };
 
@@ -887,22 +888,24 @@ function drawPosInfo() {
         ang = quadArcTan(relMouseX(), relMouseY()) / PI;
         ang += 2;
     }
+    ang *= PI;
+
     fill('#545454');
     rect(CANVAS_SIZE + 20, 10, CANVAS_HALF - 40, CANVAS_SIZE - 20);
     fill('white');
     text('Mouse Posistion (x, y) = (' + parseFloat(relMouseX()).toFixed(3) + ', ' + parseFloat(relMouseY()).toFixed(3) + ')', CANVAS_SIZE + 50, 50);
-    text('Angle (θ) = ' + parseFloat(ang).toFixed(3) + '𝜋\t/\t' + parseInt(ang * 180) + '°', CANVAS_SIZE + 50, 100);
-    text('sin(θ) = ' + parseFloat(relMouseY()).toFixed(3), CANVAS_SIZE + 50, 150);
-    text('cos(θ) = ' + (Math.abs(parseFloat(relMouseX()).toFixed(3)) == 0 ? "0.000" : parseFloat(relMouseX()).toFixed(3)), CANVAS_SIZE + 50, 200); // Negative 0 is more of a misnomer. This is a corner case catcher.
-    text('tan(θ) = ' + (Math.abs(parseFloat(relMouseY() / relMouseX()).toFixed(3)) > 1000 ? "Undefined" : parseFloat(relMouseY() / relMouseX()).toFixed(3)), CANVAS_SIZE + 50, 250); // Tangent goes to infinity corner case. Set it to undefined instead of a huge number.
+    text('Angle (θ) = ' + parseFloat(ang/PI).toFixed(3) + '𝜋\t/\t' + parseInt(ang * 180) + '°', CANVAS_SIZE + 50, 100);
+    text('sin(θ) = ' + parseFloat(Math.sin(ang)).toFixed(3), CANVAS_SIZE + 50, 150);
+    text('cos(θ) = ' + (Math.abs(parseFloat(Math.cos(ang)).toFixed(3)) == 0 ? "0.000" : parseFloat(Math.cos(ang)).toFixed(3)), CANVAS_SIZE + 50, 200); // Negative 0 is more of a misnomer. This is a corner case catcher.
+    text('tan(θ) = ' + (Math.abs(parseFloat(Math.sin(ang) / Math.cos(ang)).toFixed(3)) > 1000 ? "Undefined" : parseFloat(relMouseY() / relMouseX()).toFixed(3)), CANVAS_SIZE + 50, 250); // Tangent goes to infinity corner case. Set it to undefined instead of a huge number.
 
-    text('Triangle area = ' + (Math.abs(parseFloat(triArea(relMouseX(), relMouseY())).toFixed(3)) < 0.00001 ? 0 : Math.abs(parseFloat(triArea(relMouseX(), relMouseY())).toFixed(3))), CANVAS_SIZE + 50, 300);
+    text('Triangle Area = ' + (Math.abs(parseFloat(triArea(relMouseX(), relMouseY())).toFixed(3)) < 0.00001 ? 0 : Math.abs(parseFloat(triArea(relMouseX(), relMouseY())).toFixed(3))), CANVAS_SIZE + 50, 300);
 
     text('csc(θ) = ' + (Math.abs(parseFloat(1/relMouseY()).toFixed(3)) > 1000 ? "Undefined" : parseFloat(1/relMouseY()).toFixed(3)), CANVAS_SIZE + 250, 150);
     text('sec(θ) = ' + (Math.abs(parseFloat(1/relMouseX()).toFixed(3)) > 1000 ? "Undefined" : parseFloat(1/relMouseX()).toFixed(3)), CANVAS_SIZE + 250, 200); // Negative 0 is more of a misnomer. This is a corner case catcher.
     text('cot(θ) = ' + (Math.abs(parseFloat(relMouseX() / relMouseY()).toFixed(3)) > 1000 ? "Undefined" : parseFloat(relMouseX() / relMouseY()).toFixed(3)), CANVAS_SIZE + 250, 250); // Tangent goes to infinity corner case. Set it to undefined instead of a huge number.
 
-    text('Amplitude = ' + parseFloat(originDist()/UNIT).toFixed(3), CANVAS_SIZE + 50, 350);
+    text('Amplitude = ' + parseFloat(originDist()/UNIT).toFixed(3), CANVAS_SIZE + 50, 400);
 }
 
 function drawSin() {

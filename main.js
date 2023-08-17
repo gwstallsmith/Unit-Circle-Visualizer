@@ -344,6 +344,7 @@ class SettingsManager {
     }
 
     butGridDensity(inc) {
+        this.grid_ = true;
         if(inc) {
             ++this.gridDensity_;
         } else {

@@ -534,7 +534,6 @@ function setup() {
     fill(255, 255, 255);
 
     document.getElementById("canvasSize").innerHTML = 'Current Size: ' + CANVAS_SIZE + 'px';
-
 }
 
 // P5 function.
@@ -977,3 +976,4 @@ function drawInfoBackground() {
     CosMan.strokeColor('black');
     rect(CANVAS_SIZE, 0, CANVAS_SIZE, CANVAS_SIZE)
 }
+

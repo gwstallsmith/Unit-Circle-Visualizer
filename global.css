@@ -21,7 +21,7 @@ body.p5 {
 div.panel {
     width: 300px;
     height:var(--canvas-size);
-    background-color: #d3d3d3;
+    background-color: #5A5A5A;
 
     border-right: 50px;
     cursor:default;
@@ -33,7 +33,7 @@ div.panel {
 div.innerPanel {
     margin:20px;
     padding:15px;
-    background-color: #545454;
+    background-color: #101111;
     height:var(--inner-panel-size);
     
     min-height: 780px;
@@ -45,22 +45,23 @@ div.innerPanel {
 }
 
 button {
-    font-size: 12px;
+    font-size: 16px;
     color:white;
     float:right;
 
-    background-color: #545454;
+    background-color: #101111;
 
 }
 
 label {
-    font-size: 16px;
+    font-size: 20px;
 
     color:white;
     float:left;
 }
 
 p.innerPanel {
+    font-size: 20px;
     color:white;
 
 }

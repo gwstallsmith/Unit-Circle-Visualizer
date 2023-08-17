@@ -49,6 +49,8 @@ class SettingsManager {
             this.sec_ = false;
             this.cot_ = false;
 
+            this.allTrigFunc_ = false;
+
             this.unitTriangle_ = false;
             this.triangle_ = false;
             
@@ -71,6 +73,7 @@ class SettingsManager {
             this.quadiii_ = false;
             this.quadiv_ = false;
 
+            this.hidePanels_ = false;
         } else if(mode == 'default') {
             this.sin_ = false;
             this.cos_ = false;
@@ -79,6 +82,8 @@ class SettingsManager {
             this.csc_ = false;
             this.sec_ = false;
             this.cot_ = false;
+
+            this.allTrigFunc_ = false;
 
             this.unitTriangle_ = true;
             this.triangle_ = false;
@@ -99,6 +104,8 @@ class SettingsManager {
             this.quadii_ = true;
             this.quadiii_ = true;
             this.quadiv_ = true;
+            this.hidePanels_ = true;
+
         } else if(mode == 'on') {
             this.sin_ = true;
             this.cos_ = true;
@@ -107,6 +114,8 @@ class SettingsManager {
             this.csc_ = true;
             this.sec_ = true;
             this.cot_ = true;
+
+            this.allTrigFunc_ = true;
 
             this.unitTriangle_ = true;
             this.triangle_ = true;
@@ -128,10 +137,11 @@ class SettingsManager {
             this.quadiii_ = true;
             this.quadiv_ = true;
 
+            this.hidePanels_ = false;
         }
 
-        this.openPanel_ = -1;
-        this.hidePanels_ = true;
+        this.openPanel_ = 0;
+
 
     }
 
@@ -152,10 +162,42 @@ class SettingsManager {
         return this.cos_;
     }
 
-    getTan() { return this.tan_; }
-    getCsc() { return this.csc_; }
-    getSec() { return this.sec_; }
-    getCot() { return this.cot_; }
+    getTan() {
+        if(this.tan_) {
+            document.getElementById('tan').innerHTML = 'On';
+        } else {
+            document.getElementById('tan').innerHTML = 'Off'; 
+        }
+
+        return this.tan_;
+    }
+    getCsc() {
+        if(this.csc_) {
+            document.getElementById('csc').innerHTML = 'On';
+        } else {
+            document.getElementById('csc').innerHTML = 'Off'; 
+        }
+
+        return this.csc_;
+    }
+    getSec() {
+        if(this.sec_) {
+            document.getElementById('sec').innerHTML = 'On';
+        } else {
+            document.getElementById('sec').innerHTML = 'Off'; 
+        }
+
+        return this.sec_;
+    }
+    getCot() {
+        if(this.cot_) {
+            document.getElementById('cot').innerHTML = 'On';
+        } else {
+            document.getElementById('cot').innerHTML = 'Off'; 
+        }
+
+        return this.cot_;
+    }
 
     getCircle() {
         if(this.circle_) {
@@ -278,23 +320,64 @@ class SettingsManager {
         if(this.sin_) {
             document.getElementById('sin').innerHTML = 'On';
         } else {
-            document.getElementById('sin').innerHTML = 'Off'; 
+            document.getElementById('allTrigFunc').innerHTML = 'Off';
+            this.allTrigFunc_ = false;
         }
 
     }
+
     butCos() {
         this.cos_ = !this.cos_;
         if(this.cos_) {
             document.getElementById('cos').innerHTML = 'On';
         } else {
-            document.getElementById('cos').innerHTML = 'Off'; 
+            document.getElementById('allTrigFunc').innerHTML = 'Off';
+            this.allTrigFunc_ = false;
         }
     }
 
-    butTan() { this.tan_ = !this.tan_; }
-    butCsc() { this.csc_ = !this.csc_; }
-    butSec() { this.sec_ = !this.sec_; }
-    butCot() { this.cot_ = !this.cot_; }
+    butTan() {  
+        this.tan_ = !this.tan_;
+        if(this.tan_) {
+            document.getElementById('tan').innerHTML = 'On';
+        } else {
+            document.getElementById('sin').innerHTML = 'Off';
+            document.getElementById('allTrigFunc').innerHTML = 'Off';
+            this.allTrigFunc_ = false;
+        }
+    }
+    butCsc() {
+        this.csc_ = !this.csc_;
+        if(this.csc_) {
+            document.getElementById('csc').innerHTML = 'On';
+        } else {
+            document.getElementById('csc').innerHTML = 'Off';
+            document.getElementById('allTrigFunc').innerHTML = 'Off';
+            this.allTrigFunc_ = false; 
+        }
+    }
+
+    butSec() {
+        this.sec_ = !this.sec_;
+        if(this.sec_) {
+            document.getElementById('sec').innerHTML = 'On';
+        } else {
+            document.getElementById('sec').innerHTML = 'Off';
+            document.getElementById('allTrigFunc').innerHTML = 'Off';
+            this.allTrigFunc_ = false;
+        }
+    }
+
+    butCot() {
+        this.cot_ = !this.cot_;
+        if(this.cot_) {
+            document.getElementById('cot').innerHTML = 'On';
+        } else {
+            document.getElementById('cot').innerHTML = 'Off'; 
+            document.getElementById('allTrigFunc').innerHTML = 'Off';
+            this.allTrigFunc_ = false;
+        }
+    }
 
     butCircle() {
         this.circle_ = !this.circle_;
@@ -404,66 +487,92 @@ class SettingsManager {
         } else {
             document.getElementById('unitTriangle').innerHTML = 'Off'; 
         }
-}
+    }
 
+
+    butAllTrigFunc() {
+        this.allTrigFunc_ = !this.allTrigFunc_;
+        if(this.allTrigFunc_) {
+            document.getElementById('allTrigFunc').innerHTML = 'On';
+            this.sin_ = true;
+            this.cos_ = true;
+            this.tan_ = true;
+    
+            this.csc_ = true;
+            this.sec_ = true;
+            this.cot_ = true;
+    
+        } else {
+            document.getElementById('allTrigFunc').innerHTML = 'Off';
+            this.sin_ = false;
+            this.cos_ = false;
+            this.tan_ = false;
+
+            this.csc_ = false;
+            this.sec_ = false;
+            this.cot_ = false;
+        }
+
+    }
 
     butNextPanel(reverse, panelNo) {
+        this.getHidePanels();
         if(this.hidePanels_ == true) {
             this.hidePanels_ = false;
-            document.getElementById('panel0').style.display="none";
             document.getElementById('panel1').style.display="none";
             document.getElementById('panel2').style.display="none";
             document.getElementById('panel3').style.display="none";
             document.getElementById('panel4').style.display="none";
+            document.getElementById('panel5').style.display="none";
             this.getHidePanels();
         }
             if(reverse) {
                 --this.openPanel_;
-                if(this.openPanel_ < 0) { this.openPanel_ = 4; }
+                if(this.openPanel_ < 1) { this.openPanel_ = 5; }
 
             } else {
                 ++this.openPanel_;
-                if(this.openPanel_ > 4) { this.openPanel_ = 0; }
+                if(this.openPanel_ > 5) { this.openPanel_ = 1; }
 
             }
 
-        if(panelNo >= 0) this.openPanel_ = panelNo;
+        if(panelNo >= 1) this.openPanel_ = panelNo;
 
-            if(this.openPanel_ == 0) {
-                document.getElementById('panel0').style.display="block";
-                document.getElementById('panel1').style.display="none";
-                document.getElementById('panel2').style.display="none";
-                document.getElementById('panel3').style.display="none";
-                document.getElementById('panel4').style.display="none";
-
-            } else if(this.openPanel_ == 1) {
-                document.getElementById('panel0').style.display="none";
+            if(this.openPanel_ == 1) {
                 document.getElementById('panel1').style.display="block";
                 document.getElementById('panel2').style.display="none";
                 document.getElementById('panel3').style.display="none";
                 document.getElementById('panel4').style.display="none";
+                document.getElementById('panel5').style.display="none";
 
-
-            } else if (this.openPanel_ == 2) {
-                document.getElementById('panel0').style.display="none";
+            } else if(this.openPanel_ == 2) {
                 document.getElementById('panel1').style.display="none";
                 document.getElementById('panel2').style.display="block";
                 document.getElementById('panel3').style.display="none";
                 document.getElementById('panel4').style.display="none";
+                document.getElementById('panel5').style.display="none";
+
 
             } else if (this.openPanel_ == 3) {
-                document.getElementById('panel0').style.display="none";
                 document.getElementById('panel1').style.display="none";
                 document.getElementById('panel2').style.display="none";
                 document.getElementById('panel3').style.display="block";
                 document.getElementById('panel4').style.display="none";
+                document.getElementById('panel5').style.display="none";
 
             } else if (this.openPanel_ == 4) {
-                document.getElementById('panel0').style.display="none";
                 document.getElementById('panel1').style.display="none";
                 document.getElementById('panel2').style.display="none";
                 document.getElementById('panel3').style.display="none";
                 document.getElementById('panel4').style.display="block";
+                document.getElementById('panel5').style.display="none";
+
+            } else if (this.openPanel_ == 5) {
+                document.getElementById('panel1').style.display="none";
+                document.getElementById('panel2').style.display="none";
+                document.getElementById('panel3').style.display="none";
+                document.getElementById('panel4').style.display="none";
+                document.getElementById('panel5').style.display="block";
 
             }
         
@@ -476,7 +585,7 @@ class SettingsManager {
         } else {
             document.getElementById('hidePanels').innerHTML = 'Hide';
             this.openPanel_ = 0;
-            document.getElementById('panel0').style.display="block";
+            document.getElementById('panel1').style.display="block";
         }
         this.hidePanels_ = !this.hidePanels_;
     }
@@ -495,18 +604,17 @@ function main() {
 }
 
 function hidePanels() {
-        document.getElementById('panel0').style.display="none";
         document.getElementById('panel1').style.display="none";
         document.getElementById('panel2').style.display="none";
         document.getElementById('panel3').style.display="none";
         document.getElementById('panel4').style.display="none";
+        document.getElementById('panel5').style.display="none";
 }
 
 function newSetMan(set) {
     SetMan = new SettingsManager(set);
 
     if(set == 'off') {
-        hidePanels();
         SetMan.getHidePanels();
     }
 
@@ -564,7 +672,7 @@ function keyPressed() {
 
 // P5 function that drives the entire animation.
 function draw() {
-    background('#545454');
+    background('#d3d3d3');
     angleMode(RADIANS);
 
 
@@ -583,17 +691,20 @@ function draw() {
     if(SetMan.getUnitTriangle()) drawUnitTriangle();
     if(SetMan.getSin()) drawSin(); 
     if(SetMan.getCos()) drawCos(); 
-    //drawTan();
+    if(SetMan.getTan())drawTan();
 
-    //drawSin();
-    //drawSec();
-    //drawCot();
-    //}
+    if(SetMan.getCsc()) drawCsc();
+    if(SetMan.getSec()) drawSec();
+    if(SetMan.getCot()) drawCot();
     drawInfoBackground();
 
     drawPosInfo();
+    //drawWaveBackground();
+
     drawMousePoint();
+    
     if(SetMan.getOrigin()) drawOrigin();
+
 
 }
 
@@ -705,6 +816,11 @@ function decreaseCanvasSize() {
     root.style.setProperty('--inner-panel-size', (CANVAS_SIZE - 60) + 'px');
 }
 
+function distanceForm(x1, y1, x2, y2) {
+    return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+}
+
+
 
 // DRAW FUNCTIONS
 
@@ -718,8 +834,8 @@ function drawOrigin() {
 
 function drawCircle() {
     CosMan.strokeColor('black');
-    CosMan.strokeWeight(4);
-    fill('#d3d3d3');
+    CosMan.strokeWeight(2);
+    fill('#d3d3d3')
 
     circle(X_ORIGIN, Y_ORIGIN, 2 * UNIT);
 }
@@ -777,7 +893,7 @@ function drawCardinal() {
 
 function drawArc(unitArc = true, arcFollow = false) {
     CosMan.strokeColor('black');
-    CosMan.strokeWeight(4);
+    CosMan.strokeWeight(2);
 
     if(unitArc) {
         fill('rgba(0, 255, 0, .5)');
@@ -917,7 +1033,7 @@ function drawPosInfo() {
     }
     ang *= PI;
 
-    fill('#545454');
+    fill('#101111');
     rect(CANVAS_SIZE + 20, 10, CANVAS_HALF - 40, CANVAS_SIZE - 20);
     fill('white');
     text('Mouse Posistion (x, y) = (' + parseFloat(relMouseX()).toFixed(3) + ', ' + parseFloat(relMouseY()).toFixed(3) + ')', CANVAS_SIZE + 50, 50);
@@ -934,6 +1050,14 @@ function drawPosInfo() {
 
     text('Amplitude = ' + parseFloat(originDist()/UNIT).toFixed(3), CANVAS_SIZE + 50, 450);
 }
+
+function drawInfoBackground() {
+    fill('#5A5A5A')
+    CosMan.strokeWeight(2);
+    CosMan.strokeColor('black');
+    rect(CANVAS_SIZE, 0, CANVAS_SIZE, CANVAS_SIZE)
+}
+
 
 function drawSin() {
     CosMan.strokeColor('cyan');
@@ -956,9 +1080,14 @@ function drawCos() {
 function drawTan() {
     CosMan.strokeColor('magenta');
     CosMan.strokeWeight(4);
+    line(X_ORIGIN + UNIT, Y_ORIGIN, X_ORIGIN + UNIT, Y_ORIGIN - relMouseY()/relMouseX() * UNIT);
+}
 
 
-    line(mouseX, Y_ORIGIN, mouseX, relMouseY()/relMouseX() * UNIT);
+function drawCsc() {
+    CosMan.strokeColor('lime');
+    CosMan.strokeWeight(4);
+    line(X_ORIGIN, Y_ORIGIN, X_ORIGIN, Y_ORIGIN - 1/relMouseY() * UNIT);
 
 }
 
@@ -966,14 +1095,80 @@ function drawSec() {
     CosMan.strokeColor('indigo');
     CosMan.strokeWeight(4);
 
-    line(X_ORIGIN, Y_ORIGIN, mouseX, mouseY);
+    line(X_ORIGIN, Y_ORIGIN, X_ORIGIN + UNIT, Y_ORIGIN - relMouseY()/relMouseX() * UNIT);
 
 }
 
-function drawInfoBackground() {
-    fill('#d3d3d3')
+function drawCot() {
+    CosMan.strokeColor('orange');
     CosMan.strokeWeight(4);
-    CosMan.strokeColor('black');
-    rect(CANVAS_SIZE, 0, CANVAS_SIZE, CANVAS_SIZE)
+    let ang = quadArcTan(relMouseX(), relMouseY()) / PI;
+    if(ang < 0) {
+        ang = quadArcTan(relMouseX(), relMouseY()) / PI;
+        ang += 2;
+    }
+    ang *= PI;
+
+    line(X_ORIGIN, Y_ORIGIN - 1/relMouseY() * UNIT, relX(Math.cos(ang)), relY(-Math.sin(ang)));
+
 }
 
+
+
+//let waveXAxis;
+//let waveYAxis;
+//
+//function drawWaveBackground() {
+//    waveXAxis = CANVAS_SIZE - (CANVAS_HALF/2);
+//    waveYAxis = CANVAS_SIZE + (CANVAS_HALF/2);
+//    fill('#d3d3d3');
+//    CosMan.strokeWeight(4);
+//    CosMan.strokeColor('black');
+//    rect(CANVAS_SIZE + 20, CANVAS_HALF + 20, CANVAS_HALF - 40, CANVAS_HALF - 40)
+//
+//    CosMan.strokeWeight(2);
+//    line(CANVAS_SIZE + 20, waveXAxis, CANVAS_SIZE + CANVAS_HALF - 20, waveXAxis);
+//
+//    line(waveYAxis, CANVAS_HALF + 20, waveYAxis, CANVAS_SIZE - 20);
+//    //console.log(calcWave());
+//
+//    //console.log(waveYAxis - CANVAS_HALF + 20);
+//
+//    CosMan.strokeWeight(16);
+//    point(waveYAxis,  CANVAS_HALF + 20);
+//    point(waveYAxis, CANVAS_SIZE - 20);
+//
+//    point(CANVAS_SIZE + 20, waveXAxis);
+//    point(CANVAS_SIZE + CANVAS_HALF - 20, waveXAxis);
+//
+//    //console.log(distanceForm(waveYAxis, CANVAS_SIZE + 20, waveYAxis, CANVAS_SIZE - 20));
+//    console.log(distanceForm(CANVAS_SIZE + 20, waveXAxis, CANVAS_SIZE + CANVAS_HALF - 20, waveXAxis));
+//
+//}
+//
+//
+//
+//function calcWave(unit = false) {
+//    let x, y;
+//
+//    if(unit) {
+//        let amp = originDist()/UNIT;
+//        x = Math.cos(relMouseX()) * amp;
+//        y = Math.cos(relMouseY()) * amp;
+//    } else {
+//        x = Math.cos(relMouseX());
+//        y = Math.cos(relMouseY());
+//    }
+//
+//
+//    return [x, y];
+//}
+
+
+
+function drawWave() {
+
+
+
+
+}

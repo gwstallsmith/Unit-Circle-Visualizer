@@ -33,35 +33,67 @@
     <label>All On: </label><button type="button" onclick="newSetMan('on')">On</button><br><br>
     <label>All Off: </label><button type="button" onclick="newSetMan('off')">Off</button><br><br>
     <br><br>
-    <label>Sin: </label><button type="button" onclick="SetMan.butSin()">On/Off</button><br><br>
-    <label>Cos: </label><button type="button" onclick="SetMan.butCos()">On/Off</button><br><br>
-    <label>Tan: </label><button type="button" onclick="SetMan.butCos()">On/Off</button><br><br>
 
+    <label>Panels&nbsp&nbsp&nbsp</label><button type="button" onclick="SetMan.butHidePanels()" id="hidePanels" style="float:left">Show</button><button type="button" onclick="SetMan.butNextPanel()">Next</button><button type="button" onclick="SetMan.butNextPanel(true)">Prev</button><br><br>
+
+  </div>
+</div>
+
+<div class="panel" id="panel0">
+  <div class="innerPanel">
+    <label>Trig thing</label><button type="button" onclick="SetMan.butNextPanel()">Next</button><button type="button" onclick="SetMan.butNextPanel(true)">Prev</button><br><br>
+  </div>
+</div>
+
+
+<div class="panel" id="panel1">
+  <div class="innerPanel">
+    <label>I - Grid</label><button type="button" onclick="SetMan.butNextPanel()">Next</button><button type="button" onclick="SetMan.butNextPanel(true)">Prev</button><br><br>
+    <br>
+    <label>Grid: </label><button type="button" onclick="SetMan.butGrid()" id="grid">Off</button><br><br>
+    <label>Grid Density: </label><button type="button" onclick="SetMan.butGridDensity(false)">&nbsp-&nbsp</button><button type="button" onclick="SetMan.butGridDensity(true)">+</button><br><br>
+    <label>X-Axis: </label><button type="button" onclick="SetMan.butXAxis()" id="xAxis">On</button><br><br>
+    <label>Y-Axis: </label><button type="button" onclick="SetMan.butYAxis()" id="yAxis">On</button><br><br>
     <br>
 
   </div>
 </div>
-<div class="panel">
+
+<div class="panel" id="panel2">
   <div class="innerPanel">
-    <label>Circle: </label><button type="button" onclick="SetMan.butCircle()">On/Off</button><br><br>
-    <label>Cardinal Points: </label><button type="button" onclick="SetMan.butCardPoints()">On/Off</button><br><br>
-    <label>Origin: </label><button type="button" onclick="SetMan.butOrigin()">On/Off</button><br><br>
-    <label>Unit Circle: </label><button type="button" onclick="SetMan.butUnitCirc()">On/Off</button><br><br>
+    <label>II - Circle</label><button type="button" onclick="SetMan.butNextPanel()">Next</button><button type="button" onclick="SetMan.butNextPanel(true)">Prev</button><br><br>
+    <br>
+    <label>Circle: </label><button type="button" onclick="SetMan.butCircle()" id="circle">On</button><br><br>
+    <label>Cardinal Points: </label><button type="button" onclick="SetMan.butCardPoints()" id="cardPoints">On</button><br><br>
+    <label>Origin: </label><button type="button" onclick="SetMan.butOrigin()" id="origin">On</button><br><br>
+    <br>
+    <label>Unit Circle: </label><button type="button" onclick="SetMan.butUnitCirc()" id="unitCirc">Off</button><br><br>
     <label>Unit Angles: </label><button type="button" onclick="forwardUnitCircle()">&nbsp-&nbsp</button><button type="button" onclick="backwardUnitCircle()">+</button><br><br>
     <br>
-    <label>Grid: </label><button type="button" onclick="SetMan.butGrid()">On/Off</button><br><br>
-    <label>Grid Density: </label><button type="button" onclick="SetMan.butGridDensity(false)">&nbsp-&nbsp</button><button type="button" onclick="SetMan.butGridDensity(true)">+</button><br><br>
-    <label>X-Axis: </label><button type="button" onclick="SetMan.butXAxis()">On/Off</button><br><br>
-    <label>Y-Axis: </label><button type="button" onclick="SetMan.butYAxis()">On/Off</button><br><br>
-    <br>
-    <label>Unit Arc: </label><button type="button" onclick="SetMan.butArc()">On/Off</button><br><br>
-    <label>Mouse Arc: </label><button type="button" onclick="SetMan.butMouseArc()">On/Off</button><br><br>
-    <label>Unit Triangle: </label><button type="button" onclick="SetMan.butUnitTriangle()">On/Off</button><br><br>
-    <label>Mouse Triangle: </label><button type="button" onclick="SetMan.butTriangle()">On/Off</button><br><br>
+    <label>Unit Arc: </label><button type="button" onclick="SetMan.butArc()" id="arc">On</button><br><br>
+    <label>Mouse Arc: </label><button type="button" onclick="SetMan.butMouseArc()" id="mouseArc">Off</button><br><br>
     <br>
 
+  </div>
+</div>
 
+<div class="panel" id="panel3">
+  <div class="innerPanel">
+    <label>III - Triangle</label><button type="button" onclick="SetMan.butNextPanel()">Next</button><button type="button" onclick="SetMan.butNextPanel(true)">Prev</button><br><br>
+    <br>
+    <label>Unit Triangle: </label><button type="button" onclick="SetMan.butUnitTriangle()" id="unitTriangle">On</button><br><br>
+    <label>Mouse Triangle: </label><button type="button" onclick="SetMan.butTriangle()" id="triangle">Off</button><br><br>
+    <br>
+    <label>Sin: </label><button type="button" onclick="SetMan.butSin()" id="sin">Off</button><br><br>
+    <label>Cos: </label><button type="button" onclick="SetMan.butCos()" id="cos">Off</button><br><br>
+    <br>
 
+  </div>
+</div>
+
+<div class="panel" id="panel4">
+  <div class="innerPanel">
+    <label>IV</label><button type="button" onclick="SetMan.butNextPanel()">Next</button><button type="button" onclick="SetMan.butNextPanel(true)">Prev</button><br><br>
   </div>
 </div>
 

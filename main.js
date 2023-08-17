@@ -129,50 +129,219 @@ class SettingsManager {
             this.quadiv_ = true;
 
         }
+
+        this.openPanel_ = 0;
+        this.hidePanels_ = true;
+
     }
 
-    getSin() { return this.sin_; }
-    getCos() { return this.cos_; }
+    getSin() {
+        if(this.sin_) {
+            document.getElementById('sin').innerHTML = 'On';
+        } else {
+            document.getElementById('sin').innerHTML = 'Off'; 
+        }
+        return this.sin_;
+    }
+    getCos() {
+        if(this.cos_) {
+            document.getElementById('cos').innerHTML = 'On';
+        } else {
+            document.getElementById('cos').innerHTML = 'Off'; 
+        }
+        return this.cos_;
+    }
     getTan() { return this.tan_; }
     getCsc() { return this.csc_; }
     getSec() { return this.sec_; }
     getCot() { return this.cot_; }
 
-    getCircle() { return this.circle_ }
-    getUnitCirc() { return this.unitCirc_; }
-    getCardPoints() { return this.cardPoints_; }
+    getCircle() {
+        if(this.circle_) {
+            document.getElementById('circle').innerHTML = 'On';
+        } else {
+            document.getElementById('circle').innerHTML = 'Off'; 
+        }
+        return this.circle_
+    }
+    getCardPoints() {
+        if(this.cardPoints_) {
+            document.getElementById('cardPoints').innerHTML = 'On';
+        } else {
+            document.getElementById('cardPoints').innerHTML = 'Off'; 
+        }
+        return this.cardPoints_;
+    }
 
-    getGrid() { return this.grid_; }
+    getUnitCirc() {
+        if(this.unitCirc_) {
+            document.getElementById('unitCirc').innerHTML = 'On';
+        } else {
+            document.getElementById('unitCirc').innerHTML = 'Off'; 
+        }
+
+        return this.unitCirc_;
+    }
+
+    getGrid() {
+        if(this.grid_) {
+            document.getElementById('grid').innerHTML = 'On';
+        } else {
+            document.getElementById('grid').innerHTML = 'Off'; 
+        }
+        return this.grid_;
+    }
     getGridDensity() { return this.gridDensity_; }
-    getOrigin() { return this.origin_; }
-    getXAxis() { return this.xAxis_}
-    getYAxis() { return this.yAxis_}
+    getOrigin() {
+        if(this.origin_) {
+            document.getElementById('origin').innerHTML = 'On';
+        } else {
+            document.getElementById('origin').innerHTML = 'Off'; 
+        }
+        return this.origin_;
+    }
+    getXAxis() {
+        if(this.xAxis_) {
+            document.getElementById('xAxis').innerHTML = 'On';
+        } else {
+            document.getElementById('xAxis').innerHTML = 'Off'; 
+        }
+        return this.xAxis_
+    }
+    getYAxis() {
+        if(this.yAxis_) {
+            document.getElementById('yAxis').innerHTML = 'On';
+        } else {
+            document.getElementById('yAxis').innerHTML = 'Off'; 
+        }
+
+        return this.yAxis_
+    }
 
 
-    getArc() { return this.arc_; }
-    getMouseArc() { return this.mouseArc_; }
+    getArc() {
+        if(this.arc_) {
+            document.getElementById('arc').innerHTML = 'On';
+        } else {
+            document.getElementById('arc').innerHTML = 'Off'; 
+        }
 
-    getTriangle() { return this.triangle_; }
-    getUnitTriangle() { return this.unitTriangle_; }
+        return this.arc_;
+    }
+    getMouseArc() {
+        if(this.mouseArc_) {
+            document.getElementById('mouseArc').innerHTML = 'On';
+        } else {
+            document.getElementById('mouseArc').innerHTML = 'Off'; 
+        }
+
+        return this.mouseArc_;
+    }
+
+    getTriangle() {
+        if(this.triangle_) {
+            document.getElementById('triangle').innerHTML = 'On';
+        } else {
+            document.getElementById('triangle').innerHTML = 'Off'; 
+        }
+        return this.triangle_;
+    }
+    getUnitTriangle() {
+        if(this.unitTriangle_) {
+            document.getElementById('unitTriangle').innerHTML = 'On';
+        } else {
+            document.getElementById('unitTriangle').innerHTML = 'Off'; 
+        }
+        return this.unitTriangle_;
+    }
     
+    getHidePanels() {
+        if(this.hidePanels_) {
+            document.getElementById('hidePanels').innerHTML = 'On';
+        } else {
+            document.getElementById('hidePanels').innerHTML = 'Off'; 
+        }
 
+        return this.hidePanels_;
+    }
 
-    butSin() { this.sin_ = !(this.sin_); }
-    butCos() { this.cos_ = !this.cos_; }
+    butSin() {
+        this.sin_ = !this.sin_;
+
+        if(this.sin_) {
+            document.getElementById('sin').innerHTML = 'On';
+        } else {
+            document.getElementById('sin').innerHTML = 'Off'; 
+        }
+
+    }
+    butCos() {
+        this.cos_ = !this.cos_;
+        if(this.cos_) {
+            document.getElementById('cos').innerHTML = 'On';
+        } else {
+            document.getElementById('cos').innerHTML = 'Off'; 
+        }
+    }
+
     butTan() { this.tan_ = !this.tan_; }
     butCsc() { this.csc_ = !this.csc_; }
     butSec() { this.sec_ = !this.sec_; }
     butCot() { this.cot_ = !this.cot_; }
 
-    butCircle() { this.circle_ = !this.circle_; }
+    butCircle() {
+        this.circle_ = !this.circle_;
+        if(this.circle_) {
+            document.getElementById('circle').innerHTML = 'On';
+        } else {
+            document.getElementById('circle').innerHTML = 'Off'; 
+        }
+
+    }
     butUnitCirc() {
         this.unitCirc_ = !this.unitCirc_;
         this.cardPoints_ = this.unitCirc_;
-    }
-    butCardPoints() { this.cardPoints_ = !this.cardPoints_; }
 
-    butOrigin() { this.origin_ = !this.origin_}
-    butGrid() { this.grid_ = !this.grid_ }
+        if(this.unitCirc_) {
+            document.getElementById('unitCirc').innerHTML = 'On';
+        } else {
+            document.getElementById('unitCirc').innerHTML = 'Off'; 
+        }
+        if(this.cardPoints_) {
+            document.getElementById('cardPoints').innerHTML = 'On';
+        } else {
+            document.getElementById('cardPoints').innerHTML = 'Off'; 
+        }
+
+    }
+    butCardPoints() {
+        this.cardPoints_ = !this.cardPoints_;
+        if(this.cardPoints_) {
+            document.getElementById('cardPoints').innerHTML = 'On';
+        } else {
+            document.getElementById('cardPoints').innerHTML = 'Off'; 
+        }
+
+    }
+
+    butOrigin() {
+        this.origin_ = !this.origin_;
+        if(this.origin_) {
+            document.getElementById('origin').innerHTML = 'On';
+        } else {
+            document.getElementById('origin').innerHTML = 'Off'; 
+        }
+
+    }
+    butGrid() {
+        this.grid_ = !this.grid_
+        if(this.grid_) {
+            document.getElementById('grid').innerHTML = 'On';
+        } else {
+            document.getElementById('grid').innerHTML = 'Off'; 
+        }
+
+    }
 
     butGridDensity(inc) {
         if(inc) {
@@ -188,15 +357,93 @@ class SettingsManager {
     butXAxis() { this.xAxis_ = !this.xAxis_; }
     butYAxis() { this.yAxis_ = !this.yAxis_; }
 
-    butArc() { this.arc_ = !this.arc_; }
-    butMouseArc() { this.mouseArc_ = !this.mouseArc_; }
+    butArc() {
+        this.arc_ = !this.arc_;
+        if(this.arc_) {
+            document.getElementById('arc').innerHTML = 'On';
+        } else {
+            document.getElementById('arc').innerHTML = 'Off'; 
+        }
+    }
+    butMouseArc() {
+        this.mouseArc_ = !this.mouseArc_;
+        if(this.mouseArc_) {
+            document.getElementById('mouseArc').innerHTML = 'On';
+        } else {
+            document.getElementById('mouseeArc').innerHTML = 'Off'; 
+        }
+}
 
     butTriangle() { this.triangle_ = !this.triangle_; }
     butUnitTriangle() { this.unitTriangle_ = !this.unitTriangle_; }
 
 
+    butNextPanel(reverse) {
+        if(reverse) {
+            --this.openPanel_;
+            if(this.openPanel_ < 0) { this.openPanel_ = 4; }
 
+        } else {
+            ++this.openPanel_;
+            if(this.openPanel_ > 4) { this.openPanel_ = 0; }
+
+        }
+
+        if(this.openPanel_ == 0) {
+            document.getElementById('panel0').style.display="block";
+            document.getElementById('panel1').style.display="none";
+            document.getElementById('panel2').style.display="none";
+            document.getElementById('panel3').style.display="none";
+            document.getElementById('panel4').style.display="none";
+
+        } else if(this.openPanel_ == 1) {
+            document.getElementById('panel0').style.display="none";
+            document.getElementById('panel1').style.display="block";
+            document.getElementById('panel2').style.display="none";
+            document.getElementById('panel3').style.display="none";
+            document.getElementById('panel4').style.display="none";
+
+
+        } else if (this.openPanel_ == 2) {
+            document.getElementById('panel0').style.display="none";
+            document.getElementById('panel1').style.display="none";
+            document.getElementById('panel2').style.display="block";
+            document.getElementById('panel3').style.display="none";
+            document.getElementById('panel4').style.display="none";
+
+        } else if (this.openPanel_ == 3) {
+            document.getElementById('panel0').style.display="none";
+            document.getElementById('panel1').style.display="none";
+            document.getElementById('panel2').style.display="none";
+            document.getElementById('panel3').style.display="block";
+            document.getElementById('panel4').style.display="none";
+
+        } else if (this.openPanel_ == 4) {
+            document.getElementById('panel0').style.display="none";
+            document.getElementById('panel1').style.display="none";
+            document.getElementById('panel2').style.display="none";
+            document.getElementById('panel3').style.display="none";
+            document.getElementById('panel4').style.display="block";
+
+        }
+
+    }
+
+    butHidePanels() {
+        if(!this.hidePanels_) {
+            document.getElementById('hidePanels').innerHTML = 'Show';
+            hidePanels();
+        } else {
+            document.getElementById('hidePanels').innerHTML = 'Hide';
+            this.openPanel_ = 0;
+            document.getElementById('panel0').style.display="block";
+        }
+        this.hidePanels_ = !this.hidePanels_;
+
+    }
 };
+
+
 
 let CosMan;
 let SetMan;
@@ -205,6 +452,15 @@ let SetMan;
 function main() {
     CosMan = new CosmeticManager();
     SetMan = new SettingsManager();
+    hidePanels();
+}
+
+function hidePanels() {
+        document.getElementById('panel0').style.display="none";
+        document.getElementById('panel1').style.display="none";
+        document.getElementById('panel2').style.display="none";
+        document.getElementById('panel3').style.display="none";
+        document.getElementById('panel4').style.display="none";
 }
 
 function newSetMan(set) {

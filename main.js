@@ -151,6 +151,7 @@ class SettingsManager {
         }
         return this.cos_;
     }
+
     getTan() { return this.tan_; }
     getCsc() { return this.csc_; }
     getSec() { return this.sec_; }
@@ -164,6 +165,7 @@ class SettingsManager {
         }
         return this.circle_
     }
+
     getCardPoints() {
         if(this.cardPoints_) {
             document.getElementById('cardPoints').innerHTML = 'On';
@@ -191,7 +193,9 @@ class SettingsManager {
         }
         return this.grid_;
     }
+
     getGridDensity() { return this.gridDensity_; }
+
     getOrigin() {
         if(this.origin_) {
             document.getElementById('origin').innerHTML = 'On';
@@ -200,6 +204,7 @@ class SettingsManager {
         }
         return this.origin_;
     }
+
     getXAxis() {
         if(this.xAxis_) {
             document.getElementById('xAxis').innerHTML = 'On';
@@ -208,6 +213,7 @@ class SettingsManager {
         }
         return this.xAxis_
     }
+
     getYAxis() {
         if(this.yAxis_) {
             document.getElementById('yAxis').innerHTML = 'On';
@@ -218,7 +224,6 @@ class SettingsManager {
         return this.yAxis_
     }
 
-
     getArc() {
         if(this.arc_) {
             document.getElementById('arc').innerHTML = 'On';
@@ -228,6 +233,7 @@ class SettingsManager {
 
         return this.arc_;
     }
+
     getMouseArc() {
         if(this.mouseArc_) {
             document.getElementById('mouseArc').innerHTML = 'On';
@@ -246,6 +252,7 @@ class SettingsManager {
         }
         return this.triangle_;
     }
+
     getUnitTriangle() {
         if(this.unitTriangle_) {
             document.getElementById('unitTriangle').innerHTML = 'On';
@@ -298,6 +305,7 @@ class SettingsManager {
         }
 
     }
+
     butUnitCirc() {
         this.unitCirc_ = !this.unitCirc_;
         this.cardPoints_ = this.unitCirc_;
@@ -314,6 +322,7 @@ class SettingsManager {
         }
 
     }
+
     butCardPoints() {
         this.cardPoints_ = !this.cardPoints_;
         if(this.cardPoints_) {
@@ -355,6 +364,7 @@ class SettingsManager {
             this.gridDensity_ = 1;
         }
     }
+
     butXAxis() { this.xAxis_ = !this.xAxis_; }
     butYAxis() { this.yAxis_ = !this.yAxis_; }
 
@@ -366,17 +376,34 @@ class SettingsManager {
             document.getElementById('arc').innerHTML = 'Off'; 
         }
     }
+
     butMouseArc() {
         this.mouseArc_ = !this.mouseArc_;
         if(this.mouseArc_) {
             document.getElementById('mouseArc').innerHTML = 'On';
         } else {
-            document.getElementById('mouseeArc').innerHTML = 'Off'; 
+            document.getElementById('mouseArc').innerHTML = 'Off'; 
+        }
+    }
+
+    butTriangle() {
+        this.triangle_ = !this.triangle_;
+        if(this.triangle_) {
+            document.getElementById('triangle').innerHTML = 'On';
+        } else {
+            document.getElementById('triangle').innerHTML = 'Off'; 
+        }
+
+    }
+
+    butUnitTriangle() {
+        this.unitTriangle_ = !this.unitTriangle_;
+        if(this.unitTriangle_) {
+            document.getElementById('unitTriangle').innerHTML = 'On';
+        } else {
+            document.getElementById('unitTriangle').innerHTML = 'Off'; 
         }
 }
-
-    butTriangle() { this.triangle_ = !this.triangle_; }
-    butUnitTriangle() { this.unitTriangle_ = !this.unitTriangle_; }
 
 
     butNextPanel(reverse, panelNo) {

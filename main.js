@@ -672,7 +672,7 @@ function keyPressed() {
 
 // P5 function that drives the entire animation.
 function draw() {
-    background('#d3d3d3');
+    background('#101111');
     angleMode(RADIANS);
 
 
@@ -827,21 +827,21 @@ function distanceForm(x1, y1, x2, y2) {
 
 function drawOrigin() {
     CosMan.strokeColor('red');
-    CosMan.strokeWeight(16);
+    CosMan.strokeWeight(12);
 
     point(X_ORIGIN, Y_ORIGIN);   
 }
 
 function drawCircle() {
-    CosMan.strokeColor('black');
+    CosMan.strokeColor('white');
     CosMan.strokeWeight(2);
-    fill('#d3d3d3')
+    fill('#101111');
 
     circle(X_ORIGIN, Y_ORIGIN, 2 * UNIT);
 }
 
 function drawAxis(xAxis, yAxis) {
-    CosMan.strokeColor('black');
+    CosMan.strokeColor('white');
     CosMan.strokeWeight(2);
     CosMan.strokeDashed(false);
 
@@ -851,8 +851,8 @@ function drawAxis(xAxis, yAxis) {
 }
 
 function drawGrid(gridDensity = 1) {
-    CosMan.strokeColor('black');
-    CosMan.strokeWeight(2);
+    CosMan.strokeColor('#5A5A5A');
+    CosMan.strokeWeight(1);
     CosMan.strokeDashed(true);
     for(let i = 0; i <= CANVAS_SIZE; i += (UNIT/gridDensity)) {
         for(let j = 0; j <= CANVAS_SIZE; j += (UNIT/gridDensity)) {
@@ -882,8 +882,8 @@ function drawGrid(gridDensity = 1) {
 }
 
 function drawCardinal() {
-    CosMan.strokeColor('black');
-    CosMan.strokeWeight(16);
+    CosMan.strokeColor('white');
+    CosMan.strokeWeight(12);
 
     point(X_ORIGIN - UNIT, Y_ORIGIN);
     point(X_ORIGIN + UNIT, Y_ORIGIN);
@@ -892,11 +892,11 @@ function drawCardinal() {
 }
 
 function drawArc(unitArc = true, arcFollow = false) {
-    CosMan.strokeColor('black');
+    CosMan.strokeColor('white');
     CosMan.strokeWeight(2);
 
     if(unitArc) {
-        fill('rgba(0, 255, 0, .5)');
+        fill('rgba(255, 255, 255, .5)');
         arc(X_ORIGIN, Y_ORIGIN, UNIT * 2, UNIT * 2, -1 * quadArcTan(relMouseX(), relMouseY()), 0, PIE);
     }
     if(arcFollow) {
@@ -906,7 +906,7 @@ function drawArc(unitArc = true, arcFollow = false) {
 }
 
 function drawUnitCirc() {
-    CosMan.strokeColor('black');
+    CosMan.strokeColor('white');
     CosMan.strokeWeight(2);
     CosMan.strokeDashed(true);
     fill('rgba(0, 0, 0, 0)')
@@ -935,8 +935,8 @@ function drawUnitCirc() {
 
 
 
-    CosMan.strokeColor('black');
-    CosMan.strokeWeight(16);
+    CosMan.strokeColor('white');
+    CosMan.strokeWeight(12);
 
     // QUAD I
     point(relX(Math.cos(PI/6)), relY(Math.sin(PI/6)));
@@ -968,7 +968,7 @@ function drawUnitCirc() {
 
 function drawTriangle() {
 
-    CosMan.strokeColor('black');
+    CosMan.strokeColor('white');
     CosMan.strokeWeight(2);
     CosMan.strokeDashed(true);
     fill('rgba(255,180,180, 0.5)');
@@ -976,14 +976,14 @@ function drawTriangle() {
     triangle(X_ORIGIN, Y_ORIGIN, mouseX, Y_ORIGIN, mouseX, mouseY);
     CosMan.strokeDashed(false);
     CosMan.strokeColor('red');
-    CosMan.strokeWeight(16);
+    CosMan.strokeWeight(12);
 
     point(mouseX, Y_ORIGIN);   
 
 }
 
 function drawUnitTriangle() {
-    CosMan.strokeColor('black');
+    CosMan.strokeColor('white');
     CosMan.strokeWeight(2);
     CosMan.strokeDashed(true);
     fill('rgba(255,100,100, 0.5)');
@@ -1004,7 +1004,7 @@ function drawUnitTriangle() {
             relX(Math.cos(ang)), relY(-Math.sin(ang)));
 
             CosMan.strokeColor('red');
-            CosMan.strokeWeight(16);
+            CosMan.strokeWeight(12);
 
             point(relX(Math.cos(ang)), Y_ORIGIN);   
             point(relX(Math.cos(ang)), relY(-Math.sin(ang)));   
@@ -1017,9 +1017,9 @@ function drawUnitTriangle() {
 
 function drawMousePoint() {
     CosMan.strokeColor('red');
-    CosMan.strokeWeight(16);
+    CosMan.strokeWeight(12);
     point(mouseX, mouseY);
-    CosMan.strokeColor('black');
+    CosMan.strokeColor('white');
     CosMan.strokeWeight(2);
 }
 
@@ -1063,7 +1063,10 @@ function drawSin() {
     CosMan.strokeColor('cyan');
     CosMan.strokeWeight(4);
     line(mouseX, Y_ORIGIN, mouseX, mouseY);
-    
+    CosMan.strokeColor('red');
+    CosMan.strokeWeight(12);
+    point(mouseX, Y_ORIGIN);
+
 }
 
 function drawCos() {
@@ -1073,7 +1076,7 @@ function drawCos() {
     line(X_ORIGIN, mouseY, mouseX, mouseY);
 
     CosMan.strokeColor('red');
-    CosMan.strokeWeight(16);
+    CosMan.strokeWeight(12);
 
 }
 
@@ -1123,7 +1126,7 @@ function drawCot() {
 //    waveYAxis = CANVAS_SIZE + (CANVAS_HALF/2);
 //    fill('#d3d3d3');
 //    CosMan.strokeWeight(4);
-//    CosMan.strokeColor('black');
+//    CosMan.strokeColor('white');
 //    rect(CANVAS_SIZE + 20, CANVAS_HALF + 20, CANVAS_HALF - 40, CANVAS_HALF - 40)
 //
 //    CosMan.strokeWeight(2);
@@ -1134,7 +1137,7 @@ function drawCot() {
 //
 //    //console.log(waveYAxis - CANVAS_HALF + 20);
 //
-//    CosMan.strokeWeight(16);
+//    CosMan.strokeWeight(12);
 //    point(waveYAxis,  CANVAS_HALF + 20);
 //    point(waveYAxis, CANVAS_SIZE - 20);
 //

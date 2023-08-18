@@ -314,6 +314,48 @@ class SettingsManager {
         return this.hidePanels_;
     }
 
+    getQuadI() {
+        if(this.quadi_) {
+            document.getElementById('quadI').innerHTML = 'On';
+        } else {
+            document.getElementById('quadI').innerHTML = 'Off'; 
+        }
+
+        return this.quadi_;
+    }
+
+    getQuadII() {
+        if(this.quadii_) {
+            document.getElementById('quadII').innerHTML = 'On';
+        } else {
+            document.getElementById('quadII').innerHTML = 'Off'; 
+        }
+
+        return this.quadii_;
+    }
+
+    getQuadIII() {
+        if(this.quadiii_) {
+            document.getElementById('quadIII').innerHTML = 'On';
+        } else {
+            document.getElementById('quadIII').innerHTML = 'Off'; 
+        }
+
+        return this.quadiii_;
+    }
+
+    getQuadIV() {
+        if(this.quadiv_) {
+            document.getElementById('quadIV').innerHTML = 'On';
+        } else {
+            document.getElementById('quadIV').innerHTML = 'Off'; 
+        }
+
+        return this.quadiv_;
+    }
+
+    // Buttons
+
     butSin() {
         this.sin_ = !this.sin_;
 
@@ -398,16 +440,17 @@ class SettingsManager {
         } else {
             document.getElementById('unitCirc').innerHTML = 'Off'; 
         }
-        if(this.cardPoints_) {
-            document.getElementById('cardPoints').innerHTML = 'On';
-        } else {
-            document.getElementById('cardPoints').innerHTML = 'Off'; 
-        }
 
+        this.getQuadI();
+        this.getQuadII();
+        this.getQuadIII();
+        this.getQuadIV();
+        this.getCardPoints();
     }
 
     butCardPoints() {
         this.cardPoints_ = !this.cardPoints_;
+        console.log(this.cardPoints_)
         if(this.cardPoints_) {
             document.getElementById('cardPoints').innerHTML = 'On';
         } else {
@@ -449,8 +492,22 @@ class SettingsManager {
         }
     }
 
-    butXAxis() { this.xAxis_ = !this.xAxis_; }
-    butYAxis() { this.yAxis_ = !this.yAxis_; }
+    butXAxis() {
+        this.xAxis_ = !this.xAxis_;
+        if(this.xAxis_) {
+            document.getElementById('xAxis').innerHTML = 'On';
+        } else {
+            document.getElementById('xAxis').innerHTML = 'Off'; 
+        }
+    }
+    butYAxis() {
+        this.yAxis_ = !this.yAxis_;
+        if(this.yAxis_) {
+            document.getElementById('xAxis').innerHTML = 'On';
+        } else {
+            document.getElementById('xAxis').innerHTML = 'Off'; 
+        }
+    }
 
     butArc() {
         this.arc_ = !this.arc_;
@@ -589,6 +646,47 @@ class SettingsManager {
         }
         this.hidePanels_ = !this.hidePanels_;
     }
+
+    butQuadI() {
+        this.quadi_ = !this.quadi_;
+        if(this.quadi_) {
+            document.getElementById('quadI').innerHTML = 'On';
+            this.unitCirc_ = true;
+            this.getUnitCirc();
+        } else {
+            document.getElementById('quadI').innerHTML = 'Off'; 
+        }
+    }
+    butQuadII() {
+        this.quadii_ = !this.quadii_;
+        if(this.quadii_) {
+            document.getElementById('quadII').innerHTML = 'On';
+        } else {
+            document.getElementById('quadII').innerHTML = 'Off'; 
+        }
+
+    }
+
+    butQuadIII() {
+        this.quadiii_ = !this.quadiii_;
+        if(this.quadi_) {
+            document.getElementById('quadIII').innerHTML = 'On';
+        } else {
+            document.getElementById('quadIII').innerHTML = 'Off'; 
+        }
+
+    }
+
+    butQuadIV() {
+        this.quadiv_ = !this.quadiv_;
+        if(this.quadiv_) {
+            document.getElementById('quadIV').innerHTML = 'On';
+        } else {
+            document.getElementById('quadIV').innerHTML = 'Off'; 
+        }
+
+    }
+
 };
 
 
@@ -913,57 +1011,78 @@ function drawUnitCirc() {
 
 
     // QUAD I
-    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(PI/6)), relY(Math.sin(PI/6)));
-    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(PI/4)), relY(Math.sin(PI/4)));
-    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(PI/3)), relY(Math.sin(PI/3)));
+    if(SetMan.getQuadI()) {
+        drawQuadI();    
+    }
 
     // QUAD II
-    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(2*PI/3)), relY(Math.sin(2*PI/3)));
-    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(3*PI/4)), relY(Math.sin(3*PI/4)));
-    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(5*PI/6)), relY(Math.sin(5*PI/6)));
-
-
+    if(SetMan.getQuadII()) {
+        drawQuadII();
+    }
     // QUAD III
-    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(7*PI/6)), relY(Math.sin(7*PI/6)));
-    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(5*PI/4)), relY(Math.sin(5*PI/4)));
-    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(4*PI/3)), relY(Math.sin(4*PI/3)));
-
+    if(SetMan.getQuadIII()) {
+        drawQuadIII();
+    }
     // QUAD IV
-    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(5*PI/3)), relY(Math.sin(5*PI/3)));
-    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(7*PI/4)), relY(Math.sin(7*PI/4)));
-    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(11*PI/6)), relY(Math.sin(11*PI/6)));
-
+    if(SetMan.getQuadIV()) {
+        drawQuadIV();
+    }
 
 
     CosMan.strokeColor('white');
     CosMan.strokeWeight(12);
 
-    // QUAD I
-    point(relX(Math.cos(PI/6)), relY(Math.sin(PI/6)));
-    point(relX(Math.cos(PI/4)), relY(Math.sin(PI/4)));
-    point(relX(Math.cos(PI/3)), relY(Math.sin(PI/3)));
-
-    // QUAD II
-    point(relX(Math.cos(2*PI/3)), relY(Math.sin(2*PI/3)));
-    point(relX(Math.cos(3*PI/4)), relY(Math.sin(3*PI/4)));
-    point(relX(Math.cos(5*PI/6)), relY(Math.sin(5*PI/6)));
-
-
-    // QUAD III
-    point(relX(Math.cos(7*PI/6)), relY(Math.sin(7*PI/6)));
-    point(relX(Math.cos(5*PI/4)), relY(Math.sin(5*PI/4)));
-    point(relX(Math.cos(4*PI/3)), relY(Math.sin(4*PI/3)));
-
-
-
-    // QUAD IV
-
-    point(relX(Math.cos(5*PI/3)), relY(Math.sin(5*PI/3)));
-    point(relX(Math.cos(7*PI/4)), relY(Math.sin(7*PI/4)));
-    point(relX(Math.cos(11*PI/6)), relY(Math.sin(11*PI/6)));
 
     CosMan.strokeDashed(false);
 
+}
+
+function drawQuadI() {
+    CosMan.strokeWeight(2)
+
+    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(PI/6)), relY(Math.sin(PI/6)));
+    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(PI/4)), relY(Math.sin(PI/4)));
+    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(PI/3)), relY(Math.sin(PI/3)));
+    CosMan.strokeWeight(12);
+    point(relX(Math.cos(PI/6)), relY(Math.sin(PI/6)));
+    point(relX(Math.cos(PI/4)), relY(Math.sin(PI/4)));
+    point(relX(Math.cos(PI/3)), relY(Math.sin(PI/3)));
+}
+
+function drawQuadIV() {
+    CosMan.strokeWeight(2)
+
+    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(2*PI/3)), relY(Math.sin(2*PI/3)));
+    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(3*PI/4)), relY(Math.sin(3*PI/4)));
+    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(5*PI/6)), relY(Math.sin(5*PI/6)));
+    CosMan.strokeWeight(12);
+    point(relX(Math.cos(2*PI/3)), relY(Math.sin(2*PI/3)));
+    point(relX(Math.cos(3*PI/4)), relY(Math.sin(3*PI/4)));
+    point(relX(Math.cos(5*PI/6)), relY(Math.sin(5*PI/6)));
+}
+
+function drawQuadIII() {
+    CosMan.strokeWeight(2)
+
+    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(7*PI/6)), relY(Math.sin(7*PI/6)));
+    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(5*PI/4)), relY(Math.sin(5*PI/4)));
+    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(4*PI/3)), relY(Math.sin(4*PI/3)));
+    CosMan.strokeWeight(12);
+    point(relX(Math.cos(7*PI/6)), relY(Math.sin(7*PI/6)));
+    point(relX(Math.cos(5*PI/4)), relY(Math.sin(5*PI/4)));
+    point(relX(Math.cos(4*PI/3)), relY(Math.sin(4*PI/3)));    
+}
+
+function drawQuadII() {
+    CosMan.strokeWeight(2)
+
+    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(5*PI/3)), relY(Math.sin(5*PI/3)));
+    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(7*PI/4)), relY(Math.sin(7*PI/4)));
+    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(11*PI/6)), relY(Math.sin(11*PI/6)));
+    CosMan.strokeWeight(12);
+    point(relX(Math.cos(5*PI/3)), relY(Math.sin(5*PI/3)));
+    point(relX(Math.cos(7*PI/4)), relY(Math.sin(7*PI/4)));
+    point(relX(Math.cos(11*PI/6)), relY(Math.sin(11*PI/6)));
 }
 
 function drawTriangle() {

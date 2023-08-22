@@ -175,19 +175,19 @@ function drawOrigin() {
 
 function drawXAxis() {
     CosMan.strokeColor('white');
-    CosMan.strokeWeight(2);
+    CosMan.strokeWeight(4);
     line(-CANVAS_SIZE, 0, CANVAS_SIZE, 0); // X-AXIS
 }
 
 function drawYAxis() {
     CosMan.strokeColor('white');
-    CosMan.strokeWeight(2);
+    CosMan.strokeWeight(4);
     line(0, -CANVAS_SIZE, 0, CANVAS_SIZE); // Y-AXIS
 }
 
 function drawCircle(diameter = 2 * UNIT) {
     CosMan.strokeColor('white');
-    CosMan.strokeWeight(2);
+    CosMan.strokeWeight(4);
     fill('#101111');
     ellipse(0, 0, diameter, diameter, 50);
 }
@@ -265,6 +265,10 @@ function drawGrid(gridDensity = 1) {
         }
         line(i, -CANVAS_HALF, i, CANVAS_HALF);
     }
+    
+    line(-CANVAS_HALF + 1, CANVAS_HALF, -CANVAS_HALF + 1, -CANVAS_HALF);
+    line(-CANVAS_HALF, CANVAS_HALF - 1, CANVAS_HALF, CANVAS_HALF - 1);
+
 }
 
 // TRIG FUNCTIONS

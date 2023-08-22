@@ -158,6 +158,7 @@ function draw() {
     drawYAxis();
 
     drawOrigin();
+    drawCardinalPoints();
 
     //drawQuadI();
     //drawQuadII();
@@ -240,4 +241,15 @@ function drawQuadIV() {
     point(relativeCos(5*PI/3), relativeSin(5*PI/3))
     point(relativeCos(7*PI/4), relativeSin(7*PI/4))
     point(relativeCos(11*PI/6), relativeSin(11*PI/6))
+}
+
+function drawCardinalPoints() {
+    CosMan.strokeWeight(12);
+    CosMan.strokeColor('white');
+    point(relativeCos(2*PI), relativeSin(2*PI));
+    point(relativeCos(PI/2), relativeSin(PI/2));
+    point(relativeCos(PI), relativeSin(PI));
+    point(relativeCos(3*PI/2), relativeSin(3*PI/2));
+
+    
 }

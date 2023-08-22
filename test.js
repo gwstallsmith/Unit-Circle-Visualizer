@@ -13,13 +13,6 @@ class CosmeticManager {
         if(color) stroke(color);
     }
 
-    strokeDashed(dashed) {
-        if(dashed)
-            drawingContext.setLineDash([5, 15]);
-        else
-            drawingContext.setLineDash([0, 0]);
-    }
-
     fill(fill) {
         if(fill) fill(fill);
     }
@@ -30,10 +23,6 @@ class CosmeticManager {
 
 let CANVAS_SIZE = 900;
 let CANVAS_HALF = CANVAS_SIZE / 2;
-
-let X_AXIS = CANVAS_HALF;
-let Y_AXIS = CANVAS_HALF;
-
 
 let CosMan;
 function main() {
@@ -157,13 +146,22 @@ function draw() {
     drawXAxis();
     drawYAxis();
 
-    drawOrigin();
-    drawCardinalPoints();
+    //drawOrigin();
+    //drawCardinalPoints();
 
     //drawQuadI();
     //drawQuadII();
     //drawQuadIII();
     //drawQuadIV();
+
+    drawGrid();
+    drawSin();
+    drawCos();
+    drawTan();
+
+    drawCsc();
+    drawSec();
+    //drawCot();
 
     drawMousePoint();
 
@@ -176,15 +174,20 @@ function drawOrigin() {
 }
 
 function drawXAxis() {
-    CosMan.strokeColor
+    CosMan.strokeColor('white');
+    CosMan.strokeWeight(2);
     line(-CANVAS_SIZE, 0, CANVAS_SIZE, 0); // X-AXIS
 }
 
 function drawYAxis() {
+    CosMan.strokeColor('white');
+    CosMan.strokeWeight(2);
     line(0, -CANVAS_SIZE, 0, CANVAS_SIZE); // Y-AXIS
 }
 
 function drawCircle(diameter = 2 * UNIT) {
+    CosMan.strokeColor('white');
+    CosMan.strokeWeight(2);
     fill('#101111');
     ellipse(0, 0, diameter, diameter, 50);
 }
@@ -250,6 +253,66 @@ function drawCardinalPoints() {
     point(relativeCos(PI/2), relativeSin(PI/2));
     point(relativeCos(PI), relativeSin(PI));
     point(relativeCos(3*PI/2), relativeSin(3*PI/2));
+}
 
-    
+function drawGrid(gridDensity = 1) {
+    CosMan.strokeColor('white');
+    CosMan.strokeWeight(1);
+
+    for(i = -CANVAS_HALF; i <= CANVAS_HALF; i+= UNIT/gridDensity) {
+        for(j = -CANVAS_HALF; j <= CANVAS_HALF; j+= UNIT/gridDensity) {
+            line(-CANVAS_HALF, j, CANVAS_HALF, j);
+        }
+        line(i, -CANVAS_HALF, i, CANVAS_HALF);
+    }
+}
+
+// TRIG FUNCTIONS
+function drawSin() {
+    CosMan.strokeColor('cyan');
+    CosMan.strokeWeight(4);
+    line(relativeMouseX(), 0, relativeMouseX(), relativeMouseY());
+
+    CosMan.strokeColor('red');
+    CosMan.strokeWeight(12);
+    point(relativeMouseX(), 0);
+}
+
+function drawCos() {
+    CosMan.strokeColor('yellow');
+    CosMan.strokeWeight(4);
+    line(0, relativeMouseY(), relativeMouseX(), relativeMouseY());
+
+    CosMan.strokeColor('red');
+    CosMan.strokeWeight(12);
+    point(0, relativeMouseY());
+}
+
+function drawTan() {
+    CosMan.strokeColor('magenta');
+    CosMan.strokeWeight(4);
+
+    line(UNIT, 0, UNIT, relativeMouseX()/relativeMouseY() * UNIT)
+}
+
+function drawCsc() {
+    CosMan.strokeColor('lime');
+    CosMan.strokeWeight(4);
+    let csc  = 1/relativeMouseY() * UNIT * 4;
+    console.log(csc);
+    line(0, 0, 0, csc);
+
+}
+
+function drawSec() {
+    CosMan.strokeColor('orange');
+    CosMan.strokeWeight(4);
+    line(0, 0, UNIT, relativeMouseX()/relativeMouseY() * UNIT)
+}
+
+function drawCot() {
+    CosMan.strokeColor('indigo');
+    CosMan.strokeWeight(4);
+
+
 }

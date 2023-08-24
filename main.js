@@ -42,7 +42,7 @@ class SettingsManager {
             this.unitTriangle_ = false;
             this.triangle_ = false;
             
-            this.arc_ = false;
+            this.unitArc_ = false;
             this.unitArc_ = false;
             this.mouseArc_ = false;
 
@@ -78,12 +78,12 @@ class SettingsManager {
             this.unitArc_ = true;
             this.mouseArc_ = false;
 
-            this.cardPoints_ = true;
+            this.cardPoints_ = false;
             this.xAxis_ = true;
             this.yAxis_ = true;
             this.grid_ = false;
             this.gridDensity_ = 1;
-            this.origin_ = true;
+            this.origin_ = false;
 
             this.circle_ = true;
             this.unitCirc_ = false;
@@ -260,7 +260,7 @@ class SettingsManager {
             document.getElementById('unitArc').innerHTML = 'Off'; 
         }
 
-        return this.arc_;
+        return this.unitArc_;
     }
 
     getMouseArc() {
@@ -496,12 +496,12 @@ class SettingsManager {
         }
     }
 
-    butArc() {
-        this.arc_ = !this.arc_;
-        if(this.arc_) {
-            document.getElementById('arc').innerHTML = 'On';
+    butUnitArc() {
+        this.unitArc_ = !this.unitArc_;
+        if(this.unitArc_) {
+            document.getElementById('unitArc').innerHTML = 'On';
         } else {
-            document.getElementById('arc').innerHTML = 'Off'; 
+            document.getElementById('unitArc').innerHTML = 'Off'; 
         }
     }
 
@@ -837,7 +837,6 @@ function hidePanels() {
     document.getElementById('panel3').style.display="none";
     document.getElementById('panel4').style.display="none";
     document.getElementById('panel5').style.display="none";
-    console.log('panels hidden');
 }
 
 
@@ -890,29 +889,26 @@ function draw() {
 
     drawAxis(SetMan.getXAxis(), SetMan.getYAxis());
 
-    //drawOrigin();
-    //drawCardinalPoints();
+    if(SetMan.getOrigin())drawOrigin();
+    if(SetMan.getCardPoints()) drawCardinalPoints();
 
-    //drawQuadI();
-    //drawQuadII();
-    //drawQuadIII();
-    //drawQuadIV();
+    if(SetMan.getUnitCirc()) drawUnitCircle();
 
-    drawGrid();
+    if(SetMan.getGrid()) drawGrid();
 
-    drawArc();
-    //drawUnitArc();
+    if(SetMan.getUnitArc()) drawArc();
+    if(SetMan.getMouseArc()) drawMouseArc();
 
-    //drawTriangle()
-    drawUnitTriangle();
+    if(SetMan.getTriangle()) drawTriangle();
+    if(SetMan.getUnitTriangle()) drawUnitTriangle();
 
-    drawSin();
-    drawCos();
-    drawTan();
+    if(SetMan.getSin()) drawSin();
+    if(SetMan.getCos()) drawCos();
+    if(SetMan.getTan()) drawTan();
 
-    drawCsc();
-    drawSec();
-    drawCot();
+    if(SetMan.getCsc()) drawCsc();
+    if(SetMan.getSec()) drawSec();
+    if(SetMan.getCot()) drawCot();
 
     drawUnitPoint();
     drawMousePoint();
@@ -973,6 +969,36 @@ function drawUnitPoint() {
 
 
     point(relativeCos(angle), -relativeSin(angle));
+}
+
+function drawUnitCircle() {
+    CosMan.strokeColor('white');
+    CosMan.strokeWeight(2);
+    fill('rgba(0, 0, 0, 0)')
+
+
+    // QUAD I
+    if(SetMan.getQuadI()) {
+        drawQuadI();    
+    }
+
+    // QUAD II
+    if(SetMan.getQuadII()) {
+        drawQuadII();
+    }
+    // QUAD III
+    if(SetMan.getQuadIII()) {
+        drawQuadIII();
+    }
+    // QUAD IV
+    if(SetMan.getQuadIV()) {
+        drawQuadIV();
+    }
+
+
+    CosMan.strokeColor('white');
+    CosMan.strokeWeight(12);
+
 }
 
 function drawQuadI() {
@@ -1099,7 +1125,7 @@ function drawArc() {
     arc(0, 0, UNIT * 2, UNIT * 2, angle, 0, PIE);
 }
 
-function drawUnitArc() {
+function drawMouseArc() {
     CosMan.strokeColor('white');
     CosMan.strokeWeight(2);
     fill('rgba(0, 0, 255, .5)');

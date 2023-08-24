@@ -19,8 +19,10 @@ body.p5 {
 }
 
 div.panel {
-    width: 300px;
+    width:var(--canvas-size);
+    max-width: 1500px;
     height:var(--canvas-size);
+    max-height: 1500px;
     background-color: #5A5A5A;
 
     border-right: 50px;

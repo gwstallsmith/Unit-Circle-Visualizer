@@ -1,10 +1,19 @@
-// COSMETIC MANAGER AND SETTINGS MANAGER
-//
-// CosMan useful for normalizing domain\
-//
-// SetMan allows us to talk to the HTML page
-// Interacts with HTML elements
-//
+let CANVAS_SIZE = 900; // In pixels (default)
+let CANVAS_HALF = CANVAS_SIZE / 2;
+let UNIT = CANVAS_SIZE / 4;
+let X_ORIGIN = CANVAS_HALF;
+let Y_ORIGIN = CANVAS_HALF;
+
+const PI = Math.PI;
+
+
+let root = document.querySelector(':root');
+let rootStyles = getComputedStyle(root);
+let cssCanvasSize = rootStyles.getPropertyValue('--canvas-size');
+root.style.setProperty('--canvas-size', CANVAS_SIZE + 'px');
+root.style.setProperty('--inner-panel-size', (CANVAS_SIZE - 60) + 'px');
+
+const UNIT_CIRCLE_ANGLES = [0*PI, PI/6, PI/4, PI/3, PI/2, 2*PI/3, 3*PI/4, 5*PI/6, PI, 7*PI/6, 5*PI/4, 4*PI/3, 3*PI/2, 5*PI/3, 7*PI/4, 11*PI/6].reverse();
 
 class CosmeticManager {
     constructor() {
@@ -21,8 +30,11 @@ class CosmeticManager {
         if(color) stroke(color);
     }
 
-    fill(fill) {
-        if(fill) fill(fill);
+    strokeDashed(dashed) {
+        if(dashed)
+            drawingContext.setLineDash([5, 15]);
+        else
+            drawingContext.setLineDash([0, 0]);
     }
 };
 
@@ -43,7 +55,8 @@ class SettingsManager {
             this.triangle_ = false;
             
             this.arc_ = false;
-            this.unitArc_ = false;
+            this.innerArc_ = false;
+            this.outterArc_ = false;
             this.mouseArc_ = false;
 
             this.cardPoints_ = false;
@@ -75,7 +88,7 @@ class SettingsManager {
             this.unitTriangle_ = true;
             this.triangle_ = false;
             
-            this.unitArc_ = true;
+            this.arc_ = true;
             this.mouseArc_ = false;
 
             this.cardPoints_ = true;
@@ -107,7 +120,7 @@ class SettingsManager {
             this.unitTriangle_ = true;
             this.triangle_ = true;
             
-            this.unitArc_ = true;
+            this.arc_ = true;
             this.mouseArc_ = true;
 
             this.cardPoints_ = true;
@@ -253,11 +266,11 @@ class SettingsManager {
         return this.yAxis_
     }
 
-    getUnitArc() {
-        if(this.unitArc_) {
-            document.getElementById('unitArc').innerHTML = 'On';
+    getArc() {
+        if(this.arc_) {
+            document.getElementById('arc').innerHTML = 'On';
         } else {
-            document.getElementById('unitArc').innerHTML = 'Off'; 
+            document.getElementById('arc').innerHTML = 'Off'; 
         }
 
         return this.arc_;
@@ -563,6 +576,7 @@ class SettingsManager {
         this.getHidePanels();
         if(this.hidePanels_ == true) {
             this.hidePanels_ = false;
+            document.getElementById('panel1').style.display="block";
             document.getElementById('panel1').style.display="none";
             document.getElementById('panel2').style.display="none";
             document.getElementById('panel3').style.display="none";
@@ -581,7 +595,7 @@ class SettingsManager {
             }
 
         if(panelNo >= 0) this.openPanel_ = panelNo;
-
+        
             if(this.openPanel_ == 0) {
                 document.getElementById('panel0').style.display="block";
                 document.getElementById('panel1').style.display="none";
@@ -589,13 +603,15 @@ class SettingsManager {
                 document.getElementById('panel3').style.display="none";
                 document.getElementById('panel4').style.display="none";
                 document.getElementById('panel5').style.display="none";
-            } else if(this.openPanel_ == 1) {
+            }
+            if(this.openPanel_ == 1) {
                 document.getElementById('panel0').style.display="none";
                 document.getElementById('panel1').style.display="block";
                 document.getElementById('panel2').style.display="none";
                 document.getElementById('panel3').style.display="none";
                 document.getElementById('panel4').style.display="none";
                 document.getElementById('panel5').style.display="none";
+
             } else if(this.openPanel_ == 2) {
                 document.getElementById('panel0').style.display="none";
                 document.getElementById('panel1').style.display="none";
@@ -603,6 +619,7 @@ class SettingsManager {
                 document.getElementById('panel3').style.display="none";
                 document.getElementById('panel4').style.display="none";
                 document.getElementById('panel5').style.display="none";
+
             } else if (this.openPanel_ == 3) {
                 document.getElementById('panel0').style.display="none";
                 document.getElementById('panel1').style.display="none";
@@ -610,7 +627,6 @@ class SettingsManager {
                 document.getElementById('panel3').style.display="block";
                 document.getElementById('panel4').style.display="none";
                 document.getElementById('panel5').style.display="none";
-
             } else if (this.openPanel_ == 4) {
                 document.getElementById('panel0').style.display="none";
                 document.getElementById('panel1').style.display="none";
@@ -618,7 +634,6 @@ class SettingsManager {
                 document.getElementById('panel3').style.display="none";
                 document.getElementById('panel4').style.display="block";
                 document.getElementById('panel5').style.display="none";
-
             } else if (this.openPanel_ == 5) {
                 document.getElementById('panel0').style.display="none";
                 document.getElementById('panel1').style.display="none";
@@ -685,18 +700,23 @@ class SettingsManager {
 };
 
 
-/////
-
-let CANVAS_SIZE = 900;
-let CANVAS_HALF = CANVAS_SIZE / 2;
-
 
 let CosMan;
+let SetMan;
+
+
 function main() {
     CosMan = new CosmeticManager();
     SetMan = new SettingsManager();
-    
     hidePanels();
+}
+
+function hidePanels() {
+        document.getElementById('panel1').style.display="none";
+        document.getElementById('panel2').style.display="none";
+        document.getElementById('panel3').style.display="none";
+        document.getElementById('panel4').style.display="none";
+        document.getElementById('panel5').style.display="none";
 }
 
 function newSetMan(set) {
@@ -707,7 +727,7 @@ function newSetMan(set) {
     }
 
     if(set == 'default') {
-        CANVAS_SIZE = 900;
+        CANVAS_SIZE = 1000;
         CANVAS_HALF = CANVAS_SIZE / 2;
         UNIT = CANVAS_SIZE / 4;
         X_ORIGIN = CANVAS_HALF;
@@ -720,442 +740,567 @@ function newSetMan(set) {
 
 }
 
-
-// UTIL
-let root = document.querySelector(':root');
-let rootStyles = getComputedStyle(root);
-let cssCanvasSize = rootStyles.getPropertyValue('--canvas-size');
-root.style.setProperty('--canvas-size', CANVAS_SIZE + 'px');
-root.style.setProperty('--inner-panel-size', (CANVAS_SIZE - 60) + 'px');
-
-
-const PI = Math.PI;
-const UNIT_CIRCLE_ANGLES = [0*PI, PI/6, PI/4, PI/3, PI/2, 2*PI/3, 3*PI/4, 5*PI/6, PI, 7*PI/6, 5*PI/4, 4*PI/3, 3*PI/2, 5*PI/3, 7*PI/4, 11*PI/6];
-
-let UNIT = CANVAS_SIZE / 4;
-
-let FRAME_RATE = 60;
-
-
-// Returns mouse positions relative to center.
-// Mouse pointer is off by CANVAS_HALF
-// Use with drawing functions, not calculations.
-function relativeMouseX() {
-    return mouseX - CANVAS_HALF;
-}
-
-function relativeMouseY() {
-    return mouseY - CANVAS_HALF;
-}
-
-function relativeCos(theta) {
-    if(theta) {
-        return Math.cos(theta) * UNIT;
-    }
-}
-
-function relativeSin(theta) {
-    if(theta) {
-        return -Math.sin(theta) * UNIT;
-    }
-}
-
-
-// Returns true positition of x / y.
-// Use with calculations, not drawing functions
-function trueX(relativeX, unitAdjust = 1) { return relativeX/unitAdjust; }
-
-// Adjusts for Canvas flipping the y coordinates
-function trueY(relativeY, unitAdjust = 1) { return -relativeY/unitAdjust; }
-
-function quadArcTan(x, y) {
-    let angle;
-    if(x > 0) {
-        angle = Math.atan(y/x);
-    } else if (x < 0 && y >= 0) {
-        angle = Math.atan(y/x) + PI;
-    } else if(x < 0 && y < 0) {
-        angle = Math.atan(y/x) - PI;
-    } else if (x == 0 && y > 0) {
-        angle = PI/2;
-    } else if (x == 0 && y < 0) {
-        angle = -1 * PI/2;
-    } else if (x == 0 && y == 0) {
-        angle = NaN;
-    }
-
-    return angle;
-}
-
-function originDist() {
-    return (Math.sqrt(Math.pow(relativeMouseX(), 2) + (Math.pow(relativeMouseY(), 2))));
-}
-
-function mouseInCircle() {
-    return originDist <= UNIT;
-}
-
-
-function increaseCanvasSize() {
-    CANVAS_SIZE += 100;
-
-    if(CANVAS_SIZE < 500 || CANVAS_SIZE > 2000) {
-        CANVAS_SIZE = 2000
-    }
-
-    CANVAS_HALF = CANVAS_SIZE / 2;
-    UNIT = CANVAS_SIZE / 4;
-
-    setup();
-    if(CANVAS_SIZE <= 1500 && CANVAS_SIZE >= 700) {
-        root.style.setProperty('--canvas-size', CANVAS_SIZE + 'px');
-        root.style.setProperty('--inner-panel-size', (CANVAS_SIZE - 60) + 'px');
-    }
-}
-
-function decreaseCanvasSize() {
-    CANVAS_SIZE -= 100;
-
-    if(CANVAS_SIZE < 500 || CANVAS_SIZE > 2000) {
-        CANVAS_SIZE = 500
-    }
-
-    CANVAS_HALF = CANVAS_SIZE / 2;
-    UNIT = CANVAS_SIZE / 4;
-
-    setup();
-    if(CANVAS_SIZE >= 700 && CANVAS_SIZE <= 1500) {
-        root.style.setProperty('--canvas-size', CANVAS_SIZE + 'px');
-        root.style.setProperty('--inner-panel-size', (CANVAS_SIZE - 60) + 'px');
-    }
-}
-
-function hidePanels() {
-    document.getElementById('panel0').style.display="block";
-    document.getElementById('panel1').style.display="none";
-    document.getElementById('panel2').style.display="none";
-    document.getElementById('panel3').style.display="none";
-    document.getElementById('panel4').style.display="none";
-    document.getElementById('panel5').style.display="none";
-    console.log('panels hidden');
-}
-
-
-let fontInconsolata;
 // P5 function.
 let canvas;
 function setup() {
-    canvas = createCanvas(CANVAS_SIZE, CANVAS_SIZE, WEBGL);
+    canvas = createCanvas(CANVAS_SIZE + CANVAS_HALF, CANVAS_SIZE);
     canvas.parent('p5');
 
-    textFont(fontInconsolata);
-    
-    textAlign(CENTER);
-    textSize(24);
+    textSize(20);
+    fill(255, 255, 255);
 
     document.getElementById("canvasSize").innerHTML = 'Current Size: ' + CANVAS_SIZE + 'px';
 }
 
 // P5 function.
 function preload() {
-    fontInconsolata = loadFont('Inconsolata.otf');
-
 }
 
 // P5 function.
+let unitCircleInc = 0;
 function keyPressed() {
     if(keyCode === RIGHT_ARROW) {
-        increaseCanvasSize();
+        unitCircleInc--;
+        if(unitCircleInc < 0) {
+            unitCircleInc = UNIT_CIRCLE_ANGLES.length - 1;
+        }
+    
+        snapUnitCircle(UNIT_CIRCLE_ANGLES[unitCircleInc]);
     }
     if(keyCode === LEFT_ARROW) {
-        decreaseCanvasSize();
+        unitCircleInc++;
+        if (unitCircleInc > UNIT_CIRCLE_ANGLES.length - 1) {
+            unitCircleInc = 0;
+        }    
+        snapUnitCircle(UNIT_CIRCLE_ANGLES[unitCircleInc]);
     }
 
 }
-
 
 
 // P5 function that drives the entire animation.
 function draw() {
-    frameRate(FRAME_RATE);
     background('#101111');
-    fill('#101111');
     angleMode(RADIANS);
 
-    CosMan.strokeColor('white');
 
-    CosMan.strokeWeight(2);
-
+    push();
+    rotate(3 * Math.PI / 2);
+    translate(-CANVAS_SIZE, 0);
     if(SetMan.getCircle()) drawCircle();
-
+    if(SetMan.getGrid()) drawGrid(SetMan.getGridDensity());
     drawAxis(SetMan.getXAxis(), SetMan.getYAxis());
+    if(SetMan.getCardPoints()) drawCardinal();
+    if(SetMan.getUnitCirc()) drawUnitCirc();
+    pop();
 
-    //drawOrigin();
-    //drawCardinalPoints();
+    drawArc(SetMan.getArc(), SetMan.getMouseArc());
+    if(SetMan.getTriangle()) drawTriangle();
+    if(SetMan.getUnitTriangle()) drawUnitTriangle();
+    if(SetMan.getSin()) drawSin(); 
+    if(SetMan.getCos()) drawCos(); 
+    if(SetMan.getTan())drawTan();
 
-    //drawQuadI();
-    //drawQuadII();
-    //drawQuadIII();
-    //drawQuadIV();
+    if(SetMan.getCsc()) drawCsc();
+    if(SetMan.getSec()) drawSec();
+    if(SetMan.getCot()) drawCot();
+    drawInfoBackground();
 
-    drawGrid();
+    drawPosInfo();
+    //drawWaveBackground();
 
-    drawArc();
-    //drawUnitArc();
-
-    //drawTriangle()
-    drawUnitTriangle();
-
-    drawSin();
-    drawCos();
-    drawTan();
-
-    drawCsc();
-    drawSec();
-    drawCot();
-
-    drawUnitPoint();
     drawMousePoint();
-
-
     
+    if(SetMan.getOrigin()) drawOrigin();
+
 
 }
 
+// UTIL FUNCTIONS
+
+function forwardUnitCircle() {
+    unitCircleInc--;
+    if(unitCircleInc < 0) {
+        unitCircleInc = UNIT_CIRCLE_ANGLES.length - 1;
+    }
+
+    snapUnitCircle(UNIT_CIRCLE_ANGLES[unitCircleInc]);
+}
+function backwardUnitCircle() {
+    unitCircleInc++;
+    if (unitCircleInc > UNIT_CIRCLE_ANGLES.length - 1) {
+        unitCircleInc = 0;
+    }    
+    snapUnitCircle(UNIT_CIRCLE_ANGLES[unitCircleInc]);
+
+}
+
+function snapUnitCircle(ang) {
+    mouseX = relX(Math.cos(ang));
+    mouseY = relY(Math.sin(ang));
+}
+
+function relX(x) {
+    return (x * UNIT) + X_ORIGIN;
+}
+
+function relY(y) {
+    return (y * UNIT) + Y_ORIGIN;
+}
+
+function relMouseX() {
+    return ((mouseX - X_ORIGIN) / CANVAS_SIZE) * 4;
+}
+
+function relMouseY() {
+    return (-1 * (mouseY - Y_ORIGIN) / CANVAS_SIZE) * 4;
+}
+
+function originDist() {
+    return (Math.sqrt(Math.pow(mouseX - X_ORIGIN, 2) + (Math.pow(mouseY - Y_ORIGIN, 2))))
+}
+
+function quadArcTan(x, y) {
+    let ang;
+    if(x > 0) {
+        ang = Math.atan(y/x);
+    } else if (x < 0 && y >= 0) {
+        ang = Math.atan(y/x) + PI;
+    } else if(x < 0 && y < 0) {
+        ang = Math.atan(y/x) - PI;
+    } else if (x == 0 && y > 0) {
+        ang = PI/2;
+    } else if (x == 0 && y < 0) {
+        ang = -1 * PI/2;
+    } else if (x == 0 && y == 0) {
+        ang = NaN;
+    }
+
+    return ang;
+}
+
+function triArea(x, y) {
+    let area = 0;
+
+    area = ((relX(x) - X_ORIGIN) * (relY(y) - Y_ORIGIN)) / 2;
+    return area / CANVAS_SIZE / 100;
+}
+
+function mouseInCirc() {
+    return originDist() <= UNIT;
+}
+
+function increaseCanvasSize() {
+    CANVAS_SIZE += 100;
+
+    if(CANVAS_SIZE < 900 || CANVAS_SIZE > 1600) {
+        CANVAS_SIZE = 1600
+    }
+
+    CANVAS_HALF = CANVAS_SIZE / 2;
+    UNIT = CANVAS_SIZE / 4;
+    X_ORIGIN = CANVAS_HALF;
+    Y_ORIGIN = CANVAS_HALF;
+
+    setup();
+    root.style.setProperty('--canvas-size', CANVAS_SIZE + 'px');
+    root.style.setProperty('--inner-panel-size', (CANVAS_SIZE - 60) + 'px');
+}
+
+function decreaseCanvasSize() {
+    CANVAS_SIZE -= 100;
+
+    if(CANVAS_SIZE < 900 || CANVAS_SIZE > 1600) {
+        CANVAS_SIZE = 900
+    }
+
+    CANVAS_HALF = CANVAS_SIZE / 2;
+    UNIT = CANVAS_SIZE / 4;
+    X_ORIGIN = CANVAS_HALF;
+    Y_ORIGIN = CANVAS_HALF;
+
+    setup();
+    root.style.setProperty('--canvas-size', CANVAS_SIZE + 'px');
+    root.style.setProperty('--inner-panel-size', (CANVAS_SIZE - 60) + 'px');
+}
+
+function distanceForm(x1, y1, x2, y2) {
+    return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+}
+
+
+
 // DRAW FUNCTIONS
+
+
 function drawOrigin() {
+    CosMan.strokeColor('red');
     CosMan.strokeWeight(12);
-    point(0, 0);
+
+    point(X_ORIGIN, Y_ORIGIN);   
+}
+
+function drawCircle() {
+    CosMan.strokeColor('white');
+    CosMan.strokeWeight(2);
+    fill('#101111');
+
+    circle(X_ORIGIN, Y_ORIGIN, 2 * UNIT);
 }
 
 function drawAxis(xAxis, yAxis) {
-    if(xAxis)
-        drawXAxis();
-    if(yAxis)
-        drawYAxis();
+    CosMan.strokeColor('white');
+    CosMan.strokeWeight(2);
+    CosMan.strokeDashed(false);
+
+    if(xAxis) line(CANVAS_HALF, 0, CANVAS_HALF, CANVAS_SIZE);
+    if(yAxis) line(0, CANVAS_HALF, CANVAS_SIZE, CANVAS_HALF);
+
 }
 
-function drawXAxis() {
-    CosMan.strokeColor('white');
-    CosMan.strokeWeight(4);
-    line(-CANVAS_SIZE, 0, CANVAS_SIZE, 0); // X-AXIS
+function drawGrid(gridDensity = 1) {
+    CosMan.strokeColor('#5A5A5A');
+    CosMan.strokeWeight(1);
+    CosMan.strokeDashed(true);
+    for(let i = 0; i <= CANVAS_SIZE; i += (UNIT/gridDensity)) {
+        for(let j = 0; j <= CANVAS_SIZE; j += (UNIT/gridDensity)) {
+            if(j == X_ORIGIN && SetMan.getYAxis()){
+                CosMan.strokeWeight(2);
+                CosMan.strokeDashed(false);
+            } else{
+                CosMan.strokeWeight(2);
+                CosMan.strokeDashed(true);
+            }
+
+
+            line(0, j, CANVAS_SIZE, j);
+        }
+
+        if(i == Y_ORIGIN && SetMan.getXAxis())
+            CosMan.strokeDashed(false);
+        else
+            CosMan.strokeDashed(true);
+
+        
+
+        line(i, 0, i, CANVAS_SIZE);
+
+    }
+    CosMan.strokeDashed(false);
 }
 
-function drawYAxis() {
+function drawCardinal() {
     CosMan.strokeColor('white');
-    CosMan.strokeWeight(4);
-    line(0, -CANVAS_SIZE, 0, CANVAS_SIZE); // Y-AXIS
+    CosMan.strokeWeight(12);
+
+    point(X_ORIGIN - UNIT, Y_ORIGIN);
+    point(X_ORIGIN + UNIT, Y_ORIGIN);
+    point(X_ORIGIN, Y_ORIGIN - UNIT);
+    point(X_ORIGIN, Y_ORIGIN + UNIT);
 }
 
-function drawCircle(diameter = UNIT * 2) {
+function drawArc(unitArc = true, arcFollow = false) {
     CosMan.strokeColor('white');
-    CosMan.strokeWeight(4);
-    fill('#101111');
-    ellipse(0, 0, diameter, diameter, 50);
+    CosMan.strokeWeight(2);
+
+    if(unitArc) {
+        fill('rgba(255, 255, 255, .5)');
+        arc(X_ORIGIN, Y_ORIGIN, UNIT * 2, UNIT * 2, -1 * quadArcTan(relMouseX(), relMouseY()), 0, PIE);
+    }
+    if(arcFollow) {
+        fill('rgba(0, 0, 255, .5)');
+        arc(X_ORIGIN, Y_ORIGIN, originDist() * 2, originDist() * 2, -1 * quadArcTan(relMouseX(), relMouseY()), 0, PIE);
+    }
+}
+
+function drawUnitCirc() {
+    CosMan.strokeColor('white');
+    CosMan.strokeWeight(2);
+    CosMan.strokeDashed(true);
+    fill('rgba(0, 0, 0, 0)')
+
+
+    // QUAD I
+    if(SetMan.getQuadI()) {
+        drawQuadI();    
+    }
+
+    // QUAD II
+    if(SetMan.getQuadII()) {
+        drawQuadII();
+    }
+    // QUAD III
+    if(SetMan.getQuadIII()) {
+        drawQuadIII();
+    }
+    // QUAD IV
+    if(SetMan.getQuadIV()) {
+        drawQuadIV();
+    }
+
+
+    CosMan.strokeColor('white');
+    CosMan.strokeWeight(12);
+
+
+    CosMan.strokeDashed(false);
+
+}
+
+function drawQuadI() {
+    CosMan.strokeWeight(2)
+
+    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(PI/6)), relY(Math.sin(PI/6)));
+    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(PI/4)), relY(Math.sin(PI/4)));
+    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(PI/3)), relY(Math.sin(PI/3)));
+    CosMan.strokeWeight(12);
+    point(relX(Math.cos(PI/6)), relY(Math.sin(PI/6)));
+    point(relX(Math.cos(PI/4)), relY(Math.sin(PI/4)));
+    point(relX(Math.cos(PI/3)), relY(Math.sin(PI/3)));
+}
+
+function drawQuadIV() {
+    CosMan.strokeWeight(2)
+
+    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(2*PI/3)), relY(Math.sin(2*PI/3)));
+    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(3*PI/4)), relY(Math.sin(3*PI/4)));
+    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(5*PI/6)), relY(Math.sin(5*PI/6)));
+    CosMan.strokeWeight(12);
+    point(relX(Math.cos(2*PI/3)), relY(Math.sin(2*PI/3)));
+    point(relX(Math.cos(3*PI/4)), relY(Math.sin(3*PI/4)));
+    point(relX(Math.cos(5*PI/6)), relY(Math.sin(5*PI/6)));
+}
+
+function drawQuadIII() {
+    CosMan.strokeWeight(2)
+
+    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(7*PI/6)), relY(Math.sin(7*PI/6)));
+    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(5*PI/4)), relY(Math.sin(5*PI/4)));
+    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(4*PI/3)), relY(Math.sin(4*PI/3)));
+    CosMan.strokeWeight(12);
+    point(relX(Math.cos(7*PI/6)), relY(Math.sin(7*PI/6)));
+    point(relX(Math.cos(5*PI/4)), relY(Math.sin(5*PI/4)));
+    point(relX(Math.cos(4*PI/3)), relY(Math.sin(4*PI/3)));    
+}
+
+function drawQuadII() {
+    CosMan.strokeWeight(2)
+
+    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(5*PI/3)), relY(Math.sin(5*PI/3)));
+    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(7*PI/4)), relY(Math.sin(7*PI/4)));
+    line(X_ORIGIN, Y_ORIGIN, relX(Math.cos(11*PI/6)), relY(Math.sin(11*PI/6)));
+    CosMan.strokeWeight(12);
+    point(relX(Math.cos(5*PI/3)), relY(Math.sin(5*PI/3)));
+    point(relX(Math.cos(7*PI/4)), relY(Math.sin(7*PI/4)));
+    point(relX(Math.cos(11*PI/6)), relY(Math.sin(11*PI/6)));
+}
+
+function drawTriangle() {
+
+    CosMan.strokeColor('white');
+    CosMan.strokeWeight(2);
+    CosMan.strokeDashed(true);
+    fill('rgba(255,180,180, 0.5)');
+
+    triangle(X_ORIGIN, Y_ORIGIN, mouseX, Y_ORIGIN, mouseX, mouseY);
+    CosMan.strokeDashed(false);
+    CosMan.strokeColor('red');
+    CosMan.strokeWeight(12);
+
+    point(mouseX, Y_ORIGIN);   
+
+}
+
+function drawUnitTriangle() {
+    CosMan.strokeColor('white');
+    CosMan.strokeWeight(2);
+    CosMan.strokeDashed(true);
+    fill('rgba(255,100,100, 0.5)');
+    let ang = quadArcTan(relMouseX(), relMouseY()) / PI;
+    if(ang < 0) {
+        ang = quadArcTan(relMouseX(), relMouseY()) / PI;
+        ang += 2;
+    }
+    ang *= PI;
+
+    if(mouseInCirc()) {
+        triangle(X_ORIGIN, Y_ORIGIN, mouseX, Y_ORIGIN, mouseX, mouseY);
+
+    } else {
+
+        triangle(X_ORIGIN, Y_ORIGIN,
+            relX(Math.cos(ang)), Y_ORIGIN,
+            relX(Math.cos(ang)), relY(-Math.sin(ang)));
+
+            CosMan.strokeColor('red');
+            CosMan.strokeWeight(12);
+
+            point(relX(Math.cos(ang)), Y_ORIGIN);   
+            point(relX(Math.cos(ang)), relY(-Math.sin(ang)));   
+
+
+    }
+    CosMan.strokeDashed(false);
+
 }
 
 function drawMousePoint() {
     CosMan.strokeColor('red');
     CosMan.strokeWeight(12);
-    point(relativeMouseX(), relativeMouseY());
-}
-
-function drawUnitPoint() {
-    CosMan.strokeColor('red');
-    CosMan.strokeWeight(12);
-
-    let angle = quadArcTan(relativeMouseX(), relativeMouseY()) / PI;
-    if(angle < 0) {
-        angle = quadArcTan(relativeMouseX(), relativeMouseY()) / PI;
-        angle += 2;
-    }
-    angle *= PI;
-
-
-    point(relativeCos(angle), -relativeSin(angle));
-}
-
-function drawQuadI() {
-    CosMan.strokeWeight(2)
-    CosMan.strokeColor('white');
-    line(0, 0, relativeCos(PI/6), relativeSin(PI/6))
-    line(0, 0, relativeCos(PI/4), relativeSin(PI/4))
-    line(0, 0, relativeCos(PI/3), relativeSin(PI/3))
-    CosMan.strokeWeight(12);
-    point(relativeCos(PI/6), relativeSin(PI/6));
-    point(relativeCos(PI/4), relativeSin(PI/4));
-    point(relativeCos(PI/3), relativeSin(PI/3));
-}
-
-function drawQuadII() {
-    CosMan.strokeWeight(2)
-    CosMan.strokeColor('white');
-    line(0, 0, relativeCos(2*PI/3), relativeSin(2*PI/3));
-    line(0, 0, relativeCos(3*PI/4), relativeSin(3*PI/4));
-    line(0, 0, relativeCos(5*PI/6), relativeSin(5*PI/6));
-    CosMan.strokeWeight(12);
-    point(relativeCos(2*PI/3), relativeSin(2*PI/3))
-    point(relativeCos(3*PI/4), relativeSin(3*PI/4))
-    point(relativeCos(5*PI/6), relativeSin(5*PI/6))
-}
-
-function drawQuadIII() {
-    CosMan.strokeWeight(2)
-    CosMan.strokeColor('white');
-    line(0, 0, relativeCos(7*PI/6), relativeSin(7*PI/6))
-    line(0, 0, relativeCos(5*PI/4), relativeSin(5*PI/4))
-    line(0, 0, relativeCos(4*PI/3), relativeSin(4*PI/3))
-    CosMan.strokeWeight(12);
-    point(relativeCos(7*PI/6), relativeSin(7*PI/6));
-    point(relativeCos(5*PI/4), relativeSin(5*PI/4));
-    point(relativeCos(4*PI/3), relativeSin(4*PI/3));
-}
-
-function drawQuadIV() {
-    CosMan.strokeWeight(2)
-    CosMan.strokeColor('white');
-    line(0, 0, relativeCos(5*PI/3), relativeSin(5*PI/3));
-    line(0, 0, relativeCos(7*PI/4), relativeSin(7*PI/4));
-    line(0, 0, relativeCos(11*PI/6), relativeSin(11*PI/6));
-    CosMan.strokeWeight(12);
-    point(relativeCos(5*PI/3), relativeSin(5*PI/3))
-    point(relativeCos(7*PI/4), relativeSin(7*PI/4))
-    point(relativeCos(11*PI/6), relativeSin(11*PI/6))
-}
-
-function drawCardinalPoints() {
-    CosMan.strokeWeight(12);
-    CosMan.strokeColor('white');
-    point(relativeCos(2*PI), relativeSin(2*PI));
-    point(relativeCos(PI/2), relativeSin(PI/2));
-    point(relativeCos(PI), relativeSin(PI));
-    point(relativeCos(3*PI/2), relativeSin(3*PI/2));
-}
-
-function drawGrid(gridDensity = 1) {
-    CosMan.strokeColor('white');
-    CosMan.strokeWeight(1);
-
-    for(i = -CANVAS_HALF; i <= CANVAS_HALF; i+= UNIT/gridDensity) {
-        for(j = -CANVAS_HALF; j <= CANVAS_HALF; j+= UNIT/gridDensity) {
-            line(-CANVAS_HALF, j, CANVAS_HALF, j);
-        }
-        line(i, -CANVAS_HALF, i, CANVAS_HALF);
-    }
-    
-    line(-CANVAS_HALF + 1, CANVAS_HALF, -CANVAS_HALF + 1, -CANVAS_HALF);
-    line(-CANVAS_HALF, CANVAS_HALF - 1, CANVAS_HALF, CANVAS_HALF - 1);
-
-}
-
-// TRIANGLES
-function drawTriangle() {
-    CosMan.strokeColor('white');
-    CosMan.strokeWeight(1);
-    fill('rgba(255,180,180, 0.5)');
-    triangle(0, 0, relativeMouseX(), 0, relativeMouseX(), relativeMouseY());
-    CosMan.strokeColor('red');
-    CosMan.strokeWeight(12);
-}
-
-function drawUnitTriangle() {
-    CosMan.strokeColor('white');
-    CosMan.strokeWeight(1);
-
-    fill('rgba(255,80,80, 0.5)');
-
-
-    let angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
-    if(angle < 0) {
-        angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
-        angle += 2;
-    }
-    angle *= PI;
-
-    if(mouseInCircle()) {
-        triangle(0, 0, relativeMouseX(), 0, relativeMouseX(), relativeMouseY());
-    } else {
-        triangle(0, 0, relativeCos(angle), 0, relativeCos(angle), relativeSin(angle));
-
-
-    }
-}
-
-// ARCS
-
-function drawArc() {
+    point(mouseX, mouseY);
     CosMan.strokeColor('white');
     CosMan.strokeWeight(2);
-    fill('rgba(255, 255, 255, .5)');
-
-
-    let angle = quadArcTan(relativeMouseX(), relativeMouseY()) / PI;
-    if(angle < 0) {
-        angle = quadArcTan(relativeMouseX(), relativeMouseY()) / PI;
-        angle += 2;
-    }
-    angle *= PI;
-
-    arc(0, 0, UNIT * 2, UNIT * 2, angle, 0, PIE);
 }
 
-function drawUnitArc() {
-    CosMan.strokeColor('white');
+function drawPosInfo() {
+    CosMan.strokeWeight(1);
+    CosMan.strokeColor('black');
+    let ang = quadArcTan(relMouseX(), relMouseY()) / PI;
+    if(ang < 0) {
+        ang = quadArcTan(relMouseX(), relMouseY()) / PI;
+        ang += 2;
+    }
+    ang *= PI;
+
+    fill('#101111');
+    rect(CANVAS_SIZE + 20, 10, CANVAS_HALF - 40, CANVAS_SIZE - 20);
+    fill('white');
+    text('Mouse Posistion (x, y) = (' + parseFloat(relMouseX()).toFixed(3) + ', ' + parseFloat(relMouseY()).toFixed(3) + ')', CANVAS_SIZE + 50, 50);
+    text('Angle (θ) = ' + parseFloat(ang/PI).toFixed(3) + '𝜋\t/\t' + parseInt(ang * 180) + '°', CANVAS_SIZE + 50, 150);
+    text('sin(θ) = ' + parseFloat(Math.sin(ang)).toFixed(3), CANVAS_SIZE + 50, 200);
+    text('cos(θ) = ' + (Math.abs(parseFloat(Math.cos(ang)).toFixed(3)) == 0 ? "0.000" : parseFloat(Math.cos(ang)).toFixed(3)), CANVAS_SIZE + 50, 250); // Negative 0 is more of a misnomer. This is a corner case catcher.
+    text('tan(θ) = ' + (Math.abs(parseFloat(Math.sin(ang) / Math.cos(ang)).toFixed(3)) > 1000 ? "Undefined" : parseFloat(relMouseY() / relMouseX()).toFixed(3)), CANVAS_SIZE + 50, 300); // Tangent goes to infinity corner case. Set it to undefined instead of a huge number.
+
+    text('Triangle Area = ' + (Math.abs(parseFloat(triArea(relMouseX(), relMouseY())).toFixed(3)) < 0.00001 ? 0 : Math.abs(parseFloat(triArea(relMouseX(), relMouseY())).toFixed(3))), CANVAS_SIZE + 50, 350);
+
+    text('csc(θ) = ' + (Math.abs(parseFloat(1/relMouseY()).toFixed(3)) > 1000 ? "Undefined" : parseFloat(1/relMouseY()).toFixed(3)), CANVAS_SIZE + 250, 200);
+    text('sec(θ) = ' + (Math.abs(parseFloat(1/relMouseX()).toFixed(3)) > 1000 ? "Undefined" : parseFloat(1/relMouseX()).toFixed(3)), CANVAS_SIZE + 250, 250); // Negative 0 is more of a misnomer. This is a corner case catcher.
+    text('cot(θ) = ' + (Math.abs(parseFloat(relMouseX() / relMouseY()).toFixed(3)) > 1000 ? "Undefined" : parseFloat(relMouseX() / relMouseY()).toFixed(3)), CANVAS_SIZE + 250, 300); // Tangent goes to infinity corner case. Set it to undefined instead of a huge number.
+
+    text('Amplitude = ' + parseFloat(originDist()/UNIT).toFixed(3), CANVAS_SIZE + 50, 450);
+}
+
+function drawInfoBackground() {
+    fill('#5A5A5A')
     CosMan.strokeWeight(2);
-    fill('rgba(0, 0, 255, .5)');
-
-    let angle = quadArcTan(relativeMouseX(), relativeMouseY()) / PI;
-    if(angle < 0) {
-        angle = quadArcTan(relativeMouseX(), relativeMouseY()) / PI;
-        angle += 2;
-    }
-    angle *= PI;
-
-    arc(0, 0, originDist() * 2, originDist() * 2, angle, 0, PIE)
+    CosMan.strokeColor('black');
+    rect(CANVAS_SIZE, 0, CANVAS_SIZE, CANVAS_SIZE)
 }
 
-// TRIG FUNCTIONS
+
 function drawSin() {
-    CosMan.strokeColor('blue');
+    CosMan.strokeColor('cyan');
     CosMan.strokeWeight(4);
-    line(relativeMouseX(), 0, relativeMouseX(), relativeMouseY());
+    line(mouseX, Y_ORIGIN, mouseX, mouseY);
+    CosMan.strokeColor('red');
+    CosMan.strokeWeight(12);
+    point(mouseX, Y_ORIGIN);
+
 }
 
 function drawCos() {
-    CosMan.strokeColor('lime');
+    CosMan.strokeColor('yellow');
     CosMan.strokeWeight(4);
-    line(0, 0, relativeMouseX(), 0);
+
+    line(X_ORIGIN, mouseY, mouseX, mouseY);
+
+    CosMan.strokeColor('red');
+    CosMan.strokeWeight(12);
+
 }
 
 function drawTan() {
-    CosMan.strokeColor('red');
+    CosMan.strokeColor('magenta');
     CosMan.strokeWeight(4);
-    line(UNIT, 0, UNIT, (relativeMouseY()/relativeMouseX() * UNIT))
+    line(X_ORIGIN + UNIT, Y_ORIGIN, X_ORIGIN + UNIT, Y_ORIGIN - relMouseY()/relMouseX() * UNIT);
 }
 
+
 function drawCsc() {
-    CosMan.strokeColor('cyan');
+    CosMan.strokeColor('lime');
     CosMan.strokeWeight(4);
-    line(0, 0, 0, (UNIT/relativeMouseY()) * UNIT);
+    line(X_ORIGIN, Y_ORIGIN, X_ORIGIN, Y_ORIGIN - 1/relMouseY() * UNIT);
+
 }
 
 function drawSec() {
-    CosMan.strokeColor('yellow');
+    CosMan.strokeColor('indigo');
     CosMan.strokeWeight(4);
-    line(0, 0, UNIT, (relativeMouseY()/relativeMouseX()) * UNIT)
+
+    line(X_ORIGIN, Y_ORIGIN, X_ORIGIN + UNIT, Y_ORIGIN - relMouseY()/relMouseX() * UNIT);
+
 }
 
 function drawCot() {
-    CosMan.strokeColor('magenta');
+    CosMan.strokeColor('orange');
     CosMan.strokeWeight(4);
-
-    let angle = quadArcTan(relativeMouseX(), relativeMouseY()) / PI;
-    if(angle < 0) {
-        angle = quadArcTan(relativeMouseX(), relativeMouseY()) / PI;
-        angle += 2;
+    let ang = quadArcTan(relMouseX(), relMouseY()) / PI;
+    if(ang < 0) {
+        ang = quadArcTan(relMouseX(), relMouseY()) / PI;
+        ang += 2;
     }
-    angle *= PI;
+    ang *= PI;
 
-    line(0, (UNIT/relativeMouseY() * UNIT), relativeCos(angle), -relativeSin(angle));
+    line(X_ORIGIN, Y_ORIGIN - 1/relMouseY() * UNIT, relX(Math.cos(ang)), relY(-Math.sin(ang)));
+
+}
+
+
+
+//let waveXAxis;
+//let waveYAxis;
+//
+//function drawWaveBackground() {
+//    waveXAxis = CANVAS_SIZE - (CANVAS_HALF/2);
+//    waveYAxis = CANVAS_SIZE + (CANVAS_HALF/2);
+//    fill('#d3d3d3');
+//    CosMan.strokeWeight(4);
+//    CosMan.strokeColor('white');
+//    rect(CANVAS_SIZE + 20, CANVAS_HALF + 20, CANVAS_HALF - 40, CANVAS_HALF - 40)
+//
+//    CosMan.strokeWeight(2);
+//    line(CANVAS_SIZE + 20, waveXAxis, CANVAS_SIZE + CANVAS_HALF - 20, waveXAxis);
+//
+//    line(waveYAxis, CANVAS_HALF + 20, waveYAxis, CANVAS_SIZE - 20);
+//    //console.log(calcWave());
+//
+//    //console.log(waveYAxis - CANVAS_HALF + 20);
+//
+//    CosMan.strokeWeight(12);
+//    point(waveYAxis,  CANVAS_HALF + 20);
+//    point(waveYAxis, CANVAS_SIZE - 20);
+//
+//    point(CANVAS_SIZE + 20, waveXAxis);
+//    point(CANVAS_SIZE + CANVAS_HALF - 20, waveXAxis);
+//
+//    //console.log(distanceForm(waveYAxis, CANVAS_SIZE + 20, waveYAxis, CANVAS_SIZE - 20));
+//    console.log(distanceForm(CANVAS_SIZE + 20, waveXAxis, CANVAS_SIZE + CANVAS_HALF - 20, waveXAxis));
+//
+//}
+//
+//
+//
+//function calcWave(unit = false) {
+//    let x, y;
+//
+//    if(unit) {
+//        let amp = originDist()/UNIT;
+//        x = Math.cos(relMouseX()) * amp;
+//        y = Math.cos(relMouseY()) * amp;
+//    } else {
+//        x = Math.cos(relMouseX());
+//        y = Math.cos(relMouseY());
+//    }
+//
+//
+//    return [x, y];
+//}
+
+
+
+function drawWave() {
+
+
+
 
 }

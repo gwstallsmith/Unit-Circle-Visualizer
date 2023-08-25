@@ -75,7 +75,7 @@ class SettingsManager {
             this.unitTriangle_ = true;
             this.triangle_ = false;
             
-            this.unitArc_ = true;
+            this.unitArc_ = false;
             this.mouseArc_ = false;
 
             this.cardPoints_ = false;
@@ -437,13 +437,17 @@ class SettingsManager {
 
     butCardPoints() {
         this.cardPoints_ = !this.cardPoints_;
-        console.log(this.cardPoints_)
         if(this.cardPoints_) {
-            document.getElementById('cardPoints').innerHTML = 'On';
-        } else {
-            document.getElementById('cardPoints').innerHTML = 'Off'; 
-        }
+            console.log('true')
+            document.getElementById('unitCardPoints').innerHTML = 'On';
+            document.getElementById('unitCardPoints').innerHTML = 'On';
 
+        } else {
+            console.log('false')
+            document.getElementById('unitCardPoints').innerHTML = 'Off'; 
+            document.getElementById('unitCardPoints').innerHTML = 'Off';
+
+        }
     }
 
     butOrigin() {
@@ -893,7 +897,7 @@ function draw() {
     if(SetMan.getCardPoints()) drawCardinalPoints();
 
     if(SetMan.getUnitCirc()) drawUnitCircle();
-
+    if(SetMan.getCardPoints()) drawCardinalPoints();
     if(SetMan.getGrid()) drawGrid();
 
     if(SetMan.getUnitArc()) drawArc();

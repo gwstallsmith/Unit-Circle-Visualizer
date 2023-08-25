@@ -24,14 +24,12 @@
 <div class="panel" id="panel0">
   <div class="innerPanel">
     <label>Welcome</label>
-    <button type="button" onclick="SetMan.butNextPanel(false, 5)">V</button>
     <button type="button" onclick="SetMan.butNextPanel(false, 4)">IV</button>
     <button type="button" onclick="SetMan.butNextPanel(false, 3)">III</button>
     <button type="button" onclick="SetMan.butNextPanel(false, 2)">II</button>
     <button type="button" onclick="SetMan.butNextPanel(false, 1)">I</button>
     <button type="button" onclick="SetMan.butNextPanel(false, 0)">0</button>
     <br><br>
-    <button type="button" onclick="SetMan.butHidePanels()" id="hidePanels" style="float:left">Show</button>
     <button type="button" onclick="SetMan.butNextPanel()">Next</button>
     <button type="button" onclick="SetMan.butNextPanel(true)">Prev</button><br><br>
     <hr>
@@ -40,8 +38,18 @@
       <br><br>
       This is meant to help visualize trigonometry.
     </p>
-
-
+    <hr><br>
+    <label>Calculations on Unit scale (radius = 1)</label>
+    <br><br>
+    <label id="unitCoordinates"></label>
+    <br><br><br>
+    <label id="sin"></label>
+    <br><br>
+    <label id="cos"></label>
+    <br><br>
+    <label id="tan"></label>
+    <br><br><br>
+    <label id="csc"></label>
 
 
   </div>
@@ -50,15 +58,13 @@
 
 <div class="panel" id="panel1">
   <div class="innerPanel">
-    <label>I - General</label>
-    <button type="button" onclick="SetMan.butNextPanel(false, 5)">V</button>
+    <label>I - Grid</label>
     <button type="button" onclick="SetMan.butNextPanel(false, 4)">IV</button>
     <button type="button" onclick="SetMan.butNextPanel(false, 3)">III</button>
     <button type="button" onclick="SetMan.butNextPanel(false, 2)">II</button>
     <button type="button" onclick="SetMan.butNextPanel(false, 1)">I</button>
     <button type="button" onclick="SetMan.butNextPanel(false, 0)">0</button>
     <br><br>
-    <button type="button" onclick="SetMan.butHidePanels()" id="hidePanels" style="float:left">Hide</button>
     <button type="button" onclick="SetMan.butNextPanel()">Next</button>
     <button type="button" onclick="SetMan.butNextPanel(true)">Prev</button><br><br>
     <hr><br>
@@ -70,25 +76,6 @@
     <label id="canvasSize"></label><br><br>
     <label style="font-size:14px;">* May need to zoom out at larger canvas sizes.</label><br><br>
     <hr><br>
-
-  </div>
-</div>
-
-
-<div class="panel" id="panel2">
-  <div class="innerPanel">
-    <label>II - Grid</label>
-    <button type="button" onclick="SetMan.butNextPanel(false, 5)">V</button>
-    <button type="button" onclick="SetMan.butNextPanel(false, 4)">IV</button>
-    <button type="button" onclick="SetMan.butNextPanel(false, 3)">III</button>
-    <button type="button" onclick="SetMan.butNextPanel(false, 2)">II</button>
-    <button type="button" onclick="SetMan.butNextPanel(false, 1)">I</button>
-    <button type="button" onclick="SetMan.butNextPanel(false, 0)">0</button>
-    <br><br>
-    <button type="button" onclick="SetMan.butHidePanels()" id="hidePanels" style="float:left">Hide</button>
-    <button type="button" onclick="SetMan.butNextPanel()">Next</button>
-    <button type="button" onclick="SetMan.butNextPanel(true)">Prev</button><br><br>
-    <hr><br>
     <label>Grid: </label><button type="button" onclick="SetMan.butGrid()" id="grid">Off</button><br><br>
     <label>Grid Density: </label><button type="button" onclick="SetMan.butGridDensity(false)">&nbsp-&nbsp</button><button type="button" onclick="SetMan.butGridDensity(true)">+</button><br><br>
     <hr><br>
@@ -96,23 +83,20 @@
     <label>Origin: </label><button type="button" onclick="SetMan.butOrigin()" id="origin">On</button><br><br>
     <label>X-Axis: </label><button type="button" onclick="SetMan.butXAxis()" id="xAxis">On</button><br><br>
     <label>Y-Axis: </label><button type="button" onclick="SetMan.butYAxis()" id="yAxis">On</button><br><br>
-    <br>
-    
 
   </div>
 </div>
 
-<div class="panel" id="panel3">
+
+<div class="panel" id="panel2">
   <div class="innerPanel">
-    <label>III - Circle</label>
-    <button type="button" onclick="SetMan.butNextPanel(false, 5)">V</button>
+    <label>II - Circle</label>
     <button type="button" onclick="SetMan.butNextPanel(false, 4)">IV</button>
     <button type="button" onclick="SetMan.butNextPanel(false, 3)">III</button>
     <button type="button" onclick="SetMan.butNextPanel(false, 2)">II</button>
     <button type="button" onclick="SetMan.butNextPanel(false, 1)">I</button>
     <button type="button" onclick="SetMan.butNextPanel(false, 0)">0</button>
     <br><br>
-    <button type="button" onclick="SetMan.butHidePanels()" id="hidePanels" style="float:left">Hide</button>
     <button type="button" onclick="SetMan.butNextPanel()">Next</button>
     <button type="button" onclick="SetMan.butNextPanel(true)">Prev</button><br><br>
     <hr><br>
@@ -133,21 +117,20 @@
     <label>Unit Arc: </label><button type="button" onclick="SetMan.butUnitArc()" id="unitArc">On</button><br><br>
     <label>Mouse Arc: </label><button type="button" onclick="SetMan.butMouseArc()" id="mouseArc">Off</button><br><br>
     <br>
+    
 
   </div>
 </div>
 
-<div class="panel" id="panel4">
+<div class="panel" id="panel3">
   <div class="innerPanel">
-    <label>IV - Triangle</label>
-    <button type="button" onclick="SetMan.butNextPanel(false, 5)">V</button>
+    <label>III - Triangle</label>
     <button type="button" onclick="SetMan.butNextPanel(false, 4)">IV</button>
     <button type="button" onclick="SetMan.butNextPanel(false, 3)">III</button>
     <button type="button" onclick="SetMan.butNextPanel(false, 2)">II</button>
     <button type="button" onclick="SetMan.butNextPanel(false, 1)">I</button>
     <button type="button" onclick="SetMan.butNextPanel(false, 0)">0</button>
     <br><br>
-    <button type="button" onclick="SetMan.butHidePanels()" id="hidePanels" style="float:left">Hide</button>
     <button type="button" onclick="SetMan.butNextPanel()">Next</button>
     <button type="button" onclick="SetMan.butNextPanel(true)">Prev</button><br><br>
     <hr><br>
@@ -169,10 +152,9 @@
   </div>
 </div>
 
-<div class="panel" id="panel5">
+<div class="panel" id="panel4">
   <div class="innerPanel">
-    <label>V - Identities</label>
-    <button type="button" onclick="SetMan.butNextPanel(false, 5)">V</button>
+    <label>IV - Identities</label>
     <button type="button" onclick="SetMan.butNextPanel(false, 4)">IV</button>
     <button type="button" onclick="SetMan.butNextPanel(false, 3)">III</button>
     <button type="button" onclick="SetMan.butNextPanel(false, 2)">II</button>

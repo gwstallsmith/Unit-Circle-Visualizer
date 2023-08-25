@@ -567,20 +567,20 @@ class SettingsManager {
         this.getHidePanels();
         if(this.hidePanels_ == true) {
             this.hidePanels_ = false;
+            document.getElementById('panel0').style.display="block";
             document.getElementById('panel1').style.display="none";
             document.getElementById('panel2').style.display="none";
             document.getElementById('panel3').style.display="none";
             document.getElementById('panel4').style.display="none";
-            document.getElementById('panel5').style.display="none";
             this.getHidePanels();
         }
             if(reverse) {
                 --this.openPanel_;
-                if(this.openPanel_ < 0) { this.openPanel_ = 5; }
+                if(this.openPanel_ < 0) { this.openPanel_ = 4; }
 
             } else {
                 ++this.openPanel_;
-                if(this.openPanel_ > 5) { this.openPanel_ = 0; }
+                if(this.openPanel_ > 4) { this.openPanel_ = 0; }
 
             }
 
@@ -592,28 +592,24 @@ class SettingsManager {
                 document.getElementById('panel2').style.display="none";
                 document.getElementById('panel3').style.display="none";
                 document.getElementById('panel4').style.display="none";
-                document.getElementById('panel5').style.display="none";
             } else if(this.openPanel_ == 1) {
                 document.getElementById('panel0').style.display="none";
                 document.getElementById('panel1').style.display="block";
                 document.getElementById('panel2').style.display="none";
                 document.getElementById('panel3').style.display="none";
                 document.getElementById('panel4').style.display="none";
-                document.getElementById('panel5').style.display="none";
             } else if(this.openPanel_ == 2) {
                 document.getElementById('panel0').style.display="none";
                 document.getElementById('panel1').style.display="none";
                 document.getElementById('panel2').style.display="block";
                 document.getElementById('panel3').style.display="none";
                 document.getElementById('panel4').style.display="none";
-                document.getElementById('panel5').style.display="none";
             } else if (this.openPanel_ == 3) {
                 document.getElementById('panel0').style.display="none";
                 document.getElementById('panel1').style.display="none";
                 document.getElementById('panel2').style.display="none";
                 document.getElementById('panel3').style.display="block";
                 document.getElementById('panel4').style.display="none";
-                document.getElementById('panel5').style.display="none";
 
             } else if (this.openPanel_ == 4) {
                 document.getElementById('panel0').style.display="none";
@@ -621,7 +617,6 @@ class SettingsManager {
                 document.getElementById('panel2').style.display="none";
                 document.getElementById('panel3').style.display="none";
                 document.getElementById('panel4').style.display="block";
-                document.getElementById('panel5').style.display="none";
 
             } else if (this.openPanel_ == 5) {
                 document.getElementById('panel0').style.display="none";
@@ -629,19 +624,16 @@ class SettingsManager {
                 document.getElementById('panel2').style.display="none";
                 document.getElementById('panel3').style.display="none";
                 document.getElementById('panel4').style.display="none";
-                document.getElementById('panel5').style.display="block";
             }
         
     }
 
     butHidePanels() {
         if(!this.hidePanels_) {
-            document.getElementById('hidePanels').innerHTML = 'Show';
             hidePanels();
         } else {
-            document.getElementById('hidePanels').innerHTML = 'Hide';
             this.openPanel_ = 0;
-            document.getElementById('panel1').style.display="block";
+            document.getElementById('panel0').style.display="block";
         }
         this.hidePanels_ = !this.hidePanels_;
     }
@@ -840,8 +832,8 @@ function hidePanels() {
     document.getElementById('panel2').style.display="none";
     document.getElementById('panel3').style.display="none";
     document.getElementById('panel4').style.display="none";
-    document.getElementById('panel5').style.display="none";
 }
+
 
 
 let fontInconsolata;
@@ -917,8 +909,14 @@ function draw() {
     drawUnitPoint();
     drawMousePoint();
 
+    unitCoordinateInfo();
+    sinInfo();
+    cosInfo();
+    tanInfo();
 
-    
+    cscInfo();
+    // secInfo();
+    // cotInfo();
 
 }
 
@@ -1189,3 +1187,61 @@ function drawCot() {
     line(0, (UNIT/relativeMouseY() * UNIT), relativeCos(angle), -relativeSin(angle));
 
 }
+
+function unitCoordinateInfo() {
+    let angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+    if(angle < 0) {
+        angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+        angle += 2;
+    }
+    angle = parseFloat(angle).toFixed(3);
+    document.getElementById('unitCoordinates').innerHTML = '(x, y) = (' + parseFloat(relativeCos(angle*PI)/UNIT).toFixed(3) + ', ' + parseFloat(-relativeSin(angle*PI)/UNIT).toFixed(3) + ')';
+}
+
+function sinInfo() {
+    let angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+    if(angle < 0) {
+        angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+        angle += 2;
+    }
+    angle = parseFloat(angle).toFixed(3);
+    let yCoord = parseFloat(-relativeSin(angle*PI)/UNIT).toFixed(3)
+    document.getElementById('sin').innerHTML = 'sin(' + angle + '𝜋) = ' + (yCoord == '-0.000' ? Math.abs(yCoord) : yCoord);
+}
+
+function cosInfo() {
+    let angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+    if(angle < 0) {
+        angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+        angle += 2;
+    }
+    angle = parseFloat(angle).toFixed(3);
+    let xCoord = parseFloat(relativeCos(angle*PI)/UNIT).toFixed(3)
+    document.getElementById('cos').innerHTML = 'cos(' + angle + '𝜋) = ' + (xCoord == '-0.000' ? Math.abs(xCoord) : xCoord);
+}
+
+function tanInfo() {
+    let angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+    if(angle < 0) {
+        angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+        angle += 2;
+    }
+    angle = parseFloat(angle).toFixed(3);
+    document.getElementById('tan').innerHTML = 'tan(' + angle + '𝜋) = ' + parseFloat(-relativeMouseY()/relativeMouseX()).toFixed(3);
+
+}
+
+function cscInfo() {
+    let angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+    if(angle < 0) {
+        angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+        angle += 2;
+    }
+    angle = parseFloat(angle).toFixed(3);
+    let yCoord = -relativeSin(angle*PI)/UNIT;
+    yCoord = parseFloat(1/yCoord).toFixed(3);
+    document.getElementById('csc').innerHTML = 'csc(' + angle + '𝜋) = ' + (yCoord == '-0.000' ? Math.abs(yCoord) : yCoord);
+}
+
+function secInfo() {}
+function cotInfo() {}

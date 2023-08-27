@@ -51,6 +51,7 @@ button {
     font-size: 24px;
     color:white;
     float:right;
+    min-width: 40px;
 
 
 
@@ -64,6 +65,10 @@ label {
 
     color:white;
     float:left;
+}
+
+label.title {
+    font-size: 36px;
 }
 
 p.innerPanel {

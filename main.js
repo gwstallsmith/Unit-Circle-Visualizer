@@ -292,12 +292,6 @@ class SettingsManager {
     }
     
     getHidePanels() {
-        if(this.hidePanels_) {
-            document.getElementById('hidePanels').innerHTML = 'Show';
-        } else {
-            document.getElementById('hidePanels').innerHTML = 'Hide'; 
-        }
-
         return this.hidePanels_;
     }
 
@@ -851,6 +845,8 @@ function setup() {
     textSize(24);
 
     document.getElementById("canvasSize").innerHTML = 'Current Size: ' + CANVAS_SIZE + 'px';
+    document.getElementById("canvasSize1").innerHTML = 'Current Size: ' + CANVAS_SIZE + 'px';
+
 }
 
 // P5 function.
@@ -912,6 +908,7 @@ function draw() {
     drawMousePoint();
 
     unitCoordinateInfo();
+    triangleAreaInfo();
     sinInfo();
     cosInfo();
     tanInfo();
@@ -1198,6 +1195,22 @@ function unitCoordinateInfo() {
     }
     angle = parseFloat(angle).toFixed(3);
     document.getElementById('unitCoordinates').innerHTML = '(x, y) = (' + parseFloat(relativeCos(angle*PI)/UNIT).toFixed(3) + ', ' + parseFloat(-relativeSin(angle*PI)/UNIT).toFixed(3) + ')';
+}
+
+function triangleAreaInfo() {
+    let angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+    if(angle < 0) {
+        angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+        angle += 2;
+    }
+    angle = parseFloat(angle).toFixed(3);
+
+    let base = relativeCos(angle*PI)/UNIT;
+    let height = -relativeSin(angle*PI)/UNIT;
+    let area = parseFloat(Math.abs((base * height) / 2)).toFixed(3);
+
+    document.getElementById('triangleArea').innerHTML = 'Triangle Area = ' + area;
+
 }
 
 function sinInfo() {

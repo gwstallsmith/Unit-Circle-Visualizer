@@ -23,7 +23,7 @@
 
 <div class="panel" id="panel0">
   <div class="innerPanel">
-    <label>Welcome</label>
+    <label style="font-size: 36px;">Welcome</label>
     <button type="button" onclick="SetMan.butNextPanel(false, 4)">IV</button>
     <button type="button" onclick="SetMan.butNextPanel(false, 3)">III</button>
     <button type="button" onclick="SetMan.butNextPanel(false, 2)">II</button>
@@ -42,6 +42,10 @@
       Place holder text
     </p>
     <hr><br>
+    <label>Canvas Size:</label><button type="button" onclick="decreaseCanvasSize()">&nbsp-&nbsp</button><button type="button" onclick="increaseCanvasSize()">+</button><br><br>
+    <label id="canvasSize"></label><br><br>
+    <label style="font-size:18px;">* May need to zoom out at larger canvas sizes.</label><br><br>
+    <hr><br>
     <label>Calculations on Unit scale (radius = 1)</label>
     <br><br>
     <label id="unitCoordinates"></label>
@@ -56,8 +60,6 @@
     <label id="tan"></label>
     <label id="cot" style="float:right;"></label><br><br>
     <hr><br>
-    <label></label>
-    <input>
 
 
   </div>
@@ -82,7 +84,7 @@
     <hr><br>
     <label>Canvas Size:</label><button type="button" onclick="decreaseCanvasSize()">&nbsp-&nbsp</button><button type="button" onclick="increaseCanvasSize()">+</button><br><br>
     <label id="canvasSize"></label><br><br>
-    <label style="font-size:14px;">* May need to zoom out at larger canvas sizes.</label><br><br>
+    <label style="font-size:18px;">* May need to zoom out at larger canvas sizes.</label><br><br>
     <hr><br>
     <label>Grid: </label><button type="button" onclick="SetMan.butGrid()" id="grid">Off</button><br><br>
     <label>Grid Density: </label><button type="button" onclick="SetMan.butGridDensity(false)">&nbsp-&nbsp</button><button type="button" onclick="SetMan.butGridDensity(true)">+</button><br><br>

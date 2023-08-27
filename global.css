@@ -19,7 +19,7 @@ body.p5 {
 }
 
 div.panel {
-    width:var(--canvas-size);
+    width:var(--panel-width);
     max-width: 1500px;
     height:var(--canvas-size);
     max-height: 1500px;
@@ -37,6 +37,7 @@ div.innerPanel {
     padding:15px;
     background-color: #101111;
     height:var(--inner-panel-size);
+    height:var(--inner-panel-size/3);
     
     min-height: 780px;
 
@@ -47,23 +48,26 @@ div.innerPanel {
 }
 
 button {
-    font-size: 16px;
+    font-size: 24px;
     color:white;
     float:right;
 
+
+
     background-color: #101111;
+    
 
 }
 
 label {
-    font-size: 20px;
+    font-size: 24px;
 
     color:white;
     float:left;
 }
 
 p.innerPanel {
-    font-size: 20px;
+    font-size: 24px;
     color:white;
 
 }

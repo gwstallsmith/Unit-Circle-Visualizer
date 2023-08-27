@@ -711,7 +711,7 @@ function newSetMan(set) {
 
         setup();
         root.style.setProperty('--canvas-size', CANVAS_SIZE + 'px');
-        root.style.setProperty('--inner-panel-size', (CANVAS_SIZE - 60) + 'px');
+        root.style.setProperty('--inner-panel-size', innerPanelSize + 'px');
     }
 
 }
@@ -722,6 +722,7 @@ let root = document.querySelector(':root');
 let rootStyles = getComputedStyle(root);
 let cssCanvasSize = rootStyles.getPropertyValue('--canvas-size');
 root.style.setProperty('--canvas-size', CANVAS_SIZE + 'px');
+root.style.setProperty('--panel-width', (CANVAS_SIZE/3 *2) + 'px');
 root.style.setProperty('--inner-panel-size', (CANVAS_SIZE - 60) + 'px');
 
 
@@ -833,6 +834,7 @@ function hidePanels() {
     document.getElementById('panel3').style.display="none";
     document.getElementById('panel4').style.display="none";
 }
+
 
 
 

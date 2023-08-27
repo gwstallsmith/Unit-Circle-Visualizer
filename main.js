@@ -915,8 +915,8 @@ function draw() {
     tanInfo();
 
     cscInfo();
-    // secInfo();
-    // cotInfo();
+    secInfo();
+    cotInfo();
 
 }
 
@@ -1206,6 +1206,9 @@ function sinInfo() {
     }
     angle = parseFloat(angle).toFixed(3);
     let yCoord = parseFloat(-relativeSin(angle*PI)/UNIT).toFixed(3)
+    if(angle == 0) {
+        yCoord = 0;
+    }
     document.getElementById('sin').innerHTML = 'sin(' + angle + '𝜋) = ' + (yCoord == '-0.000' ? Math.abs(yCoord) : yCoord);
 }
 
@@ -1217,6 +1220,9 @@ function cosInfo() {
     }
     angle = parseFloat(angle).toFixed(3);
     let xCoord = parseFloat(relativeCos(angle*PI)/UNIT).toFixed(3)
+    if(angle == 0) {
+        xCoord = 1;
+    }
     document.getElementById('cos').innerHTML = 'cos(' + angle + '𝜋) = ' + (xCoord == '-0.000' ? Math.abs(xCoord) : xCoord);
 }
 
@@ -1238,10 +1244,43 @@ function cscInfo() {
         angle += 2;
     }
     angle = parseFloat(angle).toFixed(3);
-    let yCoord = -relativeSin(angle*PI)/UNIT;
-    yCoord = parseFloat(1/yCoord).toFixed(3);
-    document.getElementById('csc').innerHTML = 'csc(' + angle + '𝜋) = ' + (yCoord == '-0.000' ? Math.abs(yCoord) : yCoord);
+    let sin = -relativeSin(angle*PI)/UNIT;
+    //console.log(sin);
+    csc = parseFloat(1/sin).toFixed(3);
+    csc = (csc == '-0.000' ? Math.abs(csc) : csc);
+    if(angle == 1) {
+        csc = 'Undefined';
+    }
+    document.getElementById('csc').innerHTML = 'csc(' + angle + '𝜋) = ' + csc;
 }
 
-function secInfo() {}
-function cotInfo() {}
+function secInfo() {
+    let angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+    if(angle < 0) {
+        angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+        angle += 2;
+    }
+    angle = parseFloat(angle).toFixed(3);
+    let sec = parseFloat(1/relativeCos(angle*PI)*UNIT).toFixed(3);
+    sec = (sec == '-0.000' ? Math.abs(sec) : sec);
+    if(angle == 0) {
+        sec = 1;
+    } else if (angle == 0.5) {
+        sec = 'Infinity';
+    }
+    document.getElementById('sec').innerHTML = 'sec(' + angle + '𝜋) = ' + sec;
+}
+function cotInfo() {
+    let angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+    if(angle < 0) {
+        angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+        angle += 2;
+    }
+    angle = parseFloat(angle).toFixed(3);
+    let cot = (1/Math.tan(angle));
+    cot = parseFloat(cot).toFixed(3)
+    if(angle == 0) {
+        cot = 'Undefined';
+    }
+    document.getElementById('cot').innerHTML = 'cot(' + angle + '𝜋) = ' + cot;
+}

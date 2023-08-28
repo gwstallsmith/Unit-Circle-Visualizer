@@ -492,8 +492,13 @@ class SettingsManager {
         }
 
         if(this.gridDensity_ < 1 || this.gridDensity_ > 4) {
-            this.gridDensity_ = 1;
+            this.gridDensity_ 
+            = 1;
         }
+
+
+
+
     }
 
     butXAxis() {
@@ -1086,7 +1091,7 @@ function drawCardinalPoints() {
     point(relativeCos(3*PI/2), relativeSin(3*PI/2));
 }
 
-function drawGrid(gridDensity = 1) {
+function drawGrid(gridDensity = SetMan.getGridDensity()) {
     CosMan.strokeColor('white');
     CosMan.strokeWeight(1);
 

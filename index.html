@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
 
-  <title>Trig</title>
+  <title>Trigonometry Visualizer</title>
 
   <!-- p5.js -->
   <script src="addons/p5.min.js"></script>
@@ -24,22 +24,25 @@
 <div class="panel" id="panel0">
   <div class="innerPanel">
     <label class="title">Welcome</label>
-    <button type="button" onclick="SetMan.butNextPanel(false, 4)">IV</button>
-    <button type="button" onclick="SetMan.butNextPanel(false, 3)">III</button>
-    <button type="button" onclick="SetMan.butNextPanel(false, 2)">II</button>
-    <button type="button" onclick="SetMan.butNextPanel(false, 1)">I</button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 4)">𝜋</button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 3)">△</button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 2)">◯</button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 1)">⊞</button>
     <button type="button" onclick="SetMan.butNextPanel(false, 0)">W</button>
     <br><br>
     <button type="button" onclick="SetMan.butNextPanel()">Next</button>
     <button type="button" onclick="SetMan.butNextPanel(true)">Prev</button><br><br>
     <hr>
     <p class="innerPanel">
-      Welcome to this trigonometry tool.
-      <br><br>
-      This is meant to help visualize trigonometry.
-      Explain settings real quick.
-      Get Money
-      Place holder text
+      Welcome to this trigonometry visualizer. This tool is meant to give a geometric representation to trigonometric functions.<br><br>
+      All calculations use radian measures (0𝜋-2𝜋).<br>
+      All calculations use amplitude of 1.<br>
+      <br>
+      W &nbsp - &nbsp Welcome<br>
+      ⊞ &nbsp - &nbsp Grid<br>
+      ◯ &nbsp - &nbsp Circle<br>
+      △ &nbsp - &nbsp Triangle<br>
+      𝜋 &nbsp - &nbsp Identities<br>
     </p>
     <hr><br>
     <label>Canvas Size:</label><button type="button" onclick="decreaseCanvasSize()">&nbsp-&nbsp</button><button type="button" onclick="increaseCanvasSize()">+</button><br><br>
@@ -66,11 +69,11 @@
 
 <div class="panel" id="panel1">
   <div class="innerPanel">
-    <label class="title">I - Grid</label>
-    <button type="button" onclick="SetMan.butNextPanel(false, 4)">IV</button>
-    <button type="button" onclick="SetMan.butNextPanel(false, 3)">III</button>
-    <button type="button" onclick="SetMan.butNextPanel(false, 2)">II</button>
-    <button type="button" onclick="SetMan.butNextPanel(false, 1)">I</button>
+    <label class="title">⊞ - Grid</label>
+    <button type="button" onclick="SetMan.butNextPanel(false, 4)">𝜋</button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 3)">△</button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 2)">◯</button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 1)">⊞</button>
     <button type="button" onclick="SetMan.butNextPanel(false, 0)">W</button>
     <br><br>
     <button type="button" onclick="SetMan.butNextPanel()">Next</button>
@@ -98,11 +101,11 @@
 
 <div class="panel" id="panel2">
   <div class="innerPanel">
-    <label class="title">II - Circle</label>
-    <button type="button" onclick="SetMan.butNextPanel(false, 4)">IV</button>
-    <button type="button" onclick="SetMan.butNextPanel(false, 3)">III</button>
-    <button type="button" onclick="SetMan.butNextPanel(false, 2)">II</button>
-    <button type="button" onclick="SetMan.butNextPanel(false, 1)">I</button>
+    <label class="title">◯ - Circle</label>
+    <button type="button" onclick="SetMan.butNextPanel(false, 4)">𝜋</button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 3)">△</button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 2)">◯</button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 1)">⊞</button>
     <button type="button" onclick="SetMan.butNextPanel(false, 0)">W</button>
     <br><br>
     <button type="button" onclick="SetMan.butNextPanel()">Next</button>
@@ -112,7 +115,7 @@
     <hr><br>
     <label>Unit Circle: </label><button type="button" onclick="SetMan.butUnitCirc()" id="unitCirc">Off</button><br><br>
     <hr><br>
-    <label>Cardinal Points: </label><button type="button" onclick="SetMan.butCardPoints()" id="unitCardPoints">Off</button><br><br>
+    <label>Cardinal Points: </label><button type="button" onclick="SetMan.butCardPoints()" id="cardPoints1">Off</button><br><br>
     <label>Quadrant I: </label><button type="button" onclick="SetMan.butQuadI()" id="quadI">Off</button><br><br>
     <label>Quadrant II: </label><button type="button" onclick="SetMan.butQuadII()" id="quadII">Off</button><br><br>
     <label>Quadrant III: </label><button type="button" onclick="SetMan.butQuadIII()" id="quadIII">Off</button><br><br>
@@ -132,11 +135,11 @@
 
 <div class="panel" id="panel3">
   <div class="innerPanel">
-    <label class="title">III - Triangle</label>
-    <button type="button" onclick="SetMan.butNextPanel(false, 4)">IV</button>
-    <button type="button" onclick="SetMan.butNextPanel(false, 3)">III</button>
-    <button type="button" onclick="SetMan.butNextPanel(false, 2)">II</button>
-    <button type="button" onclick="SetMan.butNextPanel(false, 1)">I</button>
+    <label class="title">△ - Triangle</label>
+    <button type="button" onclick="SetMan.butNextPanel(false, 4)">𝜋</button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 3)">△</button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 2)">◯</button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 1)">⊞</button>
     <button type="button" onclick="SetMan.butNextPanel(false, 0)">W</button>
     <br><br>
     <button type="button" onclick="SetMan.butNextPanel()">Next</button>
@@ -147,26 +150,36 @@
     <hr><br>
     <label>All: </label><button type="button" onclick="SetMan.butAllTrigFunc()" id="allTrigFunc">Off</button><br><br>
     <br>
-    <label>Sin: </label><button type="button" onclick="SetMan.butSin()" id="sin">Off</button><br><br>
-    <label>Cos: </label><button type="button" onclick="SetMan.butCos()" id="cos">Off</button><br><br>
-    <label>Tan: </label><button type="button" onclick="SetMan.butTan()" id="tan">Off</button><br><br>
+    <label>Sin: </label><button type="button" onclick="SetMan.butSin()" id="sin2">Off</button><br><br>
+    <label>Cos: </label><button type="button" onclick="SetMan.butCos()" id="cos2">COS</button><br><br>
+    <label>Tan: </label><button type="button" onclick="SetMan.butTan()" id="tan2">Off</button><br><br>
     <br>
-    <label>Csc: </label><button type="button" onclick="SetMan.butCsc()" id="csc">Off</button><br><br>
-    <label>Sec: </label><button type="button" onclick="SetMan.butSec()" id="sec">Off</button><br><br>
-    <label>Cot: </label><button type="button" onclick="SetMan.butCot()" id="cot">Off</button><br><br>
+    <label>Csc: </label><button type="button" onclick="SetMan.butCsc()" id="csc2">Off</button><br><br>
+    <label>Sec: </label><button type="button" onclick="SetMan.butSec()" id="sec2">Off</button><br><br>
+    <label>Cot: </label><button type="button" onclick="SetMan.butCot()" id="cot2">Off</button><br><br>
+    <hr><br>
+    <label id="triangleArea1"></label><br><br>
+    <hr><br>
+    <label id="sin1"></label>
+    <label id="csc1" style="float:right;"></label>
+    <br><br>
+    <label id="cos1"></label>
+    <label id="sec1" style="float:right;"></label>
+    <br><br>
+    <label id="tan1"></label>
+    <label id="cot1" style="float:right;"></label><br><br>
 
-    <br>
 
   </div>
 </div>
 
 <div class="panel" id="panel4">
   <div class="innerPanel">
-    <label class="title">IV - Identities</label>
-    <button type="button" onclick="SetMan.butNextPanel(false, 4)">IV</button>
-    <button type="button" onclick="SetMan.butNextPanel(false, 3)">III</button>
-    <button type="button" onclick="SetMan.butNextPanel(false, 2)">II</button>
-    <button type="button" onclick="SetMan.butNextPanel(false, 1)">I</button>
+    <label class="title">𝜋 - Identities</label>
+    <button type="button" onclick="SetMan.butNextPanel(false, 4)">𝜋</button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 3)">△</button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 2)">◯</button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 1)">⊞</button>
     <button type="button" onclick="SetMan.butNextPanel(false, 0)">W</button>
     <br><br>
     <button type="button" onclick="SetMan.butNextPanel()">Next</button>

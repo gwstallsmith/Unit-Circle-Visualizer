@@ -28,7 +28,7 @@ div.panel {
     border-right: 50px;
     cursor:default;
     margin-right: 5px;
-    min-height: 870px;
+    min-height: 900px;
 
 }
 
@@ -39,7 +39,7 @@ div.innerPanel {
     height:var(--inner-panel-size);
     height:var(--inner-panel-size/3);
     
-    min-height: 780px;
+    min-height: 830px;
 
 
     justify-content: flex-end;
@@ -72,10 +72,16 @@ label.title {
 }
 
 p.innerPanel {
-    font-size: 24px;
+    font-size: 18px;
     color:white;
 
 }
+
+li {
+    font-size: 18px;
+    color:white;
+}
+
 /*
 input {
     font-size: 16px;

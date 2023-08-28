@@ -87,10 +87,10 @@ class SettingsManager {
 
             this.circle_ = true;
             this.unitCirc_ = false;
-            this.quadi_ = true;
-            this.quadii_ = true;
-            this.quadiii_ = true;
-            this.quadiv_ = true;
+            this.quadi_ = false;
+            this.quadii_ = false;
+            this.quadiii_ = false;
+            this.quadiv_ = false;
             this.hidePanels_ = true;
 
         } else if(mode == 'on') {
@@ -134,53 +134,53 @@ class SettingsManager {
 
     getSin() {
         if(this.sin_) {
-            document.getElementById('sin').innerHTML = 'On';
+            document.getElementById('sin2').innerHTML = 'On';
         } else {
-            document.getElementById('sin').innerHTML = 'Off'; 
+            document.getElementById('sin2').innerHTML = 'Off'; 
         }
         return this.sin_;
     }
     getCos() {
         if(this.cos_) {
-            document.getElementById('cos').innerHTML = 'On';
+            document.getElementById('cos2').innerHTML = 'On';
         } else {
-            document.getElementById('cos').innerHTML = 'Off'; 
+            document.getElementById('cos2').innerHTML = 'Off'; 
         }
         return this.cos_;
     }
 
     getTan() {
         if(this.tan_) {
-            document.getElementById('tan').innerHTML = 'On';
+            document.getElementById('tan2').innerHTML = 'On';
         } else {
-            document.getElementById('tan').innerHTML = 'Off'; 
+            document.getElementById('tan2').innerHTML = 'Off'; 
         }
 
         return this.tan_;
     }
     getCsc() {
         if(this.csc_) {
-            document.getElementById('csc').innerHTML = 'On';
+            document.getElementById('csc2').innerHTML = 'On';
         } else {
-            document.getElementById('csc').innerHTML = 'Off'; 
+            document.getElementById('csc2').innerHTML = 'Off'; 
         }
 
         return this.csc_;
     }
     getSec() {
         if(this.sec_) {
-            document.getElementById('sec').innerHTML = 'On';
+            document.getElementById('sec2').innerHTML = 'On';
         } else {
-            document.getElementById('sec').innerHTML = 'Off'; 
+            document.getElementById('sec2').innerHTML = 'Off'; 
         }
 
         return this.sec_;
     }
     getCot() {
         if(this.cot_) {
-            document.getElementById('cot').innerHTML = 'On';
+            document.getElementById('cot2').innerHTML = 'On';
         } else {
-            document.getElementById('cot').innerHTML = 'Off'; 
+            document.getElementById('cot2').innerHTML = 'Off'; 
         }
 
         return this.cot_;
@@ -198,8 +198,10 @@ class SettingsManager {
     getCardPoints() {
         if(this.cardPoints_) {
             document.getElementById('cardPoints').innerHTML = 'On';
+            document.getElementById('cardPoints1').innerHTML = 'On';
         } else {
             document.getElementById('cardPoints').innerHTML = 'Off'; 
+            document.getElementById('cardPoints1').innerHTML = 'Off'; 
         }
         return this.cardPoints_;
     }
@@ -352,11 +354,16 @@ class SettingsManager {
     butCos() {
         this.cos_ = !this.cos_;
         if(this.cos_) {
+            console.log(this.cos_);
             document.getElementById('cos').innerHTML = 'On';
         } else {
+            console.log(this.cos_);
+            document.getElementById('cos').innerHTML = 'Off';
             document.getElementById('allTrigFunc').innerHTML = 'Off';
             this.allTrigFunc_ = false;
         }
+
+        this.getCos();
     }
 
     butTan() {  
@@ -418,9 +425,21 @@ class SettingsManager {
 
         if(this.unitCirc_) {
             document.getElementById('unitCirc').innerHTML = 'On';
+            this.quadi_ = true;
+            this.quadii_ = true;
+            this.quadiii_ = true;
+            this.quadiv_ = true;
+            this.cardPoints_ = true;
         } else {
-            document.getElementById('unitCirc').innerHTML = 'Off'; 
+            document.getElementById('unitCirc').innerHTML = 'Off';
+            this.quadi_ = false;
+            this.quadii_ = false;
+            this.quadiii_ = false;
+            this.quadiv_ = false;
+            this.cardPoints_ = false;
+
         }
+
 
         this.getQuadI();
         this.getQuadII();
@@ -433,13 +452,13 @@ class SettingsManager {
         this.cardPoints_ = !this.cardPoints_;
         if(this.cardPoints_) {
             console.log('true')
-            document.getElementById('unitCardPoints').innerHTML = 'On';
-            document.getElementById('unitCardPoints').innerHTML = 'On';
+            document.getElementById('cardPoints').innerHTML = 'On';
+            document.getElementById('cardPoints1').innerHTML = 'On';
 
         } else {
             console.log('false')
-            document.getElementById('unitCardPoints').innerHTML = 'Off'; 
-            document.getElementById('unitCardPoints').innerHTML = 'Off';
+            document.getElementById('cardPoints').innerHTML = 'Off'; 
+            document.getElementById('cardPoints1').innerHTML = 'Off';
 
         }
     }
@@ -554,7 +573,12 @@ class SettingsManager {
             this.sec_ = false;
             this.cot_ = false;
         }
-
+        this.getSin();
+        this.getCos();
+        this.getTan();
+        this.getCsc();
+        this.getSec();
+        this.getCot();
     }
 
     butNextPanel(reverse, panelNo) {
@@ -884,6 +908,12 @@ function draw() {
     if(SetMan.getCardPoints()) drawCardinalPoints();
 
     if(SetMan.getUnitCirc()) drawUnitCircle();
+
+    if(SetMan.getQuadI()) drawQuadI();
+    if(SetMan.getQuadII()) drawQuadII();
+    if(SetMan.getQuadIII()) drawQuadIII();
+    if(SetMan.getQuadIV()) drawQuadIV();
+
     if(SetMan.getCardPoints()) drawCardinalPoints();
     if(SetMan.getGrid()) drawGrid();
 
@@ -1207,7 +1237,7 @@ function triangleAreaInfo() {
     let area = parseFloat(Math.abs((base * height) / 2)).toFixed(3);
 
     document.getElementById('triangleArea').innerHTML = 'Triangle Area = ' + area;
-
+    document.getElementById('triangleArea1').innerHTML = 'Triangle Area = ' + area;
 }
 
 function sinInfo() {
@@ -1222,6 +1252,7 @@ function sinInfo() {
         yCoord = 0;
     }
     document.getElementById('sin').innerHTML = 'sin(' + angle + '𝜋) = ' + (yCoord == '-0.000' ? Math.abs(yCoord) : yCoord);
+    document.getElementById('sin1').innerHTML = 'sin(' + angle + '𝜋) = ' + (yCoord == '-0.000' ? Math.abs(yCoord) : yCoord);
 }
 
 function cosInfo() {
@@ -1236,6 +1267,7 @@ function cosInfo() {
         xCoord = 1;
     }
     document.getElementById('cos').innerHTML = 'cos(' + angle + '𝜋) = ' + (xCoord == '-0.000' ? Math.abs(xCoord) : xCoord);
+    document.getElementById('cos1').innerHTML = 'cos(' + angle + '𝜋) = ' + (xCoord == '-0.000' ? Math.abs(xCoord) : xCoord);
 }
 
 function tanInfo() {
@@ -1246,7 +1278,7 @@ function tanInfo() {
     }
     angle = parseFloat(angle).toFixed(3);
     document.getElementById('tan').innerHTML = 'tan(' + angle + '𝜋) = ' + parseFloat(-relativeMouseY()/relativeMouseX()).toFixed(3);
-
+    document.getElementById('tan1').innerHTML = 'tan(' + angle + '𝜋) = ' + parseFloat(-relativeMouseY()/relativeMouseX()).toFixed(3);
 }
 
 function cscInfo() {
@@ -1264,6 +1296,7 @@ function cscInfo() {
         csc = 'Undefined';
     }
     document.getElementById('csc').innerHTML = 'csc(' + angle + '𝜋) = ' + csc;
+    document.getElementById('csc1').innerHTML = 'csc(' + angle + '𝜋) = ' + csc;
 }
 
 function secInfo() {
@@ -1281,6 +1314,8 @@ function secInfo() {
         sec = 'Infinity';
     }
     document.getElementById('sec').innerHTML = 'sec(' + angle + '𝜋) = ' + sec;
+    document.getElementById('sec1').innerHTML = 'sec(' + angle + '𝜋) = ' + sec;
+
 }
 function cotInfo() {
     let angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
@@ -1295,4 +1330,6 @@ function cotInfo() {
         cot = 'Undefined';
     }
     document.getElementById('cot').innerHTML = 'cot(' + angle + '𝜋) = ' + cot;
+    document.getElementById('cot1').innerHTML = 'cot(' + angle + '𝜋) = ' + cot;
+
 }

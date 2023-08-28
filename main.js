@@ -832,14 +832,12 @@ function hidePanels() {
 
 
 
-let fontInconsolata;
 // P5 function.
 let canvas;
 function setup() {
     canvas = createCanvas(CANVAS_SIZE, CANVAS_SIZE, WEBGL);
     canvas.parent('p5');
 
-    textFont(fontInconsolata);
     
     textAlign(CENTER);
     textSize(24);
@@ -851,7 +849,6 @@ function setup() {
 
 // P5 function.
 function preload() {
-    fontInconsolata = loadFont('Inconsolata.otf');
 
 }
 

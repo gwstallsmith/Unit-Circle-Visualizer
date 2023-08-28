@@ -745,7 +745,7 @@ let root = document.querySelector(':root');
 let rootStyles = getComputedStyle(root);
 let cssCanvasSize = rootStyles.getPropertyValue('--canvas-size');
 root.style.setProperty('--canvas-size', CANVAS_SIZE + 'px');
-root.style.setProperty('--panel-width', (CANVAS_SIZE/3 *2) + 'px');
+root.style.setProperty('--panel-width', (CANVAS_SIZE * .8) + 'px');
 root.style.setProperty('--inner-panel-size', (CANVAS_SIZE - 60) + 'px');
 
 
@@ -1177,13 +1177,27 @@ function drawMouseArc() {
 function drawSin() {
     CosMan.strokeColor('blue');
     CosMan.strokeWeight(4);
-    line(relativeMouseX(), 0, relativeMouseX(), relativeMouseY());
+    let angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+    if(angle < 0) {
+        angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+        angle += 2;
+    }
+    angle *= PI;
+
+    line(relativeCos(angle), 0, relativeCos(angle), relativeSin(angle));
 }
 
 function drawCos() {
     CosMan.strokeColor('lime');
     CosMan.strokeWeight(4);
-    line(0, 0, relativeMouseX(), 0);
+    let angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+    if(angle < 0) {
+        angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+        angle += 2;
+    }
+    angle *= PI;
+
+    line(0, 0, relativeCos(angle), 0);
 }
 
 function drawTan() {

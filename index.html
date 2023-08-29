@@ -25,9 +25,9 @@
   <div class="innerPanel">
     <label class="title">Welcome</label>
     <button type="button" onclick="SetMan.butNextPanel(false, 4)" style="font-size:30px;">𝜋</button>
-    <button type="button" onclick="SetMan.butNextPanel(false, 3)"><img src="/assets/triangleButton.png" class="navButton"></button>
-    <button type="button" onclick="SetMan.butNextPanel(false, 2)"><img src="/assets/circleButton.png" class="navButton"></button>
-    <button type="button" onclick="SetMan.butNextPanel(false, 1)"><img src="/assets/plusButton.png" class="navButton"></button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 3)"><img src="\assets\triangleButton.png" class="navButton"></button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 2)"><img src="\assets\circleButton.png" class="navButton"></button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 1)"><img src="\assets\plusButton.png" class="navButton"></button>
     <button type="button" onclick="SetMan.butNextPanel(false, 0)">W</button>
     <br><br>
     <button type="button" onclick="SetMan.butNextPanel()">Next</button>
@@ -36,13 +36,11 @@
     <p class="innerPanel">
       Welcome to this trigonometry visualizer. This tool is meant to give a geometric representation to trigonometric functions.<br><br>
       All calculations use radian measures (0𝜋-2𝜋).<br>
-      All calculations use amplitude of 1.<br>
-      <br>
-      W &nbsp - &nbsp Welcome<br>
-      <img src="/assets/plusButton.png" style="height:20px; width:20px; margin-top:0px;">&nbsp - &nbsp Grid<br>
-      ◯ &nbsp - &nbsp Circle<br>
-      <img src="/assets/triangleButton.png" style="height:20px; width:20px;">&nbsp - &nbsp Triangle<br>
-      𝜋 &nbsp - &nbsp Identities<br>
+      All calculations use amplitude of 1.<br><br>
+      <b>TIPS</b>
+      <li>Use "1", "2", "3", "4", "5" keys to navigate the settings menus</li>
+      <li>Use "+" and "-" keys to increase or decrease Canvas Size</li>
+      <li>Use "Right Arrow" and "Left Arrow" keys to snap to angles on the unit circle</li>
     </p>
     <hr><br>
     <label>Canvas Size:</label><button type="button" onclick="decreaseCanvasSize()">&nbsp-&nbsp</button><button type="button" onclick="increaseCanvasSize()">+</button><br><br>

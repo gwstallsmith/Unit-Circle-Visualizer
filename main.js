@@ -934,7 +934,6 @@ function snapUnitCircle(angle) {
 
 }
 
-
 // P5 function.
 let canvas;
 function setup() {
@@ -946,8 +945,6 @@ function setup() {
     textSize(24);
 
     document.getElementById("canvasSize").innerHTML = 'Current Size: ' + CANVAS_SIZE + 'px';
-    document.getElementById("canvasSize1").innerHTML = 'Current Size: ' + CANVAS_SIZE + 'px';
-
 }
 
 // P5 function.

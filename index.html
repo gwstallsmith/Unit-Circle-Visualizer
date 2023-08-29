@@ -23,7 +23,7 @@
 
 <div class="panel" id="panel0">
   <div class="innerPanel">
-    <label class="title">Welcome</label>
+    <label class="title"><b>Welcome</b></label>
     <button type="button" onclick="SetMan.butNextPanel(false, 4)" style="font-size:30px;">𝜋</button>
     <button type="button" onclick="SetMan.butNextPanel(false, 3)"><img src="/assets/triangleButton.png" class="navButton"></button>
     <button type="button" onclick="SetMan.butNextPanel(false, 2)"><img src="/assets/circleButton.png" class="navButton"></button>
@@ -34,18 +34,16 @@
     <button type="button" onclick="SetMan.butNextPanel(true)">Prev</button><br><br>
     <hr>
     <p class="innerPanel">
-      Welcome to this trigonometry visualizer. This tool is meant to give a geometric representation to trigonometric functions.<br><br>
-      All calculations use radian measures (0𝜋-2𝜋).<br>
+      Welcome to the <b>Trigonometry Visualizer</b>. This tool is meant to give a geometric representation of trigonometric functions.<br><br>
+      All calculations use radian measures [0𝜋, 2𝜋).<br>
       All calculations use amplitude of 1.<br><br>
       <b>TIPS</b>
+      <i>
       <li>Use "1", "2", "3", "4", "5" keys to navigate the settings menus</li>
       <li>Use "+" and "-" keys to increase or decrease Canvas Size</li>
       <li>Use "Right Arrow" and "Left Arrow" keys to snap to angles on the unit circle</li>
+      </i>
     </p>
-    <hr><br>
-    <label>Canvas Size:</label><button type="button" onclick="decreaseCanvasSize()">&nbsp-&nbsp</button><button type="button" onclick="increaseCanvasSize()">+</button><br><br>
-    <label id="canvasSize"></label><br><br>
-    <label style="font-size:18px;">* May need to zoom out at larger canvas sizes.</label><br><br>
     <hr><br>
     <label>Calculations on Unit scale (radius = 1)</label>
     <br><br><br>
@@ -67,7 +65,7 @@
 
 <div class="panel" id="panel1">
   <div class="innerPanel">
-    <img src="/assets/plusButton.png" style="float:left;"><label class="title">&nbspGrid</label>
+    <img src="/assets/plusButton.png" style="float:left;"><label class="title">&nbsp<b>Grid</b></label>
     <button type="button" onclick="SetMan.butNextPanel(false, 4)" style="font-size:30px;">𝜋</button>
     <button type="button" onclick="SetMan.butNextPanel(false, 3)"><img src="/assets/triangleButton.png" class="navButton"></button>
     <button type="button" onclick="SetMan.butNextPanel(false, 2)"><img src="/assets/circleButton.png" class="navButton"></button>
@@ -82,11 +80,22 @@
     <label>All Off: </label><button type="button" onclick="newSetMan('off')">Off</button><br><br>
     <hr><br>
     <label>Canvas Size:</label><button type="button" onclick="decreaseCanvasSize()">&nbsp-&nbsp</button><button type="button" onclick="increaseCanvasSize()">+</button><br><br>
-    <label id="canvasSize1"></label><br><br>
-    <label style="font-size:18px;">* May need to zoom out at larger canvas sizes.</label><br><br>
+    <label id="canvasSize"></label><br>
+    <p class="innerPanel">
+      <i>
+      <li>Use "+" and "-" keys to increase or decrease Canvas Size</li>
+      <li>May need to zoom out at larger canvas sizes.</li>
+      </i>
+    </p>
     <hr><br>
     <label>Grid: </label><button type="button" onclick="SetMan.butGrid()" id="grid">Off</button><br><br>
-    <label>Grid Density: </label><button type="button" onclick="SetMan.butGridDensity(false)">&nbsp-&nbsp</button><button type="button" onclick="SetMan.butGridDensity(true)">+</button><br><br>
+    <label>Grid Density: </label><button type="button" onclick="SetMan.butGridDensity(false)">&nbsp-&nbsp</button><button type="button" onclick="SetMan.butGridDensity(true)">+</button><br>
+    <p class="innerPanel">
+      <i>
+      <li>Limited to 4x density due to performance toll</li>
+      </i>
+    </p>
+
     <hr><br>
     <label>Cardinal Points: </label><button type="button" onclick="SetMan.butCardPoints()" id="cardPoints">On</button><br><br>
     <label>Origin: </label><button type="button" onclick="SetMan.butOrigin()" id="origin">On</button><br><br>
@@ -99,7 +108,7 @@
 
 <div class="panel" id="panel2">
   <div class="innerPanel">
-    <img src="/assets/circleButton.png" style="float:left;"><label class="title">&nbspCircle</label>
+    <img src="/assets/circleButton.png" style="float:left;"><label class="title">&nbsp<b>Circle</b></label>
     <button type="button" onclick="SetMan.butNextPanel(false, 4)" style="font-size:30px;">𝜋</button>
     <button type="button" onclick="SetMan.butNextPanel(false, 3)"><img src="/assets/triangleButton.png" class="navButton"></button>
     <button type="button" onclick="SetMan.butNextPanel(false, 2)"><img src="/assets/circleButton.png" class="navButton"></button>
@@ -122,6 +131,11 @@
 
 
     <label>Unit Angles: </label><button type="button" onclick="forwardUnitCircle()">&nbsp-&nbsp</button><button type="button" onclick="backwardUnitCircle()">+</button><br><br>
+    <p class="innerPanel">
+      <i>
+      <li>Use "Right Arrow" and "Left Arrow" keys to snap to angles on the unit circle</li>
+      </i>
+    </p>
     <hr><br>
     <label>Unit Arc: </label><button type="button" onclick="SetMan.butUnitArc()" id="unitArc">On</button><br><br>
     <label>Mouse Arc: </label><button type="button" onclick="SetMan.butMouseArc()" id="mouseArc">Off</button><br><br>
@@ -133,7 +147,7 @@
 
 <div class="panel" id="panel3">
   <div class="innerPanel">
-    <img src="/assets/triangleButton.png" style="float:left;"><label class="title">&nbspTriangle</label>
+    <img src="/assets/triangleButton.png" style="float:left;"><label class="title">&nbsp<b>Triangle</b></label>
     <button type="button" onclick="SetMan.butNextPanel(false, 4)" style="font-size:30px;">𝜋</button>
     <button type="button" onclick="SetMan.butNextPanel(false, 3)"><img src="/assets/triangleButton.png" class="navButton"></button>
     <button type="button" onclick="SetMan.butNextPanel(false, 2)"><img src="/assets/circleButton.png" class="navButton"></button>
@@ -173,7 +187,7 @@
 
 <div class="panel" id="panel4">
   <div class="innerPanel">
-    <label class="title">𝜋&nbsp&nbspIdentities</label>
+    <label class="title"><b>𝜋&nbsp&nbspIdentities</b></label>
     <button type="button" onclick="SetMan.butNextPanel(false, 4)" style="font-size:30px;">𝜋</button>
     <button type="button" onclick="SetMan.butNextPanel(false, 3)"><img src="/assets/triangleButton.png" class="navButton"></button>
     <button type="button" onclick="SetMan.butNextPanel(false, 2)"><img src="/assets/circleButton.png" class="navButton"></button>

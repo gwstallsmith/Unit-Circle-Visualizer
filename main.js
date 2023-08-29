@@ -858,7 +858,43 @@ function hidePanels() {
     document.getElementById('panel4').style.display="none";
 }
 
+function forwardUnitCircle() {
+    unitCircleInc--;
+    if(unitCircleInc < 0) {
+        unitCircleInc = UNIT_CIRCLE_ANGLES.length - 1;
+    }
 
+    snapUnitCircle(UNIT_CIRCLE_ANGLES[unitCircleInc]);
+}
+function backwardUnitCircle() {
+    unitCircleInc++;
+    if (unitCircleInc > UNIT_CIRCLE_ANGLES.length - 1) {
+        unitCircleInc = 0;
+    }    
+    snapUnitCircle(UNIT_CIRCLE_ANGLES[unitCircleInc]);
+
+}
+
+function snapUnitCircle(angle) {
+    mouseX = relativeCos(angle) * UNIT;
+    mouseY = relativeSin(angle) * UNIT;
+
+    console.log(angle);
+
+    if(angle == 0) {
+        mouseX = 3*CANVAS_SIZE/4;
+        mouseY = CANVAS_SIZE/2;
+    } else if(angle == PI/2) {
+        mouseX = CANVAS_SIZE/2;
+        mouseY = CANVAS_SIZE/4;
+    } else if(angle == PI) {
+        mouseX = CANVAS_SIZE/4;
+        mouseY = CANVAS_SIZE/2;
+    } else if(angle == 3 * PI/2) {
+        mouseX = CANVAS_SIZE/2;
+        mouseY = 3*CANVAS_SIZE/4
+    }
+}
 
 
 // P5 function.
@@ -882,13 +918,30 @@ function preload() {
 }
 
 // P5 function.
+let unitCircleInc = 0;
 function keyPressed() {
-    if(keyCode === RIGHT_ARROW) {
+    if(keyCode === 61) {
         increaseCanvasSize();
     }
-    if(keyCode === LEFT_ARROW) {
+    if(keyCode === 173) {
         decreaseCanvasSize();
     }
+    if(keyCode === LEFT_ARROW) {
+        unitCircleInc--;
+        if(unitCircleInc < 0) {
+            unitCircleInc = UNIT_CIRCLE_ANGLES.length - 1;
+        }
+    
+        snapUnitCircle(UNIT_CIRCLE_ANGLES[unitCircleInc]);
+    }
+    if(keyCode === RIGHT_ARROW) {
+        unitCircleInc++;
+        if (unitCircleInc > UNIT_CIRCLE_ANGLES.length - 1) {
+            unitCircleInc = 0;
+        }    
+        snapUnitCircle(UNIT_CIRCLE_ANGLES[unitCircleInc]);
+    }
+
 
 }
 
@@ -1296,8 +1349,13 @@ function tanInfo() {
         angle += 2;
     }
     angle = parseFloat(angle).toFixed(3);
-    document.getElementById('tan').innerHTML = 'tan(' + angle + '𝜋) = ' + parseFloat(-relativeMouseY()/relativeMouseX()).toFixed(3);
-    document.getElementById('tan1').innerHTML = 'tan(' + angle + '𝜋) = ' + parseFloat(-relativeMouseY()/relativeMouseX()).toFixed(3);
+    let tan = -relativeMouseY()/relativeMouseX();
+    tan = parseFloat(tan).toFixed(3);
+    if(tan == 'Infinity') {
+        tan = 'Undefined';
+    }
+    document.getElementById('tan').innerHTML = 'tan(' + angle + '𝜋) = ' + tan;
+    document.getElementById('tan1').innerHTML = 'tan(' + angle + '𝜋) = ' + tan;
 }
 
 function cscInfo() {
@@ -1311,9 +1369,15 @@ function cscInfo() {
     //console.log(sin);
     csc = parseFloat(1/sin).toFixed(3);
     csc = (csc == '-0.000' ? Math.abs(csc) : csc);
-    if(angle == 1) {
+
+    if(Math.abs(csc) > 1000) {
+        csc = 'Undefined';
+    } else if (angle == 0) {
         csc = 'Undefined';
     }
+
+
+
     document.getElementById('csc').innerHTML = 'csc(' + angle + '𝜋) = ' + csc;
     document.getElementById('csc1').innerHTML = 'csc(' + angle + '𝜋) = ' + csc;
 }
@@ -1330,12 +1394,17 @@ function secInfo() {
     if(angle == 0) {
         sec = 1;
     } else if (angle == 0.5) {
-        sec = 'Infinity';
+        sec = 'Undefined';
     }
+    if(Math.abs(sec) > 1000) {
+        sec = 'Undefined';
+    }
+
     document.getElementById('sec').innerHTML = 'sec(' + angle + '𝜋) = ' + sec;
     document.getElementById('sec1').innerHTML = 'sec(' + angle + '𝜋) = ' + sec;
 
 }
+
 function cotInfo() {
     let angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
     if(angle < 0) {

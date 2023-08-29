@@ -354,10 +354,8 @@ class SettingsManager {
     butCos() {
         this.cos_ = !this.cos_;
         if(this.cos_) {
-            console.log(this.cos_);
             document.getElementById('cos').innerHTML = 'On';
         } else {
-            console.log(this.cos_);
             document.getElementById('cos').innerHTML = 'Off';
             document.getElementById('allTrigFunc').innerHTML = 'Off';
             this.allTrigFunc_ = false;
@@ -703,12 +701,10 @@ class SettingsManager {
 
 };
 
-
 /////
 
 let CANVAS_SIZE = 900;
 let CANVAS_HALF = CANVAS_SIZE / 2;
-
 
 let CosMan;
 function main() {
@@ -739,7 +735,6 @@ function newSetMan(set) {
 
 }
 
-
 // UTIL
 let root = document.querySelector(':root');
 let rootStyles = getComputedStyle(root);
@@ -769,17 +764,12 @@ function relativeMouseY() {
 }
 
 function relativeCos(theta) {
-    if(theta) {
-        return Math.cos(theta) * UNIT;
-    }
+    return Math.cos(theta) * UNIT;
 }
 
 function relativeSin(theta) {
-    if(theta) {
-        return -Math.sin(theta) * UNIT;
-    }
+    return -Math.sin(theta) * UNIT;
 }
-
 
 // Returns true positition of x / y.
 // Use with calculations, not drawing functions
@@ -814,7 +804,6 @@ function originDist() {
 function mouseInCircle() {
     return originDist <= UNIT;
 }
-
 
 function increaseCanvasSize() {
     CANVAS_SIZE += 100;
@@ -866,6 +855,7 @@ function forwardUnitCircle() {
 
     snapUnitCircle(UNIT_CIRCLE_ANGLES[unitCircleInc]);
 }
+
 function backwardUnitCircle() {
     unitCircleInc++;
     if (unitCircleInc > UNIT_CIRCLE_ANGLES.length - 1) {
@@ -876,9 +866,7 @@ function backwardUnitCircle() {
 }
 
 function snapUnitCircle(angle) {
-    mouseX = relativeCos(angle) * UNIT;
-    mouseY = relativeSin(angle) * UNIT;
-
+    // CARDINAL ANGLES
     if(angle == 0) {
         mouseX = 3*CANVAS_SIZE/4;
         mouseY = CANVAS_SIZE/2;
@@ -892,6 +880,58 @@ function snapUnitCircle(angle) {
         mouseX = CANVAS_SIZE/2;
         mouseY = 3*CANVAS_SIZE/4
     }
+
+
+    // Some rounding error is occuring preventing the angles from being exact.
+    // relativeSin / relativeCos not working for this purpose.
+    // Hard coding the angles in because I am sick of doing this dynamically.
+
+    // QUAD I
+    if(angle == PI/6) {
+        mouseX = CANVAS_HALF + Math.sqrt(3) * UNIT / 2;
+        mouseY = CANVAS_HALF - UNIT/2;
+    } else if (angle == PI/4) {
+        mouseX = CANVAS_HALF + Math.sqrt(2) * UNIT / 2;
+        mouseY = CANVAS_HALF - Math.sqrt(2) * UNIT / 2;
+    } else if (angle == PI/3) {
+        mouseX = CANVAS_HALF + UNIT/2;
+        mouseY = CANVAS_HALF - Math.sqrt(3) * UNIT / 2;
+    }
+    // QUAD II
+    else if(angle == 2 * PI/3) {
+        mouseX = CANVAS_HALF - UNIT/2;
+        mouseY = CANVAS_HALF - Math.sqrt(3) * UNIT / 2;
+    } else if (angle == 3 * PI/4) {
+        mouseX = CANVAS_HALF - Math.sqrt(2) * UNIT / 2;
+        mouseY = CANVAS_HALF - Math.sqrt(2) * UNIT / 2;
+    } else if (angle == 5 * PI/6) {
+        mouseX = CANVAS_HALF - Math.sqrt(3) * UNIT / 2;
+        mouseY = CANVAS_HALF - UNIT/2;
+    }
+    // QUAD III
+    else if(angle == 7 * PI/6) {
+        mouseX = CANVAS_HALF - Math.sqrt(3) * UNIT / 2;
+        mouseY = CANVAS_HALF + UNIT/2;
+    } else if (angle == 5 * PI/4) {
+        mouseX = CANVAS_HALF - Math.sqrt(2) * UNIT / 2;
+        mouseY = CANVAS_HALF + Math.sqrt(2) * UNIT / 2;
+    } else if (angle == 4 * PI/3) {
+        mouseX = CANVAS_HALF - UNIT/2;
+        mouseY = CANVAS_HALF + Math.sqrt(3) * UNIT / 2;
+    }
+    // QUAD IV
+    else if(angle == 5 * PI/3) {
+        mouseX = CANVAS_HALF + UNIT/2;
+        mouseY = CANVAS_HALF + Math.sqrt(3) * UNIT / 2;
+    } else if (angle == 7 * PI/4) {
+        mouseX = CANVAS_HALF + Math.sqrt(2) * UNIT / 2;
+        mouseY = CANVAS_HALF + Math.sqrt(2) * UNIT / 2;
+    } else if (angle == 11 * PI/6) {
+        mouseX = CANVAS_HALF + Math.sqrt(3) * UNIT / 2;
+        mouseY = CANVAS_HALF + UNIT/2;
+    }
+
+
 }
 
 
@@ -924,7 +964,7 @@ function keyPressed() {
     if(keyCode === 173) {
         decreaseCanvasSize();
     }
-    if(keyCode === 188) {
+    if(keyCode === LEFT_ARROW) {
         unitCircleInc--;
         if(unitCircleInc < 0) {
             unitCircleInc = UNIT_CIRCLE_ANGLES.length - 1;
@@ -932,7 +972,7 @@ function keyPressed() {
     
         snapUnitCircle(UNIT_CIRCLE_ANGLES[unitCircleInc]);
     }
-    if(keyCode === 190) {
+    if(keyCode === RIGHT_ARROW) {
         unitCircleInc++;
         if (unitCircleInc > UNIT_CIRCLE_ANGLES.length - 1) {
             unitCircleInc = 0;
@@ -959,8 +999,6 @@ function keyPressed() {
 
 
 }
-
-
 
 // P5 function that drives the entire animation.
 function draw() {

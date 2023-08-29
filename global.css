@@ -59,6 +59,12 @@ button {
     padding:3px;
 }
 
+img.navButton {
+    height:30px;
+    width:30px;
+}
+
+
 br {
     margin:1.25px;
 }

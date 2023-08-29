@@ -61,6 +61,8 @@ class SettingsManager {
             this.quadiv_ = false;
 
             this.hidePanels_ = false;
+
+            this.posInfo_ = false
         } else if(mode == 'default') {
             this.sin_ = false;
             this.cos_ = false;
@@ -92,6 +94,8 @@ class SettingsManager {
             this.quadiii_ = false;
             this.quadiv_ = false;
             this.hidePanels_ = true;
+
+            this.posInfo_ = true;
 
         } else if(mode == 'on') {
             this.sin_ = true;
@@ -125,6 +129,8 @@ class SettingsManager {
             this.quadiv_ = true;
 
             this.hidePanels_ = false;
+
+            this.posInfo_ = true
         }
 
         this.openPanel_ = 0;
@@ -335,6 +341,15 @@ class SettingsManager {
         }
 
         return this.quadiv_;
+    }
+
+    getPosInfo() {
+        if(this.posInfo_) {
+            document.getElementById('posInfo').innerHTML = 'On'
+        } else {
+            document.getElementById('posInfo').innerHTML = 'Off'
+        }
+        return this.posInfo_;
     }
 
     // Buttons
@@ -699,6 +714,15 @@ class SettingsManager {
 
     }
 
+    butPosInfo() {
+        this.posInfo_ = !this.posInfo_
+        if(this.posInfo) {
+            document.getElementById('quadIV').innerHTML = 'On';
+        } else {
+            document.getElementById('quadIV').innerHTML = 'Off'; 
+        }
+    }
+
 };
 
 /////
@@ -948,8 +972,9 @@ function setup() {
 }
 
 // P5 function.
+let myFont;
 function preload() {
-
+    myFont = loadFont("./assets/arial.ttf");
 }
 
 // P5 function.
@@ -1003,6 +1028,7 @@ function draw() {
     background('#101111');
     fill('#101111');
     angleMode(RADIANS);
+    textFont(myFont)
 
     CosMan.strokeColor('white');
 
@@ -1051,6 +1077,8 @@ function draw() {
     cscInfo();
     secInfo();
     cotInfo();
+
+    if(SetMan.getPosInfo()) drawPosInfo();
 
 }
 
@@ -1373,8 +1401,8 @@ function sinInfo() {
     if(angle == 0) {
         yCoord = 0;
     }
-    document.getElementById('sin').innerHTML = 'sin(' + angle + '𝜋) = ' + (yCoord == '-0.000' ? Math.abs(yCoord) : yCoord);
-    document.getElementById('sin1').innerHTML = 'sin(' + angle + '𝜋) = ' + (yCoord == '-0.000' ? Math.abs(yCoord) : yCoord);
+    document.getElementById('sin').innerHTML = 'sin(' + angle + 'π) = ' + (yCoord == '-0.000' ? Math.abs(yCoord) : yCoord);
+    document.getElementById('sin1').innerHTML = 'sin(' + angle + 'π) = ' + (yCoord == '-0.000' ? Math.abs(yCoord) : yCoord);
 }
 
 function cosInfo() {
@@ -1388,8 +1416,8 @@ function cosInfo() {
     if(angle == 0) {
         xCoord = 1;
     }
-    document.getElementById('cos').innerHTML = 'cos(' + angle + '𝜋) = ' + (xCoord == '-0.000' ? Math.abs(xCoord) : xCoord);
-    document.getElementById('cos1').innerHTML = 'cos(' + angle + '𝜋) = ' + (xCoord == '-0.000' ? Math.abs(xCoord) : xCoord);
+    document.getElementById('cos').innerHTML = 'cos(' + angle + 'π) = ' + (xCoord == '-0.000' ? Math.abs(xCoord) : xCoord);
+    document.getElementById('cos1').innerHTML = 'cos(' + angle + 'π) = ' + (xCoord == '-0.000' ? Math.abs(xCoord) : xCoord);
 }
 
 function tanInfo() {
@@ -1404,8 +1432,8 @@ function tanInfo() {
     if(tan == 'Infinity') {
         tan = 'Undefined';
     }
-    document.getElementById('tan').innerHTML = 'tan(' + angle + '𝜋) = ' + tan;
-    document.getElementById('tan1').innerHTML = 'tan(' + angle + '𝜋) = ' + tan;
+    document.getElementById('tan').innerHTML = 'tan(' + angle + 'π) = ' + tan;
+    document.getElementById('tan1').innerHTML = 'tan(' + angle + 'π) = ' + tan;
 }
 
 function cscInfo() {
@@ -1428,8 +1456,8 @@ function cscInfo() {
 
 
 
-    document.getElementById('csc').innerHTML = 'csc(' + angle + '𝜋) = ' + csc;
-    document.getElementById('csc1').innerHTML = 'csc(' + angle + '𝜋) = ' + csc;
+    document.getElementById('csc').innerHTML = 'csc(' + angle + 'π) = ' + csc;
+    document.getElementById('csc1').innerHTML = 'csc(' + angle + 'π) = ' + csc;
 }
 
 function secInfo() {
@@ -1450,8 +1478,8 @@ function secInfo() {
         sec = 'Undefined';
     }
 
-    document.getElementById('sec').innerHTML = 'sec(' + angle + '𝜋) = ' + sec;
-    document.getElementById('sec1').innerHTML = 'sec(' + angle + '𝜋) = ' + sec;
+    document.getElementById('sec').innerHTML = 'sec(' + angle + 'π) = ' + sec;
+    document.getElementById('sec1').innerHTML = 'sec(' + angle + 'π) = ' + sec;
 
 }
 
@@ -1467,7 +1495,42 @@ function cotInfo() {
     if(angle == 0) {
         cot = 'Undefined';
     }
-    document.getElementById('cot').innerHTML = 'cot(' + angle + '𝜋) = ' + cot;
-    document.getElementById('cot1').innerHTML = 'cot(' + angle + '𝜋) = ' + cot;
+    document.getElementById('cot').innerHTML = 'cot(' + angle + 'π) = ' + cot;
+    document.getElementById('cot1').innerHTML = 'cot(' + angle + 'π) = ' + cot;
+
+}
+
+function drawPosInfo() {
+    let angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+    if(angle < 0) {
+        angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+        angle += 2;
+    }
+
+    angle *= PI;
+    fill('white');
+    textSize(24);
+    let coordinates = '(x, y) = (' + parseFloat(relativeCos(angle)/UNIT).toFixed(3) + ', ' + parseFloat(-relativeSin(angle)/UNIT).toFixed(3) + ')';
+    let offset = UNIT * .45; 
+
+    angle = parseFloat(angle).toFixed(3);
+
+    if(angle >= 0 && angle < PI/2) {
+        text(coordinates, relativeCos(angle) + offset, relativeSin(angle) - offset);
+        text('θ = ' + parseFloat(angle/PI).toFixed(3) + 'π', relativeCos(angle) + offset, relativeSin(angle) - offset + 30);
+    } else if(angle >= PI/2 && angle < PI) {
+        text(coordinates, relativeCos(angle) - offset, relativeSin(angle) - offset);
+        text('θ = ' + parseFloat(angle/PI).toFixed(3) + 'π', relativeCos(angle) - offset, relativeSin(angle) - offset + 30);
+    } else if(angle >= PI && angle < 3*PI/2) {
+        text(coordinates, relativeCos(angle) - offset, relativeSin(angle) + offset);
+        text('θ = ' + parseFloat(angle/PI).toFixed(3) + 'π', relativeCos(angle) - offset, relativeSin(angle) + offset + 30);
+
+    } else if(angle >= 3*PI/2 && angle < 2*PI) {
+        text(coordinates, relativeCos(angle) + offset, relativeSin(angle) + offset);
+        text('θ = ' + parseFloat(angle/PI).toFixed(3) + 'π', relativeCos(angle) + offset, relativeSin(angle) + offset + 30);
+
+    }
+    
+
 
 }

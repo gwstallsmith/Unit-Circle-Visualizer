@@ -940,6 +940,23 @@ function keyPressed() {
         snapUnitCircle(UNIT_CIRCLE_ANGLES[unitCircleInc]);
     }
 
+    if(keyCode === 49) {
+        SetMan.butNextPanel(false, 0);
+    }
+    if(keyCode === 50) {
+        SetMan.butNextPanel(false, 1);
+    }
+    if(keyCode === 51) {
+        SetMan.butNextPanel(false, 2);
+    }
+    if(keyCode === 52) {
+        SetMan.butNextPanel(false, 3);
+    }
+    if(keyCode === 53) {
+        SetMan.butNextPanel(false, 4);
+    }
+
+
 
 }
 

@@ -879,8 +879,6 @@ function snapUnitCircle(angle) {
     mouseX = relativeCos(angle) * UNIT;
     mouseY = relativeSin(angle) * UNIT;
 
-    console.log(angle);
-
     if(angle == 0) {
         mouseX = 3*CANVAS_SIZE/4;
         mouseY = CANVAS_SIZE/2;

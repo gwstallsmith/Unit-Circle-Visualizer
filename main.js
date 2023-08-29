@@ -924,7 +924,7 @@ function keyPressed() {
     if(keyCode === 173) {
         decreaseCanvasSize();
     }
-    if(keyCode === LEFT_ARROW) {
+    if(keyCode === 188) {
         unitCircleInc--;
         if(unitCircleInc < 0) {
             unitCircleInc = UNIT_CIRCLE_ANGLES.length - 1;
@@ -932,7 +932,7 @@ function keyPressed() {
     
         snapUnitCircle(UNIT_CIRCLE_ANGLES[unitCircleInc]);
     }
-    if(keyCode === RIGHT_ARROW) {
+    if(keyCode === 190) {
         unitCircleInc++;
         if (unitCircleInc > UNIT_CIRCLE_ANGLES.length - 1) {
             unitCircleInc = 0;

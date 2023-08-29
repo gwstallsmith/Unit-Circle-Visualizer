@@ -730,12 +730,29 @@ class SettingsManager {
 let CANVAS_SIZE = 900;
 let CANVAS_HALF = CANVAS_SIZE / 2;
 
+const username = 'gwstallsmith';
+const repoName = 'Trigonometry-Visualizer';
+
+const apiUrl = `https://api.github.com/repos/${username}/${repoName}`;
+
+
 let CosMan;
 function main() {
     CosMan = new CosmeticManager();
     SetMan = new SettingsManager();
     
     hidePanels();
+
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+        const lastUpdated = new Date(data.updated_at);
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('last-updated').textContent = lastUpdated.toLocaleDateString(undefined, options);
+      })
+      .catch(error => {
+        console.error('Error fetching repository information:', error);
+      });
 }
 
 function newSetMan(set) {

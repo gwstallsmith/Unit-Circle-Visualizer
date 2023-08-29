@@ -56,11 +56,11 @@ button {
 
     background-color: #101111;
     
-
+    padding:3px;
 }
 
 br {
-    margin:1px;
+    margin:1.25px;
 }
 
 button.trig {

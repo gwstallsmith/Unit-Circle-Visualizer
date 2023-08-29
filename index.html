@@ -24,9 +24,9 @@
 <div class="panel" id="panel0">
   <div class="innerPanel">
     <label class="title">Welcome</label>
-    <button type="button" onclick="SetMan.butNextPanel(false, 4)">𝜋</button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 4)" style="font-size:30px;">𝜋</button>
     <button type="button" onclick="SetMan.butNextPanel(false, 3)"><img src="/assets/triangleButton.png" class="navButton"></button>
-    <button type="button" onclick="SetMan.butNextPanel(false, 2)">◯</button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 2)"><img src="/assets/circleButton.png" class="navButton"></button>
     <button type="button" onclick="SetMan.butNextPanel(false, 1)"><img src="/assets/plusButton.png" class="navButton"></button>
     <button type="button" onclick="SetMan.butNextPanel(false, 0)">W</button>
     <br><br>
@@ -39,9 +39,9 @@
       All calculations use amplitude of 1.<br>
       <br>
       W &nbsp - &nbsp Welcome<br>
-      ⊞ &nbsp - &nbsp Grid<br>
+      <img src="/assets/plusButton.png" style="height:20px; width:20px; margin-top:0px;">&nbsp - &nbsp Grid<br>
       ◯ &nbsp - &nbsp Circle<br>
-      △ &nbsp - &nbsp Triangle<br>
+      <img src="/assets/triangleButton.png" style="height:20px; width:20px;">&nbsp - &nbsp Triangle<br>
       𝜋 &nbsp - &nbsp Identities<br>
     </p>
     <hr><br>
@@ -69,11 +69,11 @@
 
 <div class="panel" id="panel1">
   <div class="innerPanel">
-    <label class="title">⊞ - Grid</label>
-    <button type="button" onclick="SetMan.butNextPanel(false, 4)">𝜋</button>
-    <button type="button" onclick="SetMan.butNextPanel(false, 3)">△</button>
-    <button type="button" onclick="SetMan.butNextPanel(false, 2)">◯</button>
-    <button type="button" onclick="SetMan.butNextPanel(false, 1)">⊞</button>
+    <img src="/assets/plusButton.png" style="float:left;"><label class="title">&nbspGrid</label>
+    <button type="button" onclick="SetMan.butNextPanel(false, 4)" style="font-size:30px;">𝜋</button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 3)"><img src="/assets/triangleButton.png" class="navButton"></button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 2)"><img src="/assets/circleButton.png" class="navButton"></button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 1)"><img src="/assets/plusButton.png" class="navButton"></button>
     <button type="button" onclick="SetMan.butNextPanel(false, 0)">W</button>
     <br><br>
     <button type="button" onclick="SetMan.butNextPanel()">Next</button>
@@ -101,11 +101,11 @@
 
 <div class="panel" id="panel2">
   <div class="innerPanel">
-    <label class="title">◯ - Circle</label>
-    <button type="button" onclick="SetMan.butNextPanel(false, 4)">𝜋</button>
-    <button type="button" onclick="SetMan.butNextPanel(false, 3)">△</button>
-    <button type="button" onclick="SetMan.butNextPanel(false, 2)">◯</button>
-    <button type="button" onclick="SetMan.butNextPanel(false, 1)">⊞</button>
+    <img src="/assets/circleButton.png" style="float:left;"><label class="title">&nbspCircle</label>
+    <button type="button" onclick="SetMan.butNextPanel(false, 4)" style="font-size:30px;">𝜋</button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 3)"><img src="/assets/triangleButton.png" class="navButton"></button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 2)"><img src="/assets/circleButton.png" class="navButton"></button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 1)"><img src="/assets/plusButton.png" class="navButton"></button>
     <button type="button" onclick="SetMan.butNextPanel(false, 0)">W</button>
     <br><br>
     <button type="button" onclick="SetMan.butNextPanel()">Next</button>
@@ -114,7 +114,7 @@
     <label>Circle: </label><button type="button" onclick="SetMan.butCircle()" id="circle">On</button><br><br>
     <hr><br>
     <label>Unit Circle: </label><button type="button" onclick="SetMan.butUnitCirc()" id="unitCirc">Off</button><br><br>
-    <hr><br>
+    <br>
     <label>Cardinal Points: </label><button type="button" onclick="SetMan.butCardPoints()" id="cardPoints1">Off</button><br><br>
     <label>Quadrant I: </label><button type="button" onclick="SetMan.butQuadI()" id="quadI">Off</button><br><br>
     <label>Quadrant II: </label><button type="button" onclick="SetMan.butQuadII()" id="quadII">Off</button><br><br>
@@ -135,11 +135,11 @@
 
 <div class="panel" id="panel3">
   <div class="innerPanel">
-    <label class="title">△ - Triangle</label>
-    <button type="button" onclick="SetMan.butNextPanel(false, 4)">𝜋</button>
-    <button type="button" onclick="SetMan.butNextPanel(false, 3)">△</button>
-    <button type="button" onclick="SetMan.butNextPanel(false, 2)">◯</button>
-    <button type="button" onclick="SetMan.butNextPanel(false, 1)">⊞</button>
+    <img src="/assets/triangleButton.png" style="float:left;"><label class="title">&nbspTriangle</label>
+    <button type="button" onclick="SetMan.butNextPanel(false, 4)" style="font-size:30px;">𝜋</button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 3)"><img src="/assets/triangleButton.png" class="navButton"></button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 2)"><img src="/assets/circleButton.png" class="navButton"></button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 1)"><img src="/assets/plusButton.png" class="navButton"></button>
     <button type="button" onclick="SetMan.butNextPanel(false, 0)">W</button>
     <br><br>
     <button type="button" onclick="SetMan.butNextPanel()">Next</button>
@@ -175,11 +175,11 @@
 
 <div class="panel" id="panel4">
   <div class="innerPanel">
-    <label class="title">𝜋 - Identities</label>
-    <button type="button" onclick="SetMan.butNextPanel(false, 4)">𝜋</button>
-    <button type="button" onclick="SetMan.butNextPanel(false, 3)">△</button>
-    <button type="button" onclick="SetMan.butNextPanel(false, 2)">◯</button>
-    <button type="button" onclick="SetMan.butNextPanel(false, 1)">⊞</button>
+    <label class="title">𝜋&nbsp&nbspIdentities</label>
+    <button type="button" onclick="SetMan.butNextPanel(false, 4)" style="font-size:30px;">𝜋</button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 3)"><img src="/assets/triangleButton.png" class="navButton"></button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 2)"><img src="/assets/circleButton.png" class="navButton"></button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 1)"><img src="/assets/plusButton.png" class="navButton"></button>
     <button type="button" onclick="SetMan.butNextPanel(false, 0)">W</button>
     <br><br>
     <button type="button" onclick="SetMan.butNextPanel()">Next</button>

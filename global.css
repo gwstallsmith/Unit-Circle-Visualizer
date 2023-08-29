@@ -52,7 +52,6 @@ button {
     float:right;
     min-width: 40px;
     height: 40px;
-    margin:1px;
 
     background-color: #101111;
     
@@ -62,6 +61,7 @@ button {
 img.navButton {
     height:30px;
     width:30px;
+    margin-top:1px;
 }
 
 

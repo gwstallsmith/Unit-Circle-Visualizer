@@ -28,7 +28,7 @@ div.panel {
     border-right: 50px;
     cursor:default;
     margin-right: 5px;
-    min-height: 950px;
+    min-height: 1000px;
 
 }
 
@@ -38,7 +38,7 @@ div.innerPanel {
     background-color: #101111;
     height:var(--inner-panel-size);
     
-    min-height: 880px;
+    min-height: 930px;
 
 
     justify-content: flex-end;
@@ -51,19 +51,24 @@ button {
     color:white;
     float:right;
     min-width: 40px;
-
-    margin:2px;
+    height: 40px;
+    margin:1px;
 
     background-color: #101111;
     
 
 }
 
+br {
+    margin:1px;
+}
+
 button.trig {
     float:right;
-    min-width:40px;
-    min-height:35px;
+    width:40px;
+    height:40px;
 }
+
 
 label {
     font-size: 24px;

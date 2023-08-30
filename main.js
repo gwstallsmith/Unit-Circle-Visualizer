@@ -135,6 +135,7 @@ class SettingsManager {
 
         this.openPanel_ = 0;
 
+        this.pythIdenOne_ = false;
 
     }
 
@@ -352,14 +353,25 @@ class SettingsManager {
         return this.posInfo_;
     }
 
+    getPythIdenOne() {
+        if(this.pythIdenOne_) {
+            document.getElementById('pythIdenOne').innerHTML = 'On'
+        } else {
+            document.getElementById('pythIdenOne').innerHTML = 'Off'
+        }
+        return this.pythIdenOne_;
+    }
+
     // Buttons
 
     butSin() {
         this.sin_ = !this.sin_;
 
         if(this.sin_) {
-            document.getElementById('sin').innerHTML = 'On';
+            document.getElementById('sin2').innerHTML = 'On';
+
         } else {
+            document.getElementById('sin2').innerHTML = 'Off';
             document.getElementById('allTrigFunc').innerHTML = 'Off';
             this.allTrigFunc_ = false;
         }
@@ -569,8 +581,8 @@ class SettingsManager {
     }
 
 
-    butAllTrigFunc() {
-        this.allTrigFunc_ = !this.allTrigFunc_;
+    butAllTrigFunc(set = !this.allTrigFunc_) {
+        this.allTrigFunc_ = set
         if(this.allTrigFunc_) {
             document.getElementById('allTrigFunc').innerHTML = 'On';
             this.sin_ = true;
@@ -720,6 +732,16 @@ class SettingsManager {
             document.getElementById('quadIV').innerHTML = 'On';
         } else {
             document.getElementById('quadIV').innerHTML = 'Off'; 
+        }
+    }
+
+    butPythIdenOne() {
+        this.pythIdenOne_ = !this.pythIdenOne_;
+        if(this.pythIdenOne_) {
+            document.getElementById('pythIdenOne').innerHTML = 'On';
+        } else {
+            this.butAllTrigFunc(false);
+            document.getElementById('pythIdenOne').innerHTML = 'Off'; 
         }
     }
 
@@ -1097,6 +1119,8 @@ function draw() {
 
     if(SetMan.getPosInfo()) drawPosInfo();
 
+    if(SetMan.getPythIdenOne()) drawPythagoreanIdentityOne();
+
 }
 
 // DRAW FUNCTIONS
@@ -1293,7 +1317,7 @@ function drawUnitTriangle() {
 function drawArc() {
     CosMan.strokeColor('white');
     CosMan.strokeWeight(2);
-    fill('rgba(255, 255, 255, .5)');
+    fill('rgba(0, 0, 255, .5)');
 
 
     let angle = quadArcTan(relativeMouseX(), relativeMouseY()) / PI;
@@ -1309,7 +1333,7 @@ function drawArc() {
 function drawMouseArc() {
     CosMan.strokeColor('white');
     CosMan.strokeWeight(2);
-    fill('rgba(0, 0, 255, .5)');
+    fill('rgba(0, 255, 0, .5)');
 
     let angle = quadArcTan(relativeMouseX(), relativeMouseY()) / PI;
     if(angle < 0) {
@@ -1545,9 +1569,47 @@ function drawPosInfo() {
     } else if(angle >= 3*PI/2 && angle < 2*PI) {
         text(coordinates, relativeCos(angle) + offset, relativeSin(angle) + offset);
         text('θ = ' + parseFloat(angle/PI).toFixed(3) + 'π', relativeCos(angle) + offset, relativeSin(angle) + offset + 30);
-
     }
-    
+}
 
+function drawPythagoreanIdentityOne() {
+    SetMan.butAllTrigFunc(false);
+    SetMan.butSin();
+    SetMan.butCos();
+    
+    let angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+    if(angle < 0) {
+        angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+        angle += 2;
+    }
+
+    angle *= PI;
+    let xCoord = parseFloat(relativeCos(angle)/UNIT).toFixed(3);
+    let yCoord = parseFloat(-relativeSin(angle)/UNIT).toFixed(3);
+
+
+    CosMan.strokeColor('red');
+    CosMan.strokeWeight(3);
+    line(0, 0, xCoord * UNIT, -yCoord * UNIT);
+
+    //mouseX = CANVAS_HALF + Math.sqrt(2) * UNIT / 2;
+    //mouseY = CANVAS_HALF - Math.sqrt(2) * UNIT / 2;
+
+    fill('white');
+    textSize(24);
+
+    let explanation = 'Pythagorean Identity #1\n\nsin²(' + parseFloat(angle/PI).toFixed(3) + 'π) + cos²(' + parseFloat(angle/PI).toFixed(3) + 'π) = 1\n\n(' + xCoord + ')² + (' + yCoord + ')² = 1\n\n' + parseFloat(Math.pow(xCoord, 2)).toFixed(3) + ' + '+ parseFloat(Math.pow(yCoord, 2)).toFixed(3) + ' = 1';
+
+
+
+    if(angle >= 0 && angle < PI/2) {
+        text(explanation, -UNIT * 1.2, -UNIT * 1.6);
+    } else if(angle >= PI/2 && angle < PI) {
+        text(explanation, UNIT * 1.2, -UNIT * 1.6);
+    } else if(angle >= PI && angle < 3*PI/2) {
+        text(explanation, -UNIT * 1.2, -UNIT * 1.6);
+    } else if(angle >= 3*PI/2 && angle < 2*PI) {
+        text(explanation, -UNIT * 1.2, -UNIT * 1.6);
+    }
 
 }

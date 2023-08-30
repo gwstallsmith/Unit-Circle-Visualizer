@@ -1104,8 +1104,6 @@ function draw() {
     if(SetMan.getSec()) drawSec();
     if(SetMan.getCot()) drawCot();
 
-    drawUnitPoint();
-    drawMousePoint();
 
     unitCoordinateInfo();
     triangleAreaInfo();
@@ -1121,6 +1119,11 @@ function draw() {
 
     if(SetMan.getPythIdenOne()) drawPythagoreanIdentityOne();
 
+
+
+
+    drawUnitPoint();
+    drawMousePoint();
 }
 
 // DRAW FUNCTIONS
@@ -1162,7 +1165,7 @@ function drawMousePoint() {
 }
 
 function drawUnitPoint() {
-    CosMan.strokeColor('red');
+    CosMan.strokeColor('white');
     CosMan.strokeWeight(12);
 
     let angle = quadArcTan(relativeMouseX(), relativeMouseY()) / PI;
@@ -1307,8 +1310,6 @@ function drawUnitTriangle() {
         triangle(0, 0, relativeMouseX(), 0, relativeMouseX(), relativeMouseY());
     } else {
         triangle(0, 0, relativeCos(angle), 0, relativeCos(angle), relativeSin(angle));
-
-
     }
 }
 
@@ -1582,25 +1583,19 @@ function drawPythagoreanIdentityOne() {
         angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
         angle += 2;
     }
-
     angle *= PI;
+
     let xCoord = parseFloat(relativeCos(angle)/UNIT).toFixed(3);
     let yCoord = parseFloat(-relativeSin(angle)/UNIT).toFixed(3);
-
 
     CosMan.strokeColor('red');
     CosMan.strokeWeight(3);
     line(0, 0, xCoord * UNIT, -yCoord * UNIT);
 
-    //mouseX = CANVAS_HALF + Math.sqrt(2) * UNIT / 2;
-    //mouseY = CANVAS_HALF - Math.sqrt(2) * UNIT / 2;
-
     fill('white');
     textSize(24);
 
     let explanation = 'Pythagorean Identity #1\n\nsin²(' + parseFloat(angle/PI).toFixed(3) + 'π) + cos²(' + parseFloat(angle/PI).toFixed(3) + 'π) = 1\n\n(' + xCoord + ')² + (' + yCoord + ')² = 1\n\n' + parseFloat(Math.pow(xCoord, 2)).toFixed(3) + ' + '+ parseFloat(Math.pow(yCoord, 2)).toFixed(3) + ' = 1';
-
-
 
     if(angle >= 0 && angle < PI/2) {
         text(explanation, -UNIT * 1.2, -UNIT * 1.6);

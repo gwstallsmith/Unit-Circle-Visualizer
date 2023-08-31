@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+
+  <title>Trigonometry Visualizer</title>
+
+  <link rel="icon" type="image/x-icon" href="./assets/triangleButton.png">
+
+  <!-- p5.js -->
+  <script src="addons/p5.min.js"></script>
+
+  <!-- Sim and Animation -->
+  <script src="main.js"></script>
+
+</head>
+
+<link rel="stylesheet" href="test.css">
+
+<body class="p5" onload="main()" id="p5">
+  <main>
+  </main>
+</body>
+
+<div class="panel" id="panel0">
+  <div class="innerPanel">
+    <label class="title"><b>Welcome</b></label>
+    <button type="button" onclick="SetMan.butNextPanel(false, 4)" style="font-size:30px;">π</button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 3)"><img src="./assets/triangleButton.png" class="navButton"></button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 2)"><img src="./assets/circleButton.png" class="navButton"></button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 1)"><img src="./assets/plusButton.png" class="navButton"></button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 0)">W</button>
+    <br><br>
+    <button type="button" onclick="SetMan.butNextPanel()">Next</button>
+    <button type="button" onclick="SetMan.butNextPanel(true)">Prev</button><br><br>
+    <hr>
+    <p class="innerPanel">
+      Welcome to the <b>Trigonometry Visualizer</b>. This tool is meant to give a geometric representation of trigonometric functions.<br><br>
+      All calculations use radian measures [0π, 2π).<br>
+      All calculations use amplitude of 1.<br><br>
+      <b>TIPS</b>
+      <i>
+      <li>Use "1", "2", "3", "4", "5" keys to navigate the settings menus</li>
+      <li>Use "+" and "-" keys to increase or decrease Canvas Size</li>
+      <li>Use "Right Arrow" and "Left Arrow" keys to snap to angles on the unit circle</li>
+      </i>
+    </p>
+    <hr><br>
+    <label>Calculations on Unit scale (radius = 1)</label>
+    <br><br><br>
+    <label id="unitCoordinates"></label><br><br>
+    <label id="triangleArea"></label><br><br>
+    <hr><br>
+    <label id="sin"></label>
+    <label id="csc" style="float:right;"></label>
+    <br><br>
+    <label id="cos"></label>
+    <label id="sec" style="float:right;"></label>
+    <br><br>
+    <label id="tan"></label>
+    <label id="cot" style="float:right;"></label><br><br>
+    <hr>
+    <p class="innerPanel">
+      Created by Garrett Stallsmith<br>
+      <li><b>Github:</b>&nbsp<a href="https://github.com/gwstallsmith/" target="_blank" style="color:white;">https://github.com/gwstallsmith/</a></li>
+      <p class="innerPanel">Last updated:&nbsp<span id="last-updated"></span></p>
+    </p>
+  </div>
+</div>
+
+
+<div class="panel" id="panel1">
+  <div class="innerPanel">
+    <img src="./assets/plusButton.png" style="float:left;"><label class="title">&nbsp<b>Grid</b></label>
+    <button type="button" onclick="SetMan.butNextPanel(false, 4)" style="font-size:30px;">π</button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 3)"><img src="./assets/triangleButton.png" class="navButton"></button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 2)"><img src="./assets/circleButton.png" class="navButton"></button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 1)"><img src="./assets/plusButton.png" class="navButton"></button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 0)">W</button>
+    <br><br>
+    <button type="button" onclick="SetMan.butNextPanel()">Next</button>
+    <button type="button" onclick="SetMan.butNextPanel(true)">Prev</button><br><br>
+    <hr><br>
+    <label>Default Settings: </label><button type="button" onclick="newSetMan('default')">Default</button><br><br>
+    <label>All On: </label><button type="button" onclick="newSetMan('on')">On</button><br><br>
+    <label>All Off: </label><button type="button" onclick="newSetMan('off')">Off</button><br><br>
+    <hr><br>
+    <label>Canvas Size:</label><button type="button" onclick="decreaseCanvasSize()">&nbsp-&nbsp</button><button type="button" onclick="increaseCanvasSize()">+</button><br><br>
+    <label id="canvasSize"></label><br>
+    <p class="innerPanel">
+      <i>
+      <li>Use "+" and "-" keys to increase or decrease Canvas Size</li>
+      <li>May need to zoom out at larger canvas sizes.</li>
+      </i>
+    </p>
+    <hr><br>
+    <label>Grid: </label><button type="button" onclick="SetMan.butGrid()" id="grid">Off</button><br><br>
+    <label>Grid Density: </label><button type="button" onclick="SetMan.butGridDensity(false)">&nbsp-&nbsp</button><button type="button" onclick="SetMan.butGridDensity(true)">+</button><br>
+    <p class="innerPanel">
+      <i>
+      <li>Limited to 4x density due to performance toll</li>
+      </i>
+    </p>
+
+    <hr><br>
+    <label>Cardinal Points: </label><button type="button" onclick="SetMan.butCardPoints()" id="cardPoints">On</button><br><br>
+    <label>Origin: </label><button type="button" onclick="SetMan.butOrigin()" id="origin">On</button><br><br>
+    <label>X-Axis: </label><button type="button" onclick="SetMan.butXAxis()" id="xAxis">On</button><br><br>
+    <label>Y-Axis: </label><button type="button" onclick="SetMan.butYAxis()" id="yAxis">On</button><br><br>
+    <hr><br>
+    <label>Position Info: </label><button type="button" onclick="SetMan.butPosInfo()" id="posInfo">On</button><br><br>
+
+  </div>
+</div>
+
+
+<div class="panel" id="panel2">
+  <div class="innerPanel">
+    <img src="./assets/circleButton.png" style="float:left;"><label class="title">&nbsp<b>Circle</b></label>
+    <button type="button" onclick="SetMan.butNextPanel(false, 4)" style="font-size:30px;">π</button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 3)"><img src="./assets/triangleButton.png" class="navButton"></button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 2)"><img src="./assets/circleButton.png" class="navButton"></button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 1)"><img src="./assets/plusButton.png" class="navButton"></button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 0)">W</button>
+    <br><br>
+    <button type="button" onclick="SetMan.butNextPanel()">Next</button>
+    <button type="button" onclick="SetMan.butNextPanel(true)">Prev</button><br><br>
+    <hr><br>
+    <div class="grid-container">
+        <div class="grid-item"><label>Circle: </label><button type="button" onclick="SetMan.butCircle()" id="circle">On</button></div>
+        <div class="grid-item"><label>Unit Circle: </label><button type="button" onclick="SetMan.butUnitCirc()" id="unitCirc">Off</button></div>
+        <div class="grid-item"><label>Cardinal Points: </label><button type="button" onclick="SetMan.butCardPoints()" id="cardPoints1">Off</button></div>
+        <div class="grid-item"><label>Quadrant I: </label><button type="button" onclick="SetMan.butQuadI()" id="quadI">Off</button></div>
+        <div class="grid-item"><label>Quadrant II: </label><button type="button" onclick="SetMan.butQuadII()" id="quadII">Off</button></div>
+        <div class="grid-item"><label>Quadrant III: </label><button type="button" onclick="SetMan.butQuadIII()" id="quadIII">Off</button></div>
+        <div class="grid-item"><label>Quadrant IV: </label><button type="button" onclick="SetMan.butQuadIV()" id="quadIV">Off</button></div>
+
+    </div>
+
+    <label>Unit Angles: </label><button type="button" onclick="forwardUnitCircle()">&nbsp-&nbsp</button><button type="button" onclick="backwardUnitCircle()">+</button><br><br>
+    <p class="innerPanel">
+      <i>
+      <li>Use "Right Arrow" and "Left Arrow" keys to snap to angles on the unit circle</li>
+      </i>
+    </p>
+    <hr><br>
+    <label>Unit Arc: </label><button type="button" onclick="SetMan.butUnitArc()" id="unitArc">On</button><br><br>
+    <label>Mouse Arc: </label><button type="button" onclick="SetMan.butMouseArc()" id="mouseArc">Off</button><br><br>
+    <br>
+    
+
+  </div>
+</div>
+
+<div class="panel" id="panel3">
+  <div class="innerPanel">
+    <img src="./assets/triangleButton.png" style="float:left;"><label class="title">&nbsp<b>Triangle</b></label>
+    <button type="button" onclick="SetMan.butNextPanel(false, 4)" style="font-size:30px;">π</button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 3)"><img src="./assets/triangleButton.png" class="navButton"></button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 2)"><img src="./assets/circleButton.png" class="navButton"></button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 1)"><img src="./assets/plusButton.png" class="navButton"></button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 0)">W</button>
+    <br><br>
+    <button type="button" onclick="SetMan.butNextPanel()">Next</button>
+    <button type="button" onclick="SetMan.butNextPanel(true)">Prev</button><br><br>
+    <hr><br>
+    <label>Unit Triangle: </label><button type="button" onclick="SetMan.butUnitTriangle()" id="unitTriangle">On</button><br><br>
+    <label>Mouse Triangle: </label><button type="button" onclick="SetMan.butTriangle()" id="triangle">Off</button><br><br>
+    <hr><br>
+    <label>All: </label><button type="button" onclick="SetMan.butAllTrigFunc()" id="allTrigFunc">Off</button><br><br>
+    <br>
+    <label>Sin:</label><button type="button" onclick="SetMan.butSin()" id="sin2">Off</button><button type="button" class="trig" style="background-color:blue"></button><br><br>
+    <label>Cos:</label><button type="button" onclick="SetMan.butCos()" id="cos2">Off</button><button type="button" class="trig" style="background-color:lime"></button><br><br>
+    <label>Tan:</label><button type="button" onclick="SetMan.butTan()" id="tan2">Off</button><button type="button" class="trig" style="background-color:red"></button><br><br>
+    <br>
+    <label>Csc: </label><button type="button" onclick="SetMan.butCsc()" id="csc2">Off</button><button type="button" class="trig" style="background-color:cyan"></button><br><br>
+    <label>Sec: </label><button type="button" onclick="SetMan.butSec()" id="sec2">Off</button><button type="button" class="trig" style="background-color:yellow"></button><br><br>
+    <label>Cot: </label><button type="button" onclick="SetMan.butCot()" id="cot2">Off</button><button type="button" class="trig" style="background-color:magenta"></button><br><br>
+    <hr><br>
+    <label id="triangleArea1"></label><br><br>
+    <hr><br>
+    <label id="sin1"></label>
+    <label id="csc1" style="float:right;"></label>
+    <br><br>
+    <label id="cos1"></label>
+    <label id="sec1" style="float:right;"></label>
+    <br><br>
+    <label id="tan1"></label>
+    <label id="cot1" style="float:right;"></label><br><br>
+
+
+  </div>
+</div>
+
+<div class="panel" id="panel4">
+  <div class="innerPanel">
+    <label class="title">π<b>&nbsp&nbspIdentities</b></label>
+    <button type="button" onclick="SetMan.butNextPanel(false, 4)" style="font-size:30px;">π</button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 3)"><img src="./assets/triangleButton.png" class="navButton"></button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 2)"><img src="./assets/circleButton.png" class="navButton"></button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 1)"><img src="./assets/plusButton.png" class="navButton"></button>
+    <button type="button" onclick="SetMan.butNextPanel(false, 0)">W</button>
+    <br><br>
+    <button type="button" onclick="SetMan.butNextPanel()">Next</button>
+    <button type="button" onclick="SetMan.butNextPanel(true)">Prev</button><br><br>
+    <hr><br>
+    <label>cos²(θ) + sin²(θ) = 1 </label><button type="button" onclick="SetMan.butPythIdenOne()" id="pythIdenOne">On</button><br><br>
+
+  </div>
+</div>
+
+</html>

@@ -803,7 +803,7 @@ let root = document.querySelector(':root');
 let rootStyles = getComputedStyle(root);
 let cssCanvasSize = rootStyles.getPropertyValue('--canvas-size');
 root.style.setProperty('--canvas-size', CANVAS_SIZE + 'px');
-root.style.setProperty('--panel-width', (CANVAS_SIZE * .8) + 'px');
+root.style.setProperty('--panel-width', (CANVAS_SIZE * .6) + 'px');
 root.style.setProperty('--inner-panel-size', (CANVAS_SIZE - 60) + 'px');
 
 
@@ -903,9 +903,9 @@ function decreaseCanvasSize() {
 }
 
 function hidePanels() {
-    document.getElementById('panel0').style.display="block";
+    document.getElementById('panel0').style.display="none";
     document.getElementById('panel1').style.display="none";
-    document.getElementById('panel2').style.display="none";
+    document.getElementById('panel2').style.display="block";
     document.getElementById('panel3').style.display="none";
     document.getElementById('panel4').style.display="none";
 }

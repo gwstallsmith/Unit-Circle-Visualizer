@@ -792,7 +792,8 @@ function newSetMan(set) {
         Y_ORIGIN = CANVAS_HALF;
 
         setup();
-        root.style.setProperty('--canvas-size', CANVAS_SIZE + 'px');
+        let innerPanelSize = (CANVAS_SIZE * 1.1 - 60);
+        root.style.setProperty('--canvas-size',(CANVAS_SIZE * 1.1) + 'px');
         root.style.setProperty('--inner-panel-size', innerPanelSize + 'px');
     }
 
@@ -802,9 +803,9 @@ function newSetMan(set) {
 let root = document.querySelector(':root');
 let rootStyles = getComputedStyle(root);
 let cssCanvasSize = rootStyles.getPropertyValue('--canvas-size');
-root.style.setProperty('--canvas-size', CANVAS_SIZE + 'px');
-root.style.setProperty('--panel-width', (CANVAS_SIZE * .6) + 'px');
-root.style.setProperty('--inner-panel-size', (CANVAS_SIZE - 60) + 'px');
+root.style.setProperty('--canvas-size', (CANVAS_SIZE * 1.1) + 'px');
+root.style.setProperty('--panel-width', (CANVAS_SIZE * .7) + 'px');
+root.style.setProperty('--inner-panel-size', (CANVAS_SIZE * 1.1 - 60) + 'px');
 
 
 const PI = Math.PI;
@@ -879,7 +880,7 @@ function increaseCanvasSize() {
     UNIT = CANVAS_SIZE / 4;
 
     setup();
-    if(CANVAS_SIZE <= 1500 && CANVAS_SIZE >= 700) {
+    if(CANVAS_SIZE <= 1500 && CANVAS_SIZE >= 1000) {
         root.style.setProperty('--canvas-size', CANVAS_SIZE + 'px');
         root.style.setProperty('--inner-panel-size', (CANVAS_SIZE - 60) + 'px');
     }
@@ -895,17 +896,18 @@ function decreaseCanvasSize() {
     CANVAS_HALF = CANVAS_SIZE / 2;
     UNIT = CANVAS_SIZE / 4;
 
-    setup();
-    if(CANVAS_SIZE >= 700 && CANVAS_SIZE <= 1500) {
+    if(CANVAS_SIZE >= 1000 && CANVAS_SIZE <= 1500) {
         root.style.setProperty('--canvas-size', CANVAS_SIZE + 'px');
         root.style.setProperty('--inner-panel-size', (CANVAS_SIZE - 60) + 'px');
     }
+    setup();
+
 }
 
 function hidePanels() {
     document.getElementById('panel0').style.display="none";
-    document.getElementById('panel1').style.display="none";
-    document.getElementById('panel2').style.display="block";
+    document.getElementById('panel1').style.display="block";
+    document.getElementById('panel2').style.display="none";
     document.getElementById('panel3').style.display="none";
     document.getElementById('panel4').style.display="none";
 }
@@ -1007,7 +1009,7 @@ function setup() {
     textAlign(CENTER);
     textSize(24);
 
-    document.getElementById("canvasSize").innerHTML = 'Current Size: ' + CANVAS_SIZE + 'px';
+    document.getElementById("canvasSize").innerHTML = CANVAS_SIZE + 'px';
 }
 
 // P5 function.

@@ -1019,10 +1019,10 @@ function preload() {
 // P5 function.
 let unitCircleInc = 0;
 function keyPressed() {
-    if(keyCode === 61) {
+    if(keyCode === 187) {
         increaseCanvasSize();
     }
-    if(keyCode === 173) {
+    if(keyCode === 189) {
         decreaseCanvasSize();
     }
     if(keyCode === LEFT_ARROW) {
@@ -1040,7 +1040,6 @@ function keyPressed() {
         }    
         snapUnitCircle(UNIT_CIRCLE_ANGLES[unitCircleInc]);
     }
-
     if(keyCode === 49) {
         SetMan.butNextPanel(false, 0);
     }

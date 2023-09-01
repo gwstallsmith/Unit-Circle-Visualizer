@@ -117,67 +117,81 @@
 
 <div class="panel" id="panel2">
   <div class="innerPanel">
-    <img src="./assets/circleButton.png" style="float:left;"><label class="title">&nbsp<b>Circle</b></label>
-    <br><br>
-    <button type="button" class="navButton" onclick="SetMan.butNextPanel(false, 4)" style="font-size:30px;">π</button>
-    <button type="button" class="navButton" onclick="SetMan.butNextPanel(false, 3)"><img src="./assets/triangleButton.png"></button>
-    <button type="button" class="navButton" onclick="SetMan.butNextPanel(false, 2)"><img src="./assets/circleButton.png"></button>
-    <button type="button" class="navButton" onclick="SetMan.butNextPanel(false, 1)"><img src="./assets/plusButton.png"></button>
-    <button type="button" class="navButton" onclick="SetMan.butNextPanel(false, 0)">W</button>
-    <button type="button" class="navButton" style="float:right;" onclick="SetMan.butNextPanel()">Next</button>
-    <button type="button" class="navButton" style="float:right;" onclick="SetMan.butNextPanel(true)">Prev</button>
-    <br><hr>
+    <img src="./assets/circleButton.png"><label class="title">&nbsp<b>Circle</b></label>
+    <div class="grid-container-nav">
+      <div class="grid-item-nav">
+        <button type="button" class="navButton shadow" onclick="SetMan.butNextPanel(false, 1)"><img class="navButton" src="./assets/plusButton.png"></button>
+      </div>
+      <div class="grid-item-nav">
+        <button type="button" class="navButton shadow" onclick="SetMan.butNextPanel(false, 2)"><img class="navButton" src="./assets/circleButton.png"></button>
+      </div>
+      <div class="grid-item-nav">
+        <button type="button" class="navButton shadow" onclick="SetMan.butNextPanel(false, 3)"><img class="navButton" src="./assets/triangleButton.png"></button>
+      </div>
+      <div class="grid-item-nav">
+        <button type="button" class="navButton shadow" onclick="SetMan.butNextPanel(false, 4)" style="font-size:30px;">π</button>
+      </div>
+      <div class="grid-item-nav">
+        <button type="button" class="navButton shadow" onclick="SetMan.butNextPanel(false, 0)">W</button>
+      </div>
+      <div class="grid-item-nav">
+        <button type="button" class="navButton shadow" onclick="SetMan.butNextPanel(true)">Prev</button>
+      </div>
+      <div class="grid-item-nav">
+        <button type="button" class="navButton shadow" onclick="SetMan.butNextPanel()">Next</button>
+      </div>
+    </div>
+
+    <hr>
     <div class="grid-container">
       <div class="grid-item">
         <label class="gridLabel">Circle</label>
-        <button type="button" class="gridButton" onclick="SetMan.butCircle()" id="circle">On</button>
+        <button type="button" class="gridButton shadow" onclick="SetMan.butCircle()" id="circle">On</button>
       </div>
       <div class="grid-item">
         <label class="gridLabel">Unit Circle</label>
-        <button type="button" class="gridButton" onclick="SetMan.butUnitCirc()" id="unitCirc">Off</button>
+        <button type="button" class="gridButton shadow" onclick="SetMan.butUnitCirc()" id="unitCirc">Off</button>
       </div>
       <div class="grid-item">
         <label class="gridLabel">Unit Angles</label>
-        <button type="button" class="gridButton plusMinus" onclick="forwardUnitCircle()">&nbsp-&nbsp</button><button class="gridButton plusMinus" type="button" onclick="backwardUnitCircle()">+</button>
+        <button type="button" class="gridButton shadow plusMinus" onclick="forwardUnitCircle()">&nbsp-&nbsp</button><button class="gridButton shadow plusMinus" type="button" onclick="backwardUnitCircle()">+</button>
       </div>
       <div class="grid-item">
         <label class="gridLabel">Quadrant I</label>
-        <button type="button" class="gridButton" onclick="SetMan.butQuadI()" id="quadI">Off</button>
+        <button type="button" class="gridButton shadow" onclick="SetMan.butQuadI()" id="quadI">Off</button>
       </div>
       <div class="grid-item">
         <label class="gridLabel">Quadrant II</label>
-        <button type="button" class="gridButton" onclick="SetMan.butQuadII()" id="quadII">Off</button>
+        <button type="button" class="gridButton shadow" onclick="SetMan.butQuadII()" id="quadII">Off</button>
       </div>
       <div class="grid-item">
         <label class="gridLabel">Quadrant III</label>
-        <button type="button" class="gridButton" onclick="SetMan.butQuadIII()" id="quadIII">Off</button>
+        <button type="button" class="gridButton shadow" onclick="SetMan.butQuadIII()" id="quadIII">Off</button>
       </div>
       <div class="grid-item">
         <label class="gridLabel">Quadrant IV</label>
-        <button type="button" class="gridButton" onclick="SetMan.butQuadIV()" id="quadIV">Off</button>
+        <button type="button" class="gridButton shadow" onclick="SetMan.butQuadIV()" id="quadIV">Off</button>
+      </div>
+      
+      <div class="grid-item">
+        <label class="gridLabel">Quadrantal</label>
+        <button type="button" class="gridButton shadow" onclick="SetMan.butCardPoints()" id="cardPoints1">Off</button>
       </div>
       <div class="grid-item">
-        <label class="gridLabel" style="font-size:18px">Cardinal Points</label>
-        <button type="button" class="gridButton" onclick="SetMan.butCardPoints()" id="cardPoints1">Off</button>
       </div>
       <div class="grid-item">
         <label class="gridLabel">Unit Arc: </label>
-        <button type="button" class="gridButton" onclick="SetMan.butUnitArc()" id="unitArc">On</button>
+        <button type="button" class="gridButton shadow" onclick="SetMan.butUnitArc()" id="unitArc">On</button>
       </div>
       <div class="grid-item">
         <label class="gridLabel">Mouse Arc: </label>
-        <button type="button" class="gridButton" onclick="SetMan.butMouseArc()" id="mouseArc">Off</button>
+        <button type="button" class="gridButton shadow" onclick="SetMan.butMouseArc()" id="mouseArc">Off</button>
       </div>
       <div class="grid-item">
       </div>
-      <div class="grid-item">
-      </div>
-
-
-
     </div>
-    <hr><br>
-    <br>
+    <br><hr><br>
+    
     
 
   </div>

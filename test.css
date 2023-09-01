@@ -1,6 +1,6 @@
 * {
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    line-height:25px;
+    line-height:150%;
 
     border-radius: 5px;
 }
@@ -10,6 +10,17 @@
     --inner-panel-size: 200px;
 }
 
+.shadow {
+    box-shadow: 0px 5px 2px black;
+}
+
+button:active {
+    background: white;
+    -webkit-box-shadow: inset 0px 0px 10px white;
+       -moz-box-shadow: inset 0px 0px 10px white;
+            box-shadow: inset 0px 0px 10px white;
+     outline: none;
+}
 
 body.p5 {
     justify-content: center;
@@ -50,13 +61,15 @@ div.innerPanel {
 
 }
 
-button {
-    font-size: 24px;
+li {
+    font-size: 18px;
     color:white;
-    background-color: #101111;
-    min-height: 50px;
-    min-width: 50px;
-    margin-top: 10px;
+}
+
+p.innerPanel {
+    font-size: 18px;
+    color:white;
+
 }
 
 
@@ -67,20 +80,43 @@ button.gridButton {
     width:100px;
     height:50px;
 
+    border:2px solid;
+    border-color:white;
     border-radius: 20%;
-
-
 }
 
 button.navButton {
     font-size: 24px;
     color:white;
     background-color: #101111;
-    border-radius: 20%;
+    
+    min-height: 60px;
+    height:90%;
+    width:80%;
 
+    margin-top: 5%;
+
+    align-items: center;
+
+    border:2px solid;
+    border-color:white;
+    border-radius: 20%;
 
 }
 
+img.navButton {
+    margin:auto;
+    margin-top:10%;
+    border:2px;
+    border-color:white;
+    border-radius: 20%;
+}
+
+
+button.plusMinus {
+    height:50px;
+    width:50px;
+}
 
 button.trig {
     float:right;
@@ -93,63 +129,68 @@ label.gridLabel {
     font-size:22px;
     width:100px;
     color:white;
-    padding-left: 5%;
-    padding-right: 5%;
+    padding-left: 10%;
+    padding-right: 10%;
 
     background-color: #101111;
 
+    border: 2px solid;
+    border-color: white;
+    border-radius: 10px;
 
-}
-
-
-button.plusMinus {
-    height:50px;
-    width:50px;
 }
 
 label.title {
     font-size: 36px;
-}
-
-p.innerPanel {
-    font-size: 18px;
-    color:white;
-
-}
-
-li {
-    font-size: 18px;
     color:white;
 }
 
-/*
-input {
-    font-size: 16px;
-    color:white;
-
-    background-color: #101111;
-}
-*/
 
 .grid-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: auto;
-  }
+    gap: 1%;
+    margin-top:5%;
+    margin-bottom:5%;
+}
 
-  .grid-item {
-    margin:10px;
-    border: 1px solid #ccc;
-    padding-top: 10px;
-    padding-bottom: 10px;
+.grid-item {
+    border: 2px solid;
+
+    padding-top: 5%;
+    padding-bottom: 5%;
 
     text-align: center;
     width:auto;
-    height:75%;
+    height:auto;
+
     background-color: #5A5A5A;
 
 
     border-radius: 20%;
-    border-color: black;
+    border-color: white;
 }
 
+.grid-container-nav {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1%;
+    margin-top:5%;
+    margin-bottom:5%;
+}
+  
+.grid-item-nav {
+    
+    border: 2px solid;
+
+    padding: 5%;
+    padding-bottom:10%;
+
+    text-align: center;
+
+    background-color: #5A5A5A;
+
+
+    border-radius: 20%;
+    border-color: white;
+}

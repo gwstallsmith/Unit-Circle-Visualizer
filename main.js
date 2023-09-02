@@ -905,8 +905,8 @@ function decreaseCanvasSize() {
 }
 
 function hidePanels() {
-    document.getElementById('panel0').style.display="none";
-    document.getElementById('panel1').style.display="block";
+    document.getElementById('panel0').style.display="block";
+    document.getElementById('panel1').style.display="none";
     document.getElementById('panel2').style.display="none";
     document.getElementById('panel3').style.display="none";
     document.getElementById('panel4').style.display="none";
@@ -1021,10 +1021,10 @@ function preload() {
 // P5 function.
 let unitCircleInc = 0;
 function keyPressed() {
-    if(keyCode === 187) {
+    if(keyCode === 187 || keyCode == 61) {
         increaseCanvasSize();
     }
-    if(keyCode === 189) {
+    if(keyCode === 189 || keyCode == 173) {
         decreaseCanvasSize();
     }
     if(keyCode === LEFT_ARROW) {

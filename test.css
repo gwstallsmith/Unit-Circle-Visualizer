@@ -57,7 +57,6 @@ div.innerPanel {
 
     justify-content: flex-end;
 
-    text-align:center;
 
 
 }
@@ -65,11 +64,31 @@ div.innerPanel {
 li {
     font-size: 18px;
     color:white;
+    margin-left:5%;
 }
 
 p.innerPanel {
     font-size: 18px;
     color:white;
+    text-align: left;
+
+}
+
+p.identity {
+    font-size: 24px;
+    color:white;
+    
+    margin-left:2%;
+    margin-right:2%;
+
+
+    background-color: #101111;
+
+    border: 2px solid;
+    border-color: white;
+    border-radius: 10px;
+
+    line-height:170%;
 
 
 }
@@ -84,7 +103,7 @@ button.gridButton {
 
     border:2px solid;
     border-color:white;
-    border-radius: 20%;
+    border-radius: 10%;
 }
 
 button.navButton {
@@ -102,7 +121,7 @@ button.navButton {
 
     border:2px solid;
     border-color:white;
-    border-radius: 20%;
+    border-radius: 10%;
 
 }
 
@@ -111,26 +130,39 @@ img.navButton {
     margin-top:10%;
     border:2px;
     border-color:white;
-    border-radius: 20%;
+    border-radius:10%;
 }
 
 
-button.plusMinus {
+button.square {
     height:50px;
     width:50px;
 }
 
-button.trig {
-    float:right;
-    width:40px;
-    height:40px;
-}
 
 
 label.gridLabel {
     font-size:22px;
     width:100px;
     color:white;
+    padding-left: 10%;
+    padding-right: 10%;
+
+    background-color: #101111;
+
+    border: 2px solid;
+    border-color: white;
+    border-radius: 10px;
+
+}
+
+label.identity{
+    font-size:24px;
+    
+
+    color:white;
+
+    padding:2%;
     padding-left: 10%;
     padding-right: 10%;
 
@@ -169,7 +201,7 @@ label.title {
     background-color: #5A5A5A;
 
 
-    border-radius: 20%;
+    border-radius: 10%;
     border-color: white;
 }
 
@@ -193,6 +225,34 @@ label.title {
     background-color: #5A5A5A;
 
 
-    border-radius: 20%;
+    border-radius: 10%;
     border-color: white;
 }
+
+.grid-container-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2%;
+    margin-top:5%;
+    margin-bottom:5%;
+}
+
+.grid-item-info {
+    color:white;
+    border: 2px solid;
+    font-size: 24px;
+
+    padding-top: 5%;
+    padding-bottom: 5%;
+
+    text-align: center;
+    width:auto;
+    height:auto;
+
+    background-color: #5A5A5A;
+
+
+    background-color: #101111;
+
+}
+

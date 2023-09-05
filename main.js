@@ -136,6 +136,7 @@ class SettingsManager {
         this.openPanel_ = 0;
 
         this.pythIdenOne_ = false;
+        this.pythIdenTwo_ = false;
 
     }
 
@@ -360,6 +361,15 @@ class SettingsManager {
             document.getElementById('pythIdenOne').innerHTML = 'Off'
         }
         return this.pythIdenOne_;
+    }
+
+    getPythIdenTwo() {
+        if(this.pythIdenTwo_) {
+            document.getElementById('pythIdenTwo').innerHTML = 'On'
+        } else {
+            document.getElementById('pythIdenTwo').innerHTML = 'Off'
+        }
+        return this.pythIdenTwo_;
     }
 
     // Buttons
@@ -735,13 +745,25 @@ class SettingsManager {
         }
     }
 
-    butPythIdenOne() {
-        this.pythIdenOne_ = !this.pythIdenOne_;
+    butPythIdenOne(set = !this.pythIdenOne_) {
+        this.pythIdenOne_ = set;
         if(this.pythIdenOne_) {
             document.getElementById('pythIdenOne').innerHTML = 'On';
+            this.butPythIdenTwo(false);
         } else {
             this.butAllTrigFunc(false);
             document.getElementById('pythIdenOne').innerHTML = 'Off'; 
+        }
+    }
+
+    butPythIdenTwo(set = !this.pythIdenTwo_) {
+        this.pythIdenTwo_ = set;
+        if(this.pythIdenTwo_) {
+            document.getElementById('pythIdenTwo').innerHTML = 'On';
+            this.butPythIdenOne(false);
+        } else {
+            this.butAllTrigFunc(false);
+            document.getElementById('pythIdenTwo').innerHTML = 'Off'; 
         }
     }
 
@@ -1104,7 +1126,7 @@ function draw() {
     if(SetMan.getPosInfo()) drawPosInfo();
 
     if(SetMan.getPythIdenOne()) drawPythagoreanIdentityOne();
-
+    if(SetMan.getPythIdenTwo()) drawPythagoreanIdentityTwo();
 
 
 
@@ -1582,6 +1604,7 @@ function drawPosInfo() {
 }
 
 function drawPythagoreanIdentityOne() {
+    SetMan.butPythIdenTwo(false);
     SetMan.butAllTrigFunc(false);
     SetMan.butSin();
     SetMan.butCos();
@@ -1614,5 +1637,14 @@ function drawPythagoreanIdentityOne() {
     } else if(angle >= 3*PI/2 && angle < 2*PI) {
         text(explanation, -UNIT * 1.2, -UNIT * 1.6);
     }
+
+}
+
+function drawPythagoreanIdentityTwo() {
+    SetMan.butPythIdenOne(false);
+    SetMan.butAllTrigFunc(false);
+    SetMan.butTan();
+    SetMan.butSec();
+
 
 }

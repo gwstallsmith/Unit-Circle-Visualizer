@@ -52,7 +52,6 @@ div.innerPanel {
     padding:15px;
     background-color: #101111;
     height:var(--inner-panel-size);
-    
     min-height: 820px;
 
     justify-content: flex-end;
@@ -153,7 +152,6 @@ label.gridLabel {
     border: 2px solid;
     border-color: white;
     border-radius: 10px;
-
 }
 
 label.identity{

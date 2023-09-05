@@ -803,9 +803,9 @@ function newSetMan(set) {
 let root = document.querySelector(':root');
 let rootStyles = getComputedStyle(root);
 let cssCanvasSize = rootStyles.getPropertyValue('--canvas-size');
-root.style.setProperty('--canvas-size', (CANVAS_SIZE * 1.1) + 'px');
-root.style.setProperty('--panel-width', (CANVAS_SIZE * .7) + 'px');
-root.style.setProperty('--inner-panel-size', (CANVAS_SIZE * 1.1 - 60) + 'px');
+root.style.setProperty('--canvas-size', (CANVAS_SIZE * 1.2) + 'px');
+root.style.setProperty('--panel-width', (CANVAS_SIZE * .8) + 'px');
+root.style.setProperty('--inner-panel-size', (CANVAS_SIZE * 1.2 - 60) + 'px');
 
 
 const PI = Math.PI;
@@ -881,8 +881,8 @@ function increaseCanvasSize() {
 
     setup();
     if(CANVAS_SIZE <= 1500 && CANVAS_SIZE >= 1000) {
-        root.style.setProperty('--canvas-size', CANVAS_SIZE + 'px');
-        root.style.setProperty('--inner-panel-size', (CANVAS_SIZE - 60) + 'px');
+        root.style.setProperty('--canvas-size', CANVAS_SIZE * 1.2 + 'px');
+        root.style.setProperty('--inner-panel-size', (CANVAS_SIZE * 1.2 - 60) + 'px');
     }
 }
 
@@ -897,8 +897,8 @@ function decreaseCanvasSize() {
     UNIT = CANVAS_SIZE / 4;
 
     if(CANVAS_SIZE >= 1000 && CANVAS_SIZE <= 1500) {
-        root.style.setProperty('--canvas-size', CANVAS_SIZE + 'px');
-        root.style.setProperty('--inner-panel-size', (CANVAS_SIZE - 60) + 'px');
+        root.style.setProperty('--canvas-size', CANVAS_SIZE * 1.2 + 'px');
+        root.style.setProperty('--inner-panel-size', (CANVAS_SIZE * 1.2 - 60) + 'px');
     }
     setup();
 

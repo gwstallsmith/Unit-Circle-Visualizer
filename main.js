@@ -752,10 +752,6 @@ class SettingsManager {
 let CANVAS_SIZE = 900;
 let CANVAS_HALF = CANVAS_SIZE / 2;
 
-const username = 'gwstallsmith';
-const repoName = 'Trigonometry-Visualizer';
-
-const apiUrl = `https://api.github.com/repos/${username}/${repoName}`;
 
 
 let CosMan;
@@ -764,17 +760,6 @@ function main() {
     SetMan = new SettingsManager();
     
     hidePanels();
-
-    fetch(apiUrl)
-      .then(response => response.json())
-      .then(data => {
-        const lastUpdated = new Date(data.updated_at);
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        document.getElementById('last-updated').textContent = lastUpdated.toLocaleDateString(undefined, options);
-      })
-      .catch(error => {
-        console.error('Error fetching repository information:', error);
-      });
 }
 
 function newSetMan(set) {
@@ -1297,7 +1282,7 @@ function drawUnitTriangle() {
     CosMan.strokeColor('white');
     CosMan.strokeWeight(1);
 
-    fill('rgba(255,80,80, 0.5)');
+    fill('rgba(100, 100, 100, 0.5)');
 
 
     let angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
@@ -1371,25 +1356,47 @@ function drawCos() {
     }
     angle *= PI;
 
-    line(0, 0, relativeCos(angle), 0);
+    line(0, relativeSin(angle), relativeCos(angle), relativeSin(angle));
 }
 
 function drawTan() {
     CosMan.strokeColor('red');
     CosMan.strokeWeight(4);
-    line(UNIT, 0, UNIT, (relativeMouseY()/relativeMouseX() * UNIT))
+    let angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+    if(angle < 0) {
+        angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+        angle += 2;
+    }
+    angle *= PI;
+
+    
+    line(relativeCos(angle), relativeSin(angle), UNIT/relativeCos(angle) * UNIT, 0)
 }
 
 function drawCsc() {
     CosMan.strokeColor('cyan');
     CosMan.strokeWeight(4);
-    line(0, 0, 0, (UNIT/relativeMouseY()) * UNIT);
+    let angle = quadArcTan(relativeMouseX(), relativeMouseY()) / PI;
+    if(angle < 0) {
+        angle = quadArcTan(relativeMouseX(), relativeMouseY()) / PI;
+        angle += 2;
+    }
+    angle *= PI;
+
+    line(0, 0, 0, -(1/(relativeSin(angle)/UNIT)) * UNIT);
 }
 
 function drawSec() {
     CosMan.strokeColor('yellow');
     CosMan.strokeWeight(4);
-    line(0, 0, UNIT, (relativeMouseY()/relativeMouseX()) * UNIT)
+    let angle = quadArcTan(relativeMouseX(), relativeMouseY()) / PI;
+    if(angle < 0) {
+        angle = quadArcTan(relativeMouseX(), relativeMouseY()) / PI;
+        angle += 2;
+    }
+    angle *= PI;
+
+    line(0, 0, UNIT/relativeCos(angle) * UNIT, 0)
 }
 
 function drawCot() {
@@ -1403,7 +1410,7 @@ function drawCot() {
     }
     angle *= PI;
 
-    line(0, (UNIT/relativeMouseY() * UNIT), relativeCos(angle), -relativeSin(angle));
+    line(0, -(1/(relativeSin(angle)/UNIT)) * UNIT, relativeCos(angle), -relativeSin(angle));
 
 }
 

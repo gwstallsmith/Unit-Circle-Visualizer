@@ -138,7 +138,7 @@ class SettingsManager {
         this.pythIdenOne_ = false;
         this.pythIdenTwo_ = false;
 
-        this.demoMode_ = false;
+        this.spinMode_ = false;
     }
 
     getSin() {
@@ -430,15 +430,15 @@ class SettingsManager {
         return this.pythIdenTwo_;
     }
 
-    getDemoMode() {
-        if(this.demoMode_) {
-            document.getElementById('demoMode').innerHTML = 'On'
-            document.getElementById('demoMode').style = 'border-color: rgb(0,255,0);';
+    getSpinMode() {
+        if(this.spinMode_) {
+            document.getElementById('spinMode').innerHTML = 'On'
+            document.getElementById('spinMode').style = 'border-color: rgb(0,255,0);';
         } else {
-            document.getElementById('demoMode').innerHTML = 'Off'
-            document.getElementById('demoMode').style = 'border-color: rgb(255,0,0);';
+            document.getElementById('spinMode').innerHTML = 'Off'
+            document.getElementById('spinMode').style = 'border-color: rgb(255,0,0);';
         }
-        return this.demoMode_;
+        return this.spinMode_;
     }
 
     // Buttons
@@ -852,14 +852,14 @@ class SettingsManager {
         }
     }
 
-    butDemoMode() {
-        this.demoMode_ = !this.demoMode_;
-        if(this.demoMode_) {
-            document.getElementById('demoMode').innerHTML = 'On';
-            document.getElementById('demoMode').style = 'border-color: rgb(0,255,0);'; 
+    butSpinMode() {
+        this.spinMode_ = !this.spinMode_;
+        if(this.spinMode_) {
+            document.getElementById('spinMode').innerHTML = 'On';
+            document.getElementById('spinMode').style = 'border-color: rgb(0,255,0);'; 
         } else {
-            document.getElementById('demoMode').innerHTML = 'Off'; 
-            document.getElementById('demoMode').style = 'border-color: rgb(255,0,0);'; 
+            document.getElementById('spinMode').innerHTML = 'Off'; 
+            document.getElementById('spinMode').style = 'border-color: rgb(255,0,0);'; 
 
         }
     }
@@ -1171,6 +1171,9 @@ function keyPressed() {
     if(keyCode === 53) {
         SetMan.butNextPanel(false, 4);
     }
+    if(keyCode == 32) {
+        SetMan.butSpinMode();
+    }
 
 
 
@@ -1235,7 +1238,7 @@ function draw() {
     if(SetMan.getPythIdenOne()) drawPythagoreanIdentityOne();
     if(SetMan.getPythIdenTwo()) drawPythagoreanIdentityTwo();
 
-    if(SetMan.getDemoMode()) demoMode();
+    if(SetMan.getSpinMode()) spinMode();
 
     drawUnitPoint();
     drawMousePoint();
@@ -1785,13 +1788,13 @@ function drawPythagoreanIdentityTwo() {
 
 }
 
-let demoAngle = 2 * PI
-function demoMode() {
-    mouseX = relativeCos(demoAngle) * UNIT;
-    mouseY = -relativeSin(demoAngle) * UNIT;
+let spinAngle = 2 * PI
+function spinMode() {
+    mouseX = relativeCos(spinAngle) * UNIT;
+    mouseY = -relativeSin(spinAngle) * UNIT;
 
-    demoAngle -= PI/500;
-    if(demoAngle > 2 * PI || demoAngle <= 0) {
-        demoAngle = 2 * PI;
+    spinAngle -= PI/500;
+    if(spinAngle > 2 * PI || spinAngle <= 0) {
+        spinAngle = 2 * PI;
     }
 } 

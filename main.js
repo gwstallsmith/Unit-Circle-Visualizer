@@ -138,6 +138,7 @@ class SettingsManager {
         this.pythIdenOne_ = false;
         this.pythIdenTwo_ = false;
 
+        this.demoMode_ = false;
     }
 
     getSin() {
@@ -427,6 +428,17 @@ class SettingsManager {
             document.getElementById('pythIdenTwo').style = 'border-color: rgb(255,0,0);';
         }
         return this.pythIdenTwo_;
+    }
+
+    getDemoMode() {
+        if(this.demoMode_) {
+            document.getElementById('demoMode').innerHTML = 'On'
+            document.getElementById('demoMode').style = 'border-color: rgb(0,255,0);';
+        } else {
+            document.getElementById('demoMode').innerHTML = 'Off'
+            document.getElementById('demoMode').style = 'border-color: rgb(255,0,0);';
+        }
+        return this.demoMode_;
     }
 
     // Buttons
@@ -840,6 +852,19 @@ class SettingsManager {
         }
     }
 
+    butDemoMode() {
+        this.demoMode_ = !this.demoMode_;
+        if(this.demoMode_) {
+            document.getElementById('demoMode').innerHTML = 'On';
+            document.getElementById('demoMode').style = 'border-color: rgb(0,255,0);'; 
+        } else {
+            document.getElementById('demoMode').innerHTML = 'Off'; 
+            document.getElementById('demoMode').style = 'border-color: rgb(255,0,0);'; 
+
+        }
+    }
+
+
 };
 
 /////
@@ -1210,7 +1235,7 @@ function draw() {
     if(SetMan.getPythIdenOne()) drawPythagoreanIdentityOne();
     if(SetMan.getPythIdenTwo()) drawPythagoreanIdentityTwo();
 
-
+    if(SetMan.getDemoMode()) demoMode();
 
     drawUnitPoint();
     drawMousePoint();
@@ -1759,3 +1784,14 @@ function drawPythagoreanIdentityTwo() {
     }
 
 }
+
+let demoAngle = 2 * PI
+function demoMode() {
+    mouseX = relativeCos(demoAngle) * UNIT;
+    mouseY = -relativeSin(demoAngle) * UNIT;
+
+    demoAngle -= PI/500;
+    if(demoAngle > 2 * PI || demoAngle <= 0) {
+        demoAngle = 2 * PI;
+    }
+} 

@@ -6,7 +6,7 @@
 }
 
 :root {
-    --canvas-size: 800px;
+    --panel-width: 800px;
     --inner-panel-size: 200px;
 }
 
@@ -34,7 +34,7 @@ body.p5 {
 div.panel {
     width:var(--panel-width);
     max-width: 1500px;
-    height:var(--canvas-size);
+    height:var(--panel-height);
     max-height: 1500px;
     background-color: #5A5A5A;
 

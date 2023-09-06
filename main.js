@@ -801,10 +801,11 @@ function newSetMan(set) {
         Y_ORIGIN = CANVAS_HALF;
 
         setup();
-        let innerPanelSize = (CANVAS_SIZE * 1.1 - 60);
-        root.style.setProperty('--canvas-size',(CANVAS_SIZE * 1.1) + 'px');
-        root.style.setProperty('--inner-panel-size', innerPanelSize + 'px');
-    }
+        root.style.setProperty('--panel-height', (CANVAS_SIZE * 1.3) + 'px');
+        root.style.setProperty('--panel-width', (CANVAS_SIZE) + 'px');
+        root.style.setProperty('--inner-panel-size', (CANVAS_SIZE * 1.3 - 60) + 'px');
+        
+     }
 
 }
 
@@ -812,9 +813,9 @@ function newSetMan(set) {
 let root = document.querySelector(':root');
 let rootStyles = getComputedStyle(root);
 let cssCanvasSize = rootStyles.getPropertyValue('--canvas-size');
-root.style.setProperty('--canvas-size', (CANVAS_SIZE * 1.2) + 'px');
-root.style.setProperty('--panel-width', (CANVAS_SIZE * .8) + 'px');
-root.style.setProperty('--inner-panel-size', (CANVAS_SIZE * 1.2 - 60) + 'px');
+root.style.setProperty('--panel-height', (CANVAS_SIZE * 1.3) + 'px');
+root.style.setProperty('--panel-width', (CANVAS_SIZE) + 'px');
+root.style.setProperty('--inner-panel-size', (CANVAS_SIZE * 1.3 - 60) + 'px');
 
 
 const PI = Math.PI;
@@ -890,8 +891,9 @@ function increaseCanvasSize() {
 
     setup();
     if(CANVAS_SIZE <= 1500 && CANVAS_SIZE >= 1000) {
-        root.style.setProperty('--canvas-size', CANVAS_SIZE * 1.2 + 'px');
-        root.style.setProperty('--inner-panel-size', (CANVAS_SIZE * 1.2 - 60) + 'px');
+        root.style.setProperty('--panel-height', (CANVAS_SIZE * 1.3) + 'px');
+        root.style.setProperty('--panel-width', (CANVAS_SIZE) + 'px');
+        root.style.setProperty('--inner-panel-size', (CANVAS_SIZE * 1.3 - 60) + 'px');
     }
 }
 
@@ -906,8 +908,9 @@ function decreaseCanvasSize() {
     UNIT = CANVAS_SIZE / 4;
 
     if(CANVAS_SIZE >= 1000 && CANVAS_SIZE <= 1500) {
-        root.style.setProperty('--canvas-size', CANVAS_SIZE * 1.2 + 'px');
-        root.style.setProperty('--inner-panel-size', (CANVAS_SIZE * 1.2 - 60) + 'px');
+        root.style.setProperty('--panel-height', (CANVAS_SIZE * 1.3) + 'px');
+        root.style.setProperty('--panel-width', (CANVAS_SIZE) + 'px');
+        root.style.setProperty('--inner-panel-size', (CANVAS_SIZE * 1.3 - 60) + 'px');
     }
     setup();
 
@@ -1666,7 +1669,7 @@ function drawPythagoreanIdentityTwo() {
     fill('white');
     textSize(24);
 
-    let explanation = 'Pythagorean Identity #2\n\ntan²(' + parseFloat(angle/PI).toFixed(3) + 'π) + sec²(' + parseFloat(angle/PI).toFixed(3) + 'π) = 1\n\n(' + xCoord + ')² + (' + yCoord + ')² = 1\n\n' + parseFloat(Math.pow(xCoord, 2)).toFixed(3) + ' + '+ parseFloat(Math.pow(yCoord, 2)).toFixed(3) + ' = 1';
+    let explanation = 'Pythagorean Identity #2\n\ntan²(' + parseFloat(angle/PI).toFixed(3) + 'π) + 1 = sec²(' + parseFloat(angle/PI).toFixed(3) + 'π)\n\n(' + parseFloat(yCoord/xCoord).toFixed(3) + ')² + 1 = (' + parseFloat(1/xCoord).toFixed(3) + ')²\n\n' + parseFloat(Math.pow(yCoord/xCoord, 2)).toFixed(3) + ' + 1 = '+ parseFloat(Math.pow(1/xCoord, 2)).toFixed(3);
 
     if(angle >= 0 && angle < PI/2) {
         text(explanation, -UNIT * 1.2, -UNIT * 1.6);

@@ -143,16 +143,23 @@ class SettingsManager {
     getSin() {
         if(this.sin_) {
             document.getElementById('sin2').innerHTML = 'On';
+            document.getElementById('sin2').style = 'border-color: rgb(0,255,0);';
+
         } else {
             document.getElementById('sin2').innerHTML = 'Off'; 
+            document.getElementById('sin2').style = 'border-color: rgb(255,0,0);';
+
         }
         return this.sin_;
     }
     getCos() {
         if(this.cos_) {
             document.getElementById('cos2').innerHTML = 'On';
+            document.getElementById('cos2').style = 'border-color: rgb(0,255,0);';
+
         } else {
-            document.getElementById('cos2').innerHTML = 'Off'; 
+            document.getElementById('cos2').innerHTML = 'Off';
+            document.getElementById('cos2').style = 'border-color: rgb(255,0,0);'; 
         }
         return this.cos_;
     }
@@ -160,8 +167,11 @@ class SettingsManager {
     getTan() {
         if(this.tan_) {
             document.getElementById('tan2').innerHTML = 'On';
+            document.getElementById('tan2').style = 'border-color: rgb(0,255,0);';
+
         } else {
             document.getElementById('tan2').innerHTML = 'Off'; 
+            document.getElementById('tan2').style = 'border-color: rgb(255,0,0);';
         }
 
         return this.tan_;
@@ -169,8 +179,11 @@ class SettingsManager {
     getCsc() {
         if(this.csc_) {
             document.getElementById('csc2').innerHTML = 'On';
+            document.getElementById('csc2').style = 'border-color: rgb(0,255,0);';
+
         } else {
             document.getElementById('csc2').innerHTML = 'Off'; 
+            document.getElementById('csc2').style = 'border-color: rgb(255,0,0);';
         }
 
         return this.csc_;
@@ -178,8 +191,10 @@ class SettingsManager {
     getSec() {
         if(this.sec_) {
             document.getElementById('sec2').innerHTML = 'On';
+            document.getElementById('sec2').style = 'border-color: rgb(0,255,0);';
         } else {
             document.getElementById('sec2').innerHTML = 'Off'; 
+            document.getElementById('sec2').style = 'border-color: rgb(255,0,0);';
         }
 
         return this.sec_;
@@ -187,8 +202,10 @@ class SettingsManager {
     getCot() {
         if(this.cot_) {
             document.getElementById('cot2').innerHTML = 'On';
+            document.getElementById('cot2').style = 'border-color: rgb(0,255,0);';
         } else {
             document.getElementById('cot2').innerHTML = 'Off'; 
+            document.getElementById('cot2').style = 'border-color: rgb(255,0,0);';
         }
 
         return this.cot_;
@@ -197,8 +214,10 @@ class SettingsManager {
     getCircle() {
         if(this.circle_) {
             document.getElementById('circle').innerHTML = 'On';
+            document.getElementById('circle').style = 'border-color: rgb(0,255,0);';
         } else {
             document.getElementById('circle').innerHTML = 'Off'; 
+            document.getElementById('circle').style = 'border-color: rgb(255,0,0);';
         }
         return this.circle_
     }
@@ -206,10 +225,16 @@ class SettingsManager {
     getCardPoints() {
         if(this.cardPoints_) {
             document.getElementById('cardPoints').innerHTML = 'On';
+            document.getElementById('cardPoints').style = 'border-color: rgb(0,255,0);';
+
             document.getElementById('cardPoints1').innerHTML = 'On';
+            document.getElementById('cardPoints1').style = 'border-color: rgb(0,255,0);';
         } else {
-            document.getElementById('cardPoints').innerHTML = 'Off'; 
+            document.getElementById('cardPoints').innerHTML = 'Off';
+            document.getElementById('cardPoints').style = 'border-color: rgb(255,0,0);';
+            
             document.getElementById('cardPoints1').innerHTML = 'Off'; 
+            document.getElementById('cardPoints1').style = 'border-color: rgb(255,0,0);';
         }
         return this.cardPoints_;
     }
@@ -217,8 +242,10 @@ class SettingsManager {
     getUnitCirc() {
         if(this.unitCirc_) {
             document.getElementById('unitCirc').innerHTML = 'On';
+            document.getElementById('unitCirc').style = 'border-color: rgb(0,255,0);';
         } else {
             document.getElementById('unitCirc').innerHTML = 'Off'; 
+            document.getElementById('unitCirc').style = 'border-color: rgb(255,0,0);';
         }
 
         return this.unitCirc_;
@@ -227,8 +254,10 @@ class SettingsManager {
     getGrid() {
         if(this.grid_) {
             document.getElementById('grid').innerHTML = 'On';
+            document.getElementById('grid').style = 'border-color: rgb(0,255,0);';
         } else {
             document.getElementById('grid').innerHTML = 'Off'; 
+            document.getElementById('grid').style = 'border-color: rgb(255,0,0);';
         }
         return this.grid_;
     }
@@ -238,8 +267,10 @@ class SettingsManager {
     getOrigin() {
         if(this.origin_) {
             document.getElementById('origin').innerHTML = 'On';
+            document.getElementById('origin').style = 'border-color: rgb(0,255,0);';
         } else {
             document.getElementById('origin').innerHTML = 'Off'; 
+            document.getElementById('origin').style = 'border-color: rgb(255,0,0);';
         }
         return this.origin_;
     }
@@ -247,8 +278,10 @@ class SettingsManager {
     getXAxis() {
         if(this.xAxis_) {
             document.getElementById('xAxis').innerHTML = 'On';
+            document.getElementById('xAxis').style = 'border-color: rgb(0,255,0);';
         } else {
             document.getElementById('xAxis').innerHTML = 'Off'; 
+            document.getElementById('xAxis').style = 'border-color: rgb(255,0,0);';
         }
         return this.xAxis_
     }
@@ -256,8 +289,10 @@ class SettingsManager {
     getYAxis() {
         if(this.yAxis_) {
             document.getElementById('yAxis').innerHTML = 'On';
+            document.getElementById('yAxis').style = 'border-color: rgb(0,255,0);';
         } else {
             document.getElementById('yAxis').innerHTML = 'Off'; 
+            document.getElementById('yAxis').style = 'border-color: rgb(255,0,0);';
         }
 
         return this.yAxis_
@@ -266,8 +301,10 @@ class SettingsManager {
     getUnitArc() {
         if(this.unitArc_) {
             document.getElementById('unitArc').innerHTML = 'On';
+            document.getElementById('unitArc').style = 'border-color: rgb(0,255,0);';
         } else {
             document.getElementById('unitArc').innerHTML = 'Off'; 
+            document.getElementById('unitArc').style = 'border-color: rgb(255,0,0);';
         }
 
         return this.unitArc_;
@@ -276,8 +313,10 @@ class SettingsManager {
     getMouseArc() {
         if(this.mouseArc_) {
             document.getElementById('mouseArc').innerHTML = 'On';
+            document.getElementById('mouseArc').style = 'border-color: rgb(0,255,0);';
         } else {
             document.getElementById('mouseArc').innerHTML = 'Off'; 
+            document.getElementById('mouseArc').style = 'border-color: rgb(255,0,0);';
         }
 
         return this.mouseArc_;
@@ -286,8 +325,10 @@ class SettingsManager {
     getTriangle() {
         if(this.triangle_) {
             document.getElementById('triangle').innerHTML = 'On';
+            document.getElementById('triangle').style = 'border-color: rgb(0,255,0);';
         } else {
             document.getElementById('triangle').innerHTML = 'Off'; 
+            document.getElementById('triangle').style = 'border-color: rgb(255,0,0);';
         }
         return this.triangle_;
     }
@@ -295,8 +336,10 @@ class SettingsManager {
     getUnitTriangle() {
         if(this.unitTriangle_) {
             document.getElementById('unitTriangle').innerHTML = 'On';
+            document.getElementById('unitTriangle').style = 'border-color: rgb(0,255,0);';
         } else {
             document.getElementById('unitTriangle').innerHTML = 'Off'; 
+            document.getElementById('unitTriangle').style = 'border-color: rgb(255,0,0);';
         }
         return this.unitTriangle_;
     }
@@ -308,8 +351,10 @@ class SettingsManager {
     getQuadI() {
         if(this.quadi_) {
             document.getElementById('quadI').innerHTML = 'On';
+            document.getElementById('quadI').style = 'border-color: rgb(0,255,0);';
         } else {
             document.getElementById('quadI').innerHTML = 'Off'; 
+            document.getElementById('quadI').style = 'border-color: rgb(255,0,0);';
         }
 
         return this.quadi_;
@@ -318,8 +363,10 @@ class SettingsManager {
     getQuadII() {
         if(this.quadii_) {
             document.getElementById('quadII').innerHTML = 'On';
+            document.getElementById('quadII').style = 'border-color: rgb(0,255,0);';
         } else {
             document.getElementById('quadII').innerHTML = 'Off'; 
+            document.getElementById('quadII').style = 'border-color: rgb(255,0,0);';
         }
 
         return this.quadii_;
@@ -328,8 +375,10 @@ class SettingsManager {
     getQuadIII() {
         if(this.quadiii_) {
             document.getElementById('quadIII').innerHTML = 'On';
+            document.getElementById('quadIII').style = 'border-color: rgb(0,255,0);';
         } else {
             document.getElementById('quadIII').innerHTML = 'Off'; 
+            document.getElementById('quadIII').style = 'border-color: rgb(255,0,0);';
         }
 
         return this.quadiii_;
@@ -338,8 +387,10 @@ class SettingsManager {
     getQuadIV() {
         if(this.quadiv_) {
             document.getElementById('quadIV').innerHTML = 'On';
+            document.getElementById('quadIV').style = 'border-color: rgb(0,255,0);';
         } else {
             document.getElementById('quadIV').innerHTML = 'Off'; 
+            document.getElementById('quadIV').style = 'border-color: rgb(255,0,0);';
         }
 
         return this.quadiv_;
@@ -348,8 +399,10 @@ class SettingsManager {
     getPosInfo() {
         if(this.posInfo_) {
             document.getElementById('posInfo').innerHTML = 'On'
+            document.getElementById('posInfo').style = 'border-color: rgb(0,255,0);';
         } else {
             document.getElementById('posInfo').innerHTML = 'Off'
+            document.getElementById('posInfo').style = 'border-color: rgb(255,0,0);';
         }
         return this.posInfo_;
     }
@@ -357,8 +410,10 @@ class SettingsManager {
     getPythIdenOne() {
         if(this.pythIdenOne_) {
             document.getElementById('pythIdenOne').innerHTML = 'On'
+            document.getElementById('pythIdenOne').style = 'border-color: rgb(0,255,0);';
         } else {
             document.getElementById('pythIdenOne').innerHTML = 'Off'
+            document.getElementById('pythIdenOne').style = 'border-color: rgb(255,0,0);';
         }
         return this.pythIdenOne_;
     }
@@ -366,8 +421,10 @@ class SettingsManager {
     getPythIdenTwo() {
         if(this.pythIdenTwo_) {
             document.getElementById('pythIdenTwo').innerHTML = 'On'
+            document.getElementById('pythIdenTwo').style = 'border-color: rgb(0,255,0);';
         } else {
             document.getElementById('pythIdenTwo').innerHTML = 'Off'
+            document.getElementById('pythIdenTwo').style = 'border-color: rgb(255,0,0);';
         }
         return this.pythIdenTwo_;
     }
@@ -383,6 +440,8 @@ class SettingsManager {
         } else {
             document.getElementById('sin2').innerHTML = 'Off';
             document.getElementById('allTrigFunc').innerHTML = 'Off';
+            document.getElementById('allTrigFunc').style = 'border-color:rgb(255,0,0);'
+
             this.allTrigFunc_ = false;
         }
 
@@ -395,6 +454,8 @@ class SettingsManager {
         } else {
             document.getElementById('cos').innerHTML = 'Off';
             document.getElementById('allTrigFunc').innerHTML = 'Off';
+            document.getElementById('allTrigFunc').style = 'border-color:rgb(255,0,0);'
+
             this.allTrigFunc_ = false;
         }
 
@@ -408,6 +469,8 @@ class SettingsManager {
         } else {
             document.getElementById('sin').innerHTML = 'Off';
             document.getElementById('allTrigFunc').innerHTML = 'Off';
+            document.getElementById('allTrigFunc').style = 'border-color:rgb(255,0,0);'
+
             this.allTrigFunc_ = false;
         }
     }
@@ -418,6 +481,8 @@ class SettingsManager {
         } else {
             document.getElementById('csc').innerHTML = 'Off';
             document.getElementById('allTrigFunc').innerHTML = 'Off';
+            document.getElementById('allTrigFunc').style = 'border-color:rgb(255,0,0);'
+
             this.allTrigFunc_ = false; 
         }
     }
@@ -429,6 +494,8 @@ class SettingsManager {
         } else {
             document.getElementById('sec').innerHTML = 'Off';
             document.getElementById('allTrigFunc').innerHTML = 'Off';
+            document.getElementById('allTrigFunc').style = 'border-color:rgb(255,0,0);'
+
             this.allTrigFunc_ = false;
         }
     }
@@ -440,6 +507,8 @@ class SettingsManager {
         } else {
             document.getElementById('cot').innerHTML = 'Off'; 
             document.getElementById('allTrigFunc').innerHTML = 'Off';
+            document.getElementById('allTrigFunc').style = 'border-color:rgb(255,0,0);'
+
             this.allTrigFunc_ = false;
         }
     }
@@ -486,12 +555,10 @@ class SettingsManager {
     butCardPoints() {
         this.cardPoints_ = !this.cardPoints_;
         if(this.cardPoints_) {
-            console.log('true')
             document.getElementById('cardPoints').innerHTML = 'On';
             document.getElementById('cardPoints1').innerHTML = 'On';
 
         } else {
-            console.log('false')
             document.getElementById('cardPoints').innerHTML = 'Off'; 
             document.getElementById('cardPoints1').innerHTML = 'Off';
 
@@ -596,6 +663,7 @@ class SettingsManager {
 
         if(this.allTrigFunc_) {
             document.getElementById('allTrigFunc').innerHTML = 'On';
+            document.getElementById('allTrigFunc').style = 'border-color:rgb(0,255,0);'
             this.sin_ = true;
             this.cos_ = true;
             this.tan_ = true;
@@ -607,6 +675,8 @@ class SettingsManager {
         } else {
 
             document.getElementById('allTrigFunc').innerHTML = 'Off';
+            document.getElementById('allTrigFunc').style = 'border-color:rgb(255,0,0);'
+
             this.sin_ = false;
             this.cos_ = false;
             this.tan_ = false;
@@ -763,6 +833,7 @@ class SettingsManager {
         if(this.pythIdenTwo_) {
             document.getElementById('pythIdenTwo').innerHTML = 'On';
             this.butPythIdenOne(false);
+            document.getElementById('pythIdenTwo').style = 'border-color: rgb(0,255,0);'; 
         } else {
             this.butAllTrigFunc(false);
             document.getElementById('pythIdenTwo').innerHTML = 'Off'; 
@@ -772,6 +843,11 @@ class SettingsManager {
 };
 
 /////
+function buttonMessage(msg) {
+    alert(msg);
+}
+
+
 
 let CANVAS_SIZE = 900;
 let CANVAS_HALF = CANVAS_SIZE / 2;
@@ -783,6 +859,7 @@ function main() {
     CosMan = new CosmeticManager();
     SetMan = new SettingsManager();
     
+    SetMan.butAllTrigFunc(false);
     hidePanels();
 }
 
@@ -1669,16 +1746,16 @@ function drawPythagoreanIdentityTwo() {
     fill('white');
     textSize(24);
 
-    let explanation = 'Pythagorean Identity #2\n\ntan²(' + parseFloat(angle/PI).toFixed(3) + 'π) + 1 = sec²(' + parseFloat(angle/PI).toFixed(3) + 'π)\n\n(' + parseFloat(yCoord/xCoord).toFixed(3) + ')² + 1 = (' + parseFloat(1/xCoord).toFixed(3) + ')²\n\n' + parseFloat(Math.pow(yCoord/xCoord, 2)).toFixed(3) + ' + 1 = '+ parseFloat(Math.pow(1/xCoord, 2)).toFixed(3);
+    let explanation = 'Pythagorean Identity #2\n\ntan²(' + parseFloat(angle/PI).toFixed(3) + 'π) + 1 = sec²(' + parseFloat(angle/PI).toFixed(3) + 'π)\n\n(' + parseFloat(yCoord/xCoord).toFixed(3) + ')² + 1 = (' + parseFloat(1/xCoord).toFixed(3) + ')²\n\n' + parseFloat(Math.pow(yCoord/xCoord, 2)).toFixed(3) + ' + 1 = '+ parseFloat(1 + Math.pow(yCoord/xCoord, 2)).toFixed(3);
 
     if(angle >= 0 && angle < PI/2) {
         text(explanation, -UNIT * 1.2, -UNIT * 1.6);
     } else if(angle >= PI/2 && angle < PI) {
         text(explanation, UNIT * 1.2, -UNIT * 1.6);
     } else if(angle >= PI && angle < 3*PI/2) {
-        text(explanation, -UNIT * 1.2, -UNIT * 1.6);
+        text(explanation, UNIT * 1.2, -UNIT * 1.6);
     } else if(angle >= 3*PI/2 && angle < 2*PI) {
-        text(explanation, -UNIT * 1.2, -UNIT * 1.6);
+        text(explanation, UNIT * 1.2, -UNIT * 1.6);
     }
 
 }

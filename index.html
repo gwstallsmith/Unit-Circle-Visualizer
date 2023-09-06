@@ -47,7 +47,7 @@
     </div>
     <hr>
     <p class="innerPanel">
-      Welcome to the <b>Trigonometry Visualizer</b>. This tool is meant to give a geometric representation of trigonometric functions.<br><br>
+      Welcome to the <b>Trigonometry Visualizer</b>. This tool is meant to give a geometric representation to trigonometric functions.<br><br>
       Domain: [0, 2π).<br>
       Radius = 1.<br><br>
       <b>TIPS</b>
@@ -119,11 +119,11 @@
       </div>
       <div class="grid-item">
         <label class="gridLabel">All On</label><br>
-        <button type="button" class="gridButton shadow" onclick="newSetMan('on')">On</button>
+        <button type="button" class="gridButton shadow" style="border-color: rgb(0,255,0);" onclick="newSetMan('on')">On</button>
       </div>
       <div class="grid-item">
         <label class="gridLabel">All Off</label><br>
-        <button type="button" class="gridButton shadow" onclick="newSetMan('off')">Off</button>
+        <button type="button" class="gridButton shadow" style="border-color: rgb(255,0,0);" onclick="newSetMan('off')">Off</button>
       </div>
     </div>
     <hr>
@@ -273,53 +273,6 @@
       </div>
     </div>
     <hr>
-    <div class="grid-container">
-      <div class="grid-item">
-        <label class="gridLabel">Unit Triangle</label><br>
-        <button type="button" class="gridButton shadow" onclick="SetMan.butUnitTriangle()" id="unitTriangle">On</button>
-      </div>
-      <div class="grid-item">
-        <label class="gridLabel">Mouse Tri</label><br>
-        <button type="button"  class="gridButton shadow"onclick="SetMan.butTriangle()" id="triangle">Off</button>        
-      </div>
-      <div class="grid-item">
-        <label class="gridLabel">All</label><br>
-        <button type="button"  class="gridButton shadow"onclick="SetMan.butAllTrigFunc()" id="allTrigFunc">Off</button>
-      </div>
-    </div>
-    <div class="grid-container">
-      <div class="grid-item">
-        <label class="gridLabel">Sin</label><br>
-        <button type="button"  class="gridButton shadow square" style="background-color:blue">&nbsp</button>
-        <button type="button"  class="gridButton shadow square" onclick="SetMan.butSin()" id="sin2">Off</button>
-      </div>
-      <div class="grid-item">
-        <label class="gridLabel">Cos</label><br>
-        <button type="button"  class="gridButton shadow square" style="background-color:lime">&nbsp</button>
-        <button type="button"  class="gridButton shadow square"onclick="SetMan.butCos()" id="cos2">Off</button>
-      </div>
-      <div class="grid-item">
-        <label class="gridLabel">Tan</label><br>
-        <button type="button"  class="gridButton shadow square" style="background-color:red">&nbsp</button>
-        <button type="button"  class="gridButton shadow square"onclick="SetMan.butTan()" id="tan2">Off</button>
-      </div>
-      <div class="grid-item">
-        <label class="gridLabel">Csc</label><br>
-        <button type="button"  class="gridButton shadow square" style="background-color:cyan">&nbsp</button>
-        <button type="button"  class="gridButton shadow square" onclick="SetMan.butCsc()" id="csc2">Off</button>
-      </div>
-      <div class="grid-item">
-        <label class="gridLabel">Sec</label><br>
-        <button type="button"  class="gridButton shadow square" style="background-color:yellow">&nbsp</button>
-        <button type="button"  class="gridButton shadow square" onclick="SetMan.butSec()" id="sec2">Off</button>
-      </div>
-      <div class="grid-item">
-        <label class="gridLabel">Cot</label><br>
-        <button type="button"  class="gridButton shadow square" style="background-color:magenta;">&nbsp</button>
-        <button type="button"  class="gridButton shadow square" onclick="SetMan.butCot()" id="cot2">Off</button>
-      </div>
-    </div>
-    <hr>
     <div class="grid-container-info">
       <div class="grid-item-info">
         <label id="triangleArea1"></label>
@@ -345,6 +298,54 @@
         <label id="cot1"></label>
       </div>
     </div>
+    <hr>
+    <div class="grid-container">
+      <div class="grid-item">
+        <label class="gridLabel">Sin</label><br>
+        <button type="button"  class="gridButton shadow square" onclick="buttonMessage('Was that an accident?')" style="background-color:blue">&nbsp</button>
+        <button type="button"  class="gridButton shadow square" onclick="SetMan.butSin();" id="sin2">Off</button>
+      </div>
+      <div class="grid-item">
+        <label class="gridLabel">Cos</label><br>
+        <button type="button"  class="gridButton shadow square" onclick="buttonMessage('Guess it was not.')" style="background-color:lime">&nbsp</button>
+        <button type="button"  class="gridButton shadow square" onclick="SetMan.butCos()" id="cos2">Off</button>
+      </div>
+      <div class="grid-item">
+        <label class="gridLabel">Tan</label><br>
+        <button type="button"  class="gridButton shadow square" style="background-color:red">&nbsp</button>
+        <button type="button"  class="gridButton shadow square"onclick="SetMan.butTan()" id="tan2">Off</button>
+      </div>
+      <div class="grid-item">
+        <label class="gridLabel">Csc</label><br>
+        <button type="button"  class="gridButton shadow square" onclick="buttonMessage('I bet you clicked tangent lol.')" style="background-color:cyan">&nbsp</button>
+        <button type="button"  class="gridButton shadow square" onclick="SetMan.butCsc()" id="csc2">Off</button>
+      </div>
+      <div class="grid-item">
+        <label class="gridLabel">Sec</label><br>
+        <button type="button"  class="gridButton shadow square" onclick="buttonMessage('github.com/gwstallsmith')" style="background-color:yellow">&nbsp</button>
+        <button type="button"  class="gridButton shadow square" onclick="SetMan.butSec()" id="sec2">Off</button>
+      </div>
+      <div class="grid-item">
+        <label class="gridLabel">Cot</label><br>
+        <button type="button"  class="gridButton shadow square" onclick="buttonMessage('Five dollars, and you can put whatever you want here.')" style="background-color:magenta;">&nbsp</button>
+        <button type="button"  class="gridButton shadow square" onclick="SetMan.butCot()" id="cot2">Off</button>
+      </div>
+    </div>
+    <div class="grid-container">
+      <div class="grid-item">
+        <label class="gridLabel">Unit Triangle</label><br>
+        <button type="button" class="gridButton shadow" onclick="SetMan.butUnitTriangle()" id="unitTriangle">On</button>
+      </div>
+      <div class="grid-item">
+        <label class="gridLabel">Mouse Tri</label><br>
+        <button type="button"  class="gridButton shadow"onclick="SetMan.butTriangle()" id="triangle">Off</button>        
+      </div>
+      <div class="grid-item">
+        <label class="gridLabel">All</label><br>
+        <button type="button"  class="gridButton shadow"onclick="SetMan.butAllTrigFunc()" id="allTrigFunc">Off</button>
+      </div>
+    </div>
+
   </div>
 </div>
 

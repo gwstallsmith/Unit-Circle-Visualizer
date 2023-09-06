@@ -25,7 +25,6 @@ button:active {
 body.p5 {
     justify-content: center;
     display:flex;
-    align-items: center;
     background-color: black;
     cursor:none;
     padding:20px;
@@ -240,15 +239,14 @@ label.title {
     border: 2px solid;
     font-size: 24px;
 
-    padding-top: 5%;
-    padding-bottom: 5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
 
     text-align: center;
     width:auto;
     height:auto;
 
     background-color: #5A5A5A;
-
 
     background-color: #101111;
 

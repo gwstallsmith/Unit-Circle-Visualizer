@@ -137,6 +137,7 @@ class SettingsManager {
 
         this.pythIdenOne_ = false;
         this.pythIdenTwo_ = false;
+        this.pythIdenThree_ = false;
 
         this.spinMode_ = false;
     }
@@ -430,6 +431,17 @@ class SettingsManager {
         return this.pythIdenTwo_;
     }
 
+    getPythIdenThree() {
+        if(this.pythIdenThree_) {
+            document.getElementById('pythIdenThree').innerHTML = 'On'
+            document.getElementById('pythIdenThree').style = 'border-color: rgb(0,255,0);';
+        } else {
+            document.getElementById('pythIdenThree').innerHTML = 'Off'
+            document.getElementById('pythIdenThree').style = 'border-color: rgb(255,0,0);';
+        }
+        return this.pythIdenThree_;
+    }
+
     getSpinMode() {
         if(this.spinMode_) {
             document.getElementById('spinMode').innerHTML = 'On'
@@ -697,12 +709,6 @@ class SettingsManager {
             this.sec_ = false;
             this.cot_ = false;
         }
-        this.getSin();
-        this.getCos();
-        this.getTan();
-        this.getCsc();
-        this.getSec();
-        this.getCot();
     }
 
     butNextPanel(reverse, panelNo) {
@@ -834,6 +840,7 @@ class SettingsManager {
         if(this.pythIdenOne_) {
             document.getElementById('pythIdenOne').innerHTML = 'On';
             this.butPythIdenTwo(false);
+            this.butPythIdenThree(false)
         } else {
             this.butAllTrigFunc(false);
             document.getElementById('pythIdenOne').innerHTML = 'Off'; 
@@ -845,12 +852,27 @@ class SettingsManager {
         if(this.pythIdenTwo_) {
             document.getElementById('pythIdenTwo').innerHTML = 'On';
             this.butPythIdenOne(false);
+            this.butPythIdenThree(false);
             document.getElementById('pythIdenTwo').style = 'border-color: rgb(0,255,0);'; 
         } else {
             this.butAllTrigFunc(false);
             document.getElementById('pythIdenTwo').innerHTML = 'Off'; 
         }
     }
+
+    butPythIdenThree(set = !this.pythIdenThree_) {
+        this.pythIdenThree_ = set;
+        if(this.pythIdenThree_) {
+            document.getElementById('pythIdenThree').innerHTML = 'On';
+            this.butPythIdenOne(false);
+            this.butPythIdenTwo(false);
+            document.getElementById('pythIdenThree').style = 'border-color: rgb(0,255,0);'; 
+        } else {
+            this.butAllTrigFunc(false);
+            document.getElementById('pythIdenThree').innerHTML = 'Off'; 
+        }
+    }
+
 
     butSpinMode() {
         this.spinMode_ = !this.spinMode_;
@@ -1215,7 +1237,12 @@ function draw() {
     if(SetMan.getUnitTriangle()) drawUnitTriangle();
 
     if(SetMan.getSin()) drawSin();
-    if(SetMan.getCos()) drawCos();
+
+    if(SetMan.getCos() && !SetMan.getPythIdenOne())
+        drawCos();
+    else if (SetMan.getCos() && SetMan.getPythIdenOne())
+        drawCos(true);
+
     if(SetMan.getTan()) drawTan();
 
     if(SetMan.getCsc()) drawCsc();
@@ -1237,6 +1264,7 @@ function draw() {
 
     if(SetMan.getPythIdenOne()) drawPythagoreanIdentityOne();
     if(SetMan.getPythIdenTwo()) drawPythagoreanIdentityTwo();
+    if(SetMan.getPythIdenThree()) drawPythagoreanIdentityThree();
 
     if(SetMan.getSpinMode()) spinMode();
 
@@ -1429,6 +1457,13 @@ function drawUnitTriangle() {
     } else {
         triangle(0, 0, relativeCos(angle), 0, relativeCos(angle), relativeSin(angle));
     }
+    let xCoord = parseFloat(relativeCos(angle)/UNIT).toFixed(3);
+    let yCoord = parseFloat(-relativeSin(angle)/UNIT).toFixed(3);
+
+    CosMan.strokeColor('brown');
+    CosMan.strokeWeight(3);
+    line(0, 0, xCoord * UNIT, -yCoord * UNIT);
+
 }
 
 // ARCS
@@ -1478,7 +1513,7 @@ function drawSin() {
     line(relativeCos(angle), 0, relativeCos(angle), relativeSin(angle));
 }
 
-function drawCos() {
+function drawCos(identity = false) {
     CosMan.strokeColor('lime');
     CosMan.strokeWeight(4);
     let angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
@@ -1488,7 +1523,11 @@ function drawCos() {
     }
     angle *= PI;
 
-    line(0, relativeSin(angle), relativeCos(angle), relativeSin(angle));
+    if(identity) {
+        line(0, 0, relativeCos(angle), 0);
+    } else {
+        line(0, relativeSin(angle), relativeCos(angle), relativeSin(angle));
+    }
 }
 
 function drawTan() {
@@ -1775,6 +1814,44 @@ function drawPythagoreanIdentityTwo() {
     textSize(24);
 
     let explanation = 'Pythagorean Identity #2\n\ntan²(' + parseFloat(angle/PI).toFixed(3) + 'π) + 1 = sec²(' + parseFloat(angle/PI).toFixed(3) + 'π)\n\n(' + parseFloat(yCoord/xCoord).toFixed(3) + ')² + 1 = (' + parseFloat(1/xCoord).toFixed(3) + ')²\n\n' + parseFloat(Math.pow(yCoord/xCoord, 2)).toFixed(3) + ' + 1 = '+ parseFloat(1 + Math.pow(yCoord/xCoord, 2)).toFixed(3);
+
+    if(angle >= 0 && angle < PI/2) {
+        text(explanation, -UNIT * 1.2, -UNIT * 1.6);
+    } else if(angle >= PI/2 && angle < PI) {
+        text(explanation, UNIT * 1.2, -UNIT * 1.6);
+    } else if(angle >= PI && angle < 3*PI/2) {
+        text(explanation, UNIT * 1.2, -UNIT * 1.6);
+    } else if(angle >= 3*PI/2 && angle < 2*PI) {
+        text(explanation, UNIT * 1.2, -UNIT * 1.6);
+    }
+
+}
+
+function drawPythagoreanIdentityThree() {
+    SetMan.butPythIdenOne(false);
+    SetMan.butAllTrigFunc(false);
+    SetMan.butCot();
+    SetMan.butCsc();
+
+
+    let angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+    if(angle < 0) {
+        angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+        angle += 2;
+    }
+    angle *= PI;
+
+    let xCoord = parseFloat(relativeCos(angle)/UNIT).toFixed(3);
+    let yCoord = parseFloat(-relativeSin(angle)/UNIT).toFixed(3);
+
+    CosMan.strokeColor('brown');
+    CosMan.strokeWeight(3);
+    line(0, 0, xCoord * UNIT, -yCoord * UNIT);
+
+    fill('white');
+    textSize(24);
+
+    let explanation = 'Pythagorean Identity #3\n\n1 + cot²(' + parseFloat(angle/PI).toFixed(3) + 'π) = csc²(' + parseFloat(angle/PI).toFixed(3) + 'π)\n\n1 + (' + parseFloat(xCoord/yCoord).toFixed(3) + ')² = (' + parseFloat(1/yCoord).toFixed(3) + ')²\n\n1 + ' + parseFloat(Math.pow(xCoord/yCoord, 2)).toFixed(3) + ' = '+ parseFloat(1 + Math.pow(xCoord/yCoord, 2)).toFixed(3);
 
     if(angle >= 0 && angle < PI/2) {
         text(explanation, -UNIT * 1.2, -UNIT * 1.6);

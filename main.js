@@ -1249,6 +1249,7 @@ function draw() {
     if(SetMan.getSec()) drawSec();
     if(SetMan.getCot()) drawCot();
 
+    drawFuncNames();
 
     unitCoordinateInfo();
     triangleAreaInfo();
@@ -1875,3 +1876,33 @@ function spinMode() {
         spinAngle = 2 * PI;
     }
 } 
+
+function drawFuncNames() {
+    let angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+    if(angle < 0) {
+        angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+        angle += 2;
+    }
+    angle *= PI;
+
+    if(SetMan.getSin()) {
+        fill('blue');
+        text('sin(θ)', relativeCos(angle) * 1.2, relativeSin(angle) * 0.5);
+
+    }    
+    if(SetMan.getCos()) {
+
+    }
+    if(SetMan.getTan()) {
+
+    }
+    if(SetMan.getCsc()) {
+
+    }
+    if(SetMan.getSec()) {
+
+    }
+    if(SetMan.getCot()) {
+
+    }
+}

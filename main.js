@@ -665,8 +665,8 @@ class SettingsManager {
     }
 
 
-    butUnitTriangle() {
-        this.unitTriangle_ = !this.unitTriangle_;
+    butUnitTriangle(set = !this.unitTriangle_) {
+        this.unitTriangle_ = set;
         if(this.unitTriangle_) {
             document.getElementById('unitTriangle').innerHTML = 'On';
         } else {
@@ -1781,6 +1781,7 @@ function drawPythagoreanIdentityOne() {
     SetMan.butPythIdenTwo(false);
     SetMan.butAllTrigFunc(false);
     SetMan.butRadius(true);
+    SetMan.butUnitTriangle(false);
     SetMan.butSin();
     SetMan.butCos();
     
@@ -1816,6 +1817,7 @@ function drawPythagoreanIdentityTwo() {
     SetMan.butPythIdenOne(false);
     SetMan.butAllTrigFunc(false);
     SetMan.butRadius(true);
+    SetMan.butUnitTriangle(false);
     SetMan.butTan();
     SetMan.butSec();
 
@@ -1855,6 +1857,7 @@ function drawPythagoreanIdentityThree() {
     SetMan.butPythIdenOne(false);
     SetMan.butAllTrigFunc(false);
     SetMan.butRadius(true);
+    SetMan.butUnitTriangle(false);
     SetMan.butCot();
     SetMan.butCsc();
 

@@ -1508,9 +1508,9 @@ function drawRadius() {
 // ARCS
 
 function drawArc() {
-    CosMan.strokeColor('white');
+    CosMan.strokeColor('rgb(230, 190, 140)');
     CosMan.strokeWeight(2);
-    fill('rgba(0, 0, 255, .5)');
+    fill('rgba(230, 190, 140, .5)');
 
 
     let angle = quadArcTan(relativeMouseX(), relativeMouseY()) / PI;
@@ -1520,7 +1520,7 @@ function drawArc() {
     }
     angle *= PI;
 
-    arc(0, 0, UNIT * 2, UNIT * 2, angle, 0, PIE);
+    arc(0, 0, UNIT * 0.5, UNIT * 0.5, angle, 0, PIE);
 }
 
 
@@ -1921,8 +1921,11 @@ function drawFuncNames() {
     }    
     if(SetMan.getCos()) {
         fill('lime');
-        text('cos(θ)', relativeCos(angle) * 0.5, relativeSin(angle) * 1.2);
-
+        if(SetMan.getPythIdenOne()) {
+            text('cos(θ)', relativeCos(angle) * 0.5, (angle > 0 && angle < PI)  ? 50 : -50);
+        } else {
+            text('cos(θ)', relativeCos(angle) * 0.5, relativeSin(angle) * 1.2);
+        }
     }
     if(SetMan.getTan()) {
         fill('red')
@@ -1945,5 +1948,10 @@ function drawFuncNames() {
     if(SetMan.getCot()) {
         fill('magenta');
         text('cot(θ)', relativeCos(angle) * 0.75, ((1/(relativeSin(angle)/UNIT)) * UNIT));
+    }
+
+    if(SetMan.getUnitArc()) {
+        fill('rgb(230, 190, 140)');
+        text('θ', relativeCos(angle/2) * 0.30, relativeSin(angle/2) * 0.30);
     }
 }

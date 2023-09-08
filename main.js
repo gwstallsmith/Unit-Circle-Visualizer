@@ -40,11 +40,9 @@ class SettingsManager {
             this.allTrigFunc_ = false;
 
             this.unitTriangle_ = false;
-            this.triangle_ = false;
             
             this.unitArc_ = false;
             this.unitArc_ = false;
-            this.mouseArc_ = false;
 
             this.cardPoints_ = false;
             this.xAxis_ = false;
@@ -65,6 +63,8 @@ class SettingsManager {
             this.posInfo_ = false
             this.radius_ = false;
 
+            this.names_ = false;
+
         } else if(mode == 'default') {
             this.sin_ = false;
             this.cos_ = false;
@@ -77,10 +77,8 @@ class SettingsManager {
             this.allTrigFunc_ = false;
 
             this.unitTriangle_ = true;
-            this.triangle_ = false;
             
             this.unitArc_ = false;
-            this.mouseArc_ = false;
 
             this.cardPoints_ = false;
             this.xAxis_ = true;
@@ -100,6 +98,8 @@ class SettingsManager {
             this.posInfo_ = true;
             this.radius_ = true;
 
+            this.names_ = false;
+
         } else if(mode == 'on') {
             this.sin_ = true;
             this.cos_ = true;
@@ -112,10 +112,8 @@ class SettingsManager {
             this.allTrigFunc_ = true;
 
             this.unitTriangle_ = true;
-            this.triangle_ = true;
             
             this.unitArc_ = true;
-            this.mouseArc_ = true;
 
             this.cardPoints_ = true;
             this.xAxis_ = true;
@@ -135,6 +133,8 @@ class SettingsManager {
 
             this.posInfo_ = true
             this.radius_ = true;
+
+            this.names_ = true;
         }
 
         this.openPanel_ = 0;
@@ -316,29 +316,6 @@ class SettingsManager {
         return this.unitArc_;
     }
 
-    getMouseArc() {
-        if(this.mouseArc_) {
-            document.getElementById('mouseArc').innerHTML = 'On';
-            document.getElementById('mouseArc').style = 'border-color: rgb(0,255,0);';
-        } else {
-            document.getElementById('mouseArc').innerHTML = 'Off'; 
-            document.getElementById('mouseArc').style = 'border-color: rgb(255,0,0);';
-        }
-
-        return this.mouseArc_;
-    }
-
-    getTriangle() {
-        if(this.triangle_) {
-            document.getElementById('triangle').innerHTML = 'On';
-            document.getElementById('triangle').style = 'border-color: rgb(0,255,0);';
-        } else {
-            document.getElementById('triangle').innerHTML = 'Off'; 
-            document.getElementById('triangle').style = 'border-color: rgb(255,0,0);';
-        }
-        return this.triangle_;
-    }
-
     getUnitTriangle() {
         if(this.unitTriangle_) {
             document.getElementById('unitTriangle').innerHTML = 'On';
@@ -461,11 +438,30 @@ class SettingsManager {
         if(this.radius_) {
             document.getElementById('radius').innerHTML = 'On'
             document.getElementById('radius').style = 'border-color: rgb(0,255,0);';
+
+            document.getElementById('hypotenuse').innerHTML = 'On'
+            document.getElementById('hypotenuse').style = 'border-color: rgb(0,255,0);';
+
         } else {
             document.getElementById('radius').innerHTML = 'Off'
             document.getElementById('radius').style = 'border-color: rgb(255,0,0);';
+
+            document.getElementById('hypotenuse').innerHTML = 'Off'
+            document.getElementById('hypotenuse').style = 'border-color: rgb(255,0,0);';
+
         }
         return this.radius_;
+    }
+
+    getNames() {
+        if(this.names_) {
+            document.getElementById('names').innerHTML = 'On'
+            document.getElementById('names').style = 'border-color: rgb(0,255,0);';
+        } else {
+            document.getElementById('names').innerHTML = 'Off'
+            document.getElementById('names').style = 'border-color: rgb(255,0,0);';
+        }
+        return this.names_;
     }
 
     // Buttons
@@ -668,24 +664,6 @@ class SettingsManager {
         }
     }
 
-    butMouseArc() {
-        this.mouseArc_ = !this.mouseArc_;
-        if(this.mouseArc_) {
-            document.getElementById('mouseArc').innerHTML = 'On';
-        } else {
-            document.getElementById('mouseArc').innerHTML = 'Off'; 
-        }
-    }
-
-    butTriangle() {
-        this.triangle_ = !this.triangle_;
-        if(this.triangle_) {
-            document.getElementById('triangle').innerHTML = 'On';
-        } else {
-            document.getElementById('triangle').innerHTML = 'Off'; 
-        }
-
-    }
 
     butUnitTriangle() {
         this.unitTriangle_ = !this.unitTriangle_;
@@ -867,7 +845,7 @@ class SettingsManager {
             this.butPythIdenThree(false)
         } else {
             this.butAllTrigFunc(false);
-            this.butRadius(false);4
+            this.butRadius(false);
             document.getElementById('pythIdenOne').innerHTML = 'Off'; 
         }
     }
@@ -916,9 +894,22 @@ class SettingsManager {
     butRadius(set = !this.radius_) {
         this.radius_ = set;
         if(this.radius_) {
-            document.getElementById('quadIV').innerHTML = 'On';
+            document.getElementById('radius').innerHTML = 'On';
+            document.getElementById('hypotenuse').innerHTML = 'On';
         } else {
-            document.getElementById('quadIV').innerHTML = 'Off'; 
+            document.getElementById('radius').innerHTML = 'Off';
+            document.getElementById('hypotenuse').innerHTML = 'Off'; 
+
+        }
+    }
+
+    butNames() {
+        this.names_ = !this.names_;
+        if(this.names_) {
+            document.getElementById('names').innerHTML = 'On';
+        } else {
+            document.getElementById('names').innerHTML = 'Off';
+
         }
     }
 
@@ -1266,9 +1257,7 @@ function draw() {
     if(SetMan.getGrid()) drawGrid();
 
     if(SetMan.getUnitArc()) drawArc();
-    if(SetMan.getMouseArc()) drawMouseArc();
 
-    if(SetMan.getTriangle()) drawTriangle();
     if(SetMan.getUnitTriangle()) drawUnitTriangle();
 
     if(SetMan.getSin()) drawSin();
@@ -1286,7 +1275,7 @@ function draw() {
 
     if(SetMan.getRadius()) drawRadius();
 
-    drawFuncNames();
+    if(SetMan.getNames()) drawFuncNames();
 
     unitCoordinateInfo();
     triangleAreaInfo();
@@ -1534,20 +1523,6 @@ function drawArc() {
     arc(0, 0, UNIT * 2, UNIT * 2, angle, 0, PIE);
 }
 
-function drawMouseArc() {
-    CosMan.strokeColor('white');
-    CosMan.strokeWeight(2);
-    fill('rgba(0, 255, 0, .5)');
-
-    let angle = quadArcTan(relativeMouseX(), relativeMouseY()) / PI;
-    if(angle < 0) {
-        angle = quadArcTan(relativeMouseX(), relativeMouseY()) / PI;
-        angle += 2;
-    }
-    angle *= PI;
-
-    arc(0, 0, originDist() * 2, originDist() * 2, angle, 0, PIE)
-}
 
 // TRIG FUNCTIONS
 function drawSin() {

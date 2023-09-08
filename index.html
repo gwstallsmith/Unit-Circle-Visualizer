@@ -65,7 +65,7 @@
       <div class="grid-item-info">
         <label" id="triangleArea"></label>
       </div>
-   </div>
+    </div>
     <div class="grid-container-info">
       <div class="grid-item-info">
         <label id="sin"></label>
@@ -84,16 +84,6 @@
       </div>
       <div class="grid-item-info">
         <label id="cot"></label>
-      </div>
-    </div>
-    <div class="grid-container">
-      <div class="grid-item">
-        <label class="gridLabel">Spin Mode</label><br>
-        <button class="gridButton" onclick="SetMan.butSpinMode()" id="spinMode"></button>
-      </div>
-      <div class="grid-item">
-      </div>
-      <div class="grid-item">
       </div>
     </div>
   </div>
@@ -135,17 +125,6 @@
         <label class="gridLabel">All Off</label><br>
         <button type="button" class="gridButton shadow" style="border-color: rgb(255,0,0);" onclick="newSetMan('off')">Off</button>
       </div>
-    </div>
-    <hr>
-    <div class="grid-container">
-      <div class="grid-item">
-        <label class="gridLabel">Canvas Size</label><br>
-        <button type="button" class="gridButton shadow square" onclick="decreaseCanvasSize()">&nbsp-&nbsp</button><button type="button" class="gridButton shadow square" onclick="increaseCanvasSize()">+</button>
-      </div>
-      <div class="grid-item">
-        <label class="gridLabel">Canvas Size</label><br>
-        <label id="canvasSize" class="gridLabel" style="font-size:32px"></label>
-      </div>
       <div class="grid-item">
         <label class="gridLabel">Position Info</label><br>
         <button type="button" class="gridButton shadow" onclick="SetMan.butPosInfo()" id="posInfo">On</button>
@@ -153,6 +132,14 @@
     </div>
     <hr>
     <div class="grid-container">
+      <div class="grid-item">
+        <label class="gridLabel">Canvas Size</label><br>
+        <label id="canvasSize" class="gridLabel" style="font-size:32px"></label>
+      </div>
+      <div class="grid-item">
+        <label class="gridLabel">Canvas Size</label><br>
+        <button type="button" class="gridButton shadow square" onclick="decreaseCanvasSize()">&nbsp-&nbsp</button><button type="button" class="gridButton shadow square" onclick="increaseCanvasSize()">+</button>
+      </div>
       <div class="grid-item">
         <label class="gridLabel">Grid</label><br>
         <button type="button" class="gridButton shadow" onclick="SetMan.butGrid()" id="grid">Off</button>
@@ -162,6 +149,10 @@
         <button type="button" class="gridButton shadow square" onclick="SetMan.butGridDensity(false)">&nbsp-&nbsp</button>
         <button type="button" class="gridButton shadow square" onclick="SetMan.butGridDensity(true)">+</button>
       </div>
+
+    </div>
+    <hr>
+    <div class="grid-container">
       <div class="grid-item">
         <label class="gridLabel">Origin</label><br>
         <button type="button" class="gridButton shadow" onclick="SetMan.butOrigin()" id="origin">On</button>
@@ -178,6 +169,7 @@
         <label class="gridLabel">Y-Axis</label><br>
         <button type="button" class="gridButton shadow" onclick="SetMan.butYAxis()" id="yAxis">On</button>
       </div>
+
     </div>
   </div>
 </div>
@@ -218,6 +210,11 @@
         <label class="gridLabel">Unit Angles</label><br>
         <button type="button" class="gridButton shadow square" onclick="forwardUnitCircle()">&nbsp-&nbsp</button><button class="gridButton shadow square" type="button" onclick="backwardUnitCircle()">+</button>
       </div>
+      <div class="grid-item">
+        <label class="gridLabel">Spin Mode</label><br>
+        <button class="gridButton" onclick="SetMan.butSpinMode()" id="spinMode"></button>
+      </div>
+
     </div>
     <hr>
     <div class="grid-container">
@@ -229,7 +226,6 @@
         <label class="gridLabel">Quadrant II</label><br>
         <button type="button" class="gridButton shadow" onclick="SetMan.butQuadII()" id="quadII">Off</button>
       </div>
-      <br>
       <div class="grid-item">
         <label class="gridLabel">Quadrant III</label><br>
         <button type="button" class="gridButton shadow" onclick="SetMan.butQuadIII()" id="quadIII">Off</button>
@@ -238,30 +234,23 @@
         <label class="gridLabel">Quadrant IV</label><br>
         <button type="button" class="gridButton shadow" onclick="SetMan.butQuadIV()" id="quadIV">Off</button>
       </div>
-      
-      <div class="grid-item">
-        <label class="gridLabel">Quadrantal</label><br>
-        <button type="button" class="gridButton shadow" onclick="SetMan.butCardPoints()" id="cardPoints1">Off</button>
-      </div>
     </div>
     <hr>
     <div class="grid-container">
       <div class="grid-item">
-        <label class="gridLabel">Unit Arc</label><br>
-        <button type="button" class="gridButton shadow" onclick="SetMan.butUnitArc()" id="unitArc">On</button>
+        <label class="gridLabel">Quadrantal</label><br>
+        <button type="button" class="gridButton shadow" onclick="SetMan.butCardPoints()" id="cardPoints1">Off</button>
       </div>
       <div class="grid-item">
-        <label class="gridLabel">Mouse Arc</label><br>
-        <button type="button" class="gridButton shadow" onclick="SetMan.butMouseArc()" id="mouseArc">Off</button>
+        <label class="gridLabel">Arc</label><br>
+        <button type="button" class="gridButton shadow" onclick="SetMan.butUnitArc()" id="unitArc">On</button>
       </div>
       <div class="grid-item">
         <label class="gridLabel">Radius</label><br>
         <button type="button" class="gridButton shadow" onclick="SetMan.butRadius()" id="radius">On</button>
       </div>
-    </div>
-    
-    
 
+    </div>
   </div>
 </div>
 
@@ -304,6 +293,10 @@
         <button type="button"  class="gridButton shadow square"onclick="SetMan.butTan()" id="tan2">Off</button>
       </div>
       <div class="grid-item">
+        <label class="gridLabel">All</label><br>
+        <button type="button"  class="gridButton shadow"onclick="SetMan.butAllTrigFunc()" id="allTrigFunc">Off</button>
+      </div>
+      <div class="grid-item">
         <label class="gridLabel">Csc</label><br>
         <button type="button"  class="gridButton shadow square" onclick="buttonMessage('I bet you clicked tangent lol.')" style="background-color:cyan">&nbsp</button>
         <button type="button"  class="gridButton shadow square" onclick="SetMan.butCsc()" id="csc2">Off</button>
@@ -318,20 +311,20 @@
         <button type="button"  class="gridButton shadow square" onclick="buttonMessage('Five dollars, and you can put whatever you want here.')" style="background-color:magenta;">&nbsp</button>
         <button type="button"  class="gridButton shadow square" onclick="SetMan.butCot()" id="cot2">Off</button>
       </div>
-    </div>
-    <div class="grid-container">
       <div class="grid-item">
-        <label class="gridLabel">Unit Triangle</label><br>
+        <label class="gridLabel">Triangle</label><br>
         <button type="button" class="gridButton shadow" onclick="SetMan.butUnitTriangle()" id="unitTriangle">On</button>
       </div>
       <div class="grid-item">
-        <label class="gridLabel">Mouse Tri</label><br>
-        <button type="button"  class="gridButton shadow"onclick="SetMan.butTriangle()" id="triangle">Off</button>        
+        <label class="gridLabel">Names</label><br>
+        <button type="button" class="gridButton shadow" onclick="SetMan.butNames()" id="names">On</button>
       </div>
       <div class="grid-item">
-        <label class="gridLabel">All</label><br>
-        <button type="button"  class="gridButton shadow"onclick="SetMan.butAllTrigFunc()" id="allTrigFunc">Off</button>
+        <label class="gridLabel">Hypotenuse</label><br>
+        <button type="button" class="gridButton shadow" onclick="SetMan.butRadius()" id="hypotenuse">On</button>
       </div>
+
+
     </div>
     <hr>
     <div class="grid-container-info">

@@ -1736,7 +1736,7 @@ function cotInfo() {
         angle += 2;
     }
     angle = parseFloat(angle).toFixed(3);
-    let cot = (1/Math.tan(angle));
+    let cot = -relativeMouseX()/relativeMouseY();
     cot = parseFloat(cot).toFixed(3)
     if(angle == 0) {
         cot = 'Undefined';

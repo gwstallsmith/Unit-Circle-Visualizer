@@ -63,6 +63,8 @@ class SettingsManager {
             this.hidePanels_ = false;
 
             this.posInfo_ = false
+            this.radius_ = false;
+
         } else if(mode == 'default') {
             this.sin_ = false;
             this.cos_ = false;
@@ -96,6 +98,7 @@ class SettingsManager {
             this.hidePanels_ = true;
 
             this.posInfo_ = true;
+            this.radius_ = true;
 
         } else if(mode == 'on') {
             this.sin_ = true;
@@ -131,6 +134,7 @@ class SettingsManager {
             this.hidePanels_ = false;
 
             this.posInfo_ = true
+            this.radius_ = true;
         }
 
         this.openPanel_ = 0;
@@ -453,6 +457,17 @@ class SettingsManager {
         return this.spinMode_;
     }
 
+    getRadius() {
+        if(this.radius_) {
+            document.getElementById('radius').innerHTML = 'On'
+            document.getElementById('radius').style = 'border-color: rgb(0,255,0);';
+        } else {
+            document.getElementById('radius').innerHTML = 'Off'
+            document.getElementById('radius').style = 'border-color: rgb(255,0,0);';
+        }
+        return this.radius_;
+    }
+
     // Buttons
 
     butSin() {
@@ -695,6 +710,10 @@ class SettingsManager {
             this.csc_ = true;
             this.sec_ = true;
             this.cot_ = true;
+
+            this.radius_ = true;
+
+            this.unitTriangle_ = false;
     
         } else {
 
@@ -708,7 +727,12 @@ class SettingsManager {
             this.csc_ = false;
             this.sec_ = false;
             this.cot_ = false;
+
+            this.radius_ = false;
+        
+            this.unitTriangle_ = true;
         }
+
     }
 
     butNextPanel(reverse, panelNo) {
@@ -828,7 +852,7 @@ class SettingsManager {
 
     butPosInfo() {
         this.posInfo_ = !this.posInfo_
-        if(this.posInfo) {
+        if(this.posInfo_) {
             document.getElementById('quadIV').innerHTML = 'On';
         } else {
             document.getElementById('quadIV').innerHTML = 'Off'; 
@@ -843,6 +867,7 @@ class SettingsManager {
             this.butPythIdenThree(false)
         } else {
             this.butAllTrigFunc(false);
+            this.butRadius(false);4
             document.getElementById('pythIdenOne').innerHTML = 'Off'; 
         }
     }
@@ -856,6 +881,7 @@ class SettingsManager {
             document.getElementById('pythIdenTwo').style = 'border-color: rgb(0,255,0);'; 
         } else {
             this.butAllTrigFunc(false);
+            this.butRadius(false);
             document.getElementById('pythIdenTwo').innerHTML = 'Off'; 
         }
     }
@@ -869,6 +895,7 @@ class SettingsManager {
             document.getElementById('pythIdenThree').style = 'border-color: rgb(0,255,0);'; 
         } else {
             this.butAllTrigFunc(false);
+            this.butRadius(false);
             document.getElementById('pythIdenThree').innerHTML = 'Off'; 
         }
     }
@@ -886,6 +913,14 @@ class SettingsManager {
         }
     }
 
+    butRadius(set = !this.radius_) {
+        this.radius_ = set;
+        if(this.radius_) {
+            document.getElementById('quadIV').innerHTML = 'On';
+        } else {
+            document.getElementById('quadIV').innerHTML = 'Off'; 
+        }
+    }
 
 };
 
@@ -1249,6 +1284,8 @@ function draw() {
     if(SetMan.getSec()) drawSec();
     if(SetMan.getCot()) drawCot();
 
+    if(SetMan.getRadius()) drawRadius();
+
     drawFuncNames();
 
     unitCoordinateInfo();
@@ -1269,7 +1306,7 @@ function draw() {
 
     if(SetMan.getSpinMode()) spinMode();
 
-    drawUnitPoint();
+    if(SetMan.getCircle()) drawUnitPoint();
     drawMousePoint();
 }
 
@@ -1461,10 +1498,22 @@ function drawUnitTriangle() {
     let xCoord = parseFloat(relativeCos(angle)/UNIT).toFixed(3);
     let yCoord = parseFloat(-relativeSin(angle)/UNIT).toFixed(3);
 
+}
+
+function drawRadius() {
+    let angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+    if(angle < 0) {
+        angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+        angle += 2;
+    }
+    angle *= PI;
+
+    let xCoord = parseFloat(relativeCos(angle)/UNIT).toFixed(3);
+    let yCoord = parseFloat(-relativeSin(angle)/UNIT).toFixed(3);
+
     CosMan.strokeColor('brown');
     CosMan.strokeWeight(3);
     line(0, 0, xCoord * UNIT, -yCoord * UNIT);
-
 }
 
 // ARCS
@@ -1756,6 +1805,7 @@ function drawPosInfo() {
 function drawPythagoreanIdentityOne() {
     SetMan.butPythIdenTwo(false);
     SetMan.butAllTrigFunc(false);
+    SetMan.butRadius(true);
     SetMan.butSin();
     SetMan.butCos();
     
@@ -1769,9 +1819,6 @@ function drawPythagoreanIdentityOne() {
     let xCoord = parseFloat(relativeCos(angle)/UNIT).toFixed(3);
     let yCoord = parseFloat(-relativeSin(angle)/UNIT).toFixed(3);
 
-    CosMan.strokeColor('brown');
-    CosMan.strokeWeight(3);
-    line(0, 0, xCoord * UNIT, -yCoord * UNIT);
 
     fill('white');
     textSize(24);
@@ -1793,6 +1840,7 @@ function drawPythagoreanIdentityOne() {
 function drawPythagoreanIdentityTwo() {
     SetMan.butPythIdenOne(false);
     SetMan.butAllTrigFunc(false);
+    SetMan.butRadius(true);
     SetMan.butTan();
     SetMan.butSec();
 
@@ -1831,6 +1879,7 @@ function drawPythagoreanIdentityTwo() {
 function drawPythagoreanIdentityThree() {
     SetMan.butPythIdenOne(false);
     SetMan.butAllTrigFunc(false);
+    SetMan.butRadius(true);
     SetMan.butCot();
     SetMan.butCsc();
 
@@ -1845,9 +1894,6 @@ function drawPythagoreanIdentityThree() {
     let xCoord = parseFloat(relativeCos(angle)/UNIT).toFixed(3);
     let yCoord = parseFloat(-relativeSin(angle)/UNIT).toFixed(3);
 
-    CosMan.strokeColor('brown');
-    CosMan.strokeWeight(3);
-    line(0, 0, xCoord * UNIT, -yCoord * UNIT);
 
     fill('white');
     textSize(24);
@@ -1871,7 +1917,7 @@ function spinMode() {
     mouseX = relativeCos(spinAngle) * UNIT;
     mouseY = -relativeSin(spinAngle) * UNIT;
 
-    spinAngle -= PI/500;
+    spinAngle -= PI/1000;
     if(spinAngle > 2 * PI || spinAngle <= 0) {
         spinAngle = 2 * PI;
     }
@@ -1885,24 +1931,41 @@ function drawFuncNames() {
     }
     angle *= PI;
 
+    if(SetMan.getRadius()) {
+        fill('brown');
+        text('1', relativeCos(angle) * 0.5, relativeSin(angle) * 0.75);
+    }
+
     if(SetMan.getSin()) {
         fill('blue');
         text('sin(θ)', relativeCos(angle) * 1.2, relativeSin(angle) * 0.5);
 
     }    
     if(SetMan.getCos()) {
+        fill('lime');
+        text('cos(θ)', relativeCos(angle) * 0.5, relativeSin(angle) * 1.2);
 
     }
     if(SetMan.getTan()) {
+        fill('red')
+        text('tan(θ)', (relativeCos(angle) + UNIT/relativeCos(angle) * UNIT) * 0.6, relativeSin(angle) * 0.5);
+
+        //     line(relativeCos(angle), relativeSin(angle), UNIT/relativeCos(angle) * UNIT, 0)
 
     }
     if(SetMan.getCsc()) {
-
+        fill('cyan');
+        text('csc(θ)', angle < PI ? -50 : 50, ((1/(relativeSin(angle)/UNIT)) * UNIT) * 0.5);
     }
     if(SetMan.getSec()) {
+        fill('yellow');
+        text('sec(θ)',(UNIT/relativeCos(angle) * UNIT) * 0.5, (angle > 0 && angle < PI)  ? 50 : -50);
+        
+        //    line(0, 0, UNIT/relativeCos(angle) * UNIT, 0)
 
     }
     if(SetMan.getCot()) {
-
+        fill('magenta');
+        text('cot(θ)', relativeCos(angle) * 0.75, ((1/(relativeSin(angle)/UNIT)) * UNIT));
     }
 }

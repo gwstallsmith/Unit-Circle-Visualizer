@@ -34,7 +34,6 @@ div.panel {
     width:var(--panel-width);
     max-width: 1500px;
     height:var(--panel-height);
-    max-height: 1500px;
     background-color: #5A5A5A;
 
     border-right: 50px;

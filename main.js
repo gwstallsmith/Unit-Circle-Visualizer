@@ -1936,7 +1936,7 @@ function drawFuncNames() {
     }
     if(SetMan.getCsc()) {
         fill('cyan');
-        text('csc(θ)', angle < PI ? -50 : 50, ((1/(relativeSin(angle)/UNIT)) * UNIT) * 0.5);
+        text('csc(θ)', (angle > PI/2 && angle < 3*PI/2) ? 50 : -50, ((1/(relativeSin(angle)/UNIT)) * UNIT) * 0.5);
     }
     if(SetMan.getSec()) {
         fill('yellow');

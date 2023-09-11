@@ -90,6 +90,21 @@ p.identity {
 
 }
 
+input.gridInput {
+    font-size: 20px;
+    color:white;
+    background-color: #101111;
+    width:100px;
+    height:50px;
+
+    border:2px solid;
+    border-color:white;
+    border-radius: 10%;
+
+    margin-top:2%;
+    padding-left:5%;
+    padding-right:5%;
+}
 
 button.gridButton {
     font-size: 24px;

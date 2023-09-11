@@ -54,14 +54,15 @@
       Welcome to the <b>Trigonometry Visualizer</b>.&nbspThis tool is meant to give a geometric representation to trigonometric functions.<br>
       Domain and range are restricted to the Unit Circle. 
       <br><br>
-      Angle = θ<br>
-      Radius = 1<br><br>
       <b>TIPS</b>
       <i>
       <li>Use "QWERTY" keys to navigate the settings menus</li>
       <li>Use "+" and "-" keys to increase or decrease Canvas Size</li>
       <li>Use "Right Arrow" and "Left Arrow" keys to snap to angles on the unit circle</li>
-      <li>Use "Shift" key to use spin mode</li>
+      <li>Use "S" key to activate spin mode</li>
+      <li>Use "F" key to draw the radius</li>
+      <li>Use "L" key to draw labels</li>
+      <li>Use "U" key to draw the unit circle</li>
       </i>
     </p>
     <hr>
@@ -346,31 +347,6 @@
 
     </div>
     <hr>
-    <div class="grid-container-info">
-      <div class="grid-item-info">
-        <label id="sin1"></label>
-      </div>
-      <div class="grid-item-info">
-        <label id="csc1"></label>
-      </div>
-      <div class="grid-item-info">
-        <label id="cos1"></label>
-      </div>
-      <div class="grid-item-info">
-        <label id="sec1"></label>
-      </div>
-      <div class="grid-item-info">
-        <label id="tan1"></label>
-      </div>
-      <div class="grid-item-info">
-        <label id="cot1"></label>
-      </div>
-    </div>
-    <div class="grid-container-info">
-      <div class="grid-item-info">
-        <label id="triangleArea1"></label>
-      </div>
-    </div>
 
   </div>
 </div>
@@ -455,15 +431,44 @@
     <hr>
     <div class="grid-container-info">
       <div class="grid-item">
-        <label class="gridLabel">Theta</label><br>
-        <input type="text"><br>
-        <input type="text"><br>
-
+        <label class="gridLabel" style="padding-top:1%;padding-bottom:1%;">(x, y)</label><br>
+        <input class="gridInput" type="number" step="0.001" min="-1" max="1" id="xInput">
+        <input class="gridInput" type="number" step="0.001" min="-1" max="1" id="yInput">
+        <button class="gridButton square shadow" onclick="calcCoords()">Go</button>
       </div>
+
       <div class="grid-item">
-        
+        <label class="gridLabel" style="padding-top:1%;padding-bottom:1%;">Theta (in terms of π)</label><br>
+        <input class="gridInput" type="number" step="0.001" min="0" max="2" id="thetaInput">
+        <button class="gridButton square shadow" onclick="calcTheta()">Go</button>
+
       </div>
 
+    </div>
+    <div class="grid-container-info">
+      <div class="grid-item-info">
+        <label id="sin1"></label>
+      </div>
+      <div class="grid-item-info">
+        <label id="csc1"></label>
+      </div>
+      <div class="grid-item-info">
+        <label id="cos1"></label>
+      </div>
+      <div class="grid-item-info">
+        <label id="sec1"></label>
+      </div>
+      <div class="grid-item-info">
+        <label id="tan1"></label>
+      </div>
+      <div class="grid-item-info">
+        <label id="cot1"></label>
+      </div>
+    </div>
+    <div class="grid-container-info">
+      <div class="grid-item-info">
+        <label id="triangleArea1"></label>
+      </div>
     </div>
 
   </div>

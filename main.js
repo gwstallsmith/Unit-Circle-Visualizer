@@ -1249,12 +1249,25 @@ function keyPressed() {
     }
 
 
-    if(keyCode == 16) {
+    if(keyCode === 83) {
         SetMan.butSpinMode();
     }
 
+    if(keyCode === 76) {
+        SetMan.butNames();
+    }
 
+    if(keyCode === 85) {
+        SetMan.butUnitCirc();
+    }
 
+    if(keyCode === 70) {
+        SetMan.butRadius();
+    }
+
+    if(keyCode === 65) {
+        SetMan.butUnitArc();
+    }
 }
 
 // P5 function that drives the entire animation.
@@ -2025,10 +2038,41 @@ function drawFuncNames() {
         textSize(20);
 
         text('(1, 0)\nθ = 0' , relativeCos(0) + 50, relativeSin(0) - 50);
-        text('(0, 1)\nθ = π/2' , relativeCos(PI/2) + 50, relativeSin(PI/2) - 50);
-        text('(-1, 0)\nθ = π', relativeCos(PI) - 50, relativeSin(PI) - 50);
+        text('(0, 1)\nθ = π/2' , relativeCos(PI/2) - 50, relativeSin(PI/2) - 50);
+        text('(-1, 0)\nθ = π', relativeCos(PI) - 50, relativeSin(PI) + 50);
         text('(0, -1)\nθ = 3π/2', relativeCos(3*PI/2) + 50, relativeSin(3*PI/2) + 50);
 
     }
+
+}
+
+function calcCoords() {
+    let x = document.getElementById('xInput').value;
+    let y = document.getElementById('yInput').value;
+
+    mouseX = x * UNIT + CANVAS_HALF;
+    mouseY = -y * UNIT + CANVAS_HALF;
+
+
+    let angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+    if(angle < 0) {
+        angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+        angle += 2;
+    }
+    
+    document.getElementById('thetaInput').value = parseFloat(angle).toFixed(3);
+
+}
+
+function calcTheta() {
+    let theta = document.getElementById('thetaInput').value * PI;
+
+    mouseX = relativeCos(theta) + CANVAS_HALF;
+    mouseY = relativeSin(theta) + CANVAS_HALF;
+
+
+    document.getElementById('xInput').value = parseFloat(relativeCos(theta)/UNIT).toFixed(3);
+    document.getElementById('yInput').value = parseFloat(relativeSin(theta)/UNIT).toFixed(3);
+
 
 }

@@ -464,8 +464,8 @@ class SettingsManager {
             document.getElementById('names').innerHTML = 'Off'
             document.getElementById('names').style = 'border-color: rgb(255,0,0);';
 
-            document.getElementById('names1').innerHTML = 'On'
-            document.getElementById('names1').style = 'border-color: rgb(0,255,0);';
+            document.getElementById('names1').innerHTML = 'Off'
+            document.getElementById('names1').style = 'border-color: rgb(255,0,0);';
         }
         return this.names_;
     }
@@ -925,9 +925,11 @@ class SettingsManager {
         this.names_ = !this.names_;
         if(this.names_) {
             document.getElementById('names').innerHTML = 'On';
+            document.getElementById('names1').innerHTML = 'On';
+
         } else {
             document.getElementById('names').innerHTML = 'Off';
-
+            document.getElementById('names1').innerHTML = 'Off';
         }
     }
 

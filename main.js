@@ -1980,4 +1980,29 @@ function drawFuncNames() {
         fill('rgb(230, 190, 140)');
         text('θ', relativeCos(angle/2) * 0.30, relativeSin(angle/2) * 0.30);
     }
+
+    if(SetMan.getQuadI()) {
+        fill('white');
+        text('(√3/2, 1/2)\nθ = π/6', relativeCos(PI/6)*1.5, relativeSin(PI/6)*1.3);
+        text('(√2/2, √2/2)\nθ = π/6', relativeCos(PI/4)*1.5, relativeSin(PI/4)*1.4);
+        text('(1/2, √3/2)\nθ = π/6', relativeCos(PI/3)*1.3, relativeSin(PI/3)*1.5)
+
+
+    }
+
+    if(SetMan.getQuadII()) {
+        fill('white');
+
+    }
+
+    if(SetMan.getQuadIII()) {
+        fill('white');
+
+    }
+
+    if(SetMan.getQuadIV()) {
+        fill('white');
+
+    }
+
 }

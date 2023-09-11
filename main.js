@@ -1983,25 +1983,36 @@ function drawFuncNames() {
 
     if(SetMan.getQuadI()) {
         fill('white');
-        text('(√3/2, 1/2)\nθ = π/6', relativeCos(PI/6)*1.5, relativeSin(PI/6)*1.3);
-        text('(√2/2, √2/2)\nθ = π/6', relativeCos(PI/4)*1.5, relativeSin(PI/4)*1.4);
-        text('(1/2, √3/2)\nθ = π/6', relativeCos(PI/3)*1.3, relativeSin(PI/3)*1.5)
-
-
+        textSize(20);
+        text('(√3/2, 1/2)\nθ = π/6', relativeCos(PI/6)*1.4, relativeSin(PI/6)*1.2);
+        text('(√2/2, √2/2)\nθ = π/4', relativeCos(PI/4)*1.4, relativeSin(PI/4)*1.3);
+        text('(1/2, √3/2)\nθ = π/3', relativeCos(PI/3)*1.3, relativeSin(PI/3)*1.4);
     }
 
     if(SetMan.getQuadII()) {
         fill('white');
+        textSize(20);
+        text('(-1/2, √3/2)\nθ = 2π/3', relativeCos(2*PI/3)*1.2, relativeSin(2*PI/3)*1.4);
+        text('(-√2/2, √2/2)\nθ = 3π/4', relativeCos(3*PI/4)*1.4, relativeSin(3*PI/4)*1.3);
+        text('(-√3/2, 1/2)\nθ = 5π/6', relativeCos(5*PI/6)*1.4, relativeSin(5*PI/6)*1.2);
 
     }
 
     if(SetMan.getQuadIII()) {
         fill('white');
+        textSize(20);
+        text('(-√3/2, -1/2)\nθ = 7π/6', relativeCos(7*PI/6)*1.5, relativeSin(7*PI/6)*1.1);
+        text('(-√2/2, -√2/2)\nθ = 5π/4', relativeCos(5*PI/4)*1.5, relativeSin(5*PI/4)*1.2);
+        text('(-1/2, -√3/2)\nθ = 4π/3', relativeCos(4*PI/3)*1.3, relativeSin(4*PI/3)*1.3);
 
     }
 
     if(SetMan.getQuadIV()) {
         fill('white');
+        textSize(20);
+        text('(1/2, -√3/2)\nθ = 5π/3', relativeCos(5*PI/3)*1.2, relativeSin(5*PI/3)*1.3);
+        text('(√2/2, -√2/2)\nθ = 7π/4', relativeCos(7*PI/4)*1.5, relativeSin(7*PI/4)*1.2);
+        text('(√3/2, -1/2)\nθ = 11π/6', relativeCos(11*PI/6)*1.5, relativeSin(11*PI/6)*1.1);
 
     }
 

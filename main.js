@@ -457,9 +457,15 @@ class SettingsManager {
         if(this.names_) {
             document.getElementById('names').innerHTML = 'On'
             document.getElementById('names').style = 'border-color: rgb(0,255,0);';
+
+            document.getElementById('names1').innerHTML = 'On'
+            document.getElementById('names1').style = 'border-color: rgb(0,255,0);';
         } else {
             document.getElementById('names').innerHTML = 'Off'
             document.getElementById('names').style = 'border-color: rgb(255,0,0);';
+
+            document.getElementById('names1').innerHTML = 'On'
+            document.getElementById('names1').style = 'border-color: rgb(0,255,0);';
         }
         return this.names_;
     }
@@ -742,24 +748,32 @@ class SettingsManager {
                 document.getElementById('panel2').style.display="none";
                 document.getElementById('panel3').style.display="none";
                 document.getElementById('panel4').style.display="none";
+                document.getElementById('panel5').style.display="none";
+
             } else if(this.openPanel_ == 1) {
                 document.getElementById('panel0').style.display="none";
                 document.getElementById('panel1').style.display="block";
                 document.getElementById('panel2').style.display="none";
                 document.getElementById('panel3').style.display="none";
                 document.getElementById('panel4').style.display="none";
+                document.getElementById('panel5').style.display="none";
+
             } else if(this.openPanel_ == 2) {
                 document.getElementById('panel0').style.display="none";
                 document.getElementById('panel1').style.display="none";
                 document.getElementById('panel2').style.display="block";
                 document.getElementById('panel3').style.display="none";
                 document.getElementById('panel4').style.display="none";
+                document.getElementById('panel5').style.display="none";
+
             } else if (this.openPanel_ == 3) {
                 document.getElementById('panel0').style.display="none";
                 document.getElementById('panel1').style.display="none";
                 document.getElementById('panel2').style.display="none";
                 document.getElementById('panel3').style.display="block";
                 document.getElementById('panel4').style.display="none";
+                document.getElementById('panel5').style.display="none";
+
 
             } else if (this.openPanel_ == 4) {
                 document.getElementById('panel0').style.display="none";
@@ -767,6 +781,8 @@ class SettingsManager {
                 document.getElementById('panel2').style.display="none";
                 document.getElementById('panel3').style.display="none";
                 document.getElementById('panel4').style.display="block";
+                document.getElementById('panel5').style.display="none";
+
 
             } else if (this.openPanel_ == 5) {
                 document.getElementById('panel0').style.display="none";
@@ -774,7 +790,9 @@ class SettingsManager {
                 document.getElementById('panel2').style.display="none";
                 document.getElementById('panel3').style.display="none";
                 document.getElementById('panel4').style.display="none";
-            }
+                document.getElementById('panel5').style.display="block";
+
+            } 
         
     }
 
@@ -1072,6 +1090,7 @@ function hidePanels() {
     document.getElementById('panel2').style.display="none";
     document.getElementById('panel3').style.display="none";
     document.getElementById('panel4').style.display="none";
+    document.getElementById('panel5').style.display="none";
 }
 
 function forwardUnitCircle() {
@@ -1204,22 +1223,27 @@ function keyPressed() {
         }    
         snapUnitCircle(UNIT_CIRCLE_ANGLES[unitCircleInc]);
     }
-    if(keyCode === 49) {
+    if(keyCode === 81) {
         SetMan.butNextPanel(false, 0);
     }
-    if(keyCode === 50) {
+    if(keyCode === 87) {
         SetMan.butNextPanel(false, 1);
     }
-    if(keyCode === 51) {
+    if(keyCode === 69) {
         SetMan.butNextPanel(false, 2);
     }
-    if(keyCode === 52) {
+    if(keyCode === 82) {
         SetMan.butNextPanel(false, 3);
     }
-    if(keyCode === 53) {
+    if(keyCode === 84) {
         SetMan.butNextPanel(false, 4);
     }
-    if(keyCode == 32) {
+    if(keyCode === 89) {
+        SetMan.butNextPanel(false, 5);
+    }
+
+
+    if(keyCode == 16) {
         SetMan.butSpinMode();
     }
 

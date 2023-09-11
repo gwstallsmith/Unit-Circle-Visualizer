@@ -331,6 +331,10 @@ class SettingsManager {
         return this.hidePanels_;
     }
 
+    getPosInfoOffset() {
+        return (((this.quadi_ || this.quadii_)||(this.quadiii_ || this.quadiv_)) && this.names_)
+    }
+
     getQuadI() {
         if(this.quadi_) {
             document.getElementById('quadI').innerHTML = 'On';
@@ -927,7 +931,7 @@ class SettingsManager {
             document.getElementById('names').innerHTML = 'On';
             document.getElementById('names1').innerHTML = 'On';
 
-        } else {
+        } else { 
             document.getElementById('names').innerHTML = 'Off';
             document.getElementById('names1').innerHTML = 'Off';
         }
@@ -1783,7 +1787,7 @@ function drawPosInfo() {
     fill('white');
     textSize(24);
     let coordinates = '(x, y) = (' + parseFloat(relativeCos(angle)/UNIT).toFixed(3) + ', ' + parseFloat(-relativeSin(angle)/UNIT).toFixed(3) + ')';
-    let offset = UNIT * .45; 
+    let offset = SetMan.getPosInfoOffset() ? UNIT * 0.65 : UNIT * 0.45; 
 
     angle = parseFloat(angle).toFixed(3);
 
@@ -2010,9 +2014,20 @@ function drawFuncNames() {
     if(SetMan.getQuadIV()) {
         fill('white');
         textSize(20);
-        text('(1/2, -√3/2)\nθ = 5π/3', relativeCos(5*PI/3)*1.2, relativeSin(5*PI/3)*1.3);
+        text('(1/2, -√3/2)\nθ = 5π/3', relativeCos(5*PI/3)*1.3, relativeSin(5*PI/3)*1.3);
         text('(√2/2, -√2/2)\nθ = 7π/4', relativeCos(7*PI/4)*1.5, relativeSin(7*PI/4)*1.2);
         text('(√3/2, -1/2)\nθ = 11π/6', relativeCos(11*PI/6)*1.5, relativeSin(11*PI/6)*1.1);
+
+    }
+
+    if(SetMan.getCardPoints()) {
+        fill('white');
+        textSize(20);
+
+        text('(1, 0)\nθ = 0' , relativeCos(0) + 50, relativeSin(0) - 50);
+        text('(0, 1)\nθ = π/2' , relativeCos(PI/2) + 50, relativeSin(PI/2) - 50);
+        text('(-1, 0)\nθ = π', relativeCos(PI) - 50, relativeSin(PI) - 50);
+        text('(0, -1)\nθ = 3π/2', relativeCos(3*PI/2) + 50, relativeSin(3*PI/2) + 50);
 
     }
 

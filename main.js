@@ -1208,10 +1208,10 @@ function preload() {
 // P5 function.
 let unitCircleInc = 0;
 function keyPressed() {
-    if(keyCode === 187 || keyCode == 61) {
+    if(keyCode === 190) {
         increaseCanvasSize();
     }
-    if(keyCode === 189 || keyCode == 173) {
+    if(keyCode === 188) {
         decreaseCanvasSize();
     }
     if(keyCode === LEFT_ARROW) {
@@ -1272,6 +1272,8 @@ function keyPressed() {
 
 // P5 function that drives the entire animation.
 function draw() {
+    //if(mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height) {
+
     frameRate(FRAME_RATE);
     background('#101111');
     fill('#101111');
@@ -1340,6 +1342,8 @@ function draw() {
 
     if(SetMan.getCircle()) drawUnitPoint();
     drawMousePoint();
+
+    //}
 }
 
 // DRAW FUNCTIONS
@@ -2059,20 +2063,18 @@ function calcCoords() {
         angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
         angle += 2;
     }
-    
-    document.getElementById('thetaInput').value = parseFloat(angle).toFixed(3);
 
+    document.getElementById('thetaInput').value = parseFloat(angle%2).toFixed(3);
 }
 
 function calcTheta() {
-    let theta = document.getElementById('thetaInput').value * PI;
+    let theta = (document.getElementById('thetaInput').value % 2)* PI;
 
     mouseX = relativeCos(theta) + CANVAS_HALF;
     mouseY = relativeSin(theta) + CANVAS_HALF;
 
 
     document.getElementById('xInput').value = parseFloat(relativeCos(theta)/UNIT).toFixed(3);
-    document.getElementById('yInput').value = parseFloat(relativeSin(theta)/UNIT).toFixed(3);
-
+    document.getElementById('yInput').value = parseFloat(-relativeSin(theta)/UNIT).toFixed(3);
 
 }

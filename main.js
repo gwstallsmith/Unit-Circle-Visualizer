@@ -1846,7 +1846,7 @@ function drawPythagoreanIdentityOne() {
     fill('white');
     textSize(24);
 
-    let explanation = 'Pythagorean Identity #1\n\nsin²(' + parseFloat(angle/PI).toFixed(3) + 'π) + cos²(' + parseFloat(angle/PI).toFixed(3) + 'π) = 1\n\n(' + xCoord + ')² + (' + yCoord + ')² = 1\n\n' + parseFloat(Math.pow(xCoord, 2)).toFixed(3) + ' + '+ parseFloat(Math.pow(yCoord, 2)).toFixed(3) + ' = 1';
+    let explanation = 'Pythagorean Identity\n\nsin²(' + parseFloat(angle/PI).toFixed(3) + 'π) + cos²(' + parseFloat(angle/PI).toFixed(3) + 'π) = 1\n\n(' + xCoord + ')² + (' + yCoord + ')² = 1\n\n' + parseFloat(Math.pow(xCoord, 2)).toFixed(3) + ' + '+ parseFloat(Math.pow(yCoord, 2)).toFixed(3) + ' = 1';
 
     if(angle >= 0 && angle < PI/2) {
         text(explanation, -UNIT * 1.2, -UNIT * 1.6);
@@ -1886,7 +1886,7 @@ function drawPythagoreanIdentityTwo() {
     fill('white');
     textSize(24);
 
-    let explanation = 'Pythagorean Identity #2\n\ntan²(' + parseFloat(angle/PI).toFixed(3) + 'π) + 1 = sec²(' + parseFloat(angle/PI).toFixed(3) + 'π)\n\n(' + parseFloat(yCoord/xCoord).toFixed(3) + ')² + 1 = (' + parseFloat(1/xCoord).toFixed(3) + ')²\n\n' + parseFloat(Math.pow(yCoord/xCoord, 2)).toFixed(3) + ' + 1 = '+ parseFloat(1 + Math.pow(yCoord/xCoord, 2)).toFixed(3);
+    let explanation = 'Pythagorean Identity\n\ntan²(' + parseFloat(angle/PI).toFixed(3) + 'π) + 1 = sec²(' + parseFloat(angle/PI).toFixed(3) + 'π)\n\n(' + parseFloat(yCoord/xCoord).toFixed(3) + ')² + 1 = (' + parseFloat(1/xCoord).toFixed(3) + ')²\n\n' + parseFloat(Math.pow(yCoord/xCoord, 2)).toFixed(3) + ' + 1 = '+ parseFloat(1 + Math.pow(yCoord/xCoord, 2)).toFixed(3);
 
     if(angle >= 0 && angle < PI/2) {
         text(explanation, -UNIT * 1.2, -UNIT * 1.6);
@@ -1923,7 +1923,7 @@ function drawPythagoreanIdentityThree() {
     fill('white');
     textSize(24);
 
-    let explanation = 'Pythagorean Identity #3\n\n1 + cot²(' + parseFloat(angle/PI).toFixed(3) + 'π) = csc²(' + parseFloat(angle/PI).toFixed(3) + 'π)\n\n1 + (' + parseFloat(xCoord/yCoord).toFixed(3) + ')² = (' + parseFloat(1/yCoord).toFixed(3) + ')²\n\n1 + ' + parseFloat(Math.pow(xCoord/yCoord, 2)).toFixed(3) + ' = '+ parseFloat(1 + Math.pow(xCoord/yCoord, 2)).toFixed(3);
+    let explanation = 'Pythagorean Identity\n\n1 + cot²(' + parseFloat(angle/PI).toFixed(3) + 'π) = csc²(' + parseFloat(angle/PI).toFixed(3) + 'π)\n\n1 + (' + parseFloat(xCoord/yCoord).toFixed(3) + ')² = (' + parseFloat(1/yCoord).toFixed(3) + ')²\n\n1 + ' + parseFloat(Math.pow(xCoord/yCoord, 2)).toFixed(3) + ' = '+ parseFloat(1 + Math.pow(xCoord/yCoord, 2)).toFixed(3);
 
     if(angle >= 0 && angle < PI/2) {
         text(explanation, -UNIT * 1.2, -UNIT * 1.6);
@@ -1936,6 +1936,56 @@ function drawPythagoreanIdentityThree() {
     }
 
 }
+
+function drawCofuncIdenOne() {
+    SetMan.butPythIdenTwo(false);
+    SetMan.butAllTrigFunc(false);
+    SetMan.butRadius(true);
+    SetMan.butUnitTriangle(false);
+    SetMan.butSin();
+    SetMan.butCos();
+
+    let angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+    if(angle < 0) {
+        angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+        angle += 2;
+    }
+    angle *= PI;
+
+    let xCoord = parseFloat(relativeCos(angle)/UNIT).toFixed(3);
+    let yCoord = parseFloat(-relativeSin(PI/2 - angle)/UNIT).toFixed(3);
+
+    let explanation = 'Cofunction Identity\n\nsin(π/2 - ' + parseFloat(angle).toFixed(3) + 'π) = cos(' + parseFloat(angle).toFixed(3) + 'π)';
+
+    if(angle >= 0 && angle < PI/2) {
+        text(explanation, -UNIT * 1.2, -UNIT * 1.6);
+    } else if(angle >= PI/2 && angle < PI) {
+        text(explanation, UNIT * 1.2, -UNIT * 1.6);
+    } else if(angle >= PI && angle < 3*PI/2) {
+        text(explanation, -UNIT * 1.2, -UNIT * 1.6);
+    } else if(angle >= 3*PI/2 && angle < 2*PI) {
+        text(explanation, -UNIT * 1.2, -UNIT * 1.6);
+    }
+}
+function drawCofuncIdenTwo() {
+    
+}
+function drawCofuncIdenThree() {
+    
+}
+function drawCofuncIdenFour() {
+    
+}
+function drawCofuncIdenFive() {
+    
+}
+function drawCofuncIdenSix() {
+    
+}
+
+
+
+
 
 let spinAngle = 2 * PI
 function spinMode() {

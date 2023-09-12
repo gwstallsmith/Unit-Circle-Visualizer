@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
 
-  <title>Trigonometry Visualizer</title>
+  <title>Unit Circle Visualizer</title>
 
   <link rel="icon" type="image/x-icon" href="./assets/triangleButton.png">
 
@@ -379,25 +379,52 @@
     <hr>
     <div class="grid-container-info">
       <div class="grid-item">
-        <p class="identity">
-          Pythagorean Identity #1<br>
-          cos²(θ) + sin²(θ) = 1<br>
-        </p>
-        <button type="button" class="gridButton shadow" onclick="SetMan.butPythIdenOne()" id="pythIdenOne">On</button>
-      </div>
-      <div class="grid-item">
-        <p class="identity">
-          Pythagorean Identity #2<br>
-          tan²(θ) + 1 = sec²(θ)<br>
-        </p>
-        <button type="button" class="gridButton shadow" onclick="SetMan.butPythIdenTwo()" id="pythIdenTwo">On</button>
-      </div>
-      <div class="grid-item">
-        <p class="identity">
-          Pythagorean Identity #3<br>
-          1 + cot²(θ) = csc²(θ)<br>
-        </p>
+        <label class="identity identityTitle">
+          Pythagorean Identities
+        </label><br><br>
+        <label class="identity">
+          cos²(θ) + sin²(θ) = 1
+        </label>
+        <button type="button" class="gridButton shadow" onclick="SetMan.butPythIdenOne()" id="pythIdenOne">On</button><br>
+        <label class="identity">
+          tan²(θ) + 1 = sec²(θ)
+        </label>
+        <button type="button" class="gridButton shadow" onclick="SetMan.butPythIdenTwo()" id="pythIdenTwo">On</button><br>
+
+        <label class="identity">
+          1 + cot²(θ) = csc²(θ)
+        </label>
         <button type="button" class="gridButton shadow" onclick="SetMan.butPythIdenThree()" id="pythIdenThree">On</button>
+      </div>
+      <div class="grid-item">
+        <label class="identity identityTitle">
+          Cofunction Identities
+        </label><br><br>
+        <label class="identity">
+          sin(π/2 - θ) = cos(θ)
+        </label>
+        <button type="button" class="gridButton shadow" onclick="SetMan.butPythIdenThree()" id="pythIdenThree">On</button><br>
+        <label class="identity">
+          cos(π/2 - θ) = sin(θ)
+        </label>
+        <button type="button" class="gridButton shadow" onclick="SetMan.butPythIdenThree()" id="pythIdenThree">On</button><br>
+        <label class="identity">
+          tan(π/2 - θ) = cot(θ)
+        </label>
+        <button type="button" class="gridButton shadow" onclick="SetMan.butPythIdenThree()" id="pythIdenThree">On</button><br>
+        <label class="identity">
+          cot(π/2 - θ) = tan(θ)
+        </label>
+        <button type="button" class="gridButton shadow" onclick="SetMan.butPythIdenThree()" id="pythIdenThree">On</button><br>
+        <label class="identity">
+          csc(π/2 - θ) = sec(θ)
+        </label>
+        <button type="button" class="gridButton shadow" onclick="SetMan.butPythIdenThree()" id="pythIdenThree">On</button><br>
+        <label class="identity">
+          sec(π/2 - θ) = csc(θ)
+        </label>
+        <button type="button" class="gridButton shadow" onclick="SetMan.butPythIdenThree()" id="pythIdenThree">On</button><br>
+        
       </div>
     </div>
   </div>
@@ -445,12 +472,8 @@
       </div>
     </div>
     <p class="innerPanel">
-      Note calculator is only guaranteed to work within Unit Circle domain.<br><br>
-      θ = [0, 2π)<br>
-      x, y = [-1, 1]
-
+      Note calculator will reduce (x, y) units to r = 1 scale.<br>
     </p>
-
     <hr>
     <div class="grid-container-info">
       <div class="grid-item-info">

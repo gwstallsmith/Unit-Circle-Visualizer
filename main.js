@@ -482,62 +482,62 @@ class SettingsManager {
         return this.names_;
     }
 
-    getCofuncIden() {
+    getCofuncIdenOne() {
         if(this.cofuncIdenOne_) {
-            document.getElementById('cofuncIdenOne').innerHtml = 'On'
+            document.getElementById('cofuncIdenOne').innerHTML = 'On'
             document.getElementById('cofuncIdenOne').style = 'border-color: rgb(0,255,0);'
         } else {
-            document.getElementById('cofuncIdenOne').innerHtml = 'Off'
+            document.getElementById('cofuncIdenOne').innerHTML = 'Off'
             document.getElementById('cofuncIdenOne').style = 'border-color:rgb(255,0,0);'
         }
         return this.cofuncIdenOne_;
     }
     getCofuncIdenTwo() {
         if(this.cofuncIdenTwo_) {
-            document.getElementById('cofuncIdenTwo').innerHtml = 'On'
+            document.getElementById('cofuncIdenTwo').innerHTML = 'On'
             document.getElementById('cofuncIdenTwo').style = 'border-color: rgb(0,255,0);'
         } else {
-            document.getElementById('cofuncIdenTwo').innerHtml = 'Off'
+            document.getElementById('cofuncIdenTwo').innerHTML = 'Off'
             document.getElementById('cofuncIdenTwo').style = 'border-color:rgb(255,0,0);'
         }
         return this.cofuncIdenTwo_
     }
     getCofuncIdenThree() {
         if(this.cofuncIdenThree_) {
-            document.getElementById('cofuncIdenThree').innerHtml = 'On'
+            document.getElementById('cofuncIdenThree').innerHTML = 'On'
             document.getElementById('cofuncIdenThree').style = 'border-color: rgb(0,255,0);'
         } else {
-            document.getElementById('cofuncIdenThree').innerHtml = 'Off'
+            document.getElementById('cofuncIdenThree').innerHTML = 'Off'
             document.getElementById('cofuncIdenThree').style = 'border-color:rgb(255,0,0);'
         }
         return this.cofuncIdenThree_;
     }
     getCofuncIdenFour() {
         if(this.cofuncIdenFour_) {
-            document.getElementById('cofuncIdenFour').innerHtml = 'On'
+            document.getElementById('cofuncIdenFour').innerHTML = 'On'
             document.getElementById('cofuncIdenFour').style = 'border-color: rgb(0,255,0);'
         } else {
-            document.getElementById('cofuncIdenFour').innerHtml = 'Off'
+            document.getElementById('cofuncIdenFour').innerHTML = 'Off'
             document.getElementById('cofuncIdenFour').style = 'border-color:rgb(255,0,0);'
         }
         return this.cofuncIdenFour_;
     }
     getCofuncIdenFive() {
         if(this.cofuncIdenFive_) {
-            document.getElementById('cofuncIdenFive').innerHtml = 'On'
+            document.getElementById('cofuncIdenFive').innerHTML = 'On'
             document.getElementById('cofuncIdenFive').style = 'border-color: rgb(0,255,0);'
         } else {
-            document.getElementById('cofuncIdenFive').innerHtml = 'Off'
+            document.getElementById('cofuncIdenFive').innerHTML = 'Off'
             document.getElementById('cofuncIdenFive').style = 'border-color:rgb(255,0,0);'
         }
         return this.cofuncIdenFive_;
     }
     getCofuncIdenSix() {
         if(this.cofuncIdenSix_) {
-            document.getElementById('cofuncIdenSix').innerHtml = 'On'
-            document.getElementById('cofuncIdenSix').style = 'border-color: rgb(0,255,0);'
+            document.getElementById('cofuncIdenSix').innerHTML = 'On'
+            document.getElementById('cofuncIdenSix').style = 'border-color:rgb(0,255,0);'
         } else {
-            document.getElementById('cofuncIdenSix').innerHtml = 'Off'
+            document.getElementById('cofuncIdenSix').innerHTML = 'Off'
             document.getElementById('cofuncIdenSix').style = 'border-color:rgb(255,0,0);'
         }
         return this.cofuncIdenSix_
@@ -932,12 +932,23 @@ class SettingsManager {
         this.pythIdenOne_ = set;
         if(this.pythIdenOne_) {
             document.getElementById('pythIdenOne').innerHTML = 'On';
+            document.getElementById('pythIdenOne').style = 'border-color: rgb(0,255,0);'; 
             this.butPythIdenTwo(false);
-            this.butPythIdenThree(false)
+            this.butPythIdenThree(false);
+
+            this.butCofuncIdenOne(false);
+            this.butCofuncIdenTwo(false);
+            this.butCofuncIdenThree(false)
+            this.butCofuncIdenFour(false)
+            this.butCofuncIdenFive(false)
+            this.butCofuncIdenSix(false)
+
         } else {
             this.butAllTrigFunc(false);
             this.butRadius(false);
             document.getElementById('pythIdenOne').innerHTML = 'Off'; 
+            document.getElementById('pythIdenOne').style = 'border-color: rgb(255,0,0);'; 
+
         }
     }
 
@@ -945,13 +956,24 @@ class SettingsManager {
         this.pythIdenTwo_ = set;
         if(this.pythIdenTwo_) {
             document.getElementById('pythIdenTwo').innerHTML = 'On';
+            document.getElementById('pythIdenTwo').style = 'border-color: rgb(0,255,0);'; 
+
             this.butPythIdenOne(false);
             this.butPythIdenThree(false);
-            document.getElementById('pythIdenTwo').style = 'border-color: rgb(0,255,0);'; 
+
+            this.butCofuncIdenOne(false);
+            this.butCofuncIdenTwo(false);
+            this.butCofuncIdenThree(false)
+            this.butCofuncIdenFour(false)
+            this.butCofuncIdenFive(false)
+            this.butCofuncIdenSix(false)
+
         } else {
             this.butAllTrigFunc(false);
             this.butRadius(false);
-            document.getElementById('pythIdenTwo').innerHTML = 'Off'; 
+            document.getElementById('pythIdenTwo').innerHTML = 'Off';
+            document.getElementById('pythIdenTwo').style = 'border-color: rgb(255,0,0);'; 
+ 
         }
     }
 
@@ -959,76 +981,164 @@ class SettingsManager {
         this.pythIdenThree_ = set;
         if(this.pythIdenThree_) {
             document.getElementById('pythIdenThree').innerHTML = 'On';
+            document.getElementById('pythIdenThree').style = 'border-color: rgb(0,255,0);'; 
+
             this.butPythIdenOne(false);
             this.butPythIdenTwo(false);
-            document.getElementById('pythIdenThree').style = 'border-color: rgb(0,255,0);'; 
+
+            this.butCofuncIdenOne(false);
+            this.butCofuncIdenTwo(false);
+            this.butCofuncIdenThree(false)
+            this.butCofuncIdenFour(false)
+            this.butCofuncIdenFive(false)
+            this.butCofuncIdenSix(false)
+
         } else {
             this.butAllTrigFunc(false);
             this.butRadius(false);
             document.getElementById('pythIdenThree').innerHTML = 'Off'; 
+            document.getElementById('pythIdenThree').style = 'border-color: rgb(255,0,0);'; 
+
         }
     }
 
-    butCofuncIden(set = !this.cofuncIden) {
-        this.cofuncIden_ = set;
-        if(this.cofuncIden_) {
-            document.getElementById('cofuncIden').innerHTML = 'On';
+    butCofuncIdenOne(set = !this.cofuncIdenOne_) {
+        this.cofuncIdenOne_ = set;
+        if(this.cofuncIdenOne_) {
+            document.getElementById('cofuncIdenOne').innerHTML = 'On';
+            document.getElementById('cofuncIdenOne').style = 'border-color: rgb(0,255,0);'; 
             this.butPythIdenOne(false);
             this.butPythIdenTwo(false);
             this.butPythIdenThree(false);
-            document.getElementById('cofuncIden').style = 'border-color:rgb(0,255,0);'
+
+            this.butCofuncIdenTwo(false);
+            this.butCofuncIdenThree(false)
+            this.butCofuncIdenFour(false)
+            this.butCofuncIdenFive(false)
+            this.butCofuncIdenSix(false)
+        } else {
+            this.butAllTrigFunc(false);
+            this.butRadius(false);
+            document.getElementById('cofuncIdenOne').innerHTML = 'Off';
+            document.getElementById('cofuncIdenOne').style = 'border-color: rgb(255,0,0);'; 
+
         }
     }
-    butCofuncIden(set = !this.cofuncIden) {
-        this.cofuncIden_ = set;
-        if(this.cofuncIden_) {
-            document.getElementById('cofuncIden').innerHTML = 'On';
+    butCofuncIdenTwo(set = !this.cofuncIdenTwo_) {
+        this.cofuncIdenTwo_ = set;
+        if(this.cofuncIdenTwo_) {
+            document.getElementById('cofuncIdenTwo').innerHTML = 'On';
+            document.getElementById('cofuncIdenTwo').style = 'border-color: rgb(0,255,0);'; 
+
+            this.butPythIdenOne(false);
+            this.butPythIdenThree(false);
+
+            this.butCofuncIdenOne(false);
+            this.butCofuncIdenThree(false)
+            this.butCofuncIdenFour(false)
+            this.butCofuncIdenFive(false)
+            this.butCofuncIdenSix(false)
+        } else {
+            this.butAllTrigFunc(false);
+            this.butRadius(false);
+            document.getElementById('cofuncIdenTwo').innerHTML = 'Off';
+            document.getElementById('cofuncIdenTwo').style = 'border-color: rgb(255,0,0);'; 
+
+        }
+    }
+    butCofuncIdenThree(set = !this.cofuncIdenThree_) {
+        this.cofuncIdenThree_ = set;
+        if(this.cofuncIdenThree_) {
+            document.getElementById('cofuncIdenThree').innerHTML = 'On';
+            document.getElementById('cofuncIdenThree').style = 'border-color: rgb(0,255,0);'; 
+
             this.butPythIdenOne(false);
             this.butPythIdenTwo(false);
             this.butPythIdenThree(false);
-            document.getElementById('cofuncIden').style = 'border-color:rgb(0,255,0);'
+
+            this.butCofuncIdenOne(false)
+            this.butCofuncIdenTwo(false);
+            this.butCofuncIdenFour(false)
+            this.butCofuncIdenFive(false)
+            this.butCofuncIdenSix(false)
+        } else {
+            this.butAllTrigFunc(false);
+            this.butRadius(false);
+            document.getElementById('cofuncIdenThree').innerHTML = 'Off'
+            document.getElementById('cofuncIdenThree').style = 'border-color: rgb(255,0,0);'; 
+
         }
     }
-    butCofuncIden(set = !this.cofuncIden) {
-        this.cofuncIden_ = set;
-        if(this.cofuncIden_) {
-            document.getElementById('cofuncIden').innerHTML = 'On';
+    butCofuncIdenFour(set = !this.cofuncIdenFour_) {
+        this.cofuncIdenFour_ = set;
+        if(this.cofuncIdenFour_) {
+            document.getElementById('cofuncIdenFour').innerHTML = 'On';
+            document.getElementById('cofuncIdenFour').style = 'border-color: rgb(0,255,0);'; 
+
             this.butPythIdenOne(false);
             this.butPythIdenTwo(false);
             this.butPythIdenThree(false);
-            document.getElementById('cofuncIden').style = 'border-color:rgb(0,255,0);'
+
+            this.butCofuncIdenOne(false)
+            this.butCofuncIdenTwo(false);
+            this.butCofuncIdenThree(false)
+            this.butCofuncIdenFive(false)
+            this.butCofuncIdenSix(false)
+        } else {
+            this.butAllTrigFunc(false);
+            this.butRadius(false);
+            document.getElementById('cofuncIdenFour').innerHTML = 'Off'
+            document.getElementById('cofuncIdenFour').style = 'border-color: rgb(255,0,0);'; 
+
         }
     }
-    butCofuncIden(set = !this.cofuncIden) {
-        this.cofuncIden_ = set;
-        if(this.cofuncIden_) {
-            document.getElementById('cofuncIden').innerHTML = 'On';
+    butCofuncIdenFive(set = !this.cofuncIdenFive_) {
+        this.cofuncIdenFive_ = set;
+        if(this.cofuncIdenFive_) {
+            document.getElementById('cofuncIdenFive').innerHTML = 'On';
+            document.getElementById('cofuncIdenFive').style = 'border-color: rgb(0,255,0);'; 
+
             this.butPythIdenOne(false);
             this.butPythIdenTwo(false);
             this.butPythIdenThree(false);
-            document.getElementById('cofuncIden').style = 'border-color:rgb(0,255,0);'
+
+            this.butCofuncIdenOne(false)
+            this.butCofuncIdenTwo(false);
+            this.butCofuncIdenThree(false)
+            this.butCofuncIdenFour(false)
+            this.butCofuncIdenSix(false)
+        } else {
+            this.butAllTrigFunc(false);
+            this.butRadius(false);
+            document.getElementById('cofuncIdenFive').innerHTML = 'Off'
+            document.getElementById('cofuncIdenFive').style = 'border-color: rgb(255,0,0);'; 
+
         }
     }
-    butCofuncIden(set = !this.cofuncIden) {
-        this.cofuncIden_ = set;
-        if(this.cofuncIden_) {
-            document.getElementById('cofuncIden').innerHTML = 'On';
+    butCofuncIdenSix(set = !this.cofuncIdenSix_) {
+        this.cofuncIdenSix_ = set;
+        if(this.cofuncIdenSix_) {
+            document.getElementById('cofuncIdenSix').innerHTML = 'On';
+            document.getElementById('cofuncIdenSix').style = 'border-color: rgb(0,255,0);'; 
+
             this.butPythIdenOne(false);
             this.butPythIdenTwo(false);
             this.butPythIdenThree(false);
-            document.getElementById('cofuncIden').style = 'border-color:rgb(0,255,0);'
+
+            this.butCofuncIdenOne(false)
+            this.butCofuncIdenTwo(false);
+            this.butCofuncIdenThree(false)
+            this.butCofuncIdenFour(false)
+            this.butCofuncIdenFive(false)
+        } else {
+            this.butAllTrigFunc(false);
+            this.butRadius(false);
+            document.getElementById('cofuncIdenSix').innerHTML = 'Off'
+            document.getElementById('cofuncIdenSix').style = 'border-color: rgb(255,0,0);'; 
+
         }
     }
-    butCofuncIden(set = !this.cofuncIden) {
-        this.cofuncIden_ = set;
-        if(this.cofuncIden_) {
-            document.getElementById('cofuncIden').innerHTML = 'On';
-            this.butPythIdenOne(false);
-            this.butPythIdenTwo(false);
-            this.butPythIdenThree(false);
-            document.getElementById('cofuncIden').style = 'border-color:rgb(0,255,0);'
-        }
-    }
+
 
     
 
@@ -1439,7 +1549,7 @@ function draw() {
 
     if(SetMan.getSin()) drawSin();
 
-    if(SetMan.getCos() && !SetMan.getPythIdenOne())
+    if(SetMan.getCos() && (!SetMan.getPythIdenOne()))
         drawCos();
     else if (SetMan.getCos() && SetMan.getPythIdenOne())
         drawCos(true);
@@ -1469,6 +1579,15 @@ function draw() {
     if(SetMan.getPythIdenOne()) drawPythagoreanIdentityOne();
     if(SetMan.getPythIdenTwo()) drawPythagoreanIdentityTwo();
     if(SetMan.getPythIdenThree()) drawPythagoreanIdentityThree();
+
+    if(SetMan.getCofuncIdenOne()) drawCofuncIdenOne();
+    if(SetMan.getCofuncIdenTwo()) drawCofuncIdenTwo();
+    if(SetMan.getCofuncIdenThree()) drawCofuncIdenThree();
+    if(SetMan.getCofuncIdenFour()) drawCofuncIdenFour();
+    if(SetMan.getCofuncIdenFive()) drawCofuncIdenFive();
+    if(SetMan.getCofuncIdenSix()) drawCofuncIdenSix();
+
+
 
     if(SetMan.getSpinMode()) spinMode();
 
@@ -2072,10 +2191,8 @@ function drawPythagoreanIdentityThree() {
 function drawCofuncIdenOne() {
     SetMan.butPythIdenTwo(false);
     SetMan.butAllTrigFunc(false);
-    SetMan.butRadius(true);
+    SetMan.butRadius(false);
     SetMan.butUnitTriangle(false);
-    SetMan.butSin();
-    SetMan.butCos();
 
     let angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
     if(angle < 0) {
@@ -2084,10 +2201,21 @@ function drawCofuncIdenOne() {
     }
     angle *= PI;
 
-    let xCoord = parseFloat(relativeCos(angle)/UNIT).toFixed(3);
-    let yCoord = parseFloat(-relativeSin(PI/2 - angle)/UNIT).toFixed(3);
+    CosMan.strokeWeight(4)
 
-    let explanation = 'Cofunction Identity\n\nsin(π/2 - ' + parseFloat(angle).toFixed(3) + 'π) = cos(' + parseFloat(angle).toFixed(3) + 'π)';
+    CosMan.strokeColor('lime');
+    line(0, 0, relativeCos(angle), 0);
+
+    CosMan.strokeColor('blue');
+    line(relativeCos(angle), 0, relativeCos(angle), relativeSin(PI/2 - angle));
+    CosMan.strokeColor('brown')
+    line(0, 0, relativeCos(angle), relativeSin(PI/2 - angle));
+
+
+    let cosVal = parseFloat(relativeCos(angle)/UNIT).toFixed(3);
+    let sinVal = parseFloat(-relativeSin(PI/2 - angle)/UNIT).toFixed(3);
+
+    let explanation = 'Cofunction Identity\n\nsin(π/2 - ' + parseFloat(angle).toFixed(3) + 'π) = cos(' + parseFloat(angle).toFixed(3) + 'π)\n\n' + sinVal + ' = ' + cosVal;
 
     if(angle >= 0 && angle < PI/2) {
         text(explanation, -UNIT * 1.2, -UNIT * 1.6);

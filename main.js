@@ -143,6 +143,14 @@ class SettingsManager {
         this.pythIdenTwo_ = false;
         this.pythIdenThree_ = false;
 
+        this.cofuncIdenOne_ = false;
+        this.cofuncIdenTwo_ = false;
+        this.cofuncIdenThree_ = false;
+        this.cofuncIdenFour_ = false;
+        this.cofuncIdenFive_ = false;
+        this.cofuncIdenSix_ = false;
+
+
         this.spinMode_ = false;
     }
 
@@ -472,6 +480,67 @@ class SettingsManager {
             document.getElementById('names1').style = 'border-color: rgb(255,0,0);';
         }
         return this.names_;
+    }
+
+    getCofuncIden() {
+        if(this.cofuncIdenOne_) {
+            document.getElementById('cofuncIdenOne').innerHtml = 'On'
+            document.getElementById('cofuncIdenOne').style = 'border-color: rgb(0,255,0);'
+        } else {
+            document.getElementById('cofuncIdenOne').innerHtml = 'Off'
+            document.getElementById('cofuncIdenOne').style = 'border-color:rgb(255,0,0);'
+        }
+        return this.cofuncIdenOne_;
+    }
+    getCofuncIdenTwo() {
+        if(this.cofuncIdenTwo_) {
+            document.getElementById('cofuncIdenTwo').innerHtml = 'On'
+            document.getElementById('cofuncIdenTwo').style = 'border-color: rgb(0,255,0);'
+        } else {
+            document.getElementById('cofuncIdenTwo').innerHtml = 'Off'
+            document.getElementById('cofuncIdenTwo').style = 'border-color:rgb(255,0,0);'
+        }
+        return this.cofuncIdenTwo_
+    }
+    getCofuncIdenThree() {
+        if(this.cofuncIdenThree_) {
+            document.getElementById('cofuncIdenThree').innerHtml = 'On'
+            document.getElementById('cofuncIdenThree').style = 'border-color: rgb(0,255,0);'
+        } else {
+            document.getElementById('cofuncIdenThree').innerHtml = 'Off'
+            document.getElementById('cofuncIdenThree').style = 'border-color:rgb(255,0,0);'
+        }
+        return this.cofuncIdenThree_;
+    }
+    getCofuncIdenFour() {
+        if(this.cofuncIdenFour_) {
+            document.getElementById('cofuncIdenFour').innerHtml = 'On'
+            document.getElementById('cofuncIdenFour').style = 'border-color: rgb(0,255,0);'
+        } else {
+            document.getElementById('cofuncIdenFour').innerHtml = 'Off'
+            document.getElementById('cofuncIdenFour').style = 'border-color:rgb(255,0,0);'
+        }
+        return this.cofuncIdenFour_;
+    }
+    getCofuncIdenFive() {
+        if(this.cofuncIdenFive_) {
+            document.getElementById('cofuncIdenFive').innerHtml = 'On'
+            document.getElementById('cofuncIdenFive').style = 'border-color: rgb(0,255,0);'
+        } else {
+            document.getElementById('cofuncIdenFive').innerHtml = 'Off'
+            document.getElementById('cofuncIdenFive').style = 'border-color:rgb(255,0,0);'
+        }
+        return this.cofuncIdenFive_;
+    }
+    getCofuncIdenSix() {
+        if(this.cofuncIdenSix_) {
+            document.getElementById('cofuncIdenSix').innerHtml = 'On'
+            document.getElementById('cofuncIdenSix').style = 'border-color: rgb(0,255,0);'
+        } else {
+            document.getElementById('cofuncIdenSix').innerHtml = 'Off'
+            document.getElementById('cofuncIdenSix').style = 'border-color:rgb(255,0,0);'
+        }
+        return this.cofuncIdenSix_
     }
 
     // Buttons
@@ -899,6 +968,69 @@ class SettingsManager {
             document.getElementById('pythIdenThree').innerHTML = 'Off'; 
         }
     }
+
+    butCofuncIden(set = !this.cofuncIden) {
+        this.cofuncIden_ = set;
+        if(this.cofuncIden_) {
+            document.getElementById('cofuncIden').innerHTML = 'On';
+            this.butPythIdenOne(false);
+            this.butPythIdenTwo(false);
+            this.butPythIdenThree(false);
+            document.getElementById('cofuncIden').style = 'border-color:rgb(0,255,0);'
+        }
+    }
+    butCofuncIden(set = !this.cofuncIden) {
+        this.cofuncIden_ = set;
+        if(this.cofuncIden_) {
+            document.getElementById('cofuncIden').innerHTML = 'On';
+            this.butPythIdenOne(false);
+            this.butPythIdenTwo(false);
+            this.butPythIdenThree(false);
+            document.getElementById('cofuncIden').style = 'border-color:rgb(0,255,0);'
+        }
+    }
+    butCofuncIden(set = !this.cofuncIden) {
+        this.cofuncIden_ = set;
+        if(this.cofuncIden_) {
+            document.getElementById('cofuncIden').innerHTML = 'On';
+            this.butPythIdenOne(false);
+            this.butPythIdenTwo(false);
+            this.butPythIdenThree(false);
+            document.getElementById('cofuncIden').style = 'border-color:rgb(0,255,0);'
+        }
+    }
+    butCofuncIden(set = !this.cofuncIden) {
+        this.cofuncIden_ = set;
+        if(this.cofuncIden_) {
+            document.getElementById('cofuncIden').innerHTML = 'On';
+            this.butPythIdenOne(false);
+            this.butPythIdenTwo(false);
+            this.butPythIdenThree(false);
+            document.getElementById('cofuncIden').style = 'border-color:rgb(0,255,0);'
+        }
+    }
+    butCofuncIden(set = !this.cofuncIden) {
+        this.cofuncIden_ = set;
+        if(this.cofuncIden_) {
+            document.getElementById('cofuncIden').innerHTML = 'On';
+            this.butPythIdenOne(false);
+            this.butPythIdenTwo(false);
+            this.butPythIdenThree(false);
+            document.getElementById('cofuncIden').style = 'border-color:rgb(0,255,0);'
+        }
+    }
+    butCofuncIden(set = !this.cofuncIden) {
+        this.cofuncIden_ = set;
+        if(this.cofuncIden_) {
+            document.getElementById('cofuncIden').innerHTML = 'On';
+            this.butPythIdenOne(false);
+            this.butPythIdenTwo(false);
+            this.butPythIdenThree(false);
+            document.getElementById('cofuncIden').style = 'border-color:rgb(0,255,0);'
+        }
+    }
+
+    
 
 
     butSpinMode() {

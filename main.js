@@ -2226,6 +2226,16 @@ function drawCofuncIdenOne() {
     } else if(angle >= 3*PI/2 && angle < 2*PI) {
         text(explanation, -UNIT * 1.2, -UNIT * 1.6);
     }
+
+    if(SetMan.getNames()) {
+        fill('blue');
+        text('sin(θ)', relativeCos(angle) * 1.2, relativeSin(PI/2 - angle) * 0.5);
+        fill('lime');
+        text('cos(θ)', relativeCos(angle) * 0.5, (angle > PI/2 && angle < 3*PI/2)  ? -50 : 50);
+        fill('brown');
+        text('1', relativeCos(angle) * 0.5, relativeSin(PI/2 - angle) * 0.75);
+    }
+
 }
 function drawCofuncIdenTwo() {
     

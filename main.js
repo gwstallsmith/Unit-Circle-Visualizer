@@ -1510,6 +1510,11 @@ function keyPressed() {
     if(keyCode === 65) {
         SetMan.butUnitArc();
     }
+
+    if(keyCode === 68) {
+        newSetMan('default');
+    }
+
 }
 
 // P5 function that drives the entire animation.

@@ -2303,7 +2303,7 @@ function drawCofuncIdenThree() {
     line(relativeCos(PI/2-angle), relativeSin(PI/2-angle), UNIT/relativeCos(PI/2-angle) * UNIT, 0);
 
     CosMan.strokeColor('magenta');
-    line(0, -(1/(relativeSin(angle)/UNIT)) * UNIT, relativeCos(angle), -relativeSin(angle));
+    line(0, (1/(relativeSin(angle)/UNIT)) * UNIT, relativeCos(angle), relativeSin(angle));
 
 
     let tanVal = parseFloat(-relativeSin(PI/2-angle)/relativeCos(PI/2-angle)).toFixed(3);
@@ -2333,7 +2333,50 @@ function drawCofuncIdenThree() {
 }
 
 function drawCofuncIdenFour() {
-    
+    SetMan.butAllTrigFunc(false);
+    SetMan.butRadius(false);
+    SetMan.butUnitTriangle(false);
+
+    let angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+    if(angle < 0) {
+        angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+        angle += 2;
+    }
+    angle *= PI;
+
+    CosMan.strokeWeight(4);
+
+    CosMan.strokeColor('red');
+    line(relativeCos(angle), relativeSin(angle), UNIT/relativeCos(angle) * UNIT, 0);
+
+    CosMan.strokeColor('magenta');
+    line(0, (1/(relativeSin(PI/2-angle)/UNIT)) * UNIT, relativeCos(PI/2-angle), relativeSin(PI/2-angle));
+
+
+    let tanVal = parseFloat(-relativeSin(angle)/relativeCos(angle)).toFixed(3);
+    let cotVal = parseFloat(-relativeCos(PI/2-angle)/relativeSin(PI/2-angle)).toFixed(3);
+    //let cosVal = parseFloat(relativeCos(PI/2 - angle)/UNIT).toFixed(3);
+    //let sinVal = parseFloat(-relativeSin(angle)/UNIT).toFixed(3);
+
+    let explanation = 'Cofunction Identity\n\ncot(π/2 - ' + parseFloat(angle/PI).toFixed(3) + 'π) = tan(' + parseFloat(angle/PI).toFixed(3) + 'π)\n\n' + tanVal + ' = ' + cotVal;
+
+    if(angle >= 0 && angle < PI/2) {
+        text(explanation, -UNIT * 1.2, -UNIT * 1.6);
+    } else if(angle >= PI/2 && angle < PI) {
+        text(explanation, UNIT * 1.2, -UNIT * 1.6);
+    } else if(angle >= PI && angle < 3*PI/2) {
+        text(explanation, -UNIT * 1.2, -UNIT * 1.6);
+    } else if(angle >= 3*PI/2 && angle < 2*PI) {
+        text(explanation, -UNIT * 1.2, -UNIT * 1.6);
+    }
+
+    if(SetMan.getNames()) {
+        fill('red');
+        text('tan(θ)', (relativeCos(angle) + UNIT/relativeCos(angle) * UNIT) * 0.6, relativeSin(angle) * 0.5);
+        fill('magenta');
+        text('cot(θ)', relativeCos(PI/2-angle) * 0.75, (-(1/(relativeSin(PI/2-angle)/UNIT)) * UNIT));
+        fill('brown');
+    }
 }
 
 function drawCofuncIdenFive() {

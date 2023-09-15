@@ -2238,12 +2238,55 @@ function drawCofuncIdenOne() {
         fill('lime');
         text('cos(θ)', relativeCos(angle) * 0.5, (angle > PI/2 && angle < 3*PI/2)  ? -50 : 50);
         fill('brown');
-        text('1', relativeCos(angle) * 0.5, relativeSin(PI/2 - angle) * 0.75);
     }
 
 }
 function drawCofuncIdenTwo() {
-    
+    SetMan.butPythIdenTwo(false);
+    SetMan.butAllTrigFunc(false);
+    SetMan.butRadius(false);
+    SetMan.butUnitTriangle(false);
+
+    let angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+    if(angle < 0) {
+        angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+        angle += 2;
+    }
+    angle *= PI;
+
+    CosMan.strokeWeight(4)
+
+    CosMan.strokeColor('lime');
+    line(0, 0, relativeCos(PI/2 - angle), 0);
+
+    CosMan.strokeColor('blue');
+    line(relativeCos(PI/2 -  angle), 0, relativeCos(PI/2 - angle), relativeSin(angle));
+    CosMan.strokeColor('brown')
+    line(0, 0, relativeCos(PI/2 - angle), relativeSin(angle));
+
+
+    let cosVal = parseFloat(relativeCos(PI/2 - angle)/UNIT).toFixed(3);
+    let sinVal = parseFloat(-relativeSin(angle)/UNIT).toFixed(3);
+
+    let explanation = 'Cofunction Identity\n\ncos(π/2 - ' + parseFloat(angle).toFixed(3) + 'π) = sin(' + parseFloat(angle).toFixed(3) + 'π)\n\n' + cosVal + ' = ' + sinVal;
+
+    if(angle >= 0 && angle < PI/2) {
+        text(explanation, -UNIT * 1.2, -UNIT * 1.6);
+    } else if(angle >= PI/2 && angle < PI) {
+        text(explanation, UNIT * 1.2, -UNIT * 1.6);
+    } else if(angle >= PI && angle < 3*PI/2) {
+        text(explanation, -UNIT * 1.2, -UNIT * 1.6);
+    } else if(angle >= 3*PI/2 && angle < 2*PI) {
+        text(explanation, -UNIT * 1.2, -UNIT * 1.6);
+    }
+
+    if(SetMan.getNames()) {
+        fill('blue');
+        text('sin(θ)', relativeCos(angle) * 1.2, relativeSin(PI/2 - angle) * 0.5);
+        fill('lime');
+        text('cos(θ)', relativeCos(angle) * 0.5, (angle > PI/2 && angle < 3*PI/2)  ? -50 : 50);
+        fill('brown');
+    }
 }
 function drawCofuncIdenThree() {
     

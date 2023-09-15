@@ -2081,7 +2081,6 @@ function drawPosInfo() {
 }
 
 function drawPythagoreanIdentityOne() {
-    SetMan.butPythIdenTwo(false);
     SetMan.butAllTrigFunc(false);
     SetMan.butRadius(true);
     SetMan.butUnitTriangle(false);
@@ -2117,7 +2116,6 @@ function drawPythagoreanIdentityOne() {
 }
 
 function drawPythagoreanIdentityTwo() {
-    SetMan.butPythIdenOne(false);
     SetMan.butAllTrigFunc(false);
     SetMan.butRadius(true);
     SetMan.butUnitTriangle(false);
@@ -2157,7 +2155,6 @@ function drawPythagoreanIdentityTwo() {
 }
 
 function drawPythagoreanIdentityThree() {
-    SetMan.butPythIdenOne(false);
     SetMan.butAllTrigFunc(false);
     SetMan.butRadius(true);
     SetMan.butUnitTriangle(false);
@@ -2194,7 +2191,6 @@ function drawPythagoreanIdentityThree() {
 }
 
 function drawCofuncIdenOne() {
-    SetMan.butPythIdenTwo(false);
     SetMan.butAllTrigFunc(false);
     SetMan.butRadius(false);
     SetMan.butUnitTriangle(false);
@@ -2220,7 +2216,7 @@ function drawCofuncIdenOne() {
     let cosVal = parseFloat(relativeCos(angle)/UNIT).toFixed(3);
     let sinVal = parseFloat(-relativeSin(PI/2 - angle)/UNIT).toFixed(3);
 
-    let explanation = 'Cofunction Identity\n\nsin(π/2 - ' + parseFloat(angle).toFixed(3) + 'π) = cos(' + parseFloat(angle).toFixed(3) + 'π)\n\n' + sinVal + ' = ' + cosVal;
+    let explanation = 'Cofunction Identity\n\nsin(π/2 - ' + parseFloat(angle/PI).toFixed(3) + 'π) = cos(' + parseFloat(angle/PI).toFixed(3) + 'π)\n\n' + sinVal + ' = ' + cosVal;
 
     if(angle >= 0 && angle < PI/2) {
         text(explanation, -UNIT * 1.2, -UNIT * 1.6);
@@ -2241,8 +2237,8 @@ function drawCofuncIdenOne() {
     }
 
 }
+
 function drawCofuncIdenTwo() {
-    SetMan.butPythIdenTwo(false);
     SetMan.butAllTrigFunc(false);
     SetMan.butRadius(false);
     SetMan.butUnitTriangle(false);
@@ -2268,7 +2264,7 @@ function drawCofuncIdenTwo() {
     let cosVal = parseFloat(relativeCos(PI/2 - angle)/UNIT).toFixed(3);
     let sinVal = parseFloat(-relativeSin(angle)/UNIT).toFixed(3);
 
-    let explanation = 'Cofunction Identity\n\ncos(π/2 - ' + parseFloat(angle).toFixed(3) + 'π) = sin(' + parseFloat(angle).toFixed(3) + 'π)\n\n' + cosVal + ' = ' + sinVal;
+    let explanation = 'Cofunction Identity\n\ncos(π/2 - ' + parseFloat(angle/PI).toFixed(3) + 'π) = sin(' + parseFloat(angle/PI).toFixed(3) + 'π)\n\n' + cosVal + ' = ' + sinVal;
 
     if(angle >= 0 && angle < PI/2) {
         text(explanation, -UNIT * 1.2, -UNIT * 1.6);
@@ -2282,21 +2278,68 @@ function drawCofuncIdenTwo() {
 
     if(SetMan.getNames()) {
         fill('blue');
-        text('sin(θ)', relativeCos(angle) * 1.2, relativeSin(PI/2 - angle) * 0.5);
+        text('sin(θ)', relativeCos(PI/2 - angle) * 1.2, relativeSin(angle) * 0.5);
         fill('lime');
-        text('cos(θ)', relativeCos(angle) * 0.5, (angle > PI/2 && angle < 3*PI/2)  ? -50 : 50);
+        text('cos(θ)', relativeCos(PI/2 - angle) * 0.5, (angle > 0 && angle < PI)  ? 50 : -50);
         fill('brown');
     }
 }
+
 function drawCofuncIdenThree() {
-    
+    SetMan.butAllTrigFunc(false);
+    SetMan.butRadius(false);
+    SetMan.butUnitTriangle(false);
+
+    let angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+    if(angle < 0) {
+        angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+        angle += 2;
+    }
+    angle *= PI;
+
+    CosMan.strokeWeight(4);
+
+    CosMan.strokeColor('red');
+    line(relativeCos(PI/2-angle), relativeSin(PI/2-angle), UNIT/relativeCos(PI/2-angle) * UNIT, 0);
+
+    CosMan.strokeColor('magenta');
+    line(0, -(1/(relativeSin(angle)/UNIT)) * UNIT, relativeCos(angle), -relativeSin(angle));
+
+
+    let tanVal = parseFloat(-relativeSin(PI/2-angle)/relativeCos(PI/2-angle)).toFixed(3);
+    let cotVal = parseFloat(-relativeCos(angle)/relativeSin(angle)).toFixed(3);
+    //let cosVal = parseFloat(relativeCos(PI/2 - angle)/UNIT).toFixed(3);
+    //let sinVal = parseFloat(-relativeSin(angle)/UNIT).toFixed(3);
+
+    let explanation = 'Cofunction Identity\n\ntan(π/2 - ' + parseFloat(angle/PI).toFixed(3) + 'π) = cot(' + parseFloat(angle/PI).toFixed(3) + 'π)\n\n' + tanVal + ' = ' + cotVal;
+
+    if(angle >= 0 && angle < PI/2) {
+        text(explanation, -UNIT * 1.2, -UNIT * 1.6);
+    } else if(angle >= PI/2 && angle < PI) {
+        text(explanation, UNIT * 1.2, -UNIT * 1.6);
+    } else if(angle >= PI && angle < 3*PI/2) {
+        text(explanation, -UNIT * 1.2, -UNIT * 1.6);
+    } else if(angle >= 3*PI/2 && angle < 2*PI) {
+        text(explanation, -UNIT * 1.2, -UNIT * 1.6);
+    }
+
+    if(SetMan.getNames()) {
+        fill('red');
+        text('tan(θ)', (relativeCos(PI/2 - angle) + UNIT/relativeCos(PI/2 - angle) * UNIT) * 0.6, relativeSin(angle) * 0.5);
+        fill('magenta');
+        text('cot(θ)', relativeCos(angle) * 0.75, (-(1/(relativeSin(angle)/UNIT)) * UNIT));
+        fill('brown');
+    }
 }
+
 function drawCofuncIdenFour() {
     
 }
+
 function drawCofuncIdenFive() {
     
 }
+
 function drawCofuncIdenSix() {
     
 }

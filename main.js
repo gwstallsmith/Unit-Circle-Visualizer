@@ -823,6 +823,13 @@ class SettingsManager {
                 document.getElementById('panel4').style.display="none";
                 document.getElementById('panel5').style.display="none";
 
+                document.getElementById('welcomeButton0').style='border-color:rgb(255,255,255);';
+                document.getElementById('gridButton0').style='border-color:rgb(0,0,0);';
+                document.getElementById('circleButton0').style='border-color:rgb(0,0,0);';
+                document.getElementById('triangleButton0').style='border-color:rgb(0,0,0);';
+                document.getElementById('piButton0').style='border-color:rgb(0,0,0);';
+                document.getElementById('calcButton0').style='border-color:rgb(0,0,0);';
+                
             } else if(this.openPanel_ == 1) {
                 document.getElementById('panel0').style.display="none";
                 document.getElementById('panel1').style.display="block";
@@ -830,6 +837,14 @@ class SettingsManager {
                 document.getElementById('panel3').style.display="none";
                 document.getElementById('panel4').style.display="none";
                 document.getElementById('panel5').style.display="none";
+
+                document.getElementById('welcomeButton1').style='border-color:rgb(0,0,0);';
+                document.getElementById('gridButton1').style='border-color:rgb(255,255,255);';
+                document.getElementById('circleButton1').style='border-color:rgb(0,0,0);';
+                document.getElementById('triangleButton1').style='border-color:rgb(0,0,0);';
+                document.getElementById('piButton1').style='border-color:rgb(0,0,0);';
+                document.getElementById('calcButton1').style='border-color:rgb(0,0,0);';
+
 
             } else if(this.openPanel_ == 2) {
                 document.getElementById('panel0').style.display="none";
@@ -839,6 +854,14 @@ class SettingsManager {
                 document.getElementById('panel4').style.display="none";
                 document.getElementById('panel5').style.display="none";
 
+                document.getElementById('welcomeButton2').style='border-color:rgb(0,0,0);';
+                document.getElementById('gridButton2').style='border-color:rgb(0,0,0);';
+                document.getElementById('circleButton2').style='border-color:rgb(255,255,255);';
+                document.getElementById('triangleButton2').style='border-color:rgb(0,0,0);';
+                document.getElementById('piButton2').style='border-color:rgb(0,0,0);';
+                document.getElementById('calcButton2').style='border-color:rgb(0,0,0);';
+
+
             } else if (this.openPanel_ == 3) {
                 document.getElementById('panel0').style.display="none";
                 document.getElementById('panel1').style.display="none";
@@ -847,6 +870,12 @@ class SettingsManager {
                 document.getElementById('panel4').style.display="none";
                 document.getElementById('panel5').style.display="none";
 
+                document.getElementById('welcomeButton3').style='border-color:rgb(0,0,0);';
+                document.getElementById('gridButton3').style='border-color:rgb(0,0,0);';
+                document.getElementById('circleButton3').style='border-color:rgb(0,0,0);';
+                document.getElementById('triangleButton3').style='border-color:rgb(255,255,255);';
+                document.getElementById('piButton3').style='border-color:rgb(0,0,0);';
+                document.getElementById('calcButton3').style='border-color:rgb(0,0,0);';
 
             } else if (this.openPanel_ == 4) {
                 document.getElementById('panel0').style.display="none";
@@ -856,6 +885,13 @@ class SettingsManager {
                 document.getElementById('panel4').style.display="block";
                 document.getElementById('panel5').style.display="none";
 
+                document.getElementById('welcomeButton4').style='border-color:rgb(0,0,0);';
+                document.getElementById('gridButton4').style='border-color:rgb(0,0,0);';
+                document.getElementById('circleButton4').style='border-color:rgb(0,0,0);';
+                document.getElementById('triangleButton4').style='border-color:rgb(0,0,0);';
+                document.getElementById('piButton4').style='border-color:rgb(255,255,255);';
+                document.getElementById('calcButton4').style='border-color:rgb(0,0,0);';
+
 
             } else if (this.openPanel_ == 5) {
                 document.getElementById('panel0').style.display="none";
@@ -864,6 +900,13 @@ class SettingsManager {
                 document.getElementById('panel3').style.display="none";
                 document.getElementById('panel4').style.display="none";
                 document.getElementById('panel5').style.display="block";
+
+                document.getElementById('welcomeButton5').style='border-color:rgb(0,0,0);';
+                document.getElementById('gridButton5').style='border-color:rgb(0,0,0);';
+                document.getElementById('circleButton5').style='border-color:rgb(0,0,0);';
+                document.getElementById('triangleButton5').style='border-color:rgb(0,0,0);';
+                document.getElementById('piButton5').style='border-color:rgb(0,0,0);';
+                document.getElementById('calcButton5').style='border-color:rgb(255,255,255);';
 
             } 
         
@@ -1333,12 +1376,7 @@ function decreaseCanvasSize() {
 }
 
 function hidePanels() {
-    document.getElementById('panel0').style.display="block";
-    document.getElementById('panel1').style.display="none";
-    document.getElementById('panel2').style.display="none";
-    document.getElementById('panel3').style.display="none";
-    document.getElementById('panel4').style.display="none";
-    document.getElementById('panel5').style.display="none";
+    SetMan.butNextPanel(false, 0);
 }
 
 function forwardUnitCircle() {

@@ -2418,7 +2418,53 @@ function drawCofuncIdenFour() {
 }
 
 function drawCofuncIdenFive() {
+    SetMan.butAllTrigFunc(false);
+    SetMan.butRadius(false);
+    SetMan.butUnitTriangle(false);
+
+    let angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+    if(angle < 0) {
+        angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+        angle += 2;
+    }
+    angle *= PI;
+
+    CosMan.strokeWeight(4)
+
+    CosMan.strokeColor('lime');
+    line(0, 0, relativeCos(angle), 0);
+
+    CosMan.strokeColor('cyan');
+    line(0, 0, 0, (1/(relativeSin(PI/2-angle)/UNIT)) * UNIT);
+    CosMan.strokeColor('yellow')
+    line(0, 0, UNIT/relativeCos(angle) * UNIT, 0)
+
+
+    let secVal = parseFloat(1/relativeCos(angle*PI)*UNIT).toFixed(3);
+    secVal = (secVal == '-0.000' ? Math.abs(secVal) : secVal);
     
+    let sin = -relativeSin(angle)/UNIT;
+    let cscVal = parseFloat(1/sin).toFixed(3);
+    cscVal = (cscVal == '-0.000' ? Math.abs(cscVal) : cscVal);
+
+    let explanation = 'Cofunction Identity\n\ncsc(π/2 - ' + parseFloat(angle/PI).toFixed(3) + 'π) = sec(' + parseFloat(angle/PI).toFixed(3) + 'π)\n\n' + cscVal + ' = ' + secVal;
+
+    if(angle >= 0 && angle < PI/2) {
+        text(explanation, -UNIT * 1.2, -UNIT * 1.6);
+    } else if(angle >= PI/2 && angle < PI) {
+        text(explanation, UNIT * 1.2, -UNIT * 1.6);
+    } else if(angle >= PI && angle < 3*PI/2) {
+        text(explanation, -UNIT * 1.2, -UNIT * 1.6);
+    } else if(angle >= 3*PI/2 && angle < 2*PI) {
+        text(explanation, -UNIT * 1.2, -UNIT * 1.6);
+    }
+
+    if(SetMan.getNames()) {
+        fill('cyan');
+        text('csc(θ)', (angle > PI/2 && angle < 3*PI/2) ? 50 : -50, ((1/(relativeSin(PI/2-angle)/UNIT)) * UNIT) * 0.5);
+        fill('yellow');
+        text('sec(θ)',(UNIT/relativeCos(angle) * UNIT) * 0.5, (angle > 0 && angle < PI)  ? 50 : -50);
+    }
 }
 
 function drawCofuncIdenSix() {

@@ -1553,6 +1553,17 @@ function keyPressed() {
         newSetMan('default');
     }
 
+
+    if(keyCode === 88) {
+        SetMan.butXAxis();
+    }
+    if(keyCode === 90) {
+        SetMan.butYAxis();
+    }
+    if(keyCode === 67) {
+        SetMan.butCircle();
+    }
+
 }
 
 // P5 function that drives the entire animation.

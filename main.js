@@ -2254,7 +2254,7 @@ function drawCofuncIdenOne() {
     let cosVal = parseFloat(relativeCos(angle)/UNIT).toFixed(3);
     let sinVal = parseFloat(-relativeSin(PI/2 - angle)/UNIT).toFixed(3);
 
-    let explanation = 'Cofunction Identity\n\nsin(π/2 - ' + parseFloat(angle/PI).toFixed(3) + 'π) = cos(' + parseFloat(angle/PI).toFixed(3) + 'π)\n\n' + sinVal + ' = ' + cosVal;
+    let explanation = 'Cofunction Identity\n\nsin(0.5π - ' + parseFloat(angle/PI).toFixed(3) + 'π) = cos(' + parseFloat(angle/PI).toFixed(3) + 'π)\n\nsin(' + parseFloat(0.5 - angle/PI).toFixed(3) + 'π) = cos(' + parseFloat(angle/PI).toFixed(3) + 'π)\n\n' + sinVal + ' = ' + cosVal;
 
     if(angle >= 0 && angle < PI/2) {
         text(explanation, -UNIT * 1.2, -UNIT * 1.6);
@@ -2302,7 +2302,7 @@ function drawCofuncIdenTwo() {
     let cosVal = parseFloat(relativeCos(PI/2 - angle)/UNIT).toFixed(3);
     let sinVal = parseFloat(-relativeSin(angle)/UNIT).toFixed(3);
 
-    let explanation = 'Cofunction Identity\n\ncos(π/2 - ' + parseFloat(angle/PI).toFixed(3) + 'π) = sin(' + parseFloat(angle/PI).toFixed(3) + 'π)\n\n' + cosVal + ' = ' + sinVal;
+    let explanation = 'Cofunction Identity\n\ncos(0.5π - ' + parseFloat(angle/PI).toFixed(3) + 'π) = sin(' + parseFloat(angle/PI).toFixed(3) + 'π)\n\ncos(' + parseFloat(0.5 - angle/PI).toFixed(3) + 'π) = sin(' + parseFloat(angle/PI).toFixed(3) + 'π)\n\n' + cosVal + ' = ' + sinVal;
 
     if(angle >= 0 && angle < PI/2) {
         text(explanation, -UNIT * 1.2, -UNIT * 1.6);
@@ -2349,7 +2349,7 @@ function drawCofuncIdenThree() {
     //let cosVal = parseFloat(relativeCos(PI/2 - angle)/UNIT).toFixed(3);
     //let sinVal = parseFloat(-relativeSin(angle)/UNIT).toFixed(3);
 
-    let explanation = 'Cofunction Identity\n\ntan(π/2 - ' + parseFloat(angle/PI).toFixed(3) + 'π) = cot(' + parseFloat(angle/PI).toFixed(3) + 'π)\n\n' + tanVal + ' = ' + cotVal;
+    let explanation = 'Cofunction Identity\n\ntan(0.5π - ' + parseFloat(angle/PI).toFixed(3) + 'π) = cot(' + parseFloat(angle/PI).toFixed(3) + 'π)\n\ntan(' + parseFloat(0.5 - angle/PI).toFixed(3) + 'π) = cot(' + parseFloat(angle/PI).toFixed(3) + 'π)\n\n' + tanVal + ' = ' + cotVal;
 
     if(angle >= 0 && angle < PI/2) {
         text(explanation, -UNIT * 1.2, -UNIT * 1.6);
@@ -2396,7 +2396,7 @@ function drawCofuncIdenFour() {
     //let cosVal = parseFloat(relativeCos(PI/2 - angle)/UNIT).toFixed(3);
     //let sinVal = parseFloat(-relativeSin(angle)/UNIT).toFixed(3);
 
-    let explanation = 'Cofunction Identity\n\ncot(π/2 - ' + parseFloat(angle/PI).toFixed(3) + 'π) = tan(' + parseFloat(angle/PI).toFixed(3) + 'π)\n\n' + tanVal + ' = ' + cotVal;
+    let explanation = 'Cofunction Identity\n\ncot(0.5π - ' + parseFloat(angle/PI).toFixed(3) + 'π) = tan(' + parseFloat(angle/PI).toFixed(3) + 'π)\n\ncot(' + parseFloat(0.5 - angle/PI).toFixed(3) + 'π) = tan(' + parseFloat(angle/PI).toFixed(3) + 'π)\n\n' + tanVal + ' = ' + cotVal;
 
     if(angle >= 0 && angle < PI/2) {
         text(explanation, -UNIT * 1.2, -UNIT * 1.6);
@@ -2431,23 +2431,20 @@ function drawCofuncIdenFive() {
 
     CosMan.strokeWeight(4)
 
-    CosMan.strokeColor('lime');
-    line(0, 0, relativeCos(angle), 0);
-
     CosMan.strokeColor('cyan');
     line(0, 0, 0, (1/(relativeSin(PI/2-angle)/UNIT)) * UNIT);
     CosMan.strokeColor('yellow')
     line(0, 0, UNIT/relativeCos(angle) * UNIT, 0)
 
 
-    let secVal = parseFloat(1/relativeCos(angle*PI)*UNIT).toFixed(3);
+    let secVal = parseFloat(1/relativeCos(angle)*UNIT).toFixed(3);
     secVal = (secVal == '-0.000' ? Math.abs(secVal) : secVal);
     
-    let sin = -relativeSin(angle)/UNIT;
-    let cscVal = parseFloat(1/sin).toFixed(3);
+    let sinVal = -relativeSin(PI/2-angle)/UNIT;
+    let cscVal = parseFloat(1/sinVal).toFixed(3);
     cscVal = (cscVal == '-0.000' ? Math.abs(cscVal) : cscVal);
 
-    let explanation = 'Cofunction Identity\n\ncsc(π/2 - ' + parseFloat(angle/PI).toFixed(3) + 'π) = sec(' + parseFloat(angle/PI).toFixed(3) + 'π)\n\n' + cscVal + ' = ' + secVal;
+    let explanation = 'Cofunction Identity\n\ncsc(0.5π - ' + parseFloat(angle/PI).toFixed(3) + 'π) = sec(' + parseFloat(angle/PI).toFixed(3) + 'π)\n\ncsc(' + parseFloat(0.5 - angle/PI).toFixed(3) + 'π) = sec(' + parseFloat(angle/PI).toFixed(3) + 'π)\n\n' + cscVal + ' = ' + secVal;
 
     if(angle >= 0 && angle < PI/2) {
         text(explanation, -UNIT * 1.2, -UNIT * 1.6);

@@ -2609,7 +2609,7 @@ function drawCofuncIdenOne() {
 
     if(SetMan.getNames()) {
         fill('blue');
-        text('sin(θ)', relativeCos(angle) * 1.2, relativeSin(PI/2 - angle) * 0.5);
+        text('sin(π/2 - θ)', relativeCos(angle) * 1.4, relativeSin(PI/2 - angle) * 0.5);
         fill('lime');
         text('cos(θ)', relativeCos(angle) * 0.5, (angle > PI/2 && angle < 3*PI/2)  ? -50 : 50);
         fill('brown');
@@ -2659,7 +2659,7 @@ function drawCofuncIdenTwo() {
         fill('blue');
         text('sin(θ)', relativeCos(PI/2 - angle) * 1.2, relativeSin(angle) * 0.5);
         fill('lime');
-        text('cos(θ)', relativeCos(PI/2 - angle) * 0.5, (angle > 0 && angle < PI)  ? 50 : -50);
+        text('cos(π/2 - θ)', relativeCos(PI/2 - angle) * 0.5, (angle > 0 && angle < PI)  ? 50 : -50);
         fill('brown');
     }
 }
@@ -2704,9 +2704,9 @@ function drawCofuncIdenThree() {
 
     if(SetMan.getNames()) {
         fill('red');
-        text('tan(θ)', (relativeCos(PI/2 - angle) + UNIT/relativeCos(PI/2 - angle) * UNIT) * 0.6, relativeSin(angle) * 0.5);
+        text('tan(π/2 - θ)', (relativeCos(PI/2 - angle) + UNIT/relativeCos(PI/2 - angle) * UNIT) * 0.6, relativeSin(angle) * 0.5);
         fill('magenta');
-        text('cot(θ)', relativeCos(angle) * 0.75, (-(1/(relativeSin(angle)/UNIT)) * UNIT));
+        text('cot(θ)', relativeCos(angle) * 0.75, ((1/(relativeSin(angle)/UNIT)) * UNIT));
         fill('brown');
     }
 }
@@ -2753,7 +2753,7 @@ function drawCofuncIdenFour() {
         fill('red');
         text('tan(θ)', (relativeCos(angle) + UNIT/relativeCos(angle) * UNIT) * 0.6, relativeSin(angle) * 0.5);
         fill('magenta');
-        text('cot(θ)', relativeCos(PI/2-angle) * 0.75, (-(1/(relativeSin(PI/2-angle)/UNIT)) * UNIT));
+        text('cot(π/2 - θ)', relativeCos(PI/2-angle) * 0.75, ((1/(relativeSin(PI/2-angle)/UNIT)) * UNIT));
         fill('brown');
     }
 }
@@ -2799,7 +2799,7 @@ function drawCofuncIdenFive() {
 
     if(SetMan.getNames()) {
         fill('cyan');
-        text('csc(θ)', (angle > PI/2 && angle < 3*PI/2) ? 50 : -50, ((1/(relativeSin(PI/2-angle)/UNIT)) * UNIT) * 0.5);
+        text('csc(π/2 - θ)', (angle > PI/2 && angle < 3*PI/2) ? 100 : -100, ((1/(relativeSin(PI/2-angle)/UNIT)) * UNIT) * 0.5);
         fill('yellow');
         text('sec(θ)',(UNIT/relativeCos(angle) * UNIT) * 0.5, (angle > 0 && angle < PI)  ? 50 : -50);
     }
@@ -2846,9 +2846,9 @@ function drawCofuncIdenSix() {
 
     if(SetMan.getNames()) {
         fill('cyan');
-        text('csc(θ)', (angle > PI/2 && angle < 3*PI/2) ? 50 : -50, ((1/(relativeSin(PI/2-angle)/UNIT)) * UNIT) * 0.5);
+        text('csc(θ)', (angle > PI/2 && angle < 3*PI/2) ? 50 : -50, ((1/(relativeSin(angle)/UNIT)) * UNIT) * 0.5);
         fill('yellow');
-        text('sec(θ)',(UNIT/relativeCos(angle) * UNIT) * 0.5, (angle > 0 && angle < PI)  ? 50 : -50);
+        text('sec(π/2 - θ)',(UNIT/relativeCos(PI/2 - angle) * UNIT) * 0.5, (angle > 0 && angle < PI)  ? 50 : -50);
     }
 
 }
@@ -2865,11 +2865,16 @@ function drawEvenOddIdenOne() {
     }
     angle *= PI;
 
+
+    CosMan.strokeColor('blue');
+    line(relativeCos(angle), 0, relativeCos(angle), relativeSin(-angle));
+
+
     let sinLeft = parseFloat(-relativeSin(-angle)/UNIT).toFixed(3);
     let sinRight = parseFloat(relativeSin(angle)/UNIT).toFixed(3);
 
 
-    let explanation = 'Even / Odd Identity\n\nsin(' + parseFloat(angle/PI).toFixed(3) + 'π) = -sin(' + parseFloat(angle/PI).toFixed(3) + 'π)\n\n' + sinLeft + ' = ' + sinRight;
+    let explanation = 'Even / Odd Identity\n\nsin(-' + parseFloat(angle/PI).toFixed(3) + 'π) = -sin(' + parseFloat(angle/PI).toFixed(3) + 'π)\n\n' + sinLeft + ' = ' + sinRight;
 
     if(angle >= 0 && angle < PI/2) {
         text(explanation, -UNIT * 1.2, -UNIT * 1.6);
@@ -2882,25 +2887,28 @@ function drawEvenOddIdenOne() {
     }
 
     if(SetMan.getNames()) {
-        fill('cyan');
-        text('csc(θ)', (angle > PI/2 && angle < 3*PI/2) ? 50 : -50, ((1/(relativeSin(PI/2-angle)/UNIT)) * UNIT) * 0.5);
-        fill('yellow');
-        text('sec(θ)',(UNIT/relativeCos(angle) * UNIT) * 0.5, (angle > 0 && angle < PI)  ? 50 : -50);
+        fill('blue');
+        text('sin(-θ)\n\n-sin(θ)', relativeCos(angle) * 1.4, relativeSin(-angle) * 0.5);
     }
 
 }
+
 function drawEvenOddIdenTwo() {
 
 }
+
 function drawEvenOddIdenThree() {
 
 }
+
 function drawEvenOddIdenFour() {
 
 }
+
 function drawEvenOddIdenFive() {
 
 }
+
 function drawEvenOddIdenSix() {
 
 }

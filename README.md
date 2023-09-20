@@ -1,4 +1,4 @@
-# Trigonometry Visualizer
+# Unit Circle Visualizer
 
 Welcome to the Trigonometry Visualizer repository! This website offers an interactive way to visualize and understand the concepts of trigonometry. Explore angles, triangles, and trigonometric functions through a dynamic visual interface.
 

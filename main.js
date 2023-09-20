@@ -2894,6 +2894,42 @@ function drawEvenOddIdenOne() {
 }
 
 function drawEvenOddIdenTwo() {
+    SetMan.butAllTrigFunc(false);
+    SetMan.butRadius(false);
+    SetMan.butUnitTriangle(false);
+
+    let angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+    if(angle < 0) {
+        angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+        angle += 2;
+    }
+    angle *= PI;
+
+
+    CosMan.strokeColor('lime');
+    line(0, 0, -relativeCos(angle), 0);
+
+
+    let cosLeft = parseFloat(-relativeCos(-angle)/UNIT).toFixed(3);
+    let cosRight = parseFloat(-relativeCos(angle)/UNIT).toFixed(3);
+
+
+    let explanation = 'Even / Odd Identity\n\ncos(-' + parseFloat(angle/PI).toFixed(3) + 'π) = -cos(' + parseFloat(angle/PI).toFixed(3) + 'π)\n\n' + cosLeft + ' = ' + cosRight;
+
+    if(angle >= 0 && angle < PI/2) {
+        text(explanation, -UNIT * 1.2, -UNIT * 1.6);
+    } else if(angle >= PI/2 && angle < PI) {
+        text(explanation, UNIT * 1.2, -UNIT * 1.6);
+    } else if(angle >= PI && angle < 3*PI/2) {
+        text(explanation, -UNIT * 1.2, -UNIT * 1.6);
+    } else if(angle >= 3*PI/2 && angle < 2*PI) {
+        text(explanation, -UNIT * 1.2, -UNIT * 1.6);
+    }
+
+    if(SetMan.getNames()) {
+        fill('lime');
+        text('cos(-θ)\n\n-cos(θ)', -relativeCos(angle) * 0.5, (angle > PI/2 && angle < 3*PI/2)  ? -100 : 50);
+    }
 
 }
 

@@ -2907,7 +2907,7 @@ function drawEvenOddIdenTwo() {
 
 
     CosMan.strokeColor('lime');
-    line(0, 0, -relativeCos(angle), 0);
+    line(0, relativeSin(angle), -relativeCos(angle), relativeSin(angle));
 
 
     let cosLeft = parseFloat(-relativeCos(-angle)/UNIT).toFixed(3);
@@ -2928,7 +2928,7 @@ function drawEvenOddIdenTwo() {
 
     if(SetMan.getNames()) {
         fill('lime');
-        text('cos(-θ)\n\n-cos(θ)', -relativeCos(angle) * 0.5, (angle > PI/2 && angle < 3*PI/2)  ? -100 : 50);
+        text('cos(-θ)\n\n-cos(θ)', -relativeCos(angle) * 0.5, relativeSin(angle) * 1.4);
     }
 
 }

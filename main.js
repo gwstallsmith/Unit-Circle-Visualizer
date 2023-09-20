@@ -150,6 +150,13 @@ class SettingsManager {
         this.cofuncIdenFive_ = false;
         this.cofuncIdenSix_ = false;
 
+        this.evenOddIdenOne_ = false;
+        this.evenOddIdenTwo_ = false;
+        this.evenOddIdenThree_ = false;
+        this.evenOddIdenFour_ = false;
+        this.evenOddIdenFive_ = false;
+        this.evenOddIdenSix_ = false;
+
 
         this.spinMode_ = false;
     }
@@ -542,6 +549,67 @@ class SettingsManager {
         }
         return this.cofuncIdenSix_
     }
+    getEvenOddIdenOne() {
+        if(this.evenOddIdenOne_) {
+            document.getElementById('evenOddIdenOne').innerHTML = 'On'
+            document.getElementById('evenOddIdenOne').style = 'border-color:rgb(0,255,0);'
+        } else {
+            document.getElementById('evenOddIdenOne').innerHTML = 'Off'
+            document.getElementById('evenOddIdenOne').style = 'border-color:rgb(255,0,0);'
+        }
+        return this.evenOddIdenOne_
+    }
+    getEvenOddIdenTwo() {
+        if(this.evenOddIdenTwo_) {
+            document.getElementById('evenOddIdenTwo').innerHTML = 'On'
+            document.getElementById('evenOddIdenTwo').style = 'border-color:rgb(0,255,0);'
+        } else {
+            document.getElementById('evenOddIdenTwo').innerHTML = 'Off'
+            document.getElementById('evenOddIdenTwo').style = 'border-color:rgb(255,0,0);'
+        }
+        return this.evenOddIdenTwo_
+    }
+    getEvenOddIdenThree() {
+        if(this.evenOddIdenThree_) {
+            document.getElementById('evenOddIdenThree').innerHTML = 'On'
+            document.getElementById('evenOddIdenThree').style = 'border-color:rgb(0,255,0);'
+        } else {
+            document.getElementById('evenOddIdenThree').innerHTML = 'Off'
+            document.getElementById('evenOddIdenThree').style = 'border-color:rgb(255,0,0);'
+        }
+        return this.evenOddIdenThree_
+    }
+    getEvenOddIdenFour() {
+        if(this.evenOddIdenFour_) {
+            document.getElementById('evenOddIdenFour').innerHTML = 'On'
+            document.getElementById('evenOddIdenFour').style = 'border-color:rgb(0,255,0);'
+        } else {
+            document.getElementById('evenOddIdenFour').innerHTML = 'Off'
+            document.getElementById('evenOddIdenFour').style = 'border-color:rgb(255,0,0);'
+        }
+        return this.evenOddIdenFour_
+    }
+    getEvenOddIdenFive() {
+        if(this.evenOddIdenFive_) {
+            document.getElementById('evenOddIdenFive').innerHTML = 'On'
+            document.getElementById('evenOddIdenFive').style = 'border-color:rgb(0,255,0);'
+        } else {
+            document.getElementById('evenOddIdenFive').innerHTML = 'Off'
+            document.getElementById('evenOddIdenFive').style = 'border-color:rgb(255,0,0);'
+        }
+        return this.evenOddIdenFive_
+    }
+    getEvenOddIdenSix() {
+        if(this.evenOddIdenSix_) {
+            document.getElementById('evenOddIdenSix').innerHTML = 'On'
+            document.getElementById('evenOddIdenSix').style = 'border-color:rgb(0,255,0);'
+        } else {
+            document.getElementById('evenOddIdenSix').innerHTML = 'Off'
+            document.getElementById('evenOddIdenSix').style = 'border-color:rgb(255,0,0);'
+        }
+        return this.evenOddIdenSix_
+    }
+
 
     // Buttons
 
@@ -1011,6 +1079,13 @@ class SettingsManager {
             this.butCofuncIdenFive(false)
             this.butCofuncIdenSix(false)
 
+            this.butEvenOddIdenOne(false);
+            this.butEvenOddIdenTwo(false);
+            this.butEvenOddIdenThree(false);
+            this.butEvenOddIdenFour(false);
+            this.butEvenOddIdenFive(false);
+            this.butEvenOddIdenSix(false);
+
         } else {
             this.butAllTrigFunc(false);
             this.butRadius(false);
@@ -1036,6 +1111,13 @@ class SettingsManager {
             this.butCofuncIdenFive(false)
             this.butCofuncIdenSix(false)
 
+            this.butEvenOddIdenOne(false);
+            this.butEvenOddIdenTwo(false);
+            this.butEvenOddIdenThree(false);
+            this.butEvenOddIdenFour(false);
+            this.butEvenOddIdenFive(false);
+            this.butEvenOddIdenSix(false);
+
         } else {
             this.butAllTrigFunc(false);
             this.butRadius(false);
@@ -1059,6 +1141,14 @@ class SettingsManager {
             this.butCofuncIdenFour(false)
             this.butCofuncIdenFive(false)
             this.butCofuncIdenSix(false)
+
+            this.butEvenOddIdenOne(false);
+            this.butEvenOddIdenTwo(false);
+            this.butEvenOddIdenThree(false);
+            this.butEvenOddIdenFour(false);
+            this.butEvenOddIdenFive(false);
+            this.butEvenOddIdenSix(false);
+
         } else {
             this.butAllTrigFunc(false);
             this.butRadius(false);
@@ -1081,6 +1171,14 @@ class SettingsManager {
             this.butCofuncIdenFour(false)
             this.butCofuncIdenFive(false)
             this.butCofuncIdenSix(false)
+
+            this.butEvenOddIdenOne(false);
+            this.butEvenOddIdenTwo(false);
+            this.butEvenOddIdenThree(false);
+            this.butEvenOddIdenFour(false);
+            this.butEvenOddIdenFive(false);
+            this.butEvenOddIdenSix(false);
+
         } else {
             this.butAllTrigFunc(false);
             this.butRadius(false);
@@ -1104,6 +1202,14 @@ class SettingsManager {
             this.butCofuncIdenFour(false)
             this.butCofuncIdenFive(false)
             this.butCofuncIdenSix(false)
+
+            this.butEvenOddIdenOne(false);
+            this.butEvenOddIdenTwo(false);
+            this.butEvenOddIdenThree(false);
+            this.butEvenOddIdenFour(false);
+            this.butEvenOddIdenFive(false);
+            this.butEvenOddIdenSix(false);
+
         } else {
             this.butAllTrigFunc(false);
             this.butRadius(false);
@@ -1127,6 +1233,14 @@ class SettingsManager {
             this.butCofuncIdenThree(false)
             this.butCofuncIdenFive(false)
             this.butCofuncIdenSix(false)
+
+            this.butEvenOddIdenOne(false);
+            this.butEvenOddIdenTwo(false);
+            this.butEvenOddIdenThree(false);
+            this.butEvenOddIdenFour(false);
+            this.butEvenOddIdenFive(false);
+            this.butEvenOddIdenSix(false);
+
         } else {
             this.butAllTrigFunc(false);
             this.butRadius(false);
@@ -1150,6 +1264,14 @@ class SettingsManager {
             this.butCofuncIdenThree(false)
             this.butCofuncIdenFour(false)
             this.butCofuncIdenSix(false)
+
+            this.butEvenOddIdenOne(false);
+            this.butEvenOddIdenTwo(false);
+            this.butEvenOddIdenThree(false);
+            this.butEvenOddIdenFour(false);
+            this.butEvenOddIdenFive(false);
+            this.butEvenOddIdenSix(false);
+
         } else {
             this.butAllTrigFunc(false);
             this.butRadius(false);
@@ -1168,11 +1290,21 @@ class SettingsManager {
             this.butPythIdenTwo(false);
             this.butPythIdenThree(false);
 
-            this.butCofuncIdenOne(false)
+            this.butCofuncIdenOne(false);
             this.butCofuncIdenTwo(false);
-            this.butCofuncIdenThree(false)
-            this.butCofuncIdenFour(false)
-            this.butCofuncIdenFive(false)
+            this.butCofuncIdenThree(false);
+            this.butCofuncIdenFour(false);
+            this.butCofuncIdenFive(false);
+
+            this.butEvenOddIdenOne(false);
+            this.butEvenOddIdenTwo(false);
+            this.butEvenOddIdenThree(false);
+            this.butEvenOddIdenFour(false);
+            this.butEvenOddIdenFive(false);
+            this.butEvenOddIdenSix(false);
+
+
+
         } else {
             this.butAllTrigFunc(false);
             this.butRadius(false);
@@ -1181,10 +1313,202 @@ class SettingsManager {
 
         }
     }
+    butEvenOddIdenOne(set = !this.evenOddIdenOne_) {
+        this.evenOddIdenOne_ = set;
+        if(this.evenOddIdenOne_) {
+            document.getElementById('evenOddIdenOne').innerHTML = 'On';
+            document.getElementById('evenOddIdenOne').style = 'border-color: rgb(0,255,0);'; 
+
+            this.butPythIdenOne(false);
+            this.butPythIdenTwo(false);
+            this.butPythIdenThree(false);
+
+            this.butCofuncIdenOne(false);
+            this.butCofuncIdenTwo(false);
+            this.butCofuncIdenThree(false);
+            this.butCofuncIdenFour(false);
+            this.butCofuncIdenFive(false);
+            this.butCofuncIdenSix(false)
+
+            this.butEvenOddIdenTwo(false);
+            this.butEvenOddIdenThree(false);
+            this.butEvenOddIdenFour(false);
+            this.butEvenOddIdenFive(false);
+            this.butEvenOddIdenSix(false);
 
 
-    
 
+        } else {
+            this.butAllTrigFunc(false);
+            this.butRadius(false);
+            document.getElementById('evenOddIdenOne').innerHTML = 'Off'
+            document.getElementById('evenOddIdenOne').style = 'border-color: rgb(255,0,0);'; 
+
+        }
+    }
+    butEvenOddIdenTwo(set = !this.evenOddIdenTwo_) {
+        this.evenOddIdenTwo_ = set;
+        if(this.evenOddIdenTwo_) {
+            document.getElementById('evenOddIdenTwo').innerHTML = 'On';
+            document.getElementById('evenOddIdenTwo').style = 'border-color: rgb(0,255,0);'; 
+
+            this.butPythIdenOne(false);
+            this.butPythIdenTwo(false);
+            this.butPythIdenThree(false);
+
+            this.butCofuncIdenOne(false);
+            this.butCofuncIdenTwo(false);
+            this.butCofuncIdenThree(false);
+            this.butCofuncIdenFour(false);
+            this.butCofuncIdenFive(false);
+            this.butCofuncIdenSix(false);
+
+            this.butEvenOddIdenOne(false);
+            this.butEvenOddIdenThree(false);
+            this.butEvenOddIdenFour(false);
+            this.butEvenOddIdenFive(false);
+            this.butEvenOddIdenSix(false);
+
+
+
+        } else {
+            this.butAllTrigFunc(false);
+            this.butRadius(false);
+            document.getElementById('evenOddIdenTwo').innerHTML = 'Off'
+            document.getElementById('evenOddIdenTwo').style = 'border-color: rgb(255,0,0);'; 
+
+        }
+    }
+    butEvenOddIdenThree(set = !this.evenOddIdenThree_) {
+        this.evenOddIdenThree_ = set;
+        if(this.evenOddIdenThree_) {
+            document.getElementById('evenOddIdenThree').innerHTML = 'On';
+            document.getElementById('evenOddIdenThree').style = 'border-color: rgb(0,255,0);'; 
+
+            this.butPythIdenOne(false);
+            this.butPythIdenTwo(false);
+            this.butPythIdenThree(false);
+
+            this.butCofuncIdenOne(false);
+            this.butCofuncIdenTwo(false);
+            this.butCofuncIdenThree(false);
+            this.butCofuncIdenFour(false);
+            this.butCofuncIdenFive(false);
+            this.butCofuncIdenSix(false);
+
+
+            this.butEvenOddIdenOne(false);
+            this.butEvenOddIdenTwo(false);
+            this.butEvenOddIdenFour(false);
+            this.butEvenOddIdenFive(false);
+            this.butEvenOddIdenSix(false);
+
+
+
+        } else {
+            this.butAllTrigFunc(false);
+            this.butRadius(false);
+            document.getElementById('evenOddIdenThree').innerHTML = 'Off'
+            document.getElementById('evenOddIdenThree').style = 'border-color: rgb(255,0,0);'; 
+
+        }
+    }
+    butEvenOddIdenFour(set = !this.evenOddIdenFour_) {
+        this.evenOddIdenFour_ = set;
+        if(this.evenOddIdenFour_) {
+            document.getElementById('evenOddIdenFour').innerHTML = 'On';
+            document.getElementById('evenOddIdenFour').style = 'border-color: rgb(0,255,0);'; 
+
+            this.butPythIdenOne(false);
+            this.butPythIdenTwo(false);
+            this.butPythIdenThree(false);
+
+            this.butCofuncIdenOne(false);
+            this.butCofuncIdenTwo(false);
+            this.butCofuncIdenThree(false);
+            this.butCofuncIdenFour(false);
+            this.butCofuncIdenFive(false);
+
+            this.butEvenOddIdenOne(false);
+            this.butEvenOddIdenTwo(false);
+            this.butEvenOddIdenThree(false);
+            this.butEvenOddIdenFive(false);
+            this.butEvenOddIdenSix(false);
+
+
+
+        } else {
+            this.butAllTrigFunc(false);
+            this.butRadius(false);
+            document.getElementById('evenOddIdenFour').innerHTML = 'Off'
+            document.getElementById('evenOddIdenFour').style = 'border-color: rgb(255,0,0);'; 
+
+        }
+    }
+    butEvenOddIdenFive(set = !this.evenOddIdenFive_) {
+        this.evenOddIdenFive_ = set;
+        if(this.evenOddIdenFive_) {
+            document.getElementById('evenOddIdenFive').innerHTML = 'On';
+            document.getElementById('evenOddIdenFive').style = 'border-color: rgb(0,255,0);'; 
+
+            this.butPythIdenOne(false);
+            this.butPythIdenTwo(false);
+            this.butPythIdenThree(false);
+
+            this.butCofuncIdenOne(false);
+            this.butCofuncIdenTwo(false);
+            this.butCofuncIdenThree(false);
+            this.butCofuncIdenFour(false);
+            this.butCofuncIdenFive(false);
+
+            this.butEvenOddIdenOne(false);
+            this.butEvenOddIdenTwo(false);
+            this.butEvenOddIdenThree(false);
+            this.butEvenOddIdenFour(false);
+            this.butEvenOddIdenSix(false);
+
+
+
+        } else {
+            this.butAllTrigFunc(false);
+            this.butRadius(false);
+            document.getElementById('evenOddIdenFive').innerHTML = 'Off'
+            document.getElementById('evenOddIdenFive').style = 'border-color: rgb(255,0,0);'; 
+
+        }
+    }    
+    butEvenOddIdenSix(set = !this.evenOddIdenSix_) {
+        this.evenOddIdenSix_ = set;
+        if(this.evenOddIdenSix_) {
+            document.getElementById('evenOddIdenSix').innerHTML = 'On';
+            document.getElementById('evenOddIdenSix').style = 'border-color: rgb(0,255,0);'; 
+
+            this.butPythIdenOne(false);
+            this.butPythIdenTwo(false);
+            this.butPythIdenThree(false);
+
+            this.butCofuncIdenOne(false);
+            this.butCofuncIdenTwo(false);
+            this.butCofuncIdenThree(false);
+            this.butCofuncIdenFour(false);
+            this.butCofuncIdenFive(false);
+
+            this.butEvenOddIdenOne(false);
+            this.butEvenOddIdenTwo(false);
+            this.butEvenOddIdenThree(false);
+            this.butEvenOddIdenFour(false);
+            this.butEvenOddIdenFive(false);
+
+
+
+        } else {
+            this.butAllTrigFunc(false);
+            this.butRadius(false);
+            document.getElementById('evenOddIdenSix').innerHTML = 'Off'
+            document.getElementById('evenOddIdenSix').style = 'border-color: rgb(255,0,0);'; 
+
+        }
+    }
 
     butSpinMode() {
         this.spinMode_ = !this.spinMode_;
@@ -1641,6 +1965,12 @@ function draw() {
     if(SetMan.getCofuncIdenFive()) drawCofuncIdenFive();
     if(SetMan.getCofuncIdenSix()) drawCofuncIdenSix();
 
+    if(SetMan.getEvenOddIdenOne()) drawEvenOddIdenOne();
+    if(SetMan.getEvenOddIdenTwo()) drawEvenOddIdenTwo();
+    if(SetMan.getEvenOddIdenThree()) drawEvenOddIdenThree();
+    if(SetMan.getEvenOddIdenFour()) drawEvenOddIdenFour();
+    if(SetMan.getEvenOddIdenFive()) drawEvenOddIdenFive();
+    if(SetMan.getEvenOddIdenSix()) drawEvenOddIdenSix();
 
 
     if(SetMan.getSpinMode()) spinMode();
@@ -2523,8 +2853,57 @@ function drawCofuncIdenSix() {
 
 }
 
+function drawEvenOddIdenOne() {
+    SetMan.butAllTrigFunc(false);
+    SetMan.butRadius(false);
+    SetMan.butUnitTriangle(false);
+
+    let angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+    if(angle < 0) {
+        angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+        angle += 2;
+    }
+    angle *= PI;
+
+    let sinLeft = parseFloat(-relativeSin(-angle)/UNIT).toFixed(3);
+    let sinRight = parseFloat(relativeSin(angle)/UNIT).toFixed(3);
 
 
+    let explanation = 'Even / Odd Identity\n\nsin(' + parseFloat(angle/PI).toFixed(3) + 'π) = -sin(' + parseFloat(angle/PI).toFixed(3) + 'π)\n\n' + sinLeft + ' = ' + sinRight;
+
+    if(angle >= 0 && angle < PI/2) {
+        text(explanation, -UNIT * 1.2, -UNIT * 1.6);
+    } else if(angle >= PI/2 && angle < PI) {
+        text(explanation, UNIT * 1.2, -UNIT * 1.6);
+    } else if(angle >= PI && angle < 3*PI/2) {
+        text(explanation, -UNIT * 1.2, -UNIT * 1.6);
+    } else if(angle >= 3*PI/2 && angle < 2*PI) {
+        text(explanation, -UNIT * 1.2, -UNIT * 1.6);
+    }
+
+    if(SetMan.getNames()) {
+        fill('cyan');
+        text('csc(θ)', (angle > PI/2 && angle < 3*PI/2) ? 50 : -50, ((1/(relativeSin(PI/2-angle)/UNIT)) * UNIT) * 0.5);
+        fill('yellow');
+        text('sec(θ)',(UNIT/relativeCos(angle) * UNIT) * 0.5, (angle > 0 && angle < PI)  ? 50 : -50);
+    }
+
+}
+function drawEvenOddIdenTwo() {
+
+}
+function drawEvenOddIdenThree() {
+
+}
+function drawEvenOddIdenFour() {
+
+}
+function drawEvenOddIdenFive() {
+
+}
+function drawEvenOddIdenSix() {
+
+}
 
 
 let spinAngle = 2 * PI

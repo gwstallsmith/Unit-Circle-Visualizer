@@ -2934,7 +2934,42 @@ function drawEvenOddIdenTwo() {
 }
 
 function drawEvenOddIdenThree() {
+    SetMan.butAllTrigFunc(false);
+    SetMan.butRadius(false);
+    SetMan.butUnitTriangle(false);
 
+    let angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+    if(angle < 0) {
+        angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+        angle += 2;
+    }
+    angle *= PI;
+
+    CosMan.strokeWeight(4);
+    CosMan.strokeColor('red');
+    line(relativeCos(-angle), relativeSin(-angle), UNIT/relativeCos(-angle) * UNIT, 0);
+
+
+    let tanLeft = parseFloat(-relativeSin(-angle)/relativeCos(-angle)).toFixed(3);
+    let tanRight = parseFloat(relativeSin(angle)/relativeCos(angle)).toFixed(3);
+
+
+    let explanation = 'Even / Odd Identity\n\ntan(-' + parseFloat(angle/PI).toFixed(3) + 'π) = -tan(' + parseFloat(angle/PI).toFixed(3) + 'π)\n\n' + tanLeft + ' = ' + tanRight;
+
+    if(angle >= 0 && angle < PI/2) {
+        text(explanation, -UNIT * 1.2, -UNIT * 1.6);
+    } else if(angle >= PI/2 && angle < PI) {
+        text(explanation, UNIT * 1.2, -UNIT * 1.6);
+    } else if(angle >= PI && angle < 3*PI/2) {
+        text(explanation, -UNIT * 1.2, -UNIT * 1.6);
+    } else if(angle >= 3*PI/2 && angle < 2*PI) {
+        text(explanation, -UNIT * 1.2, -UNIT * 1.6);
+    }
+
+    if(SetMan.getNames()) {
+        fill('red');
+        text('tan(θ)', (relativeCos(angle) + UNIT/relativeCos(angle) * UNIT) * 0.6, relativeSin(angle) * 0.5);
+    }
 }
 
 function drawEvenOddIdenFour() {

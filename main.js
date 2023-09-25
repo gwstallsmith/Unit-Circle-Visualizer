@@ -2459,6 +2459,8 @@ function drawPosInfo() {
     }
 }
 
+// PYTHAGOREAN
+
 function drawPythagoreanIdentityOne() {
     SetMan.butAllTrigFunc(false);
     SetMan.butRadius(true);
@@ -2568,6 +2570,8 @@ function drawPythagoreanIdentityThree() {
     }
 
 }
+
+// COFUNCTION
 
 function drawCofuncIdenOne() {
     SetMan.butAllTrigFunc(false);
@@ -2853,6 +2857,8 @@ function drawCofuncIdenSix() {
 
 }
 
+// EVEN / ODD
+
 function drawEvenOddIdenOne() {
     SetMan.butAllTrigFunc(false);
     SetMan.butRadius(false);
@@ -3014,7 +3020,40 @@ function drawEvenOddIdenFour() {
 }
 
 function drawEvenOddIdenFive() {
+    SetMan.butAllTrigFunc(false);
+    SetMan.butRadius(false);
+    SetMan.butUnitTriangle(false);
 
+    let angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+    if(angle < 0) {
+        angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+        angle += 2;
+    }
+    angle *= PI;
+
+
+    CosMan.strokeColor('yellow')
+    line(0, 0, -UNIT/relativeCos(angle) * UNIT, 0)
+
+    let secVal = parseFloat(-1/relativeCos(angle)*UNIT).toFixed(3);
+    secVal = (secVal == '-0.000' ? Math.abs(secVal) : secVal);
+
+    let explanation = 'Even / Odd Identity\n\nsec(-' + parseFloat(angle/PI).toFixed(3) + 'π) = -sec(' + parseFloat(angle/PI).toFixed(3) + 'π)\n\n' + secVal + ' = ' + secVal;
+
+    if(angle >= 0 && angle < PI/2) {
+        text(explanation, -UNIT * 1.2, -UNIT * 1.6);
+    } else if(angle >= PI/2 && angle < PI) {
+        text(explanation, UNIT * 1.2, -UNIT * 1.6);
+    } else if(angle >= PI && angle < 3*PI/2) {
+        text(explanation, -UNIT * 1.2, -UNIT * 1.6);
+    } else if(angle >= 3*PI/2 && angle < 2*PI) {
+        text(explanation, -UNIT * 1.2, -UNIT * 1.6);
+    }
+
+    if(SetMan.getNames()) {
+        fill('yellow');
+        text('sec(-θ)\n\n-sec(θ)',(-UNIT/relativeCos(angle) * UNIT) * 0.5, (angle > 0 && angle < PI)  ? 50 : -100);
+    }
 }
 
 function drawEvenOddIdenSix() {

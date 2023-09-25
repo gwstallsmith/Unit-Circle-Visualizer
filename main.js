@@ -2968,11 +2968,48 @@ function drawEvenOddIdenThree() {
 
     if(SetMan.getNames()) {
         fill('red');
-        text('tan(θ)', (relativeCos(angle) + UNIT/relativeCos(angle) * UNIT) * 0.6, relativeSin(angle) * 0.5);
+        text('tan(θ)\n\n-tan(θ)', (relativeCos(angle) + UNIT/relativeCos(angle) * UNIT) * 0.6, relativeSin(angle) * 0.5);
     }
 }
 
 function drawEvenOddIdenFour() {
+    SetMan.butAllTrigFunc(false);
+    SetMan.butRadius(false);
+    SetMan.butUnitTriangle(false);
+
+    let angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+    if(angle < 0) {
+        angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+        angle += 2;
+    }
+    angle *= PI;
+
+
+    CosMan.strokeColor('cyan');
+    line(0, 0, 0, (1/(relativeSin(-angle)/UNIT)) * UNIT);
+
+
+    let sinVal = -relativeSin(-angle)/UNIT;
+    let cscVal = parseFloat(1/sinVal).toFixed(3);
+    cscVal = (cscVal == '-0.000' ? Math.abs(cscVal) : cscVal);
+
+
+    let explanation = 'Even / Odd Identity\n\ncsc(-' + parseFloat(angle/PI).toFixed(3) + 'π) = -csc(' + parseFloat(angle/PI).toFixed(3) + 'π)\n\n' + cscVal + ' = ' + cscVal;
+
+    if(angle >= 0 && angle < PI/2) {
+        text(explanation, -UNIT * 1.2, -UNIT * 1.6);
+    } else if(angle >= PI/2 && angle < PI) {
+        text(explanation, UNIT * 1.2, -UNIT * 1.6);
+    } else if(angle >= PI && angle < 3*PI/2) {
+        text(explanation, -UNIT * 1.2, -UNIT * 1.6);
+    } else if(angle >= 3*PI/2 && angle < 2*PI) {
+        text(explanation, -UNIT * 1.2, -UNIT * 1.6);
+    }
+
+    if(SetMan.getNames()) {
+        fill('cyan');
+        text('csc(-θ)\n\n-csc(θ)', (angle > 0 && angle < PI) ? 100 : -100, ((1/(relativeSin(-angle)/UNIT)) * UNIT) * 0.5);
+    }
 
 }
 

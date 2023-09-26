@@ -2300,6 +2300,8 @@ function unitCoordinateInfo() {
     }
     angle = parseFloat(angle).toFixed(3);
     document.getElementById('unitCoordinates').innerHTML = '(x, y) = (' + parseFloat(relativeCos(angle*PI)/UNIT).toFixed(3) + ', ' + parseFloat(-relativeSin(angle*PI)/UNIT).toFixed(3) + ')';
+    document.getElementById('unitCoordinates1').innerHTML = '(x, y) = (' + parseFloat(relativeCos(angle*PI)/UNIT).toFixed(3) + ', ' + parseFloat(-relativeSin(angle*PI)/UNIT).toFixed(3) + ')';
+
 }
 
 function triangleAreaInfo() {
@@ -3057,7 +3059,39 @@ function drawEvenOddIdenFive() {
 }
 
 function drawEvenOddIdenSix() {
+    SetMan.butAllTrigFunc(false);
+    SetMan.butRadius(false);
+    SetMan.butUnitTriangle(false);
 
+    let angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+    if(angle < 0) {
+        angle = quadArcTan(relativeMouseX(), -relativeMouseY()) / PI;
+        angle += 2;
+    }
+    angle *= PI;
+
+    CosMan.strokeColor('magenta');
+    line(0, (1/(relativeSin(-angle)/UNIT)) * UNIT, relativeCos(-angle), relativeSin(-angle));
+
+
+    let cotVal = parseFloat(-relativeCos(-angle)/relativeSin(-angle)).toFixed(3);
+
+    let explanation = 'Even / Odd Identity\n\ncot(-' + parseFloat(angle/PI).toFixed(3) + 'π) = -cot(' + parseFloat(angle/PI).toFixed(3) + 'π)\n\n' + cotVal + ' = ' + cotVal;
+
+    if(angle >= 0 && angle < PI/2) {
+        text(explanation, -UNIT * 1.2, -UNIT * 1.6);
+    } else if(angle >= PI/2 && angle < PI) {
+        text(explanation, UNIT * 1.2, -UNIT * 1.6);
+    } else if(angle >= PI && angle < 3*PI/2) {
+        text(explanation, -UNIT * 1.2, -UNIT * 1.6);
+    } else if(angle >= 3*PI/2 && angle < 2*PI) {
+        text(explanation, -UNIT * 1.2, -UNIT * 1.6);
+    }
+
+    if(SetMan.getNames()) {
+        fill('magenta');
+        text('cot(-θ)\n\n-cot(θ)', relativeCos(-angle) * 0.75, ((1/(relativeSin(-angle)/UNIT)) * UNIT));
+    }
 }
 
 

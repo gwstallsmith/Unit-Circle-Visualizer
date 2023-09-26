@@ -16,7 +16,7 @@ Welcome to the Trigonometry Visualizer repository! This website offers an intera
 
 The Trigonometry Visualizer project aims to make learning trigonometry engaging and intuitive. By providing a visual representation of angles and trigonometric concepts, users can develop a deeper understanding of how trigonometry functions work.
 
-Visit the visualizer: [https://gwstallsmith.github.io/Trigonometry-Visualizer/](https://gwstallsmith.github.io/Trigonometry-Visualizer/)
+Visit the visualizer: [https://gwstallsmith.github.io/Unit-Circle-Visualizer/](https://gwstallsmith.github.io/Unit-Circle-Visualizer/)
 
 ## Features
 
@@ -30,7 +30,7 @@ Visit the visualizer: [https://gwstallsmith.github.io/Trigonometry-Visualizer/](
 
 Getting started with the Trigonometry Visualizer is easy:
 
-1. **Visit Our Website:** Go to [https://gwstallsmith.github.io/Trigonometry-Visualizer/](https://gwstallsmith.github.io/Trigonometry-Visualizer/) to access the visualizer.
+1. **Visit Our Website:** Go to [https://gwstallsmith.github.io/Unit-Circle-Visualizer/](https://gwstallsmith.github.io/Unit-Circle-Visualizer/) to access the visualizer.
 
 2. **Explore Trigonometric Concepts:** Interact with the visual interface by adjusting angles and observing how trigonometric functions change accordingly.
 

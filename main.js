@@ -1555,7 +1555,7 @@ function buttonMessage(msg) {
 
 
 
-let CANVAS_SIZE = 900;
+let CANVAS_SIZE = 700;
 let CANVAS_HALF = CANVAS_SIZE / 2;
 
 
@@ -1577,7 +1577,7 @@ function newSetMan(set) {
     }
 
     if(set == 'default') {
-        CANVAS_SIZE = 900;
+        CANVAS_SIZE = 700;
         CANVAS_HALF = CANVAS_SIZE / 2;
         UNIT = CANVAS_SIZE / 4;
         X_ORIGIN = CANVAS_HALF;
@@ -1585,7 +1585,7 @@ function newSetMan(set) {
 
         setup();
         root.style.setProperty('--panel-height', (CANVAS_SIZE * 1.3) + 'px');
-        root.style.setProperty('--panel-width', (CANVAS_SIZE) + 'px');
+        root.style.setProperty('--panel-width', 900 + 'px');
         root.style.setProperty('--inner-panel-size', (CANVAS_SIZE * 1.3 - 60) + 'px');
         
      }
@@ -1596,9 +1596,9 @@ function newSetMan(set) {
 let root = document.querySelector(':root');
 let rootStyles = getComputedStyle(root);
 let cssCanvasSize = rootStyles.getPropertyValue('--canvas-size');
-root.style.setProperty('--panel-height', (CANVAS_SIZE * 1.3) + 'px');
-root.style.setProperty('--panel-width', (CANVAS_SIZE) + 'px');
-root.style.setProperty('--inner-panel-size', (CANVAS_SIZE * 1.3 - 60) + 'px');
+root.style.setProperty('--panel-height', (CANVAS_SIZE * 2) + 'px');
+root.style.setProperty('--panel-width', (CANVAS_SIZE * 1.5) + 'px');
+root.style.setProperty('--inner-panel-size', (CANVAS_SIZE * 2 - 60) + 'px');
 
 
 const PI = Math.PI;
@@ -2036,7 +2036,7 @@ function drawUnitPoint() {
 
 function drawUnitCircle() {
     CosMan.strokeColor('white');
-    CosMan.strokeWeight(2);
+    CosMan.strokeWeight(1);
     fill('rgba(0, 0, 0, 0)')
 
 
@@ -2065,7 +2065,7 @@ function drawUnitCircle() {
 }
 
 function drawQuadI() {
-    CosMan.strokeWeight(2)
+    CosMan.strokeWeight(1)
     CosMan.strokeColor('white');
     line(0, 0, relativeCos(PI/6), relativeSin(PI/6))
     line(0, 0, relativeCos(PI/4), relativeSin(PI/4))
@@ -2077,7 +2077,7 @@ function drawQuadI() {
 }
 
 function drawQuadII() {
-    CosMan.strokeWeight(2)
+    CosMan.strokeWeight(1)
     CosMan.strokeColor('white');
     line(0, 0, relativeCos(2*PI/3), relativeSin(2*PI/3));
     line(0, 0, relativeCos(3*PI/4), relativeSin(3*PI/4));
@@ -2089,7 +2089,7 @@ function drawQuadII() {
 }
 
 function drawQuadIII() {
-    CosMan.strokeWeight(2)
+    CosMan.strokeWeight(1)
     CosMan.strokeColor('white');
     line(0, 0, relativeCos(7*PI/6), relativeSin(7*PI/6))
     line(0, 0, relativeCos(5*PI/4), relativeSin(5*PI/4))
@@ -2101,7 +2101,7 @@ function drawQuadIII() {
 }
 
 function drawQuadIV() {
-    CosMan.strokeWeight(2)
+    CosMan.strokeWeight(1)
     CosMan.strokeColor('white');
     line(0, 0, relativeCos(5*PI/3), relativeSin(5*PI/3));
     line(0, 0, relativeCos(7*PI/4), relativeSin(7*PI/4));
@@ -2439,7 +2439,7 @@ function drawPosInfo() {
 
     angle *= PI;
     fill('white');
-    textSize(24);
+    textSize(18);
     let coordinates = '(x, y) = (' + parseFloat(relativeCos(angle)/UNIT).toFixed(3) + ', ' + parseFloat(-relativeSin(angle)/UNIT).toFixed(3) + ')';
     let offset = SetMan.getPosInfoOffset() ? UNIT * 0.65 : UNIT * 0.45; 
 

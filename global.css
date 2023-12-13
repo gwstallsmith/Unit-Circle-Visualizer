@@ -8,6 +8,7 @@
 :root {
     --panel-width: 800px;
     --inner-panel-size: 200px;
+    --panel-height: ;
 }
 
 .shadow {
@@ -66,14 +67,14 @@ li {
 }
 
 p.innerPanel {
-    font-size: 24px;
+    font-size: 20px;
     color:white;
     text-align: left;
 
 }
 
 p.identity {
-    font-size: 24px;
+    font-size: 16px;
     color:white;
     
     margin-left:2%;
@@ -82,9 +83,11 @@ p.identity {
 
     background-color: #101111;
 
+    /*
     border: 2px solid;
     border-color: white;
     border-radius: 10px;
+    */
 
     line-height:170%;
 }
@@ -103,10 +106,6 @@ input.gridInput {
     width:100px;
     height:50px;
 
-    border:2px solid;
-    border-color:white;
-    border-radius: 10%;
-
     margin-top:2%;
     padding-left:5%;
     padding-right:5%;
@@ -118,6 +117,8 @@ button.gridButton {
     background-color: #101111;
     width:100px;
     height:50px;
+
+    padding:1%;
 
     border:2px solid;
     border-color:white;
@@ -168,9 +169,6 @@ label.gridLabel {
 
     background-color: #101111;
 
-    border: 2px solid;
-    border-color: white;
-    border-radius: 10px;
 }
 
 label.calcLabel {
@@ -185,16 +183,12 @@ label.calcLabel {
     padding-bottom:1%;
     
     background-color: #101111;
-
-    border: 2px solid;
-    border-color: white;
-    border-radius: 10px;
 }
 
 label.identity{
     height:50px;
 
-    font-size:22px;
+    font-size:18px;
 
 
     color:white;
@@ -206,9 +200,6 @@ label.identity{
 
     background-color: #101111;
 
-    border: 2px solid;
-    border-color: white;
-    border-radius: 10px;
 }
 
 label.identityTitle {
@@ -241,9 +232,6 @@ label.title {
 
     background-color: #5A5A5A;
 
-
-    border-radius: 10%;
-    border-color: white;
 }
 
 .grid-container-nav {
@@ -266,8 +254,6 @@ label.title {
     background-color: #5A5A5A;
 
 
-    border-radius: 10%;
-    border-color: white;
 }
 
 .grid-container-info {

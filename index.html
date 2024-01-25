@@ -56,6 +56,7 @@
       <i>
       <li>Use "QWERTY" keys to navigate the settings menus</li>
       <li>Use "<" and ">" keys to decrease or increase Canvas Size</li>
+      <li>Use "T" to toggle mouse tracking</li>
       <li>Use "D" key to return to default settings</li>
       <li>Use "L" key to draw labels</li>
       <br>
@@ -73,7 +74,7 @@
       <br><br>
       <b>Any questions, comments, concerns? Please email <u>gstallsm@kent.edu</u></b>
       <br><br>
-      <p>Last updated: December 13, 2023</p>
+      <p>Last updated: January 25, 2024</p>
 
     </p>
   </div>
@@ -311,7 +312,7 @@
         <button type="button"  class="gridButton shadow square" onclick="buttonMessage('Five dollars, and you can put whatever you want here.')" style="background-color:magenta;">&nbsp</button>
         <button type="button"  class="gridButton shadow square" onclick="SetMan.butCot()" id="cot2">Off</button>
       </div>
-      </div>
+    </div>
     <div class="grid-container">
       <div class="grid-item">
         <label class="gridLabel">Triangle</label><br>
@@ -325,7 +326,10 @@
         <label class="gridLabel">Labels</label><br>
         <button type="button" class="gridButton shadow" onclick="SetMan.butNames()" id="names1">Off</button>
       </div>
-
+      <div class="grid-item">
+        <label class="gridLabel">Track Mouse</label><br>
+        <button type="button" class="gridButton shadow" onclick="SetMan.butTrackMouse()" id="trackMouse">On</button>
+      </div>
     </div>
     <div class="grid-container-info">
       <div class="grid-item-info">

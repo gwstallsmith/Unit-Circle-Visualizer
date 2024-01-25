@@ -65,6 +65,8 @@ class SettingsManager {
 
             this.names_ = false;
 
+            this.trackMouse_ = false;
+
         } else if(mode == 'default') {
             this.sin_ = false;
             this.cos_ = false;
@@ -99,6 +101,9 @@ class SettingsManager {
             this.radius_ = true;
 
             this.names_ = false;
+
+            this.trackMouse_ = true;
+
 
         } else if(mode == 'on') {
             this.sin_ = true;
@@ -135,6 +140,9 @@ class SettingsManager {
             this.radius_ = true;
 
             this.names_ = true;
+
+            this.trackMouse_ = true;
+
         }
 
         this.openPanel_ = 0;
@@ -608,6 +616,17 @@ class SettingsManager {
             document.getElementById('evenOddIdenSix').style = 'border-color:rgb(255,0,0);'
         }
         return this.evenOddIdenSix_
+    }
+
+    getTrackMouse() {
+        if(this.trackMouse_) {
+            document.getElementById('trackMouse').innerHTML = 'On'
+        } else {
+            document.getElementById('trackMouse').innerHTML = 'Off'
+            document.getElementById('trackMouse').style = 'border-color:rgb(255,0,0);'
+        }
+        return this.trackMouse_;
+
     }
 
 
@@ -1546,6 +1565,17 @@ class SettingsManager {
         }
     }
 
+    butTrackMouse() {
+        this.trackMouse_ = !this.trackMouse_;
+        if(this.trackMouse_) {
+            document.getElementById('trackMouse').innerHTML = 'On';
+
+        } else { 
+            document.getElementById('trackMouse').innerHTML = 'Off';
+        }
+    }
+
+
 };
 
 /////
@@ -1887,12 +1917,17 @@ function keyPressed() {
     if(keyCode === 67) {
         SetMan.butCircle();
     }
+    if(keyCode === 84) {
+        SetMan.butTrackMouse();
+    }
 
 }
 
 // P5 function that drives the entire animation.
 function draw() {
     //if(mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height) {
+
+    if(SetMan.getTrackMouse()){ 
 
     frameRate(FRAME_RATE);
     background('#101111');
@@ -1903,7 +1938,7 @@ function draw() {
     CosMan.strokeColor('white');
 
     CosMan.strokeWeight(2);
-
+``
     if(SetMan.getCircle()) drawCircle();
 
     drawAxis(SetMan.getXAxis(), SetMan.getYAxis());
@@ -1978,7 +2013,8 @@ function draw() {
     if(SetMan.getCircle()) drawUnitPoint();
     drawMousePoint();
 
-    //}
+
+    }
 }
 
 // DRAW FUNCTIONS
@@ -3223,6 +3259,7 @@ function calcCoords() {
     }
 
     document.getElementById('thetaInput').value = parseFloat(angle%2).toFixed(3);
+
 }
 
 function calcTheta() {

@@ -12,17 +12,23 @@
   <script src="addons/p5.min.js"></script>
 
   <!-- Sim and Animation -->
-  <script src="main.js"></script>
+  <script src="mobile.js"></script>
 
 </head>
 
-<link rel="stylesheet" href="styles/global.css">
+<link rel="stylesheet" href="styles/mobile.css">
 
-<body class="p5" onload="main()" id="p5">
-  <main>
-  </main>
-</body>
 
+<body onload="main()">
+<div class="vertical-container">
+<div class="canvas-block" id="canvas-container">
+  <div class="p5"  id="p5">
+  </div>
+</div>
+
+
+
+<div class="panel"></div>
 <div class="panel" id="panel0">
   <div class="innerPanel">
     <label class="title"><b>Welcome</b></label>
@@ -56,7 +62,7 @@
       <i>
       <li>Use <b>"QWERTY"</b> keys to navigate the settings menus</li>
       <li>Use <b>"<" and ">"</b> keys to decrease or increase Canvas Size</li>
-      <li>Use <b>"M"</b> to toggle mouse tracking</li>
+      <li>Use <b>"T"</b> to toggle mouse tracking</li>
       <li>Use <b>"D"</b> key to return to default settings</li>
       <li>Use <b>"L"</b> key to draw labels</li>
       <br>
@@ -74,7 +80,7 @@
       <br><br>
       <b>Any questions, comments, concerns? Please email <u>gstallsm@kent.edu</u></b>
       <br><br>
-      <p>Last updated: September 24, 2025</p>
+      <p>Last updated: January 25, 2024</p>
 
     </p>
   </div>
@@ -203,7 +209,7 @@
       </div>
       <div class="grid-item">
         <label class="gridLabel">Unit Angles</label><br>
-        <button type="button" class="gridButton shadow square" onclick="forwardUnitCircle()">&nbsp-&nbsp</button><button class="gridButton shadow square" type="button" onclick="backwardUnitCircle()">+</button>
+        <button type="button" class="gridButton shadow square" onclick="forwardUnitCircle()">-</button><button class="gridButton shadow square" type="button" onclick="backwardUnitCircle()">+</button>
       </div>
       <div class="grid-item">
         <label class="gridLabel">Spin Mode</label><br>
@@ -552,5 +558,6 @@
 
   </div>
 </div>
-
+</div>
+</body>
 </html>

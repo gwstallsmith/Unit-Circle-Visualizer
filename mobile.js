@@ -1825,12 +1825,19 @@ function snapUnitCircle(angle) {
 // P5 function.
 let canvas;
 function setup() {
-    canvas = createCanvas(CANVAS_SIZE, CANVAS_SIZE, WEBGL);
-    canvas.parent('p5');
 
+
+    canvas = createCanvas(CANVAS_SIZE, CANVAS_SIZE, WEBGL);
+    // Attach the canvas to a specific container (so it doesn't interfere with other elements)
+    let canvasContainer = select('#canvas-container');
+    canvasContainer.child(canvas);
+    // Resize the canvas to fit the container dynamically
+    resizeCanvas(canvasContainer.width, canvasContainer.width); 
+    
+    ///
+    canvas.parent('p5');
     
     textAlign(CENTER);
-    textSize(24);
 
     document.getElementById("canvasSize").innerHTML = CANVAS_SIZE + 'px';
 }
@@ -1940,7 +1947,7 @@ function draw() {
     CosMan.strokeColor('white');
 
     CosMan.strokeWeight(2);
-``
+
     if(SetMan.getCircle()) drawCircle();
 
     drawAxis(SetMan.getXAxis(), SetMan.getYAxis());
@@ -2034,19 +2041,19 @@ function drawAxis(xAxis, yAxis) {
 
 function drawXAxis() {
     CosMan.strokeColor('white');
-    CosMan.strokeWeight(4);
+    CosMan.strokeWeight(2);
     line(-CANVAS_SIZE, 0, CANVAS_SIZE, 0); // X-AXIS
 }
 
 function drawYAxis() {
     CosMan.strokeColor('white');
-    CosMan.strokeWeight(4);
+    CosMan.strokeWeight(2);
     line(0, -CANVAS_SIZE, 0, CANVAS_SIZE); // Y-AXIS
 }
 
 function drawCircle(diameter = UNIT * 2) {
     CosMan.strokeColor('white');
-    CosMan.strokeWeight(4);
+    CosMan.strokeWeight(2);
     fill('#101111');
     ellipse(0, 0, diameter, diameter, 50);
 }
@@ -2477,7 +2484,7 @@ function drawPosInfo() {
 
     angle *= PI;
     fill('white');
-    textSize(18);
+    textSize(14);
     let coordinates = '(x, y) = (' + parseFloat(relativeCos(angle)/UNIT).toFixed(3) + ', ' + parseFloat(-relativeSin(angle)/UNIT).toFixed(3) + ')';
     let offset = SetMan.getPosInfoOffset() ? UNIT * 0.65 : UNIT * 0.45; 
 
@@ -3275,3 +3282,9 @@ function calcTheta() {
     document.getElementById('yInput').value = parseFloat(-relativeSin(theta)/UNIT).toFixed(3);
 
 }
+
+// Optionally, you can also prevent touch move to avoid scrolling while dragging
+document.addEventListener('touchmove', function(event) {
+
+  event.preventDefault();  // Prevents scrolling while the user moves their finger
+}, { passive: false });

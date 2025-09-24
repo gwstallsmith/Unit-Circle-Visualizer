@@ -1587,7 +1587,7 @@ function buttonMessage(msg) {
 
 
 
-let CANVAS_SIZE = 400;
+let CANVAS_SIZE = 300;
 let CANVAS_HALF = CANVAS_SIZE / 2;
 
 
@@ -1611,7 +1611,7 @@ function newSetMan(set) {
     if(set == 'default') {
         CANVAS_SIZE = 700;
         CANVAS_HALF = CANVAS_SIZE / 2;
-        UNIT = CANVAS_SIZE / 4;
+        UNIT = CANVAS_SIZE / 2;
         X_ORIGIN = CANVAS_HALF;
         Y_ORIGIN = CANVAS_HALF;
 
@@ -1715,8 +1715,8 @@ function increaseCanvasSize() {
 function decreaseCanvasSize() {
     CANVAS_SIZE -= 100;
 
-    if(CANVAS_SIZE < 500 || CANVAS_SIZE > 2000) {
-        CANVAS_SIZE = 500
+    if(CANVAS_SIZE < 300 || CANVAS_SIZE > 1000) {
+        CANVAS_SIZE = 300
     }
 
     CANVAS_HALF = CANVAS_SIZE / 2;

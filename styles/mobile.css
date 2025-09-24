@@ -48,7 +48,6 @@ body {
 
 .panel {
   flex: 0;                
-  max-width: 800px;       
   background-color: #5A5A5A; 
   padding: 1px;
   border-radius: 8px;     

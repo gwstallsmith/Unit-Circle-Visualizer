@@ -1587,7 +1587,7 @@ function buttonMessage(msg) {
 
 
 
-let CANVAS_SIZE = 400;
+let CANVAS_SIZE = 700;
 let CANVAS_HALF = CANVAS_SIZE / 2;
 
 

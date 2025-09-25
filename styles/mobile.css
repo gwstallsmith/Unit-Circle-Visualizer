@@ -242,7 +242,7 @@ label.title {
 .grid-container-nav {
     max-width: 100%;
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 2%;
     margin-top:5%;
     margin-bottom:5%;

@@ -1609,7 +1609,7 @@ function newSetMan(set) {
     }
 
     if(set == 'default') {
-        CANVAS_SIZE = 700;
+        CANVAS_SIZE = 300;
         CANVAS_HALF = CANVAS_SIZE / 2;
         UNIT = CANVAS_SIZE / 2;
         X_ORIGIN = CANVAS_HALF;
@@ -1695,10 +1695,11 @@ function mouseInCircle() {
 }
 
 function increaseCanvasSize() {
+    return
     CANVAS_SIZE += 100;
 
-    if(CANVAS_SIZE < 500 || CANVAS_SIZE > 2000) {
-        CANVAS_SIZE = 2000
+    if(CANVAS_SIZE < 500 || CANVAS_SIZE > 1000) {
+        CANVAS_SIZE = 1000
     }
 
     CANVAS_HALF = CANVAS_SIZE / 2;
@@ -1713,6 +1714,7 @@ function increaseCanvasSize() {
 }
 
 function decreaseCanvasSize() {
+    return
     CANVAS_SIZE -= 100;
 
     if(CANVAS_SIZE < 300 || CANVAS_SIZE > 1000) {
@@ -3283,8 +3285,15 @@ function calcTheta() {
 
 }
 
-// Optionally, you can also prevent touch move to avoid scrolling while dragging
 document.addEventListener('touchmove', function(event) {
+  // Get the element where the touch started
+  const touch = event.targetTouches[0];
 
-  event.preventDefault();  // Prevents scrolling while the user moves their finger
-}, { passive: false });
+  if (touch) {
+    const touchedElement = document.elementFromPoint(touch.clientX, touch.clientY);
+
+    if (touchedElement && touchedElement.tagName.toLowerCase() === 'canvas') {
+      event.preventDefault(); // Prevent scrolling only if touching a canvas
+    }
+  }
+}, { passive: false });  // passive must be false to use preventDefault
